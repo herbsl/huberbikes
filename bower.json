@@ -1,0 +1,22 @@
+{
+  "name": "huberbikes",
+  "version": "0.0.1",
+  "homepage": "www.huberbikes.de",
+  "authors": [
+    "Herbert Attenberger <herbsl@a-land.de>"
+  ],
+  "description": "www.huberbikes.de",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.11.0"
+  }
+}
