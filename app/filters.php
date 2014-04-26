@@ -19,7 +19,7 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-	if (isset($_ENV['htmltidy.active']) && $_ENV['htmltidy.active']) {
+	if (isset($_ENV['htmltidy.enabled']) && $_ENV['htmltidy.enabled']) {
 		return App::make('stolz.filter.tidy')->filter(null, $request,
 			$response);
 	}
