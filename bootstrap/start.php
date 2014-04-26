@@ -30,7 +30,7 @@ $env = $app->detectEnvironment(array(
 		'vm-ubuntu'
 	),
 	'staging' => array(
-		'icpu138'i
+		'icpu138'
 	),
 ));
 
