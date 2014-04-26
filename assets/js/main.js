@@ -75,8 +75,8 @@
 				}
 
 				/* Inject new Page */
-				//$content.empty();
-				//$('html, body').scrollTop(0);
+				$content.empty();
+				$('html, body').scrollTop(0);
 
 				$title.text($(data).filter('title').text());
 				$style.html($(data).filter('#singlepage-style'));
