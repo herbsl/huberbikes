@@ -119,7 +119,6 @@
 	$(document).ready(function() {
 		var $root = $('html, body');
 
-		// Scrolling:
 		$('#top-link a').on('click', function() {
 			$root.animate({
 				scrollTop: 0

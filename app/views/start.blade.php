@@ -81,7 +81,6 @@
 	$(document).ready(function() {
 		var $root = $('html, body');
 
-		// Scrolling:
 		$('#start-page-2 .scroll-page-1, .navbar-brand').click(function() {
 			$root.animate({
 				scrollTop: 0
