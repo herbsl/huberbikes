@@ -11,7 +11,9 @@ return array(
     | add here additional files to be ignored.
     |
     */
-    'ignored' => array(),
+    'ignored' => array(
+		'/assets'
+	),
 
     /*
     |--------------------------------------------------------------------------
