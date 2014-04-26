@@ -1,0 +1,9 @@
+661c661
+<                 return "<p>" + displayFn(context) + "</p>";
+---
+>                 return "<p class='needsclick'>" + displayFn(context) + "</p>";
+1155c1155
+< })(window.jQuery);
+\ Kein Zeilenumbruch am Dateiende.
+---
+> })(window.jQuery);
