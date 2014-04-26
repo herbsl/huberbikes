@@ -13,10 +13,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<meta name="description" content="TODO">
-		<link href="/css/bootstrap.min.css" rel="stylesheet">
-		<style>
-		@include('main-style')
-		</style>
+		<link href="/css/main.min.css" rel="stylesheet" type="text/css">
 		<style id="singlepage-style">
 		@yield('style')
 		</style>
@@ -32,10 +29,6 @@
 		</div>
 		@include('kontakt-modal')
         @include('oeffnungszeiten-modal')
-		<script src="/js/vendor/modernizr-2.7.1.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script src="/js/main.min.js"></script>
 		<script id="singlepage-javascript">
 		@yield('javascript')

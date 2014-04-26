@@ -90,7 +90,7 @@
 					@endif
 				@endif
 				<div class="image-placeholder">
-					<img src="/images/bikes/{{{ $bike->id}}}-p.jpg" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+					<img src="/img/bikes/{{{ $bike->id}}}.jpg" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
 				</div>
 				<div class="caption">
 					<h3>{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}</h3>

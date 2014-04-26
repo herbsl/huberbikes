@@ -19,7 +19,10 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-	//
+	if (isset($_ENV['htmltidy.active']) && $_ENV['htmltidy.active']) {
+		return App::make('stolz.filter.tidy')->filter(null, $request,
+			$response);
+	}
 });
 
 /*
@@ -78,3 +81,5 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('html-tidy', 'Stolz\Filters\HtmlTidy\Filter');

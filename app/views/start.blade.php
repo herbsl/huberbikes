@@ -15,7 +15,7 @@
 
 		z-index: -1;
 
-		background: url(/images/start-background.jpg) no-repeat center center; 
+		background: url(/img/start-background.jpg) no-repeat center center; 
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
