@@ -13726,7 +13726,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 			$navbarAdd.addClass('hidden');
 		}
 
-		// Clear search-value
+		/* Clear search-value */
 		if (link.substr(0, 12) !== '/bikes/suche') {
 			$search.typeahead('val', '');
 			$search.val('');
@@ -13743,7 +13743,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 			$content.addClass('slidein-right');
 		}
 
-		// Close Dropdown and Navbar
+		/* Close Dropdown and Navbar */
 		if ($dropdown.hasClass('open')) {
 			$dropdown.find('.dropdown-toggle').dropdown('toggle');
 		}	
@@ -13753,7 +13753,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
 		window.setTimeout(function() {
 			$.get(link, function(data) {
-				// Manipulate active state of Navbar
+				/* Manipulate active state of Navbar */
 				$navbarMain.find('li.active').removeClass('active');
 				var $a = $navbarMain.find('li a[href="' + link + '"]');
 				$a.parent().addClass('active');
@@ -13770,7 +13770,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 					$navbarBrand.attr('href', '/');
 				}
 
-				// Inject new Page
+				/* Inject new Page */
 				$content.empty();
 				$('html, body').scrollTop(0);
 
@@ -13856,7 +13856,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 		}
 	};
 	
-	// Fix fixed scrollbar in Webkit
+	/* Fix fixed scrollbar in Webkit */
 	$navbarSearch.focus(function(event) {
 		if ($(document).scrollTop() !== 0) {
 			$('.navbar-fixed-top').addClass('fix-fixed');
@@ -13876,7 +13876,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 		$(document).off('touchmove', touchmoveEvent);
 	});
 
-	// Load Fastclick
+	/* Load Fastclick */
 	$.ajax({
 		url: '/js/fastclick.min.js',
 		dataType: 'script',

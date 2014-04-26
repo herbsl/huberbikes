@@ -15,7 +15,7 @@
 		}
 	};
 	
-	// Fix fixed scrollbar in Webkit
+	/* Fix fixed scrollbar in Webkit */
 	$navbarSearch.focus(function(event) {
 		if ($(document).scrollTop() !== 0) {
 			$('.navbar-fixed-top').addClass('fix-fixed');
@@ -35,7 +35,7 @@
 		$(document).off('touchmove', touchmoveEvent);
 	});
 
-	// Load Fastclick
+	/* Load Fastclick */
 	$.ajax({
 		url: '/js/fastclick.min.js',
 		dataType: 'script',

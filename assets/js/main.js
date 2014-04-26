@@ -29,7 +29,7 @@
 			$navbarAdd.addClass('hidden');
 		}
 
-		// Clear search-value
+		/* Clear search-value */
 		if (link.substr(0, 12) !== '/bikes/suche') {
 			$search.typeahead('val', '');
 			$search.val('');
@@ -46,7 +46,7 @@
 			$content.addClass('slidein-right');
 		}
 
-		// Close Dropdown and Navbar
+		/* Close Dropdown and Navbar */
 		if ($dropdown.hasClass('open')) {
 			$dropdown.find('.dropdown-toggle').dropdown('toggle');
 		}	
@@ -56,7 +56,7 @@
 
 		window.setTimeout(function() {
 			$.get(link, function(data) {
-				// Manipulate active state of Navbar
+				/* Manipulate active state of Navbar */
 				$navbarMain.find('li.active').removeClass('active');
 				var $a = $navbarMain.find('li a[href="' + link + '"]');
 				$a.parent().addClass('active');
@@ -73,7 +73,7 @@
 					$navbarBrand.attr('href', '/');
 				}
 
-				// Inject new Page
+				/* Inject new Page */
 				$content.empty();
 				$('html, body').scrollTop(0);
 
