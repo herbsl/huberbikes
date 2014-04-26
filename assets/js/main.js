@@ -4,7 +4,6 @@
 	var $title = $('title'),
 		$content = $('#singlepage-content'),
 		$style = $('#singlepage-style'),
-		$js = $('#singlepage-javascript'),
 		$dropdown = $('#navbar-main .dropdown'),
 		$navbarMain = $('#navbar-main'),
 		$search = $('#navbar-search'),
@@ -15,8 +14,10 @@
 		return;
 	}
 
+
 	var loadContent = function(link, add) {
-		var slide = add;
+		var $js = $('#singlepage-javascript'),
+			slide = add;
 
 		if (link === '/') {
 			slide = false;
@@ -74,14 +75,14 @@
 				}
 
 				/* Inject new Page */
-				$content.empty();
-				$('html, body').scrollTop(0);
+				//$content.empty();
+				//$('html, body').scrollTop(0);
 
 				$title.text($(data).filter('title').text());
 				$style.html($(data).filter('#singlepage-style'));
-			
 				$content.html($(data).filter('#singlepage-content').children());
 				$js.html($(data).filter('#singlepage-javascript'));
+				console.log($js.length);
 		
 				if (slide) {
 					$content.removeClass('slideout-left-go');
