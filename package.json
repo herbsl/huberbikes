@@ -29,6 +29,8 @@
     "gulp-uglify": "^0.2.1",
     "gulp-gzip": "0.0.8",
     "gulp-util": "^2.2.14",
-    "gulp-clean": "^0.2.4"
+    "gulp-clean": "^0.2.4",
+    "gulp-jsvalidate": "^0.1.1",
+    "gulp-rev": "^0.3.2"
   }
 }

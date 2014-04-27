@@ -5792,6 +5792,7 @@ body {
 	/* Fix static navbar */
 	margin-top: 70px;
 	margin-bottom: 70px;
+	background: #cccccc;
 }
 
 nav {

@@ -8,6 +8,7 @@ var gulp = require('gulp'),
 	clean = require('gulp-clean'),
 	cache = require('gulp-cache'),
 	imagemin = require('gulp-imagemin'),
+	rev = require('gulp-rev'),
 	mincss = require('gulp-minify-css');
 
 gulp.task('img:clean', function() {
@@ -66,6 +67,10 @@ gulp.task('css:main', function() {
 	}))
 	.pipe(mincss())
 	.pipe(gulp.dest('public/css'))
+	.pipe(rev())
+	.pipe(gulp.dest('public/css'))
+	.pipe(rev.manifest())
+	.pipe(gulp.dest('public/css'))
 	.on('error', util.log)
 });
 
@@ -105,6 +110,10 @@ gulp.task('js:main', function() {
 	}))
 	.pipe(uglify())
 	.pipe(gulp.dest('public/js'))
+	.pipe(rev())
+	.pipe(gulp.dest('public/js'))
+	.pipe(rev.manifest())
+	.pipe(gulp.dest('public/js'))
 	.on('error', util.log)
 });
 
@@ -116,6 +125,10 @@ gulp.task('js:addons', function() {
 	.pipe(jshint('.jshintrc'))
 	//.pipe(jshint.reporter('default'))
 	.pipe(gulp.dest('public/js'))
+	/*.pipe(rev())
+	.pipe(gulp.dest('public/js'))
+	.pipe(rev.manifest())
+	.pipe(gulp.dest('public/js'))*/
 	.pipe(rename({
 		suffix: '.min'
 	}))
