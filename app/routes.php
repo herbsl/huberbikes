@@ -16,6 +16,14 @@ Route::get('/bikes', function() {
 	));
 });
 
+Route::get('/bikes/detail/{id}', function($id) {
+	$bike = Bike::with('categories')->with('manufacturer')->find($id);
+
+	return View::make('bikes-detail', array(
+		'title' => $bike->manufacturer->name . ' ' . $bike->name,
+	))->with('bike', $bike);
+});
+
 Route::get('/bikes/{category}', function($category) {
 	$category = strtolower($category);
 	$title = ucfirst($category);
