@@ -84,6 +84,10 @@ gulp.task('css:addons', function() {
 	}))
 	.pipe(mincss())
 	.pipe(gulp.dest('public/css'))
+	/*.pipe(rev())
+	.pipe(gulp.dest('public/css'))
+	.pipe(rev.manifest())
+	.pipe(gulp.dest('public/css'))*/
 	.on('error', util.log)
 });
 

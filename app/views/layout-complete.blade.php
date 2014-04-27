@@ -25,7 +25,7 @@
 		<div id="singlepage-content">@yield('content')</div>
 		@include('kontakt-modal')
         @include('oeffnungszeiten-modal')
-		<script src="/js/main.min.js"></script>
+		<script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
 		<script id="singlepage-javascript">@yield('javascript')</script>
 	</body>
 </html>
