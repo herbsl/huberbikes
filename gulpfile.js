@@ -165,15 +165,15 @@ var compress = function(dirs) {
 	};
 };
 
-gulp.task('clean', [ 'img:clean', 'fonts:clean', 'css:clean', 'js:clean' ]);
+gulp.task('clean', [ 'fonts:clean', 'css:clean', 'js:clean' ]);
 gulp.task('img', [ 'img:main' ]);
 gulp.task('fonts', [ 'fonts:main' ],
 	compress('public/**/*.{eot,svg,ttf,woff}')
 );
-gulp.task('css', [ 'css:clean', 'css:main', 'css:addons' ],
+gulp.task('css', [ 'css:main', 'css:addons' ],
 	compress('public/**/*.css')
 );
-gulp.task('js', [ 'js:clean', 'js:main', 'js:addons' ],
+gulp.task('js', [ 'js:main', 'js:addons' ],
 	compress('public/**/*.js')
 );
 
