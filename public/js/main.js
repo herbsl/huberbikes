@@ -13879,7 +13879,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
 	/* Load Fastclick */
 	$.ajax({
-		url: '/js/fastclick.min.js',
+		url: '/js/addons/fastclick.min.js',
 		dataType: 'script',
 		cache: true
 	}).done(function() {
@@ -13890,15 +13890,19 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 (function($) {
 	'use strict';
 
+	var css = '/css/addons/' + Asset.rev('typeahead.min.css'),
+		js = '/js/addons/' + Asset.rev('typeahead.bundle.min.js');
+
     if (document.createStyleSheet){
-		document.createStyleSheet('/css/typeahead.min.css');
+		document.createStyleSheet(css);
     }
     else {
-    	$("head").append($("<link rel='stylesheet' type='text/css' href='/css/typeahead.min.css'>"));
+    	$("head").append($("<link rel='stylesheet' type='text/css' href='" + 
+			css + "'>"));
 	}
 
 	$.ajax({
-		url: '/js/typeahead.bundle.min.js',
+		url: js,
 		dataType: 'script',
 		cache: true
 	}).done(function() {

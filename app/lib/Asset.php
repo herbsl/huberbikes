@@ -1,8 +1,7 @@
 <?php
 
 class Asset {
-	function __construct() {
-	}
+	function __construct() {}
 
 	public function rev($src) {
 		$basename = basename($src);

@@ -37,7 +37,7 @@
 
 	/* Load Fastclick */
 	$.ajax({
-		url: '/js/fastclick.min.js',
+		url: '/js/addons/fastclick.min.js',
 		dataType: 'script',
 		cache: true
 	}).done(function() {

@@ -55,39 +55,45 @@ gulp.task('css:clean', function() {
 	.pipe(clean())
 });
 
-gulp.task('css:main', function() {
+gulp.task('css:main', function(file) {
+	var dest = 'public/css';
+
 	return gulp.src([
 		'assets/bower/bootstrap/dist/css/bootstrap.css',
 		'assets/css/*.css'
 	])
 	.pipe(concat('main.css'))
-	.pipe(gulp.dest('public/css'))
+	.pipe(gulp.dest(dest))
 	.pipe(rename({
 		suffix: '.min'
 	}))
 	.pipe(mincss())
-	.pipe(gulp.dest('public/css'))
+	.pipe(gulp.dest(dest))
 	.pipe(rev())
-	.pipe(gulp.dest('public/css'))
+	.pipe(gulp.dest(dest))
 	.pipe(rev.manifest())
-	.pipe(gulp.dest('public/css'))
+	.pipe(gulp.dest(dest))
 	.on('error', util.log)
 });
 
 gulp.task('css:addons', function() {
+	var dest = 'public/css/addons';
+
 	return gulp.src([
 		'assets/bower/typeahead.js-bootstrap3.less/typeahead.css',
 	])
-	.pipe(gulp.dest('public/css'))
+	.pipe(gulp.dest(dest))
 	.pipe(rename({
 		suffix: '.min'
 	}))
 	.pipe(mincss())
-	.pipe(gulp.dest('public/css'))
-	/*.pipe(rev())
-	.pipe(gulp.dest('public/css'))
+	.pipe(gulp.dest(dest))
+	.pipe(rev())
+	.pipe(gulp.dest(dest))
 	.pipe(rev.manifest())
-	.pipe(gulp.dest('public/css'))*/
+	.pipe(gulp.dest(dest))
+	.pipe(rename('rev-manifest-css.blade.php'))
+	.pipe(gulp.dest('app/views'))
 	.on('error', util.log)
 });
 
@@ -99,6 +105,8 @@ gulp.task('js:clean', function() {
 });
 
 gulp.task('js:main', function() {
+	var dest = 'public/js';
+
 	return gulp.src([
 		'assets/bower/modernizr/modernizr.js',
 		'assets/bower/jquery/dist/jquery.js',
@@ -108,36 +116,40 @@ gulp.task('js:main', function() {
 	.pipe(jshint('.jshintrc'))
 	//.pipe(jshint.reporter('default'))
 	.pipe(concat('main.js'))
-	.pipe(gulp.dest('public/js'))
+	.pipe(gulp.dest(dest))
 	.pipe(rename({
 		suffix: '.min'
 	}))
 	.pipe(uglify())
-	.pipe(gulp.dest('public/js'))
+	.pipe(gulp.dest(dest))
 	.pipe(rev())
-	.pipe(gulp.dest('public/js'))
+	.pipe(gulp.dest(dest))
 	.pipe(rev.manifest())
-	.pipe(gulp.dest('public/js'))
+	.pipe(gulp.dest(dest))
 	.on('error', util.log)
 });
 
 gulp.task('js:addons', function() {
+	var dest = 'public/js/addons';
+
 	return gulp.src([
 		'assets/bower/typeahead.js/dist/typeahead.bundle.js',
 		'assets/bower/fastclick/lib/fastclick.js',
 	])
 	.pipe(jshint('.jshintrc'))
 	//.pipe(jshint.reporter('default'))
-	.pipe(gulp.dest('public/js'))
-	/*.pipe(rev())
-	.pipe(gulp.dest('public/js'))
-	.pipe(rev.manifest())
-	.pipe(gulp.dest('public/js'))*/
+	.pipe(gulp.dest(dest))
 	.pipe(rename({
 		suffix: '.min'
 	}))
 	.pipe(uglify())
-	.pipe(gulp.dest('public/js'))
+	.pipe(gulp.dest(dest))
+	.pipe(rev())
+	.pipe(gulp.dest(dest))
+	.pipe(rev.manifest())
+	.pipe(gulp.dest(dest))
+	.pipe(rename('rev-manifest-js.blade.php'))
+	.pipe(gulp.dest('app/views'))
 	.on('error', util.log)
 });
 
@@ -158,7 +170,7 @@ gulp.task('img', [ 'img:main' ]);
 gulp.task('fonts', [ 'fonts:main' ],
 	compress('public/**/*.{eot,svg,ttf,woff}')
 );
-gulp.task('css', [ 'css:main', 'css:addons' ],
+gulp.task('css', [ 'css:clean', 'css:main', 'css:addons' ],
 	compress('public/**/*.css')
 );
 gulp.task('js', [ 'js:clean', 'js:main', 'js:addons' ],
