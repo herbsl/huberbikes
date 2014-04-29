@@ -113,7 +113,7 @@ gulp.task('js:main:cache', function() {
 		'assets/bower/bootstrap/dist/js/bootstrap.js'
 	])
 	.pipe(concat('cache.js'))
-	.pipe(gulp.dest('assets/tmp'))
+	.pipe(gulp.dest('assets/tmp/'))
 	.on('error', util.log);
 });
 
@@ -125,15 +125,15 @@ var jsMain = function(fast) {
 		var ret = gulp.src([
 			'assets/tmp/cache.js',
 			'assets/js/*.js'
-		]);
+		])
+		.pipe(concat('main.js'))
+		.pipe(gulp.dest(dest));
 
 		/*if (! fast) {
 			ret.pipe(jshint('.jshintrc'))
 			.pipe(jshint.reporter('default'));
 		}*/
 
-		ret.pipe(concat('main.js'))
-		.pipe(gulp.dest(dest));
 
 		if (! fast) {
 			ret.pipe(rename({
@@ -195,11 +195,12 @@ var _rev = function(src, reload) {
 gulp.task('rev:fast', [ 'js:main:fast', 'css:main:fast' ], _rev([
 	'public/**/main.js',
 	'public/**/main.css'
-], true)); 
+], true));
+ 
 gulp.task('rev', [ 'js', 'css' ], _rev([
 	'public/**/*.js',
 	'public/**/*.css'
-])); 
+], false)); 
 
 gulp.task('rev:clean', function() {
 	return gulp.src('public/rev-manifest.json', {
