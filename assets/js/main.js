@@ -82,7 +82,6 @@
 				$style.html($(data).filter('#singlepage-style'));
 				$content.html($(data).filter('#singlepage-content').children());
 				$js.html($(data).filter('#singlepage-javascript'));
-				console.log($js.length);
 		
 				if (slide) {
 					$content.removeClass('slideout-left-go');

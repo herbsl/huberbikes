@@ -1,8 +1,8 @@
 (function($) {
 	'use strict';
 
-	var css = '/css/addons/' + Asset.rev('typeahead.min.css'),
-		js = '/js/addons/' + Asset.rev('typeahead.bundle.min.js');
+	var css = Asset.rev('/css/typeahead.min.css'),
+		js = Asset.rev('/js/typeahead.bundle.min.js');
 
     if (document.createStyleSheet){
 		document.createStyleSheet(css);

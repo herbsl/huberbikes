@@ -9,7 +9,8 @@ var gulp = require('gulp'),
 	cache = require('gulp-cache'),
 	imagemin = require('gulp-imagemin'),
 	rev = require('gulp-rev'),
-	mincss = require('gulp-minify-css');
+	mincss = require('gulp-minify-css'),
+	livereload = require('gulp-livereload');
 
 gulp.task('img:clean', function() {
 	return gulp.src('public/img', {
@@ -18,7 +19,7 @@ gulp.task('img:clean', function() {
 	.pipe(clean())
 });
 
-gulp.task('img:main', function() {
+gulp.task('img', function() {
 	return gulp.src([
 		'assets/img/**/*'
 	])
@@ -32,14 +33,14 @@ gulp.task('img:main', function() {
 	.pipe(gulp.dest('public/img'))
 });
 
-gulp.task('fonts:clean', function() {
+gulp.task('font:clean', function() {
 	return gulp.src('public/fonts', {
 		read: false
 	})
 	.pipe(clean())
 });
 
-gulp.task('fonts:main', function() {
+gulp.task('font', function() {
 	return gulp.src([
 		'assets/bower/bootstrap/dist/fonts/*'
 	])
@@ -55,29 +56,36 @@ gulp.task('css:clean', function() {
 	.pipe(clean())
 });
 
-gulp.task('css:main', function(file) {
-	var dest = 'public/css';
+var cssMain = function(fast) {
+	return function() {
+		var dest = 'public/css';
 
-	return gulp.src([
-		'assets/bower/bootstrap/dist/css/bootstrap.css',
-		'assets/css/*.css'
-	])
-	.pipe(concat('main.css'))
-	.pipe(gulp.dest(dest))
-	.pipe(rename({
-		suffix: '.min'
-	}))
-	.pipe(mincss())
-	.pipe(gulp.dest(dest))
-	.pipe(rev())
-	.pipe(gulp.dest(dest))
-	.pipe(rev.manifest())
-	.pipe(gulp.dest(dest))
-	.on('error', util.log)
-});
+		var ret = gulp.src([
+			'assets/bower/bootstrap/dist/css/bootstrap.css',
+			'assets/css/*.css'
+		])
+		.pipe(concat('main.css'))
+		.pipe(gulp.dest(dest));
+
+		if (! fast) {
+	 		ret.pipe(rename({
+				suffix: '.min'
+			}))
+			.pipe(mincss())
+			.pipe(gulp.dest(dest));
+		}
+	
+		ret.on('error', util.log);
+
+		return ret;
+	};
+};
+
+gulp.task('css:main', cssMain(false));
+gulp.task('css:main:fast', cssMain(true));
 
 gulp.task('css:addons', function() {
-	var dest = 'public/css/addons';
+	var dest = 'public/css';
 
 	return gulp.src([
 		'assets/bower/typeahead.js-bootstrap3.less/typeahead.css',
@@ -88,12 +96,6 @@ gulp.task('css:addons', function() {
 	}))
 	.pipe(mincss())
 	.pipe(gulp.dest(dest))
-	.pipe(rev())
-	.pipe(gulp.dest(dest))
-	.pipe(rev.manifest())
-	.pipe(gulp.dest(dest))
-	.pipe(rename('rev-manifest-css.blade.php'))
-	.pipe(gulp.dest('app/views'))
 	.on('error', util.log)
 });
 
@@ -104,33 +106,53 @@ gulp.task('js:clean', function() {
 	.pipe(clean())
 });
 
-gulp.task('js:main', function() {
-	var dest = 'public/js';
-
+gulp.task('js:main:cache', function() {
 	return gulp.src([
 		'assets/bower/modernizr/modernizr.js',
 		'assets/bower/jquery/dist/jquery.js',
-		'assets/bower/bootstrap/dist/js/bootstrap.js',
-		'assets/js/*.js'
+		'assets/bower/bootstrap/dist/js/bootstrap.js'
 	])
-	.pipe(jshint('.jshintrc'))
-	//.pipe(jshint.reporter('default'))
-	.pipe(concat('main.js'))
-	.pipe(gulp.dest(dest))
-	.pipe(rename({
-		suffix: '.min'
-	}))
-	.pipe(uglify())
-	.pipe(gulp.dest(dest))
-	.pipe(rev())
-	.pipe(gulp.dest(dest))
-	.pipe(rev.manifest())
-	.pipe(gulp.dest(dest))
-	.on('error', util.log)
+	.pipe(concat('cache.js'))
+	.pipe(gulp.dest('assets/tmp'))
+	.on('error', util.log);
 });
 
+
+var jsMain = function(fast) {
+	var dest = 'public/js';
+
+	return function() {
+		var ret = gulp.src([
+			'assets/tmp/cache.js',
+			'assets/js/*.js'
+		]);
+
+		/*if (! fast) {
+			ret.pipe(jshint('.jshintrc'))
+			.pipe(jshint.reporter('default'));
+		}*/
+
+		ret.pipe(concat('main.js'))
+		.pipe(gulp.dest(dest));
+
+		if (! fast) {
+			ret.pipe(rename({
+				suffix: '.min'
+			}))
+ 			.pipe(uglify())
+	 		.pipe(gulp.dest(dest));
+		}
+
+		ret.on('error', util.log);
+		return ret;
+	}
+};
+
+gulp.task('js:main', [ 'js:main:cache' ], jsMain(false));
+gulp.task('js:main:fast', jsMain(true));
+
 gulp.task('js:addons', function() {
-	var dest = 'public/js/addons';
+	var dest = 'public/js';
 
 	return gulp.src([
 		'assets/bower/typeahead.js/dist/typeahead.bundle.js',
@@ -144,37 +166,68 @@ gulp.task('js:addons', function() {
 	}))
 	.pipe(uglify())
 	.pipe(gulp.dest(dest))
-	.pipe(rev())
-	.pipe(gulp.dest(dest))
-	.pipe(rev.manifest())
-	.pipe(gulp.dest(dest))
-	.pipe(rename('rev-manifest-js.blade.php'))
-	.pipe(gulp.dest('app/views'))
 	.on('error', util.log)
 });
 
-var compress = function(dirs) {
+gulp.task('default', [ 'gzip', 'img' ]);
+gulp.task('clean', [ 'font:clean', 'css:clean', 'js:clean', 'rev:clean' ]);
+gulp.task('css', [ 'css:main', 'css:addons' ]);
+gulp.task('js', [ 'js:main', 'js:addons' ]);
+
+var _rev = function(src, reload) {
 	return function() {
-		return gulp.src(dirs)
-		.pipe(gzip({
- 			gzipOptions: {
-				level: 9
-			}
-		}))
+		var ret = gulp.src(src)
+		.pipe(rev())
 		.pipe(gulp.dest('public'))
+		.pipe(rev.manifest())
+		.pipe(gulp.dest('public'))
+		.pipe(rename('rev-manifest.blade.php'))
+		.pipe(gulp.dest('app/views'));
+
+		if (reload) {
+			ret.pipe(livereload());
+		}
+
+		return ret;
 	};
 };
 
-gulp.task('clean', [ 'fonts:clean', 'css:clean', 'js:clean' ]);
-gulp.task('img', [ 'img:main' ]);
-gulp.task('fonts', [ 'fonts:main' ],
-	compress('public/**/*.{eot,svg,ttf,woff}')
-);
-gulp.task('css', [ 'css:main', 'css:addons' ],
-	compress('public/**/*.css')
-);
-gulp.task('js', [ 'js:main', 'js:addons' ],
-	compress('public/**/*.js')
-);
+gulp.task('rev:fast', [ 'js:main:fast', 'css:main:fast' ], _rev([
+	'public/**/main.js',
+	'public/**/main.css'
+], true)); 
+gulp.task('rev', [ 'js', 'css' ], _rev([
+	'public/**/*.js',
+	'public/**/*.css'
+])); 
 
-gulp.task('default', [ 'img', 'fonts', 'css', 'js' ] );
+gulp.task('rev:clean', function() {
+	return gulp.src('public/rev-manifest.json', {
+		read: false
+	})
+	.pipe(clean())
+});
+
+gulp.task('gzip', [ 'rev', 'font' ], function() {
+	return gulp.src([
+		'public/**/*.js',
+		'public/**/*.css',
+		'public/**/*.{eot,svg,ttf,woff}'
+	])
+	.pipe(gzip({
+ 		gzipOptions: {
+			level: 9
+		}
+	}))
+	.pipe(gulp.dest('public'));
+});
+
+gulp.task('default', [ 'img', 'gzip' ] );
+
+gulp.task('watch', function() {
+	gulp.watch('assets/js/*.js', [ 'rev:fast' ]);
+	gulp.watch('assets/css/*.css', [ 'rev:fast' ]);
+	gulp.watch('app/views/*.blade.php', function() {
+		livereload().changed('');
+	});
+});

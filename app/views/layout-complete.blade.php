@@ -11,7 +11,7 @@
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="description" content="TODO">
 		<link href="{{{ App::make('asset')->rev('/css/main.min.css') }}}" rel="stylesheet" type="text/css">
 		<style id="singlepage-style">@yield('style')</style>
@@ -26,6 +26,9 @@
 		<div id="singlepage-content">@yield('content')</div>
 		@include('kontakt-modal')
         @include('oeffnungszeiten-modal')
+		@if (App::environment('local'))
+		<script src="http://{{{ gethostname() }}}:35729/livereload.js?snipver=1"></script>
+		@endif
 		<script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
 		<script id="singlepage-javascript">@yield('javascript')</script>
 	</body>

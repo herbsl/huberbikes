@@ -4,19 +4,28 @@ class Asset {
 	function __construct() {}
 
 	public function rev($src) {
-		$basename = basename($src);
-		$dirname = dirname($src);
-		$rev = public_path() . $dirname . '/rev-manifest.json';
+		if (App::environment('local')) {
+			$src = str_replace('.min', '', $src);
+		}
+
+		$rev = public_path() . '/rev-manifest.json';
 		if (! file_exists($rev)) {
 			return $src;
 		}
-
+	
 		$map = json_decode(file_get_contents($rev), true);
-		if (! isset($map[$basename])) {
-			return $src;
+		if (isset($map[$src])) {
+			return $map[$src];
 		}
 
-		return $dirname . '/' . $map[$basename];
+		if (substr($src, 0, 1) === '/') {
+			$key = substr($src, 1);
+			if (isset($map[$key])) {
+				return '/' . $map[$key];
+			}
+		}
+
+		return $src;
 	}
 }
 

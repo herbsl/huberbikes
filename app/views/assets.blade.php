@@ -1,14 +1,17 @@
 (function(g, u) {
 	g.Asset = g.Asset || {};
-	g.Asset.js = @include('rev-manifest-js');
-	g.Asset.css = @include('rev-manifest-css');
+	var m = @include('rev-manifest');
 
 	g.Asset.rev = function(f) {
-		if (g.Asset.js[f] !== u) {
-			return g.Asset.js[f];
+		if (m[f] !== u) {
+			return m[f];
 		}
-		if (g.Asset.css[f]) {
-			return g.Asset.css[f];
+
+		if (f.charAt(0) === '/') {
+			var k = f.substr(1);
+			if (m[k]) {
+				return '/' + m[k];
+			}
 		}
 
 		return f;

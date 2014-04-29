@@ -1,31 +1,5 @@
 @extends('layout')
 
-@section('style')
-.carousel-inner .item {
-	height: 320px;
-}
-
-.carousel-control, .carousel-control:hover {
-	text-shadow: none;
-	opacity: 1;
-	color: #4c4c4c;
-}
-
-.carousel-control.right, .carousel-control.left {
-	background-image: none;
-}
-
-.highlights {
-	font-size: 125%;
-}
-
-.well {
-	font-size: 125%;
-	margin-top: 32px;
-}
-
-@stop
-
 @section('content')
 <div class="container">
 	<div class="page-header">

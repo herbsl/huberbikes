@@ -1,0 +1,27 @@
+.carousel-inner .item {
+	max-height: 320px;
+}
+
+.carousel-control, .carousel-control:hover {
+	text-shadow: none;
+	opacity: 1;
+	color: #4c4c4c;
+}
+
+.carousel-control.right, .carousel-control.left {
+	background-image: none;
+}
+
+.highlights {
+	padding: 1em;
+	font-size: 112.5%;
+}
+
+.highlights .row {
+	margin-bottom: 4px;
+}
+
+.well {
+	font-size: 112.5%;
+	margin-top: 32px;
+}
