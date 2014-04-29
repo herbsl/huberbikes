@@ -14,7 +14,6 @@
 		return;
 	}
 
-
 	var loadContent = function(link, add) {
 		var $js = $('#singlepage-javascript'),
 			slide = add;

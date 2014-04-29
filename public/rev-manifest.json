@@ -2,7 +2,7 @@
   "js/cache.min.js": "js/cache.min-0e389382.js",
   "js/fastclick.js": "js/fastclick-5a6b30e6.js",
   "js/fastclick.min.js": "js/fastclick.min-2c287029.js",
-  "js/main.js": "js/main-323c5042.js",
+  "js/main.js": "js/main-bd25f70d.js",
   "js/main.min.js": "js/main.min-ba194397.js",
   "js/menu.min.js": "js/menu.min-c29e99d2.js",
   "js/touch.min.js": "js/touch.min-a210aaa7.js",
