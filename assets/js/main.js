@@ -3,7 +3,6 @@
 
 	var $title = $('title'),
 		$content = $('#singlepage-content'),
-		$style = $('#singlepage-style'),
 		$dropdown = $('#navbar-main .dropdown'),
 		$navbarMain = $('#navbar-main'),
 		$search = $('#navbar-search'),
@@ -78,7 +77,6 @@
 				$('html, body').scrollTop(0);
 
 				$title.text($(data).filter('title').text());
-				$style.html($(data).filter('#singlepage-style'));
 				$content.html($(data).filter('#singlepage-content').children());
 				$js.html($(data).filter('#singlepage-javascript'));
 		

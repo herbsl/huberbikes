@@ -4975,7 +4975,7 @@ nav {
           transform: translate(0, 0);
 }
 
-.slidein-right {
+.csstransforms .slidein-right {
 	position: relative;
 
 	right: -100%;
@@ -4986,7 +4986,7 @@ nav {
 	transition: right 0s ease;
 }
 
-.slidein-right-go {
+.csstransforms .slidein-right-go {
 	right: 0;
 
 	-webkit-transition: right 0.25s ease;
@@ -4997,7 +4997,7 @@ nav {
 }
 
 
-.slideout-left-go {
+.csstransforms .slideout-left-go {
 	left: -100%;
 
 	-webkit-transition: left 0.25s ease;

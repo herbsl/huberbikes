@@ -1,57 +1,5 @@
 @extends('layout')
 
-@section('style')
-	html {
-		height: 100%;
-	}
-
-	body, #singlepage-content, #singlepage-content > .container {
-		height: 100%;
-	}
-
-	#start-background {
-		position: absolute;
-		top: 0;
-
-		z-index: -1;
-
-		background: url(/img/start-background.jpg) no-repeat center center; 
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-	}
-
-	#start-background, #start-page-1, #start-page-2 {
-		height: 100%;
-		width: 100%;
-		min-height: 480px;
-	}
-
-	#start-page-2 {
-		padding-top: 70px;
-	}
-
-
-	.jumbotron {
-		color: #efefef;
-		background-color: transparent;
-	}
-
-	@media (max-width: 767px) {
-		/* Optimize for small screens: */
-		#start-page-1, #start-page-2 {
-			padding-top: 50px;
-		}
-	}
-
-	@media (min-width: 768px and max-width: 1023px) {
-		.#start-page-1 jumbotron {
-			max-width: 60%;
-		}
-	}
-@stop
-
 @section('content')
 	<!-- Background-Image -->
 	<div id="start-background"></div>

@@ -7,7 +7,9 @@ Route::get('/responsive-menu', function() {
 });
 
 Route::get('/', function() {
-	return View::make('start');
+	return View::make('start', array(
+		'cssClass' => 'start-page'
+	));
 });
 
 Route::get('/bikes', function() {

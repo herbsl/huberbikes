@@ -10,7 +10,8 @@ var gulp = require('gulp'),
 	imagemin = require('gulp-imagemin'),
 	rev = require('gulp-rev'),
 	mincss = require('gulp-minify-css'),
-	livereload = require('gulp-livereload');
+	livereload = require('gulp-livereload'),
+	less = require('gulp-less');
 
 gulp.task('img:clean', function() {
 	return gulp.src('public/img', {
@@ -61,7 +62,8 @@ var cssMain = function(fast) {
 		var dest = 'public/css';
 
 		var ret = gulp.src([
-			'assets/bower/bootstrap/dist/css/bootstrap.css',
+			//'assets/bower/bootstrap/dist/css/bootstrap.css',
+			'assets/css/bootstrap.css',
 			'assets/css/*.css'
 		])
 		.pipe(concat('main.css'))
@@ -108,7 +110,7 @@ gulp.task('js:clean', function() {
 
 gulp.task('js:main:cache', function() {
 	return gulp.src([
-		'assets/bower/modernizr/modernizr.js',
+		//'assets/bower/modernizr/modernizr.js',
 		'assets/bower/jquery/dist/jquery.js',
 		'assets/bower/bootstrap/dist/js/bootstrap.js'
 	])
@@ -123,6 +125,7 @@ var jsMain = function(fast) {
 
 	return function() {
 		var ret = gulp.src([
+			'assets/js/modernizr.js',
 			'assets/tmp/cache.js',
 			'assets/js/*.js'
 		])
@@ -223,12 +226,20 @@ gulp.task('gzip', [ 'rev', 'font' ], function() {
 	.pipe(gulp.dest('public'));
 });
 
+gulp.task('twb', function() {
+	return gulp.src('assets/less/bootstrap.less')
+		.pipe(less())
+		.pipe(gulp.dest('assets/css'));
+});
+
 gulp.task('default', [ 'img', 'gzip' ] );
 
 gulp.task('watch', function() {
+	var srv = livereload();
+
 	gulp.watch('assets/js/*.js', [ 'rev:fast' ]);
 	gulp.watch('assets/css/*.css', [ 'rev:fast' ]);
 	gulp.watch('app/views/*.blade.php', function() {
-		livereload().changed('');
+		srv.changed('');
 	});
 });

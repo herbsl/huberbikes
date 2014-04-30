@@ -12,14 +12,6 @@
 	</div>
 @stop
 
-@section('style')
-	#map {
-		width: 100%;
-		min-height: 240px;
-		padding-bottom: 24px;
-	}
-@stop
-
 @section('javascript')
 	$(document).ready(function() {
 		var $win = $(window),

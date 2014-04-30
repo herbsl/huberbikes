@@ -17,9 +17,9 @@ nav {
 	top: 0;
 }
 
-/*#navbar-search, .form-control {
+#navbar-search, .form-control {
 	width: 100% !important;
-}*/
+}
 
 @media (max-width: 639px) {
 	/* Optimize for small screens: */
@@ -86,7 +86,7 @@ nav {
           transform: translate(0, 0);
 }
 
-.csstransforms .slidein-right {
+.slidein-right {
 	position: relative;
 
 	right: -100%;
@@ -97,7 +97,7 @@ nav {
 	transition: right 0s ease;
 }
 
-.csstransforms .slidein-right-go {
+.slidein-right-go {
 	right: 0;
 
 	-webkit-transition: right 0.25s ease;
@@ -108,7 +108,7 @@ nav {
 }
 
 
-.csstransforms .slideout-left-go {
+.slideout-left-go {
 	left: -100%;
 
 	-webkit-transition: left 0.25s ease;

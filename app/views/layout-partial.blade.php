@@ -3,9 +3,6 @@
 @else
 	<title>Bike Service Huber</title>
 @endif
-<style id="singlepage-style">
-	@yield('style')
-</style>
 <div id="singlepage-content">
 	@yield('content')
 </div>
