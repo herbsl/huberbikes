@@ -1,8 +1,8 @@
 <!doctype html>
 @if (isset($cssClass))
-<html class="no-js {{{ $cssClass }}}">
+<html class="{{{ $cssClass }}}">
 @else
-<html class="no-js">
+<html>
 @endif
 	<head>
 		<meta charset="utf-8">
@@ -17,7 +17,8 @@
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="description" content="TODO">
-		<link href="{{{ App::make('asset')->rev('/css/main.min.css') }}}" rel="stylesheet" type="text/css">
+		<!--link href="{{{ App::make('asset')->rev('/css/main.min.css') }}}" rel="stylesheet" type="text/css"-->
+		<style>@include('main-css')</style>
 		<script>@include('assets')</script>
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
