@@ -5,8 +5,8 @@
   "js/main.min.js": "js/main.min-dcadde70.js",
   "js/typeahead.bundle.js": "js/typeahead.bundle-08e416af.js",
   "js/typeahead.bundle.min.js": "js/typeahead.bundle.min-69a9bca2.js",
-  "css/main.css": "css/main-eca9e711.css",
-  "css/main.min.css": "css/main.min-d10a733c.css",
+  "css/main.css": "css/main-9db56b6d.css",
+  "css/main.min.css": "css/main.min-d487dbf6.css",
   "css/typeahead.css": "css/typeahead-fbef99db.css",
   "css/typeahead.min.css": "css/typeahead.min-4e3108fa.css"
 }

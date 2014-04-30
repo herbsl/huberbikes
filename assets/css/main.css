@@ -17,9 +17,9 @@ nav {
 	top: 0;
 }
 
-#navbar-search, .form-control {
+/*#navbar-search, .form-control {
 	width: 100% !important;
-}
+}*/
 
 @media (max-width: 639px) {
 	/* Optimize for small screens: */
