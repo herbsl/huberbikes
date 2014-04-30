@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-	jshint = require('gulp-jshint'),
+    jshint = require('gulp-jshint'),
 	concat = require('gulp-concat'),
 	rename = require('gulp-rename'),
 	uglify = require('gulp-uglify'),
@@ -58,7 +58,6 @@ gulp.task('css:clean', function() {
 });
 
 var cssMain = function(fast) {
-	fast = false;
 	return function() {
 		var dest = 'public/css';
 
@@ -68,6 +67,7 @@ var cssMain = function(fast) {
 			'assets/css/*.css'
 		])
 		.pipe(concat('main.css'))
+		.pipe(gulp.dest(dest));
 
 		if (! fast) {
 	 		ret.pipe(rename({
