@@ -74,6 +74,36 @@
 						</li>
 					</ul>
 				</li>
+				@if (substr(Request::path(), 0, 5) === 'bikes')
+				<li class="active dropdown">
+				@else
+				<li class="dropdown">
+				@endif
+					<a href="/hersteller" class="dropdown-toggle" data-toggle="dropdown">Hersteller <b class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu">
+						@if (Request::path() === '/hersteller/simplon')
+						<li class="active">
+						@else
+						<li>
+						@endif
+							<a href="/hersteller/simplon">Simplon</a>
+						</li>
+						@if (Request::path() === 'hersteller/focus')
+						<li class="active">
+						@else
+						<li>
+						@endif
+							<a href="/hersteller/focus">Focus</a>
+						</li>
+						@if (Request::path() === 'hersteller/merida')
+						<li class="active">
+						@else
+						<li>
+						@endif
+							<a href="/hersteller/merida">Merida</a>
+						</li>
+					</ul>
+				</li>
 				@if (Request::path() === 'sale')
 				<li class="active">
 				@else

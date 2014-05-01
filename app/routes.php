@@ -18,6 +18,17 @@ Route::get('/bikes', function() {
 	));
 });
 
+Route::get('/hersteller/{name}', function($name) {
+	$bikes = Bike::whereHas('manufacturer', function($query) use ($name) {
+		$query->where('name', '=', $name);	
+	})->with('categories')->get();	
+
+	return View::make('bikes-list', array(
+		'title' => $name,
+		'new_threshold_days' => 30,
+	))->with('bikes', $bikes);	
+});
+
 Route::get('/bikes/detail/{id}', function($id) {
 	$bike = Bike::with('categories')->with('manufacturer')->find($id);
 

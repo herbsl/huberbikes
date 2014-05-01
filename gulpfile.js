@@ -11,6 +11,7 @@ var gulp = require('gulp'),
 	rev = require('gulp-rev'),
 	mincss = require('gulp-minify-css'),
 	livereload = require('gulp-livereload'),
+	modernizr = require('gulp-modernizr'),
 	less = require('gulp-less');
 
 gulp.task('img:clean', function() {
@@ -108,11 +109,28 @@ gulp.task('js:clean', function() {
 	.pipe(clean())
 });
 
-gulp.task('js:main:cache', function() {
+gulp.task('js:main:cache:modernizr', function() {
+	return gulp.src('assets/bower/modernizr/**/*.js')
+	.pipe(modernizr({
+		options: [
+		]
+	}))
+	.pipe(gulp.dest('assets/tmp/'))
+	.on('error', util.log);
+});
+
+gulp.task('js:main:cache', /* [ 'js:main:cache:modernizr' ] */, function() {
 	return gulp.src([
+		//'assets/tmp/modernizr.js',
 		//'assets/bower/modernizr/modernizr.js',
 		'assets/bower/jquery/dist/jquery.js',
-		'assets/bower/bootstrap/dist/js/bootstrap.js'
+		//'assets/bower/bootstrap/dist/js/bootstrap.js'
+		'assets/bower/bootstrap/js/button.js',
+		'assets/bower/bootstrap/js/carousel.js',
+		'assets/bower/bootstrap/js/collapse.js',
+		'assets/bower/bootstrap/js/dropdown.js',
+		'assets/bower/bootstrap/js/modal.js',
+		'assets/bower/bootstrap/js/transition.js'
 	])
 	.pipe(concat('cache.js'))
 	.pipe(gulp.dest('assets/tmp/'))
