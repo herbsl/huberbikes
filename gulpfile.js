@@ -119,7 +119,7 @@ gulp.task('js:main:cache:modernizr', function() {
 	.on('error', util.log);
 });
 
-gulp.task('js:main:cache', /* [ 'js:main:cache:modernizr' ] */, function() {
+gulp.task('js:main:cache', /* [ 'js:main:cache:modernizr' ] , */ function() {
 	return gulp.src([
 		//'assets/tmp/modernizr.js',
 		//'assets/bower/modernizr/modernizr.js',
