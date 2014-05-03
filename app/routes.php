@@ -30,11 +30,23 @@ Route::get('/hersteller/{name}', function($name) {
 });
 
 Route::get('/bikes/detail/{id}', function($id) {
-	$bike = Bike::with('categories')->with('manufacturer')->find($id);
+	$components = array( 'Farbe', 'Rahmen', 'Bremsen', 'Schaltwerk' );
+	$bike = Bike::with('categories')->with('manufacturer')->with('components')->find($id);
+
+	$highlights = $bike->components->filter(function($component) use ($components) {
+		if (in_array($component->type->name, $components)) {
+			return true;
+		}
+
+		return false;
+	});
 
 	return View::make('bikes-detail', array(
 		'title' => $bike->manufacturer->name . ' ' . $bike->name,
-	))->with('bike', $bike);
+
+		'highlights' => $highlights,
+		'bike' => $bike
+	));
 });
 
 Route::get('/bikes/{category}', function($category) {

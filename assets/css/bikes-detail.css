@@ -1,7 +1,3 @@
-.carousel-inner .item {
-	max-height: 320px;
-}
-
 .carousel-control, .carousel-control:hover {
 	text-shadow: none;
 	opacity: 1;
@@ -12,16 +8,26 @@
 	background-image: none;
 }
 
-.highlights {
-	padding: 1em;
-	font-size: 112.5%;
+#bikes-detail-highlight {
+	border: none;
 }
 
-.highlights .row {
-	margin-bottom: 4px;
+#bikes-detail-highlight td {
+	vertical-align: middle;
+	border: none;
 }
 
-.well {
-	font-size: 112.5%;
-	margin-top: 32px;
+#bikes-detail-highlight .label {
+	font-size: 100%;
+}
+
+.modal-dialog-fs, .modal-dialog-fs img {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.modal-dialog-fs .modal-content {
+	border-radius: 0;
+	border: none;
 }

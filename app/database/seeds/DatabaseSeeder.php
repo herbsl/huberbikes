@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('ManufacturersTableSeeder');
 		//$this->call('BikesTableSeeder');
 		$this->call('CategoriesTableSeeder');
+		$this->call('TypeTableSeeder');
 		//$this->call('BikeCategoryTableSeeder');
 	}
 }
@@ -127,6 +128,100 @@ class CategoriesTableSeeder extends Seeder {
 	}
 }
 
+
+class TypeTableSeeder extends Seeder {
+	public function run() {
+		DB::table('types')->delete();
+		
+		Type::create(array(
+			'name' => 'Größe',
+		));
+		Type::create(array(
+			'name' => 'Farbe',
+		));
+		Type::create(array(
+			'name' => 'Gänge',
+		));
+		Type::create(array(
+			'name' => 'Rahmen',
+		));
+		Type::create(array(
+			'name' => 'Gabel',
+		));
+		Type::create(array(
+			'name' => 'Sattel',
+		));
+		Type::create(array(
+			'name' => 'Sattelstütze',
+		));
+		Type::create(array(
+			'name' => 'Vorbau',
+		));
+		Type::create(array(
+			'name' => 'Lenker',
+		));
+		Type::create(array(
+			'name' => 'Kurbel',
+		));
+		Type::create(array(
+			'name' => 'Schaltwerk',
+		));
+		Type::create(array(
+			'name' => 'Felge',
+		));
+		Type::create(array(
+			'name' => 'Nabe',
+		));
+		Type::create(array(
+			'name' => 'Reifen',
+		));
+		Type::create(array(
+			'name' => 'Kassette',
+		));
+		Type::create(array(
+			'name' => 'Gewicht',
+		));
+		Type::create(array(
+			'name' => 'Laufrad',
+		));
+		Type::create(array(
+			'name' => 'Bremsen',
+		));
+		Type::create(array(
+			'name' => 'Kette',
+		));
+		Type::create(array(
+			'name' => 'Steuersatz',
+		));
+		Type::create(array(
+			'name' => 'Pedale',
+		));
+		Type::create(array(
+			'name' => 'Kurbeln',
+		));
+		Type::create(array(
+			'name' => 'Schalthebel',
+		));
+		Type::create(array(
+			'name' => 'Umwerfer',
+		));
+		Type::create(array(
+			'name' => 'Dämpfer',
+		));
+		Type::create(array(
+			'name' => 'Gepäckträger',
+		));
+		Type::create(array(
+			'name' => 'Tretlager',
+		));
+		Type::create(array(
+			'name' => 'Scheinwerfer',
+		));
+		Type::create(array(
+			'name' => 'Sonstiges',
+		));
+	}
+}
 
 class BikeCategoryTableSeeder extends Seeder {
 	public function run() {

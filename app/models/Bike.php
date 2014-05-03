@@ -8,6 +8,10 @@ class Bike extends Eloquent {
 	public function categories() {
 		return $this->belongsToMany('Category');
 	}
+
+	public function components() {
+		return $this->belongsToMany('Component');
+	}
 }
 
 ?>

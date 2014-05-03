@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Asset' => $baseDir . '/app/lib/Asset.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Bike' => $baseDir . '/app/models/Bike.php',
     'BikeCategory' => $baseDir . '/app/models/BikeCategory.php',
@@ -15,10 +14,12 @@ return array(
     'CategoriesTableSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'Category' => $baseDir . '/app/models/Category.php',
     'CreateBikeCategoryTable' => $baseDir . '/app/database/migrations/2014_04_10_123549_create_bike_category_table.php',
+    'CreateBikeComponentTable' => $baseDir . '/app/database/migrations/2014_05_01_103626_create_bike_component_table.php',
     'CreateBikesTable' => $baseDir . '/app/database/migrations/2014_04_09_161742_create_bikes_table.php',
     'CreateCategoriesTable' => $baseDir . '/app/database/migrations/2014_04_09_161810_create_categories_table.php',
-    'CreateComponentsTable' => $baseDir . '/app/database/migrations/2014_04_09_161751_create_components_table.php',
+    'CreateComponentsTable' => $baseDir . '/app/database/migrations/2014_05_01_091751_create_components_table.php',
     'CreateManufacturersTable' => $baseDir . '/app/database/migrations/2014_04_09_161733_create_manufacturers_table.php',
+    'CreateTypesTable' => $baseDir . '/app/database/migrations/2014_05_01_080408_create_types_table.php',
     'DatabaseSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
@@ -26,4 +27,5 @@ return array(
     'ManufacturersTableSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',
+    'TypesTableSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
 );

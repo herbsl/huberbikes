@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateComponentsTable extends Migration {
+class CreateTypesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,11 @@ class CreateComponentsTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('types', function($table) {
+			$table->increments('id');
+			$table->string('name')->unique();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +26,7 @@ class CreateComponentsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::dropIfExists('types');
 	}
 
 }

@@ -5,7 +5,7 @@
 	<div class="page-header">
 		<h1>{{ $title }}</h1>
 	</div>
-	@foreach($bikes as $bike)<div class="thumbnail-container">
+	@foreach($bikes as $bike)<div class="bikes-list-thumbnail-container">
 		<div class="thumbnail">
 			@if ( $bike->price_offer != 0 )
 			<h3 class="label-top-right"><span class="label label-danger">%</span></h3>
@@ -20,7 +20,9 @@
 				</a>
 			</div>
 			<div class="caption">
-				<h3>{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}</h3>
+				<h4>
+					<strong>{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}</strong>
+				</h4>
 				<p>{{{ $bike->description }}}</p>
 				<div class="thumbnail-footer">
 					<a href="/bikes/detail/{{{ $bike->id }}}" class="btn btn-default" role="button">Details</a>

@@ -1,4 +1,4 @@
-.thumbnail-container {
+.bikes-list-thumbnail-container {
 	display: inline-block;
 	vertical-align: top;
 	padding: 0px 8px 16px 8px;
@@ -10,24 +10,24 @@
 }
 
 @media (min-width: 640px) {
- 	.thumbnail-container {
+ 	.bikes-list-thumbnail-container {
    		width: 50%;
  	}
 }
 
 @media (min-width: 992px) {
- 	.thumbnail-container {
+ 	.bikes-list-thumbnail-container {
     	width: 33%;
   	}
 }
 
 @media (min-width: 1200px) {
- 	.thumbnail-container {
+ 	.bikes-list-thumbnail-container {
    		width: 25%;
  	}
 }
 
-.thumbnail {
+.bikes-list-thumbnail-container .thumbnail {
 	height: 425px;
 	position: relative;
 }

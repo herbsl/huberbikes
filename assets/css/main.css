@@ -6,6 +6,7 @@ body {
 	/* Fix static navbar */
 	margin-top: 70px;
 	margin-bottom: 70px;
+	background-color: #fcfcfc;
 }
 
 nav {
@@ -24,15 +25,14 @@ nav {
 @media (max-width: 639px) {
 	/* Optimize for small screens: */
 	.page-header {
-		margin-top: 0px;
+		margin-top: -20px;
 	}
 
 	body {
 		min-width: 320px;
-		margin-top: 50px;
 	}
 
-	.page-header h1 {
+	.page-header {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;

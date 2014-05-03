@@ -79,7 +79,7 @@
 				@else
 				<li class="dropdown">
 				@endif
-					<a href="/hersteller" class="dropdown-toggle" data-toggle="dropdown">Hersteller <b class="caret"></b></a>
+					<!--a href="/hersteller" class="dropdown-toggle" data-toggle="dropdown">Hersteller <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
 						@if (Request::path() === '/hersteller/simplon')
 						<li class="active">
@@ -102,7 +102,7 @@
 						@endif
 							<a href="/hersteller/merida">Merida</a>
 						</li>
-					</ul>
+					</ul-->
 				</li>
 				@if (Request::path() === 'sale')
 				<li class="active">
