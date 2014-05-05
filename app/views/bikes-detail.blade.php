@@ -1,42 +1,37 @@
 @extends('layout')
 
 @section('content')
-<div class="container">
-	<!-- div class="page-header">
-		<h1>{{ $title }}</h1>
-	</div-->
+<div class="container hb-container">
 	<div class="row">
 		<div class="col-sm-8">
-			<div class="thumbnail">
-				<div id="carousel-bike" class="carousel slide" data-ride="carousel">
-			 		<!-- Indicators -->
-					<ol class="carousel-indicators">
-						<li data-target="#carousel-bike" data-slide-to="0" class="active"></li>
-						<!--li data-target="#carousel-bike" data-slide-to="1"></li>
-						<li data-target="#carousel-bike" data-slide-to="2"></li-->
-					</ol>
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner">
-						<div class="item active">
-							<a data-toggle="modal" data-target="#modal-bike" data-remote="" href="#">
+			<div id="carousel-bike" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#carousel-bike" data-slide-to="0" class="active"></li>
+					<!--li data-target="#carousel-bike" data-slide-to="1"></li>
+					<li data-target="#carousel-bike" data-slide-to="2"></li-->
+				</ol>
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+					<div class="item active">
+						<a data-toggle="modal" data-target="#modal-bike" data-remote="" href="#">
 							<img src="/img/bikes/{{{ $bike->id}}}.jpg" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
-							</a>
-						</div>
+						</a>
 					</div>
-					<!-- Controls -->
-					<!-- a class="left carousel-control" href="#carousel-bike" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left"></span>
-					</a>
-					<a class="right carousel-control" href="#carousel-bike" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right"></span>
-					</a-->
 				</div>
-				<div class="caption">
-					<h4>
-						<strong>{{{ $title }}}</strong>
-					</h4>
-					<p>{{{ $bike->description }}}</p>
-				</div>
+				<!-- Controls -->
+				<!-- a class="left carousel-control" href="#carousel-bike" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a>
+				<a class="right carousel-control" href="#carousel-bike" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a-->
+			</div>
+			<div class="caption">
+				<h4>
+					<strong>{{{ $title }}}</strong>
+				</h4>
+				<p>{{{ $bike->description }}}</p>
 			</div>
 		</div>
 		<div class="col-sm-4">
@@ -86,7 +81,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-sm-8 margin-top-2x">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<a data-toggle="collapse" href="#collapse-details" class="btn-block">

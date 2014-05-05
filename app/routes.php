@@ -1,35 +1,24 @@
 <?php
 
-Route::get('/responsive-menu', function() {
-	return View::make('responsive-menu', array(
-		'title' => 'Men&uuml;'
-	));
-});
+function getBikesListView($bikes, $title) {
+	switch($bikes->count()) {
+		case 0:
+			// TODO
+			break;
+		case 1:
+			return getBikesDetailView($bikes->first()->id);
+			break;
 
-Route::get('/', function() {
-	return View::make('start', array(
-		'cssClass' => 'start-page'
-	));
-});
+		default:
+			return View::make('bikes-list', array(
+		 		'title' => $title,
+				'new_threshold_days' => 30,
+				'bikes' => $bikes
+			));
+	}
+}
 
-Route::get('/bikes', function() {
-	return View::make('bikes', array(
-		'title' => 'Bikes'
-	));
-});
-
-Route::get('/hersteller/{name}', function($name) {
-	$bikes = Bike::whereHas('manufacturer', function($query) use ($name) {
-		$query->where('name', '=', $name);	
-	})->with('categories')->get();	
-
-	return View::make('bikes-list', array(
-		'title' => $name,
-		'new_threshold_days' => 30,
-	))->with('bikes', $bikes);	
-});
-
-Route::get('/bikes/detail/{id}', function($id) {
+function getBikesDetailView($id) {
 	$components = array( 'Farbe', 'Rahmen', 'Bremsen', 'Schaltwerk' );
 	$bike = Bike::with('categories')->with('manufacturer')->with('components')->find($id);
 
@@ -43,10 +32,39 @@ Route::get('/bikes/detail/{id}', function($id) {
 
 	return View::make('bikes-detail', array(
 		'title' => $bike->manufacturer->name . ' ' . $bike->name,
-
 		'highlights' => $highlights,
 		'bike' => $bike
 	));
+}
+
+Route::get('/responsive-menu', function() {
+	return View::make('responsive-menu', array(
+		'title' => 'Men&uuml;'
+	));
+});
+
+Route::get('/', function() {
+	return View::make('start');
+});
+
+Route::get('/bikes', function() {
+	return View::make('bikes', array(
+		'title' => 'Bikes'
+	));
+});
+
+Route::get('/hersteller/{name}', function($name) {
+	$title = ucfirst($name);
+
+	$bikes = Bike::whereHas('manufacturer', function($query) use ($name) {
+		$query->where('name', '=', $name);	
+	})->with('categories')->get();	
+
+	return getBikesListView($bikes, $title);
+});
+
+Route::get('/bikes/detail/{id}', function($id) {
+	return getBikesDetailView($id);
 });
 
 Route::get('/bikes/{category}', function($category) {
@@ -70,21 +88,29 @@ Route::get('/bikes/{category}', function($category) {
 
 			foreach(explode(' ', $q) as $queryPart) {
 				if (is_null($bikes)) {
-					$bikes = Bike::whereHas('categories', function($query) use ($queryPart) {
-						$query->where('name', 'like', '%' . $queryPart . '%');
-					})->orWhereHas('manufacturer',  function($query) use ($queryPart) {
-						$query->where('name', 'like', '%' . $queryPart . '%');
+					$bikes = Bike::where(function($query) use ($queryPart) {
+						$query->where('name', 'like', '%'. $queryPart . '%')
+						->orWhereHas('categories', function($query) use ($queryPart) {
+							$query->where('name', 'like', '%' . $queryPart . '%');
+						})
+						->orWhereHas('manufacturer',  function($query) use ($queryPart) {
+							$query->where('name', 'like', '%' . $queryPart . '%');
+						});
 					});
 				} else {
-					$bikes = $bikes->whereHas('categories', function($query) use ($category) {
-						$query->where('name', 'like', '%' . $category . '%');
-					})->orWhereHas('manufacturer',  function($query) use ($queryPart) {
-						$query->where('name', 'like', '%' . $queryPart . '%');
+					$bikes = $bikes->where(function($query) use ($queryPart) {
+						$query->where('name', 'like', '%'. $queryPart . '%')
+						->orWhereHas('categories', function($query) use ($queryPart) {
+							$query->where('name', 'like', '%' . $queryPart . '%');
+						})
+						->orWhereHas('manufacturer',  function($query) use ($queryPart) {
+							$query->where('name', 'like', '%' . $queryPart . '%');
+						});
 					});
 				}
 			}
 
-			$bikes = $bikes->with('manufacturer')->get();
+			$bikes = $bikes->get();
 			break;		
 
 		default:
@@ -93,20 +119,14 @@ Route::get('/bikes/{category}', function($category) {
 			})->with('manufacturer')->get();	
 	}
 
-	return View::make('bikes-list', array(
-		'title' => $title,
-		'new_threshold_days' => 30,
-	))->with('bikes', $bikes);
+	return getBikesListView($bikes, $title);
 });
 
 Route::get('/sale', function() {
 	$bikes = Bike::where('price_offer', '!=', '0')
 		->with('categories')->with('manufacturer')->get();
 
-	return View::make('bikes-list', array(
-		'title' => 'Sale',
-		'new_threshold_days' => 30,
-	))->with('bikes', $bikes);
+	return getBikesListView($bikes, 'Sale');
 });
 
 Route::get('/kontakt', function() {

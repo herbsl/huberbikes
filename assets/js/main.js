@@ -7,7 +7,7 @@
 		$navbarMain = $('#navbar-main'),
 		$search = $('#navbar-search'),
 		$navbarBrand = $('a.navbar-brand'),
-		$navbarAdd = $('#navbar-add');
+		$navbarSecondary = $('#navbar-secondary');
 
 	if (! Modernizr.history) {
 		return;
@@ -19,13 +19,6 @@
 
 		if (link === '/') {
 			slide = false;
-			$navbarAdd.removeClass('hidden');
-		}
-		else if (link === '/so-finden-sie-uns' || link === '/impressum') {
-			$navbarAdd.removeClass('hidden');
-		}
-		else {
-			$navbarAdd.addClass('hidden');
 		}
 
 		/* Clear search-value */
@@ -61,8 +54,8 @@
 				$a.parent().addClass('active');
 				$a.closest('li.dropdown').addClass('active');
 				
-				$navbarAdd.find('li.active').removeClass('active');
-				$a = $navbarAdd.find('li a[href="' + link + '"]');
+				$navbarSecondary.find('li.active').removeClass('active');
+				$a = $navbarSecondary.find('li a[href="' + link + '"]');
 				$a.parent().addClass('active');
 
 				if (link === '/') {
@@ -73,11 +66,18 @@
 				}
 
 				/* Inject new Page */
-				$content.empty();
+				//$content.empty();
+				$content.children().each(function() {
+					var $this = $(this);
+
+					if ($this.attr('id') !== 'navbar-secondary') {
+						$this.remove();
+					}
+				});
 				$('html, body').scrollTop(0);
 
 				$title.text($(data).filter('title').text());
-				$content.html($(data).filter('#singlepage-content').children());
+				$content.prepend($(data).filter('#singlepage-content').children());
 				$js.html($(data).filter('#singlepage-javascript'));
 		
 				if (slide) {

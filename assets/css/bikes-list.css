@@ -9,10 +9,34 @@
 	*display: inline;
 }
 
+.bikes-list-thumbnail-container .thumbnail {
+	position: relative;
+	overflow: hidden;
+}
+
+.thumbnail-footer {
+	padding: 16px;
+	background-color: #efefef;
+	margin: -16px;
+	margin-top: 0;
+}
+
 @media (min-width: 640px) {
  	.bikes-list-thumbnail-container {
    		width: 50%;
  	}
+
+	.bikes-list-thumbnail-container .thumbnail {
+		height: 400px;
+	}
+
+	.thumbnail-footer {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: 0;
+	}
 }
 
 @media (min-width: 992px) {
@@ -27,24 +51,10 @@
  	}
 }
 
-.bikes-list-thumbnail-container .thumbnail {
-	height: 425px;
-	position: relative;
-}
-
 .label-top-right {
 	position: absolute;
 	right: 16px;
 	top: 0;
-}
-
-.thumbnail-footer {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	padding: 16px;
-	background-color: #efefef;
 }
 
 .thumbnail-footer .label {

@@ -2,11 +2,8 @@ html {
 	overflow-x: hidden;
 }
 
-body {
-	/* Fix static navbar */
-	margin-top: 70px;
-	margin-bottom: 70px;
-	background-color: #fcfcfc;
+html, body, #singlepage-content {
+	height: 100%;
 }
 
 nav {
@@ -18,6 +15,11 @@ nav {
 	top: 0;
 }
 
+/* IPhone zoom on search 
+input[type="text"], input[type="number"], textarea {
+	font-size: 16px;
+}*/
+
 #navbar-search, .form-control {
 	width: 100% !important;
 }
@@ -28,14 +30,12 @@ nav {
 		margin-top: -20px;
 	}
 
-	body {
-		min-width: 320px;
+	.page-header > h1 {
+		font-size: 200%;
 	}
 
-	.page-header {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
+	body {
+		min-width: 320px;
 	}
 
 	.modal-footer {
@@ -58,19 +58,13 @@ nav {
 
 }
 
-@media (min-width: 992px) {
-}
-
-@media (min-width: 1200px) {
-}
-
-.btn-margin {
+.margin-top-2x {
 	margin-top: 32px;
 }
 
 
 /* Modal from bottom */
-.modal.fade.bottom .modal-dialog {
+.modal.fade.hb-bottom .modal-dialog {
   -webkit-transition: -webkit-transform .3s ease-out;
      -moz-transition:    -moz-transform .3s ease-out;
        -o-transition:      -o-transform .3s ease-out;
@@ -80,7 +74,7 @@ nav {
           transform: translate(0, 75%);
 }
 
-.modal.in.bottom .modal-dialog {
+.modal.in.hb-bottom .modal-dialog {
   -webkit-transform: translate(0, 0);
       -ms-transform: translate(0, 0);
           transform: translate(0, 0);
@@ -107,7 +101,6 @@ nav {
 	transition: right 0.25s ease;
 }
 
-
 .slideout-left-go {
 	left: -100%;
 
@@ -116,4 +109,35 @@ nav {
 	-o-transition: left 0.25s ease;
 	-ms-transition: left 0.25s ease;
 	transition: left 0.25s ease;
+}
+
+@media (max-width: 767px) {
+	.hb-navbar-brand-center {
+		position: absolute;
+		left: 64px;
+		right: 64px;
+
+		text-align: center;
+	}
+}
+
+.hb-navbar-btn, .hb-navbar-btn:hover {
+	margin-right: 0;
+	color: #ccc;
+	border: none;
+	background-color: transparent !important;
+}
+
+.hb-navbar-btn .icon-bar {
+	background-color: #efefef !important;
+}
+
+.hb-navbar-btn.pull-left {
+	margin-right: 16px;
+}
+
+.hb-text-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }

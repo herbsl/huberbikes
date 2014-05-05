@@ -1,16 +1,20 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a href="/responsive-menu" id="responsive-menu" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
-				<span class="sr-only">Navigation</span>
+			<a href="javascript:history.back();" class="btn navbar-btn hb-navbar-btn pull-left">
+				<span class="sr-only">zur&uuml;ck</span>
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a href="/responsive-menu" id="responsive-menu" class="navbar-toggle hb-navbar-btn" data-toggle="collapse" data-target="#navbar-main">
+				<span class="sr-only">Men&uuml;</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>	
 			</a>
 			@if (Request::path() === '/')
-			<a class="navbar-brand" href="#">Bike-Service Huber</a>
+			<a class="navbar-brand hb-navbar-brand-center hb-text-overflow" href="#">Bike-Service Huber</a>
 			@else
-			<a class="navbar-brand" href="/">Bike-Service Huber</a>
+			<a class="navbar-brand hb-navbar-brand-center hb-text-overflow" href="/">Bike-Service Huber</a>
 			@endif
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-main">
@@ -79,30 +83,6 @@
 				@else
 				<li class="dropdown">
 				@endif
-					<!--a href="/hersteller" class="dropdown-toggle" data-toggle="dropdown">Hersteller <b class="caret"></b></a>
-					<ul class="dropdown-menu" role="menu">
-						@if (Request::path() === '/hersteller/simplon')
-						<li class="active">
-						@else
-						<li>
-						@endif
-							<a href="/hersteller/simplon">Simplon</a>
-						</li>
-						@if (Request::path() === 'hersteller/focus')
-						<li class="active">
-						@else
-						<li>
-						@endif
-							<a href="/hersteller/focus">Focus</a>
-						</li>
-						@if (Request::path() === 'hersteller/merida')
-						<li class="active">
-						@else
-						<li>
-						@endif
-							<a href="/hersteller/merida">Merida</a>
-						</li>
-					</ul-->
 				</li>
 				@if (Request::path() === 'sale')
 				<li class="active">
@@ -113,43 +93,5 @@
 				</li>
 			</ul>
 		</div>
-	</div>
-</nav>
-@if (Request::path() === '/' || Request::path() === 'so-finden-sie-uns' || Request::path() === 'impressum' || Request::path() === 'kontakt' || Request::path() === 'oeffnungszeiten')
-<nav class="navbar navbar-default navbar-fixed-bottom hidden-xs" id="navbar-add" role="navigation">
-@else
-<nav class="navbar navbar-default navbar-fixed-bottom hidden hidden-xs" id="navbar-add" role="navigation">
-@endif
-	<div class="container">
-		<ul class="nav navbar-nav navbar-right">
-			@if (Request::path() === 'kontakt')
-			<li class="active">
-			@else
-			<li>
-			@endif
-				<a data-toggle="modal" data-target="#modal-contact" data-remote="" href="/kontakt">Kontakt</a>
-			</li>
-			@if (Request::path() === 'oeffnungszeiten')
-			<li class="active">
-			@else
-			<li>
-			@endif
-				<a data-toggle="modal" data-target="#modal-opened" data-remote="" href="/oeffnungszeiten">&Ouml;ffnungszeiten</a>
-			</li>
-			@if (Request::path() === 'so-finden-sie-uns')
-			<li class="active">
-			@else
-			<li>
-			@endif
-				<a href="/so-finden-sie-uns">So finden Sie uns</a>
-			</li>
-			@if (Request::path() === 'impressum')
-			<li class="active">
-			@else
-			<li>
-			@endif
-				<a href="/impressum">Impressum</a>
-			</li>
-		</ul>
 	</div>
 </nav>

@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-	<div class="container">
+	<div class="container hb-container">
 		<div class="page-header">
 			<h1>{{ $title }}</h1>
 		</div>
@@ -11,8 +11,6 @@
 				@include('kontakt-content')
 	<h2>Umsatzsteuer-ID:</h2>
 	<p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br>11423150078</p>
-	<p mce_keep="true">&nbsp;</p>
-	<!--p>Quelle: <i>erstellt mit dem <a href="http://www.e-recht24.de/impressum-generator.html" target="_blank mce_href=http://www.e-recht24.de/impressum-generator.html">Impressum-Generator Einzelunternehmer</a> von eRecht24.</i></p-->
 	<h2>Haftungsausschluss:</h2>
 	<p><b>Haftung für Inhalte</b></p>
 	<p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
@@ -24,7 +22,4 @@
 	<p>Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder eMail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. </p>
 	<p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich. </p>
 	<p>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.</p>
-	<!--p mce_keep="true">&nbsp;</p>
-	<p>Quelle: <i><a href="http://www.e-recht24.de/muster-disclaimer.htm" target="_blank mce_href=http://www.e-recht24.de/muster-disclaimer.htm">Disclaimer</a> von eRecht24, dem Portal zum Internetrecht von <a href="http://www.e-recht24.de/" target="_blank mce_href=http://www.e-recht24.de/">Rechtsanwalt</a> Sören Siebert.</i></p-->
-
 @stop

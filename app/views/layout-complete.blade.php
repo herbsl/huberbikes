@@ -1,9 +1,5 @@
 <!doctype html>
-@if (isset($cssClass))
-<html class="{{{ $cssClass }}}" lang="de">
-@else
 <html lang="de">
-@endif
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,14 +21,19 @@
 		<![endif]-->
 	</head>
 	<body>
-        @include('navigation')
-		<div id="singlepage-content">@yield('content')</div>
+        @include('navigation-main')
+		<div id="singlepage-content">
+			@yield('content')
+        	@include('navigation-secondary')
+		</div>
 		@include('kontakt-modal')
         @include('oeffnungszeiten-modal')
 		@if (App::environment('local'))
 		<script src="http://{{{ gethostname() }}}:35729/livereload.js?snipver=1"></script>
 		@endif
 		<script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
-		<script id="singlepage-javascript">@yield('javascript')</script>
+		<script id="singlepage-javascript">
+			@yield('javascript')
+		</script>
 	</body>
 </html>

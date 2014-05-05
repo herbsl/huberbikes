@@ -1,0 +1,16 @@
+.hb-navbar-secondary {
+	background-color: #fff;
+	opacity: 1;
+	border-radius: 0;
+	border-top: 1px solid #cccccc;
+	margin: 0;
+}
+
+@media (min-width: 768px) {
+	.hb-navbar-secondary {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+}

@@ -1,0 +1,9 @@
+.hb-container {
+	padding-top: 70px;
+}
+
+@media (min-width: 768px) {
+	.hb-container {
+		padding-bottom: 70px;
+	}
+}

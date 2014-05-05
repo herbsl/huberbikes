@@ -255,6 +255,7 @@ gulp.task('default', [ 'img', 'gzip' ] );
 gulp.task('watch', function() {
 	var srv = livereload();
 
+	gulp.watch('assets/less/*.less', [ 'twb' ]);
 	gulp.watch('assets/js/*.js', [ 'rev:fast' ]);
 	gulp.watch('assets/css/*.css', [ 'rev:fast' ]);
 	gulp.watch('app/views/*.blade.php', function() {
