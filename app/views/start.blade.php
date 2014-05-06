@@ -13,6 +13,10 @@
 	-webkit-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+
+	/* IE8 */
+	-ms-behavior: url(/htc/backgroundsize.min.htc);
+	z-index: -1;
 }
 
 #start-page-2 {

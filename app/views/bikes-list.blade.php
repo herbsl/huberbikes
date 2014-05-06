@@ -6,35 +6,38 @@
 		<h1>{{ $title }}</h1>
 	</div>
 	@foreach($bikes as $bike)<div class="bikes-list-thumbnail-container">
-		<div class="thumbnail">
-			@if ( $bike->price_offer != 0 )
-			<h3 class="label-top-right"><span class="label label-danger">%</span></h3>
-			@else
-				@if ( $bike->created_at->diffInDays() < $new_threshold_days )
-				<h3 class="label-top-right"><span class="label label-default">Neu</span></h3>
-				@endif
-			@endif
-			<div class="image-placeholder">
-				<a href="/bikes/detail/{{{ $bike->id }}}">
-					<img src="/img/bikes/{{{ $bike->id}}}.jpg" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
-				</a>
-			</div>
-			<div class="caption">
-				<h4>
-					<strong>{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}</strong>
-				</h4>
-				<p>{{{ $bike->description }}}</p>
-				<div class="thumbnail-footer">
-					<a href="/bikes/detail/{{{ $bike->id }}}" class="btn btn-default" role="button">Details</a>
-					@if ( $bike->price_offer != 0 )
-					<span class="pull-right label label-danger">{{{ $bike->price_offer }}} <span class="glyphicon glyphicon-euro"></span>
-					@else
-					<span class="pull-right label label-default">{{{ $bike->price }}} <span class="glyphicon glyphicon-euro"></span>
+		<a href="/bikes/detail/{{{ $bike->id }}}" role="button">
+			<div class="thumbnail">
+				@if ( $bike->price_offer != 0 )
+				<h3 class="label-top-right">
+					<span class="label label-danger">%</span></h3>
+				@else
+					@if ( $bike->created_at->diffInDays() < $new_threshold_days )
+					<h3 class="label-top-right">
+						<span class="label label-default">Neu</span>
+					</h3>
 					@endif
-					</span>
+				@endif
+				<div class="image-placeholder">
+					<img src="/img/bikes/{{{ $bike->id}}}.jpg" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+				</div>
+				<div class="caption">
+					<h4>
+						<strong>{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}</strong>
+					</h4>
+					<p>{{{ $bike->description }}}</p>
+					<div class="thumbnail-footer">
+						<span class="btn btn-default">Details</span>
+						@if ( $bike->price_offer != 0 )
+						<div class="pull-right label label-danger">{{{ $bike->price_offer }}} <span class="glyphicon glyphicon-euro"></span>
+						@else
+						<div class="pull-right label label-default">{{{ $bike->price }}} <span class="glyphicon glyphicon-euro"></span>
+						@endif
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
+		</a>
 	</div>@endforeach
 </div>
 <div id="top-link">

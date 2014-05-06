@@ -1,7 +1,8 @@
-(function($) {
+(function($, win) {
 	'use strict';
 
-	var $title = $('title'),
+	var $win = $(win),
+		$title = $('title'),
 		$content = $('#singlepage-content'),
 		$dropdown = $('#navbar-main .dropdown'),
 		$navbarMain = $('#navbar-main'),
@@ -9,26 +10,21 @@
 		$navbarBrand = $('a.navbar-brand'),
 		$navbarSecondary = $('#navbar-secondary');
 
-	if (! Modernizr.history) {
-		return;
-	}
-
-	var loadContent = function(link, add) {
+	var loadContent = function(url, add) {
 		var $js = $('#singlepage-javascript'),
 			slide = add;
 
-		if (link === '/') {
+		if (url === '/') {
 			slide = false;
 		}
 
 		/* Clear search-value */
-		if (link.substr(0, 12) !== '/bikes/suche') {
+		if (url.substr(0, 12) !== '/bikes/suche') {
 			$search.typeahead('val', '');
 			$search.val('');
 		}
 		$search.typeahead('close');
 		$search.blur();
-
 
 		$content.removeClass('slidein-right');
 		$content.removeClass('slidein-right-go');
@@ -46,19 +42,19 @@
 			$navbarMain.collapse('hide');
 		}
 
-		window.setTimeout(function() {
-			$.get(link, function(data) {
+		win.setTimeout(function() {
+			$.get(url, function(data) {
 				/* Manipulate active state of Navbar */
 				$navbarMain.find('li.active').removeClass('active');
-				var $a = $navbarMain.find('li a[href="' + link + '"]');
+				var $a = $navbarMain.find('li a[href="' + url + '"]');
 				$a.parent().addClass('active');
 				$a.closest('li.dropdown').addClass('active');
 				
 				$navbarSecondary.find('li.active').removeClass('active');
-				$a = $navbarSecondary.find('li a[href="' + link + '"]');
+				$a = $navbarSecondary.find('li a[href="' + url + '"]');
 				$a.parent().addClass('active');
 
-				if (link === '/') {
+				if (url === '/') {
 					$navbarBrand.attr('href', '#');
 				}
 				else {
@@ -86,21 +82,37 @@
 				}
 
 				if (add) {
-					history.pushState({}, '', link);
+					if (! Modernizr.history) {
+						console.log('push History');
+						History.pushState({}, '', url);
+					}
+					else {
+						console.log('push history');
+						history.pushState({}, '', url);
+					}
 				}
 			});
 		}, 0);
+
+		return false;
 	};
 
-	$(window).on('popstate', function(event) {
-		if (event.originalEvent.state === null) {
-			return;
-		}
-	    var a = document.createElement('a');
-    	a.href = location.href + location.search;
+	if (! Modernizr.history) {
+		$(win).on('statechange', function(event) {
+			var state = History.getState();
+			console.log(state);
+			return loadContent(state.hash, false);
+		});
+	} else {
+		$(win).on('popstate', function(event) {
+			if (event.originalEvent.state === null) {
+				return;
+			}
+			console.log('pop history');
 
-		loadContent(a.pathname, false);
-	});
+			return loadContent(location.href, false);
+		});
+	}
 
 	$('body, .navbar-brand').click(function(event) {
 		var $target = $(event.target),
@@ -110,20 +122,19 @@
 			return;
 		}
 			
-		var link, tag = $el.prop('tagName').toLowerCase();
+		var url, tag = $el.prop('tagName').toLowerCase();
 			
 		if (tag === 'a') {
-			link = $el.attr('href');
+			url = $el.attr('href');
 		}
 		else if (tag === 'form') {
-			link = $el.attr('action') + '?' + $el.serialize();
+			url = $el.attr('action') + '?' + $el.serialize();
 		}
 
-		if (! link || link === '/responsive-menu' || link.charAt(0) != '/' || $el.data('toggle') === 'modal') {
+		if (! url || url === '/responsive-menu' || url.charAt(0) != '/' || $el.data('toggle') === 'modal') {
 			return true;
 		}
 
-		loadContent(link, true);
-		return false;
+		return loadContent(url, true);
 	});
-})(jQuery);
+})(jQuery, window);

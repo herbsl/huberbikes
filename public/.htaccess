@@ -74,3 +74,6 @@ FileETag None
     ExpiresByType font/opentype "access plus 1 month"
     ExpiresByType image/svg+xml "access plus 1 month"
 </IfModule>
+
+# IE8 background-size-polyfill
+AddType text/x-component .htc

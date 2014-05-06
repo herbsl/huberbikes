@@ -88,7 +88,7 @@
 						<strong>Details</strong> <b class="caret"></b>
 					</a>
 				</div>
-				<div id="collapse-details" class="panel-collpase collapse">
+				<div id="collapse-details" class="panel-collpase collapse in">
 					<table class="table table-striped table-responsive">
 						<tbody>
 			 				@foreach($bike->components as $component)

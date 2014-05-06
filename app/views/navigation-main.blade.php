@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a href="javascript:history.back();" class="btn navbar-btn hb-navbar-btn pull-left">
+			<a onClick="Modernizr.history ? history.back() : History.back(); return false;" class="btn navbar-btn hb-navbar-btn pull-left">
 				<span class="sr-only">zur&uuml;ck</span>
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</a>
