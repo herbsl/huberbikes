@@ -7,8 +7,8 @@
   "js/main.min.js": "js/main.min-3a41f5b0.js",
   "js/typeahead.bundle.js": "js/typeahead.bundle-08e416af.js",
   "js/typeahead.bundle.min.js": "js/typeahead.bundle.min-69a9bca2.js",
-  "css/main.css": "css/main-badb4e3d.css",
-  "css/main.min.css": "css/main.min-6605b1e0.css",
+  "css/main.css": "css/main-07b8a3d8.css",
+  "css/main.min.css": "css/main.min-b6d92f65.css",
   "css/typeahead.css": "css/typeahead-fbef99db.css",
   "css/typeahead.min.css": "css/typeahead.min-4e3108fa.css"
 }

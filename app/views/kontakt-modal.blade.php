@@ -1,4 +1,3 @@
-<!-- Modal contact: -->
 <div class="modal fade hb-bottom" id="modal-contact" tabindex="-1" role="dialog" aria-labelledby="modal-contact-label" aria-hidden="true">
 	  <div class="modal-dialog">
 		<div class="modal-content">

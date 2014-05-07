@@ -5214,6 +5214,11 @@ nav {
 	top: 0;
 }
 
+/* Prevent body from scrolling to top on modal toggle */
+body.modal-open {
+	overflow: visible;
+}
+
 /* IPhone zoom on search 
 input[type="text"], input[type="number"], textarea {
 	font-size: 16px;
@@ -5250,7 +5255,7 @@ input[type="text"], input[type="number"], textarea {
 	}
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
 	.navbar-form {
 		width: 320px;
 	}

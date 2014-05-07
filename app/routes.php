@@ -19,6 +19,8 @@ function getBikesListView($bikes, $title) {
 }
 
 function getBikesDetailView($id) {
+	$maxLastViewed = 5;
+
 	$components = array( 'Farbe', 'Rahmen', 'Bremsen', 'Schaltwerk' );
 	$bike = Bike::with('categories')->with('manufacturer')->with('components')->find($id);
 
@@ -30,11 +32,45 @@ function getBikesDetailView($id) {
 		return false;
 	});
 
-	return View::make('bikes-detail', array(
+	$lastViewed = (array)Session::get('last:viewed');
+	$countLastViewed = count($lastViewed);
+	$lastViewedOrderedBikes = array();
+
+	if ($countLastViewed > 0) {
+		$lastViewedOrder = array_diff(
+			$lastViewed, array( $id )
+		);
+
+		$lastViewedBikes = Bike::whereIn('id', 
+			array_slice(
+				$lastViewedOrder,
+				0, $maxLastViewed)
+			)->with('manufacturer')->get();
+		foreach ($lastViewedOrder as $value) {
+			$tmp = $lastViewedBikes->find($value);
+			if ($tmp) {
+				array_push($lastViewedOrderedBikes, $tmp);
+			}
+		}
+	}
+
+	$view = View::make('bikes-detail', array(
 		'title' => $bike->manufacturer->name . ' ' . $bike->name,
 		'highlights' => $highlights,
-		'bike' => $bike
+		'bike' => $bike,
+		'new_threshold_days' => 30,
+		'lastViewedBikes' => $lastViewedOrderedBikes
 	));
+
+	array_unshift($lastViewed, $id);
+	Session::set('last:viewed', 
+		array_slice(
+			array_unique($lastViewed),
+			0,  $maxLastViewed + 1
+		)
+	);
+
+	return $view;
 }
 
 Route::get('/responsive-menu', function() {
@@ -58,7 +94,7 @@ Route::get('/hersteller/{name}', function($name) {
 
 	$bikes = Bike::whereHas('manufacturer', function($query) use ($name) {
 		$query->where('name', '=', $name);	
-	})->with('categories')->get();	
+	})->with('categories')->get();
 
 	return getBikesListView($bikes, $title);
 });
