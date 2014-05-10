@@ -11498,25 +11498,23 @@ return jQuery;
 
 }(jQuery);
 
-(function($, global) {
+(function($) {
 	'use strict';
 
 	if (Modernizr.history) {
 		return;
 	}
 
-	$(document).ready(function() {
+	/*$(document).ready(function() {
 		var js = Asset.rev('/js/jquery.history.min.js');
 
 		$.ajax({
 			url: js,
 			dataType: 'script',
 			cache: true
-		}).done(function() {
-			//
-		});
-	});
-})(jQuery, window);
+		}).done(function() {});
+	});*/
+})(jQuery);
 
 (function($, win) {
 	'use strict';
@@ -11529,6 +11527,10 @@ return jQuery;
 		$search = $('#navbar-search'),
 		$navbarBrand = $('a.navbar-brand'),
 		$navbarSecondary = $('#navbar-secondary');
+
+	if (! Modernizr.history) {
+		return;
+	}
 
 	var loadContent = function(url, add) {
 		var $js = $('#singlepage-javascript'),
@@ -11555,9 +11557,13 @@ return jQuery;
 		}
 
 		/* Close Dropdown and Navbar */
-		if ($dropdown.hasClass('open')) {
-			$dropdown.find('.dropdown-toggle').dropdown('toggle');
-		}	
+		$dropdown.each(function() {
+			var $this = $(this);
+			if ($this.hasClass('open')) {
+				$this.find('.dropdown-toggle').dropdown('toggle');
+			}
+		});
+
 		if ($navbarMain.hasClass('in')) {
 			$navbarMain.collapse('hide');
 		}
@@ -11603,11 +11609,9 @@ return jQuery;
 
 				if (add) {
 					if (! Modernizr.history) {
-						console.log('push History');
 						History.pushState({}, '', url);
 					}
 					else {
-						console.log('push history');
 						history.pushState({}, '', url);
 					}
 				}
@@ -11620,7 +11624,6 @@ return jQuery;
 	if (! Modernizr.history) {
 		$(win).on('statechange', function(event) {
 			var state = History.getState();
-			console.log(state);
 			return loadContent(state.hash, false);
 		});
 	} else {
@@ -11628,7 +11631,6 @@ return jQuery;
 			if (event.originalEvent.state === null) {
 				return;
 			}
-			console.log('pop history');
 
 			return loadContent(location.href, false);
 		});
@@ -11651,7 +11653,7 @@ return jQuery;
 			url = $el.attr('action') + '?' + $el.serialize();
 		}
 
-		if (! url || url === '/responsive-menu' || url.charAt(0) != '/' || $el.data('toggle') === 'modal') {
+		if (! url || url.substr(0, 11) === '/navigation' || (url.charAt(0) != '/' && url.charAt(0) != '?') || $el.data('toggle') === 'modal' || $el.data('toggle') === 'collapse') {
 			return true;
 		}
 

@@ -63,8 +63,12 @@ input[type="text"], input[type="number"], textarea {
 
 }
 
-.margin-top-2x {
+.hb-margin-top-2x {
 	margin-top: 32px;
+}
+
+.hb-margin-bottom-2x {
+	margin-bottom: 32px;
 }
 
 
@@ -145,4 +149,8 @@ input[type="text"], input[type="number"], textarea {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+.hb-center-inline {
+	text-align: center;
 }

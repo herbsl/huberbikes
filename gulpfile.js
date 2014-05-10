@@ -267,7 +267,7 @@ gulp.task('watch', function() {
 	gulp.watch('assets/less/*.less', [ 'twb' ]);
 	gulp.watch('assets/js/*.js', [ 'rev:fast' ]);
 	gulp.watch('assets/css/*.css', [ 'rev:fast' ]);
-	gulp.watch('app/views/*.blade.php', function() {
+	gulp.watch('app/views/**/*.blade.php', function() {
 		srv.changed('');
 	});
 });

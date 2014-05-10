@@ -12,10 +12,9 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		$this->call('ManufacturersTableSeeder');
-		//$this->call('BikesTableSeeder');
 		$this->call('CategoriesTableSeeder');
 		$this->call('TypeTableSeeder');
-		//$this->call('BikeCategoryTableSeeder');
+		$this->call('CustomersTableSeeder');
 	}
 }
 
@@ -43,87 +42,38 @@ class ManufacturersTableSeeder extends Seeder {
 }
 
 
-class BikesTableSeeder extends Seeder {
-	public function run() {
-		DB::table('bikes')->delete();
-		
-		Bike::create(array(
-			'name' => 'Zion',
-			'description' => 'Dieses Bike besticht mit durchdachten Lösungen',
-			'price' => 1169.00,
-			'manufacturer_id' => 1
-		));
-
-		Bike::create(array(
-			'name' => 'Lexx XTE',
-			'description' => 'Steile Auf- und Abfahrten, Wurzelpassagen oder Schlammwege. Mag alles außer gewöhnlich.',
-			'price' => 2399.00,
-			'price_offer' => 1999.00,
-			'manufacturer_id' => 1
-		));
-
-		Bike::create(array(
-			'name' => 'Superbud',
-			'description' => 'Der Einsteiger von FOCUS in die Suspension-Welt ist ein echter Hingucker.',
-			'price' => 749,
-			'manufacturer_id' => 3
-		));
-
-		Bike::create(array(
-			'name' => 'Thunder Expert',
-			'description' => 'Verschiebe deine Grenzen!',
-			'price' => 1350,
-			'manufacturer_id' => 3
-		));
-
-		Bike::create(array(
-			'name' => 'BIG.NINE TFS 900-D',
-			'description' => '',
-			'price' => 1099,
-			'manufacturer_id' => 2
-		));
-
-		Bike::create(array(
-			'name' => 'BIG.NINE TFS XT-D',
-			'description' => '',
-			'price' => 1149,
-			'manufacturer_id' => 2
-		));
-
-		Bike::create(array(
-			'name' => 'Black Raider 2.0',
-			'description' => 'Limitierte Sonderedition',
-			'price' => 1399,
-			'manufacturer_id' => 3
-		));
-	}
-}
-
-
 class CategoriesTableSeeder extends Seeder {
 	public function run() {
 		DB::table('categories')->delete();
 		
 		Category::create(array(
-			'name' => 'Mountain'
+			'name' => 'Mountainbikes'
 		));
 		Category::create(array(
-			'name' => 'Active'
+			'name' => 'Active Lifestyle'
 		));
 		Category::create(array(
-			'name' => 'Elektro'
+			'name' => 'E-Bikes'
 		));
-		Category::create(array(
-			'name' => 'Kinder'
+	}
+}
+
+
+class CustomersTableSeeder extends Seeder {
+	public function run() {
+		DB::table('customers')->delete();
+		
+		Customer::create(array(
+			'name' => 'Herren'
 		));
-		Category::create(array(
-			'name' => 'Jugendliche'
-		));
-		Category::create(array(
+		Customer::create(array(
 			'name' => 'Damen'
 		));
-		Category::create(array(
-			'name' => 'Herren'
+		Customer::create(array(
+			'name' => 'Jugendliche'
+		));
+		Customer::create(array(
+			'name' => 'Kinder'
 		));
 	}
 }
@@ -219,27 +169,6 @@ class TypeTableSeeder extends Seeder {
 		));
 		Type::create(array(
 			'name' => 'Sonstiges',
-		));
-	}
-}
-
-class BikeCategoryTableSeeder extends Seeder {
-	public function run() {
-		DB::table('bike_category')->delete();
-		
-		BikeCategory::create(array(
-			'bike_id' => 1,
-			'category_id' => 1
-		));
-
-		BikeCategory::create(array(
-			'bike_id' => 1,
-			'category_id' => 7
-		));
-
-		BikeCategory::create(array(
-			'bike_id' => 2,
-			'category_id' => 1
 		));
 	}
 }

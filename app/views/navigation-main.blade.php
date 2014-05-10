@@ -1,11 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a onClick="Modernizr.history ? history.back() : History.back(); return false;" class="btn navbar-btn hb-navbar-btn pull-left">
+			<!--a onClick="Modernizr.history ? history.back() : History.back(); return false;" class="btn navbar-btn hb-navbar-btn pull-left">
 				<span class="sr-only">zur&uuml;ck</span>
 				<span class="glyphicon glyphicon-chevron-left"></span>
-			</a>
-			<a href="/responsive-menu" id="responsive-menu" class="navbar-toggle hb-navbar-btn" data-toggle="collapse" data-target="#navbar-main">
+			</a-->
+			<a href="/navigation" id="responsive-menu" class="navbar-toggle hb-navbar-btn" data-toggle="collapse" data-target="#navbar-main">
 				<span class="sr-only">Men&uuml;</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -20,76 +20,50 @@
 		<div class="navbar-collapse collapse" id="navbar-main">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<form class="navbar-form" action="/bikes/suche" role="search">
-						<div class="input-group input-form">
-							<input type="text" name="q" id="navbar-search" class="form-control" placeholder="Bikes suchen ..." autocomplete="off">
-							<div class="input-group-btn">
-								<button type="submit" class="btn btn-default">
-									<span class="glyphicon glyphicon-search"></span>
-								</button>
-							</div>
-						</div>
-					</form>
+					@include('search-form')
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-left">
-				@if (substr(Request::path(), 0, 5) === 'bikes')
+				@if (substr(Request::path(), 0, 15) === 'bikes/kategorie')
 				<li class="active dropdown">
 				@else
 				<li class="dropdown">
 				@endif
-					<a href="/bikes" class="dropdown-toggle" data-toggle="dropdown">Bikes <b class="caret"></b></a>
+					<a href="/navigation/bikes" class="dropdown-toggle" data-toggle="dropdown">Bikes <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						@if (Request::path() === 'bikes/mountain')
-						<li class="active">
-						@else
-						<li>
-						@endif
-							<a href="/bikes/mountain">Mountainbikes</a>
-						</li>
-						@if (Request::path() === 'bikes/active')
-						<li class="active">
-						@else
-						<li>
-						@endif
-							<a href="/bikes/active">Activebikes</a>
-						</li>
-						@if (Request::path() === 'bikes/elektro')
-						<li class="active">
-						@else
-						<li>
-						@endif
-							<a href="/bikes/elektro">E-Bikes</a>
-						</li>
-					    <li class="divider hidden-xs"></li>
-						@if (Request::path() === 'bikes/kinder')
-						<li class="active">
-						@else
-						<li>
-						@endif
-							<a href="/bikes/kinder">Kinderbikes</a>
-						</li>
-						@if (Request::path() === 'bikes/jugendliche')
-						<li class="active">
-						@else
-						<li>
-						@endif
-							<a href="/bikes/jugendliche">f&uuml;r Jugendliche</a>
-						</li>
+						@foreach(Category::all() as $category)
+							@if (Request::path() === 'bikes/kategorie/' . $category->name)
+							<li class="active">
+							@else
+							<li>
+							@endif
+							<a href="/bikes/kategorie/{{{ $category->name }}}">{{{ $category->name }}}</a>
+						@endforeach
 					</ul>
 				</li>
-				@if (substr(Request::path(), 0, 5) === 'bikes')
+				@if (substr(Request::path(), 0, 16) === 'bikes/hersteller')
 				<li class="active dropdown">
 				@else
 				<li class="dropdown">
 				@endif
+					<a href="/navigation/hersteller" class="dropdown-toggle" data-toggle="dropdown">Hersteller <b class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu">
+						@foreach(Manufacturer::all() as $manufacturer)
+							@if (Request::path() === 'bikes/hersteller/' . $manufacturer->name)
+							<li class="active">
+							@else
+							<li>
+							@endif
+							<a href="/bikes/hersteller/{{{ $manufacturer->name }}}">{{{ $manufacturer->name }}}</a>
+						@endforeach
+					</ul>
 				</li>
-				@if (Request::path() === 'sale')
+				@if (Request::path() === 'bikes/sale')
 				<li class="active">
 				@else
 				<li>
 				@endif
-					<a href="/sale"><b><span class="text-danger">Sale</span></b></a>
+					<a href="/bikes/sale"><b><span class="text-danger">Sale</span></b></a>
 				</li>
 			</ul>
 		</div>

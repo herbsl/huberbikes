@@ -3829,19 +3829,19 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #333333;
+  color: #777777;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #cccccc;
+  color: #efefef;
   background-color: #2a2f35;
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
 .navbar-default .navbar-nav > .disabled > a:focus {
-  color: #cccccc;
+  color: #555555;
   background-color: transparent;
 }
 .navbar-default .navbar-toggle {
@@ -3862,7 +3862,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
   background-color: #2a2f35;
-  color: #cccccc;
+  color: #efefef;
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
@@ -3870,19 +3870,19 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #333333;
+    color: #777777;
     background-color: transparent;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #cccccc;
+    color: #efefef;
     background-color: #2a2f35;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
-    color: #cccccc;
+    color: #555555;
     background-color: transparent;
   }
 }
@@ -3890,7 +3890,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #efefef;
 }
 .navbar-default .navbar-link:hover {
-  color: #333333;
+  color: #777777;
 }
 .navbar-inverse {
   background-color: #222222;
@@ -5262,8 +5262,12 @@ input[type="text"], input[type="number"], textarea {
 
 }
 
-.margin-top-2x {
+.hb-margin-top-2x {
 	margin-top: 32px;
+}
+
+.hb-margin-bottom-2x {
+	margin-bottom: 32px;
 }
 
 
@@ -5344,6 +5348,10 @@ input[type="text"], input[type="number"], textarea {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+.hb-center-inline {
+	text-align: center;
 }
 
 .hb-navbar-secondary {

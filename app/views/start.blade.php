@@ -30,7 +30,7 @@
 		<div class="jumbotron hb-jumbotron-transparent">
 			<h1>Lust auf Biken?</h1>
 			<p><b>Dann sind Sie bei uns richtig.</b></p>
-			<a href="#start-page-2" class="btn btn-primary btn-lg margin-top-2x scroll-page-2" role="button">Lesen Sie mehr</a>
+			<a href="#start-page-2" class="btn btn-primary btn-lg hb-margin-top-2x scroll-page-2" role="button">Lesen Sie mehr</a>
 		</div>
 	</div>
 </div>

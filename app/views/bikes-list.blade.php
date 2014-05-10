@@ -5,6 +5,26 @@
 	<div class="page-header">
 		<h1>{{ $title }}</h1>
 	</div>
+	@if (Request::path() !== 'bikes/suche')
+	<div class="row hb-margin-bottom-2x hb-center-inline">
+		<div class="btn-group">
+			@if ($customer_name === '')
+			<a href="/{{{ Request::path() }}}" class="btn btn-default active">Alle</a>
+			@else
+			<a href="/{{{ Request::path() }}}" class="btn btn-default">Alle</a>
+			@endif
+
+			@foreach(Customer::all() as $customer)
+				@if ($customer_name === $customer->name)
+				<a href="/{{{ Request::path() }}}?kunde={{{ $customer->name }}}" class="btn btn-default active">{{{ $customer->name }}}</a>
+				@else
+				<a href="/{{{ Request::path() }}}?kunde={{{ $customer->name }}}" class="btn btn-default">{{{ $customer->name }}}</a>
+				@endif
+			@endforeach
+		</div>
+	</div>
+	@endif
+	<div class="row">
 	@foreach($bikes as $bike)<div class="bikes-list-thumbnail-container">
 		<a href="/bikes/detail/{{{ $bike->id }}}" role="button">
 			<div class="thumbnail">
@@ -39,6 +59,7 @@
 			</div>
 		</a>
 	</div>@endforeach
+	</div>
 </div>
 <div id="top-link">
 	<a href="#" role="button" class="btn btn-default">
