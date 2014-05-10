@@ -11570,14 +11570,16 @@ return jQuery;
 
 		win.setTimeout(function() {
 			$.get(url, function(data) {
+				var a = document.createElement('a');
+				a.href = url;
 				/* Manipulate active state of Navbar */
 				$navbarMain.find('li.active').removeClass('active');
-				var $a = $navbarMain.find('li a[href="' + url + '"]');
+				var $a = $navbarMain.find('li a[href="' + a.pathname + '"]');
 				$a.parent().addClass('active');
 				$a.closest('li.dropdown').addClass('active');
 				
 				$navbarSecondary.find('li.active').removeClass('active');
-				$a = $navbarSecondary.find('li a[href="' + url + '"]');
+				$a = $navbarSecondary.find('li a[href="' + a.pathname + '"]');
 				$a.parent().addClass('active');
 
 				if (url === '/') {
@@ -11653,7 +11655,10 @@ return jQuery;
 			url = $el.attr('action') + '?' + $el.serialize();
 		}
 
-		if (! url || url.substr(0, 11) === '/navigation' || (url.charAt(0) != '/' && url.charAt(0) != '?') || $el.data('toggle') === 'modal' || $el.data('toggle') === 'collapse') {
+
+		if (! url || url === '/navigation' || (url.charAt(0) != '/' && url.charAt(0) != '?') || $el.data('toggle') === 'modal' || $el.data('toggle') === 'collapse') {
+			event.preventDefault();
+
 			return true;
 		}
 

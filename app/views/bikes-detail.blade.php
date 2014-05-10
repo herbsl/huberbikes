@@ -177,7 +177,3 @@
 	</div>
 </div -->
 @stop
-
-@section('javascript')
-$('#collapse-btn').removeAttr('href');
-@stop

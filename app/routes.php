@@ -104,7 +104,7 @@ Route::get('/navigation/hersteller', function() {
 });
 
 Route::get('/bikes/hersteller/{name}', function($name) {
-	$title = ucfirst($name);
+	$title = ucwords(strtolower($name));
 
 	$bikes = Bike::whereHas('manufacturer', function($query) use ($name) {
 		$query->where('name', '=', $name);	
@@ -125,7 +125,7 @@ Route::get('/bikes/suche', function() {
 
 	if (Input::has('q')) {
 		$q = Input::get('q');
-		$title = $q;
+		$title = ucwords(strtolower($q));
 	}
 
 	foreach(explode(' ', $q) as $queryPart) {
@@ -159,7 +159,7 @@ Route::get('/bikes/suche', function() {
 
 Route::get('/bikes/kategorie/{category}', function($category) {
 	$category = urldecode(strtolower($category));
-	$title = ucfirst($category);
+	$title = ucwords($category);
 
 	$bikes = Bike::whereHas('categories', function($query) use ($category) {
 		$query->where('name', 'like', '%' . $category . '%');
