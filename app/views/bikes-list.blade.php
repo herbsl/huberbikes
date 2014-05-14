@@ -18,7 +18,7 @@
 				@if ($customer_name === $customer->name)
 				<a href="/{{{ Request::path() }}}?zielgruppe={{{ $customer->name }}}" class="btn btn-default active">{{{ $customer->name }}}</a>
 				@else
-				<a href="/{{{ Request::path() }}}?kunde={{{ $customer->name }}}" class="btn btn-default">{{{ $customer->name }}}</a>
+				<a href="/{{{ Request::path() }}}?zielgruppe={{{ $customer->name }}}" class="btn btn-default">{{{ $customer->name }}}</a>
 				@endif
 			@endforeach
 		</div>
