@@ -7,7 +7,7 @@
 	</div>
 	@if (Request::path() !== 'bikes/suche')
 	<div class="row hb-margin-bottom-2x hb-center-inline">
-		<div class="btn-group">
+		<div class="btn-group hb-btn-group">
 			@if ($customer_name === '')
 			<a href="/{{{ Request::path() }}}" class="btn btn-default active">Alle</a>
 			@else
@@ -16,7 +16,7 @@
 
 			@foreach(Customer::all() as $customer)
 				@if ($customer_name === $customer->name)
-				<a href="/{{{ Request::path() }}}?kunde={{{ $customer->name }}}" class="btn btn-default active">{{{ $customer->name }}}</a>
+				<a href="/{{{ Request::path() }}}?zielgruppe={{{ $customer->name }}}" class="btn btn-default active">{{{ $customer->name }}}</a>
 				@else
 				<a href="/{{{ Request::path() }}}?kunde={{{ $customer->name }}}" class="btn btn-default">{{{ $customer->name }}}</a>
 				@endif

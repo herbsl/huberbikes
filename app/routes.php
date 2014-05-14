@@ -1,10 +1,12 @@
 <?php
 
+Route::resource('bike', 'BikeController');
+
 function getBikesListView($bikes, $title) {
 	$customer = '';
 
-	if (Input::has('kunde')) {
-		$customer = Input::get('kunde');
+	if (Input::has('zielgruppe')) {
+		$customer = Input::get('zielgruppe');
 		$bikes = $bikes->whereHas('customers', function($query) use ($customer) {
 			$query->where('name', '=', $customer);
 		});
@@ -165,8 +167,8 @@ Route::get('/bikes/kategorie/{category}', function($category) {
 		$query->where('name', 'like', '%' . $category . '%');
 	});
 
-	if (Input::has('kunde')) {
-		$customer = Input::get('kunde');
+	if (Input::has('zielgruppe')) {
+		$customer = Input::get('zielgruppe');
 		$bikes = $bikes->whereHas('customers', function($query) use ($customer) {
 			$query->where('name', '=', $customer);
 		});
@@ -205,6 +207,10 @@ Route::get('/impressum', function() {
 	return View::make('impressum', array(
 		'title' => 'Impressum'
 	));
+});
+
+Route::get('/admin/bikes/neu', function() {
+	return View::make('admin.bikes-new');
 });
 
 Route::get('/api/suggestions', function() {

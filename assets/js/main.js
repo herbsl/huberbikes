@@ -124,8 +124,8 @@
 		var $target = $(event.target),
 			$el = $target.closest('a, form');
 
-		if ($el.length === 0 || $target.prop('tagName').toLowerCase() === 'input') {
-			return;
+		if ($el.length === 0 || $el.data('singlepage-controller') === 'disabled' || $target.prop('tagName').toLowerCase() === 'input') {
+			return true;
 		}
 			
 		var url, tag = $el.prop('tagName').toLowerCase();
@@ -137,8 +137,7 @@
 			url = $el.attr('action') + '?' + $el.serialize();
 		}
 
-
-		if (! url || url === '/navigation' || (url.charAt(0) != '/' && url.charAt(0) != '?') || $el.data('toggle') === 'modal' || $el.data('toggle') === 'collapse') {
+		if (! url || url === '/navigation' || (url.charAt(0) != '/' && url.charAt(0) != '?') || $el.data('toggle') === 'modal' || $el.data('toggle') === 'collapse' ) {
 			event.preventDefault();
 
 			return true;

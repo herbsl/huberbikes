@@ -5127,6 +5127,16 @@ button.close {
 	margin-top: 0;
 }
 
+@media (max-width: 639px) {
+	.hb-btn-group a {
+		padding-left: 8px;
+		padding-right: 8px;
+		max-width: 72px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
 @media (min-width: 640px) {
  	.bikes-list-thumbnail-container {
    		width: 50%;

@@ -186,6 +186,7 @@ gulp.task('js:addons', function() {
 		'assets/bower/typeahead.js/dist/typeahead.bundle.js',
 		'assets/bower/fastclick/lib/fastclick.js',
 		'assets/bower/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js',
+		'assets/bower/dropzone/downloads/dropzone.js',
 	])
 	.pipe(jshint('.jshintrc'))
 	//.pipe(jshint.reporter('default'))
