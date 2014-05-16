@@ -95,9 +95,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					@if ($collapse_details === 'in')
-					<a href="?collapse-details=#collapse-btn" data-toggle="collapse" data-target="#collapse-details" class="btn-block" id="collapse-btn">
+					<a href="?collapse-details=" data-toggle="collapse" data-target="#collapse-details" class="btn-block" id="collapse-btn" data-singlepage-load="disabled" data-singlepage-prevent="true">
 					@else
-					<a href="?collapse-details=in#collapse-btn" data-toggle="collapse" data-target="#collapse-details" class="btn-block" id="collapse-btn">
+					<a href="?collapse-details=in" data-toggle="collapse" data-target="#collapse-details" class="btn-block" id="collapse-btn" data-singlepage-load="disabled" data-singlepage-prevent="true">
 					@endif
 						<strong>Details</strong> <b class="caret"></b>
 					</a>

@@ -5,7 +5,7 @@
 				<span class="sr-only">zur&uuml;ck</span>
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</a-->
-			<a href="/navigation" id="responsive-menu" class="navbar-toggle hb-navbar-btn" data-toggle="collapse" data-target="#navbar-main">
+			<a href="/navigation" id="responsive-menu" class="navbar-toggle hb-navbar-btn" data-toggle="collapse" data-target="#navbar-main" data-singlepage-load="disabled" data-singlepage-prevent="true">
 				<span class="sr-only">Men&uuml;</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>

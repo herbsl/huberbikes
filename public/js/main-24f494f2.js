@@ -11519,14 +11519,9 @@ return jQuery;
 (function($, win) {
 	'use strict';
 
-	var $win = $(win),
+	var $doc = $(document),
 		$title = $('title'),
-		$content = $('#singlepage-content'),
-		$dropdown = $('#navbar-main .dropdown'),
-		$navbarMain = $('#navbar-main'),
-		$search = $('#navbar-search'),
-		$navbarBrand = $('a.navbar-brand'),
-		$navbarSecondary = $('#navbar-secondary');
+		$content = $('#singlepage-content');
 
 	if (! Modernizr.history) {
 		return;
@@ -11540,14 +11535,8 @@ return jQuery;
 			slide = false;
 		}
 
-		/* Clear search-value */
-		if (url.substr(0, 12) !== '/bikes/suche') {
-			$search.typeahead('val', '');
-			$search.val('');
-		}
-		$search.typeahead('close');
-		$search.blur();
-
+		$doc.trigger('singlepage.load.before', [ url ]);
+			
 		$content.removeClass('slidein-right');
 		$content.removeClass('slidein-right-go');
 		$content.addClass('slideout-left-go');
@@ -11556,41 +11545,9 @@ return jQuery;
 			$content.addClass('slidein-right');
 		}
 
-		/* Close Dropdown and Navbar */
-		$dropdown.each(function() {
-			var $this = $(this);
-			if ($this.hasClass('open')) {
-				$this.find('.dropdown-toggle').dropdown('toggle');
-			}
-		});
-
-		if ($navbarMain.hasClass('in')) {
-			$navbarMain.collapse('hide');
-		}
-
 		win.setTimeout(function() {
 			$.get(url, function(data) {
-				var a = document.createElement('a');
-				a.href = url;
-				/* Manipulate active state of Navbar */
-				$navbarMain.find('li.active').removeClass('active');
-				var $a = $navbarMain.find('li a[href="' + a.pathname + '"]');
-				$a.parent().addClass('active');
-				$a.closest('li.dropdown').addClass('active');
-				
-				$navbarSecondary.find('li.active').removeClass('active');
-				$a = $navbarSecondary.find('li a[href="' + a.pathname + '"]');
-				$a.parent().addClass('active');
-
-				if (url === '/') {
-					$navbarBrand.attr('href', '#');
-				}
-				else {
-					$navbarBrand.attr('href', '/');
-				}
-
 				/* Inject new Page */
-				//$content.empty();
 				$content.children().each(function() {
 					var $this = $(this);
 
@@ -11617,6 +11574,8 @@ return jQuery;
 						history.pushState({}, '', url);
 					}
 				}
+
+				$doc.trigger('singlepage.load.after', [ url ]);
 			});
 		}, 0);
 
@@ -11639,25 +11598,32 @@ return jQuery;
 	}
 
 	$('body, .navbar-brand').click(function(event) {
-		var $target = $(event.target),
-			$el = $target.closest('a, form');
+		var url, tag,
+			$target = $(event.target),
+			$el = $target.closest('a, button[type="submit"]');
 
-		if ($el.length === 0 || $el.data('singlepage-controller') === 'disabled' || $target.prop('tagName').toLowerCase() === 'input') {
+		if ($el.length === 0) {
+			return true;
+		}
+
+		if ($el.data('singlepage-load') === 'disabled' ) {
+			if ($el.data('singlepage-prevent')) {
+				event.preventDefault();
+			}
+
 			return true;
 		}
 			
-		var url, tag = $el.prop('tagName').toLowerCase();
+		tag = $el.prop('tagName').toLowerCase();
 			
 		if (tag === 'a') {
 			url = $el.attr('href');
 		}
-		else if (tag === 'form') {
-			url = $el.attr('action') + '?' + $el.serialize();
+		else if (tag === 'button') {
+			url = $el.closest('form').attr('action') + '?' + $el.serialize();
 		}
 
-		if (! url || url === '/navigation' || (url.charAt(0) != '/' && url.charAt(0) != '?') || $el.data('toggle') === 'modal' || $el.data('toggle') === 'collapse' ) {
-			event.preventDefault();
-
+		if (! url || (url.charAt(0) != '/' && url.charAt(0) != '?')) {
 			return true;
 		}
 
@@ -11668,12 +11634,71 @@ return jQuery;
 (function($) {
 	'use strict';
 
+	var $navbarMain = $('#navbar-main'),
+		$navbarBrand = $('a.navbar-brand'),
+		$navbarSecondary = $('#navbar-secondary'),
+		$search = $('#navbar-search'),
+		$dropdown = $('#navbar-main .dropdown');
+
 	$('#responsive-menu').click(function(event) {
 		// The click should only be triggered without javascript
 		event.preventDefault();
 	});
 
 	$('.dropdown-toggle').attr('href', '#');
+
+	$(document).on('singlepage.load.before', function(event, url) {
+		/* Close main-navbar */
+		if ($navbarMain.hasClass('in')) {
+			//$navbarMain.collapse('hide');
+			$navbarMain.removeClass('in');
+		}
+
+		/* Manipulate search-field */
+		if (url.substr(0, 12) !== '/bikes/suche') {
+			$search.typeahead('val', '');
+			$search.val('');
+		}
+
+		$search.typeahead('close');
+		$search.blur();
+
+		/* Close Dropdown */
+		$dropdown.each(function() {
+			var $this = $(this);
+
+			if ($this.hasClass('open')) {
+				$this.find('.dropdown-toggle').dropdown('toggle');
+			}
+		});
+	});
+
+	$(document).on('singlepage.load.after', function(event, url) {
+		var a = document.createElement('a');	
+		a.href = url;
+
+		/* Manipulate active-state of main-navbar */
+		$navbarMain.find('li.active')
+			.removeClass('active');
+
+		$navbarMain.find('li a[href="' + a.pathname + '"]')
+			.parent().addClass('active')
+			.closest('li.dropdown').addClass('active');
+				
+		/* Manipulate active-state of secondary-navbar */
+		$navbarSecondary.find('li.active')
+			.removeClass('active')
+			.find('li a[href="' + a.pathname + '"]')
+			.parent().addClass('active');
+
+		/* Maniuplate link to start-page */
+		if (url === '/') {
+			$navbarBrand.attr('href', '#');
+		}
+		else {
+			$navbarBrand.attr('href', '/');
+		}
+	});
 })(jQuery);
 
 (function($) {

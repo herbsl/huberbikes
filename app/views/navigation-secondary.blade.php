@@ -6,14 +6,14 @@
 			@else
 			<li>
 			@endif
-				<a data-toggle="modal" data-target="#modal-contact" data-remote="" href="/kontakt">Kontakt</a>
+				<a data-toggle="modal" data-target="#modal-contact" data-remote="" href="/kontakt" data-singlepage-load="disabled">Kontakt</a>
 			</li>
 			@if (Request::path() === 'oeffnungszeiten')
 			<li class="active">
 			@else
 			<li>
 			@endif
-				<a data-toggle="modal" data-target="#modal-opened" data-remote="" href="/oeffnungszeiten">&Ouml;ffnungszeiten</a>
+				<a data-toggle="modal" data-target="#modal-opened" data-remote="" href="/oeffnungszeiten" data-singlepage-load="disabled">&Ouml;ffnungszeiten</a>
 			</li>
 			@if (Request::path() === 'so-finden-sie-uns')
 			<li class="active">
