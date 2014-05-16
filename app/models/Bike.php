@@ -1,6 +1,11 @@
 <?php
 
-class Bike extends Eloquent {
+class Bike extends Model {
+	protected static $rules = array(
+		'name' => 'required|min:5',
+		'price' => 'required'
+	);
+
 	public function manufacturer() {
 		return $this->belongsTo('Manufacturer');
 	}

@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'de',
+	'locale' => 'en',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -177,6 +177,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+		'Model'            => 'Way\Database\Model',
 
 	),
 

@@ -2,14 +2,19 @@
 
 @section('content')
 <div class="container hb-container">
-	<form class="form-horizontal" action="{{{ URL::action('bike.store') }}}" method="post" role="form" data-singlepage-controller="disabled">
+	@if($errors->has())
+		@foreach ($errors->all() as $message)
+		<div class="alert alert-danger">{{ $message }}</div>
+		@endforeach
+	@endif
+	<form class="form-horizontal" action="{{{ URL::action('bike.store') }}}" method="post" role="form">
 		<legend>Bike</legend>
 		<fieldset>
 			<!-- Name -->
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Name</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="name" name="name" placeholder="Name des Bikes">
+					<input type="text" class="form-control" id="name" name="name" placeholder="Name des Bikes" value="{{{ Input::old('name') }}}">
 				</div>
 			</div>
 			<!-- Hersteller -->
@@ -17,9 +22,12 @@
 				<label for="manufacturer_id" class="col-sm-2 control-label">Hersteller</label>
 				<div class="col-sm-4">
 					<select class="form-control" id="manufacturer_id" name="manufacturer_id">
-						<option value="-1" selected="selected"></option>
 						@foreach (Manufacturer::all() as $manufacturer)
-						<option value="{{{ $manufacturer->id }}}">{{{ $manufacturer->name }}}</option>
+							@if ($manufacturer->id === Input::old('manufacturer_id'))
+							<option value="{{{ $manufacturer->id }}}" selected>{{{ $manufacturer->name }}}</option>
+							@else
+							<option value="{{{ $manufacturer->id }}}">{{{ $manufacturer->name }}}</option>
+							@endif
 						@endforeach
 					</select>
 				</div>
@@ -32,7 +40,11 @@
 				<div class="col-sm-10">
 					@foreach (Category::all() as $category)
 					<label class="checkbox-inline">
+						@if (in_array($category->id, Input::old('category_id') ? Input::old('category_id') : array()))
+						<input name="category_id[]" type="checkbox" value="{{{ $category->id }}}" checked> {{{ $category->name }}}
+						@else
 						<input name="category_id[]" type="checkbox" value="{{{ $category->id }}}"> {{{ $category->name }}}
+						@endif
 					</label>
 					@endforeach
 				</div>
@@ -82,7 +94,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button id="js-detect-btn" class="btn btn-success btn-lg">starten</button>
+					<button type="button" id="js-detect-btn" class="btn btn-success btn-lg">starten</button>
 				</div>
 			</div>
 		</fieldset>

@@ -31,13 +31,20 @@ class BikeController extends \BaseController {
 	 */
 	public function store()
 	{
+		try {
+		DB::beginTransaction();
+
 		$bike = new Bike();
 		$bike->name = Input::get('name');
 		$bike->description = Input::get('description');
 		$bike->price = Input::get('price');
 		$bike->price_offer = Input::get('price_offer');
 		$bike->manufacturer_id = Input::get('manufacturer_id');
-		$bike->save();
+	
+		if (! $bike->save()) {
+		   //return Redirect::back()->withInput()->withErrors($bike->getErrors());
+		   return Redirect::route('bike.create')->withInput()->withErrors($bike->getErrors());
+		}
 
 		foreach (Input::get('category_id') as $category_id) {
 			$bikeCategory = new BikeCategory();
@@ -68,6 +75,11 @@ class BikeController extends \BaseController {
 			$bikeComponent->bike_id = $bike->id;
 			$bikeComponent->component_id = $component->id;
 			$bikeComponent->save();
+		}
+		
+		DB::commit();
+		}  catch (\PDOException $e) {
+    		DB::rollback();
 		}
 	}
 
