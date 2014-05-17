@@ -13,8 +13,8 @@
 @stop
 
 @section('javascript')
-$(document).ready(function() {
-	var $win = $(window),
+(function($, win) {
+	var $win = $(win),
 		$map = $('#map');
 
 	$win.on('resize', function() {
@@ -23,5 +23,5 @@ $(document).ready(function() {
 
 		$map.css('height', height - offset - 78);
 	}).trigger('resize');
-});
+})(jQuery, window);
 @stop

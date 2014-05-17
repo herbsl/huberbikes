@@ -2,6 +2,7 @@
 	'use strict';
 
 	var $doc = $(document),
+		$body = $('body'),
 		$title = $('title'),
 		$content = $('#singlepage-content');
 
@@ -10,8 +11,7 @@
 	}
 
 	var loadContent = function(url, add) {
-		var $js = $('#singlepage-javascript'),
-			slide = add;
+		var slide = add;
 
 		if (url === '/') {
 			slide = false;
@@ -41,7 +41,8 @@
 
 				$title.text($(data).filter('title').text());
 				$content.prepend($(data).filter('#singlepage-content').children());
-				$js.html($(data).filter('#singlepage-javascript'));
+				$('#singlepage-javascript').remove();
+				$body.append($(data).filter('#singlepage-javascript'));
 		
 				if (slide) {
 					$content.removeClass('slideout-left-go');
@@ -102,7 +103,8 @@
 			url = $el.attr('href');
 		}
 		else if (tag === 'button') {
-			url = $el.closest('form').attr('action') + '?' + $el.serialize();
+			var $form = $el.closest('form');
+			url = $form.attr('action') + '?' + $form.serialize();
 		}
 
 		if (! url || (url.charAt(0) != '/' && url.charAt(0) != '?')) {
