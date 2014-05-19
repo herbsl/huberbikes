@@ -17,7 +17,6 @@
 	$(document).on('singlepage.load.before', function(event, url) {
 		/* Close main-navbar */
 		if ($navbarMain.hasClass('in')) {
-			//$navbarMain.collapse('hide');
 			$navbarMain.removeClass('in');
 		}
 
@@ -41,21 +40,18 @@
 	});
 
 	$(document).on('singlepage.load.after', function(event, url) {
-		var a = document.createElement('a');	
-		a.href = url;
-
 		/* Manipulate active-state of main-navbar */
 		$navbarMain.find('li.active')
 			.removeClass('active');
 
-		$navbarMain.find('li a[href="' + a.pathname + '"]')
+		$navbarMain.find('li a[href="' + url + '"]')
 			.parent().addClass('active')
 			.closest('li.dropdown').addClass('active');
 				
 		/* Manipulate active-state of secondary-navbar */
 		$navbarSecondary.find('li.active')
 			.removeClass('active')
-			.find('li a[href="' + a.pathname + '"]')
+			.find('li a[href="' + url + '"]')
 			.parent().addClass('active');
 
 		/* Maniuplate link to start-page */

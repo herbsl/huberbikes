@@ -11528,7 +11528,7 @@ return jQuery;
 		return;
 	}
 
-	var loadContent = function(url, add) {
+	var loadContent = function(url, data, type, add) {
 		var slide = add;
 
 		if (url === '/') {
@@ -11546,7 +11546,11 @@ return jQuery;
 		}
 
 		win.setTimeout(function() {
-			$.get(url, function(data) {
+			$.ajax({
+				url: url,
+				data: data,
+				type: type,
+				success: function(data) {
 				/* Inject new Page */
 				$content.children().each(function() {
 					var $this = $(this);
@@ -11577,6 +11581,7 @@ return jQuery;
 				}
 
 				$doc.trigger('singlepage.load.after', [ url ]);
+				}	
 			});
 		}, 0);
 
@@ -11586,7 +11591,7 @@ return jQuery;
 	if (! Modernizr.history) {
 		$(win).on('statechange', function(event) {
 			var state = History.getState();
-			return loadContent(state.hash, false);
+			return loadContent(state.hash, '', 'get', false);
 		});
 	} else {
 		$(win).on('popstate', function(event) {
@@ -11594,12 +11599,14 @@ return jQuery;
 				return;
 			}
 
-			return loadContent(location.href, false);
+			return loadContent(location.href, '', 'get', false);
 		});
 	}
 
 	$('body, .navbar-brand').click(function(event) {
 		var url, tag,
+			data = '',
+			type = 'get',
 			$target = $(event.target),
 			$el = $target.closest('a, button[type="submit"]');
 
@@ -11622,14 +11629,24 @@ return jQuery;
 		}
 		else if (tag === 'button') {
 			var $form = $el.closest('form');
-			url = $form.attr('action') + '?' + $form.serialize();
+			if ($form.attr('method') !== undefined) {
+				type = $form.attr('method');
+			}
+
+			/*var method = $form.find('input[name="_method"]').attr('value');
+			if (method) {
+				type = method;
+			}*/
+				
+			data = $form.serialize();
+			url = $form.attr('action');
 		}
 
-		if (! url || (url.charAt(0) != '/' && url.charAt(0) != '?')) {
+		if (! url || url.charAt(0) === '#' /*|| (url.charAt(0) != '/' && url.charAt(0) != '?')*/) {
 			return true;
 		}
 
-		return loadContent(url, true);
+		return loadContent(url, data, type, (type === 'get') ? true : false);
 	});
 })(jQuery, window);
 
@@ -11652,7 +11669,6 @@ return jQuery;
 	$(document).on('singlepage.load.before', function(event, url) {
 		/* Close main-navbar */
 		if ($navbarMain.hasClass('in')) {
-			//$navbarMain.collapse('hide');
 			$navbarMain.removeClass('in');
 		}
 
@@ -11676,21 +11692,18 @@ return jQuery;
 	});
 
 	$(document).on('singlepage.load.after', function(event, url) {
-		var a = document.createElement('a');	
-		a.href = url;
-
 		/* Manipulate active-state of main-navbar */
 		$navbarMain.find('li.active')
 			.removeClass('active');
 
-		$navbarMain.find('li a[href="' + a.pathname + '"]')
+		$navbarMain.find('li a[href="' + url + '"]')
 			.parent().addClass('active')
 			.closest('li.dropdown').addClass('active');
 				
 		/* Manipulate active-state of secondary-navbar */
 		$navbarSecondary.find('li.active')
 			.removeClass('active')
-			.find('li a[href="' + a.pathname + '"]')
+			.find('li a[href="' + url + '"]')
 			.parent().addClass('active');
 
 		/* Maniuplate link to start-page */

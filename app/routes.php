@@ -18,7 +18,7 @@ function getBikesListView($bikes, $title) {
 		return getBikesDetailView($bikes->first()->id);
 	}
 
-	return View::make('bikes-list', array(
+	return View::make('bike.index', array(
  		'title' => $title,
 		'new_threshold_days' => 30,
 		'bikes' => $bikes,
@@ -67,7 +67,7 @@ function getBikesDetailView($id) {
 		}
 	}*/
 
-	$view = View::make('bikes-detail', array(
+	$view = View::make('bike.show', array(
 		'title' => $bike->manufacturer->name . ' ' . $bike->name,
 		'highlights' => $highlights,
 		'bike' => $bike,
@@ -104,21 +104,6 @@ Route::get('/navigation/bikes', function() {
 Route::get('/navigation/hersteller', function() {
 	return View::make('navigation.hersteller');
 });
-
-Route::get('/bikes/hersteller/{name}', function($name) {
-	$title = ucwords(strtolower($name));
-
-	$bikes = Bike::whereHas('manufacturer', function($query) use ($name) {
-		$query->where('name', '=', $name);	
-	})->with('categories');
-
-	return getBikesListView($bikes, $title);
-});
-
-Route::get('/bikes/detail/{id}', function($id) {
-	return getBikesDetailView($id);
-});
-
 
 Route::get('/bikes/suche', function() {
 	$q = '';
@@ -157,32 +142,6 @@ Route::get('/bikes/suche', function() {
 	}
 
 	return getBikesListView($bikes, $title);
-});
-
-Route::get('/bikes/kategorie/{category}', function($category) {
-	$category = urldecode(strtolower($category));
-	$title = ucwords($category);
-
-	$bikes = Bike::whereHas('categories', function($query) use ($category) {
-		$query->where('name', 'like', '%' . $category . '%');
-	});
-
-	if (Input::has('zielgruppe')) {
-		$customer = Input::get('zielgruppe');
-		$bikes = $bikes->whereHas('customers', function($query) use ($customer) {
-			$query->where('name', '=', $customer);
-		});
-	}
-
-	return getBikesListView($bikes, $title);
-});
-
-
-Route::get('/bikes/sale', function() {
-	$bikes = Bike::where('price_offer', '!=', '0')
-		->with('categories')->with('manufacturer');
-
-	return getBikesListView($bikes, 'Sale');
 });
 
 Route::get('/kontakt', function() {
@@ -234,3 +193,8 @@ Route::get('/api/suggestions', function() {
 
 	return Response::json($suggestions);
 });
+
+
+Route::get('/login', 'AuthController@show');
+Route::post('/login', 'AuthController@login');
+Route::get('/logout', 'AuthController@logout');

@@ -5,20 +5,27 @@
 	<div class="page-header">
 		<h1>{{ $title }}</h1>
 	</div>
+    @if (Auth::check())
+	<div class="row hb-margin-bottom-2x">
+    	<a href="{{{ URL::action('bike.create') }}}" class="btn btn-success">
+			<span class="glyphicon glyphicon-plus"></span> hinzuf&uuml;gen
+		</a>
+	</div>
+    @endif
 	@if (Request::path() !== 'bikes/suche')
 	<div class="row hb-margin-bottom-2x hb-center-inline">
 		<div class="btn-group hb-btn-group">
 			@if ($customer_name === '')
-			<a href="/{{{ Request::path() }}}" class="btn btn-default active">Alle</a>
+			<a href="{{{ URL::action('bike.index', $params) }}}" class="btn btn-default active">Alle</a>
 			@else
-			<a href="/{{{ Request::path() }}}" class="btn btn-default">Alle</a>
+			<a href="{{{ URL::action('bike.index', $params) }}}" class="btn btn-default">Alle</a>
 			@endif
 
 			@foreach(Customer::all() as $customer)
 				@if ($customer_name === $customer->name)
-				<a href="/{{{ Request::path() }}}?zielgruppe={{{ $customer->name }}}" class="btn btn-default active">{{{ $customer->name }}}</a>
+				<a href="{{{ URL::action('bike.index', array_merge($params, array('zielgruppe' => $customer->name))) }}}" class="btn btn-default active">{{{ $customer->name }}}</a>
 				@else
-				<a href="/{{{ Request::path() }}}?zielgruppe={{{ $customer->name }}}" class="btn btn-default">{{{ $customer->name }}}</a>
+				<a href="{{{ URL::action('bike.index', array_merge($params, array('zielgruppe' => $customer->name))) }}}" class="btn btn-default">{{{ $customer->name }}}</a>
 				@endif
 			@endforeach
 		</div>
@@ -26,7 +33,11 @@
 	@endif
 	<div class="row">
 	@foreach($bikes as $bike)<div class="bikes-list-thumbnail-container">
-		<a href="/bikes/detail/{{{ $bike->id }}}" role="button">
+		@if (Input::has('trash') && Input::get('trash') === 'true')
+		<a href="{{{ URL::action('bike.show', array($bike->id, 'trash' => 'true')) }}}" role="button">
+		@else
+		<a href="{{{ URL::action('bike.show', $bike->id) }}}" role="button">
+		@endif
 			<div class="thumbnail">
 				@if ( $bike->price_offer != 0 )
 				<h3 class="label-top-right">

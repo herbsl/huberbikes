@@ -2,19 +2,22 @@
 
 @section('content')
 <div class="container hb-container">
-	@if($errors->has())
+	@if ($errors->has())
 		@foreach ($errors->all() as $message)
 		<div class="alert alert-danger">{{ $message }}</div>
 		@endforeach
 	@endif
-	<form class="form-horizontal" action="{{{ URL::action('bike.store') }}}" method="post" role="form">
+	<form class="form-horizontal" action="{{{ $action }}}" method="post" role="form">
+		@if (isset($method))
+		<input type="hidden" name="_method" value="{{{ $method }}}">
+		@endif
 		<legend>Bike</legend>
 		<fieldset>
 			<!-- Name -->
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Name</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="name" name="name" placeholder="Name des Bikes" value="{{{ Input::old('name') }}}">
+					<input type="text" class="form-control" id="name" name="name" placeholder="Name des Bikes" value="{{{ Input::old('name', $bike->name) }}}">
 				</div>
 			</div>
 			<!-- Hersteller -->
@@ -23,7 +26,7 @@
 				<div class="col-sm-4">
 					<select class="form-control" id="manufacturer_id" name="manufacturer_id">
 						@foreach (Manufacturer::all() as $manufacturer)
-							@if ($manufacturer->id === Input::old('manufacturer_id'))
+							@if ($manufacturer->id === Input::old('manufacturer_id', $bike->manufacturer_id))
 							<option value="{{{ $manufacturer->id }}}" selected>{{{ $manufacturer->name }}}</option>
 							@else
 							<option value="{{{ $manufacturer->id }}}">{{{ $manufacturer->name }}}</option>
@@ -40,7 +43,7 @@
 				<div class="col-sm-10">
 					@foreach (Category::all() as $category)
 					<label class="checkbox-inline">
-						@if (in_array($category->id, Input::old('category_id') ? Input::old('category_id') : array()))
+						@if (in_array($category->id, $category_id))
 						<input name="category_id[]" type="checkbox" value="{{{ $category->id }}}" checked> {{{ $category->name }}}
 						@else
 						<input name="category_id[]" type="checkbox" value="{{{ $category->id }}}"> {{{ $category->name }}}
@@ -57,7 +60,11 @@
 				<div class="col-sm-10">
 					@foreach (Customer::all() as $customer)
 					<label class="checkbox-inline">
+						@if (in_array($customer->id, $customer_id))
+						<input name="customer_id[]" type="checkbox" value="{{{ $customer->id }}}" checked> {{{ $customer->name }}}
+						@else
 						<input name="customer_id[]" type="checkbox" value="{{{ $customer->id }}}"> {{{ $customer->name }}}
+						@endif
 					</label>
 					@endforeach
 				</div>
@@ -66,35 +73,27 @@
 			<div class="form-group">
 				<label for="price" class="col-sm-2 control-label">Preis</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="price" name="price" placeholder="Preis des Bikes">
+					<input type="text" class="form-control" id="price" name="price" placeholder="Preis des Bikes" value="{{{ Input::old('price', $bike->price) }}}">
 				</div>
 			</div>
 			<!-- Angebotspreis -->
 			<div class="form-group">
 				<label for="price_offer" class="col-sm-2 control-label">Angebotspreis</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="price_offer" name="price_offer" placeholder="Angebotspreis des Bikes">
+					<input type="text" class="form-control" id="price_offer" name="price_offer" placeholder="Angebotspreis des Bikes" value="{{{ Input::old('price_offer', $bike->price_offer) }}}">
 				</div>
 			</div>
 			<!-- Beschreibung -->
 			<div class="form-group">
 				<label for="description" class="col-sm-2 control-label">Beschreibung</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" id="description" name="description" rows="5"></textarea> 
+					<textarea class="form-control" id="description" name="description" rows="5">{{{ Input::old('description', $bike->description) }}}</textarea> 
 				</div>
 			</div>
 		</fieldset>
-		<fieldset>
-			<legend>Komponenten automatisch einlesen</legend>
-			<!-- automatische Befuellung -->
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<textarea class="form-control" id="js-detect-text" rows="5"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<button type="button" id="js-detect-btn" class="btn btn-success btn-lg">starten</button>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-primary" data-singlepage-load="disabled"><span class="glyphicon glyphicon-play"></span> starten</button>
 				</div>
 			</div>
 		</fieldset>
@@ -105,7 +104,7 @@
 			<div class="form-group" id="js-detect-input">
 				<label for="type-{{{ $type->id }}}" class="col-sm-2 control-label">{{{ $type->name }}}</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="type-{{{ $type->id }}}" name="type-{{{ $type->id }}}">
+					<input type="text" class="form-control" id="type-{{{ $type->id }}}" name="type-{{{ $type->id }}}" value="{{{ $types[$type->id] }}}">
 				</div>
 			</div>
 			@endforeach
@@ -120,7 +119,7 @@
 		</fieldseti -->
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-primary btn-lg">speichern</button>
+				<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> speichern</button>
 			</div>
 		</div>
 	</form>

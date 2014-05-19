@@ -24,7 +24,8 @@
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-left">
-				@if (substr(Request::path(), 0, 15) === 'bikes/kategorie')
+
+				@if (Input::has('kategorie'))
 				<li class="active dropdown">
 				@else
 				<li class="dropdown">
@@ -32,16 +33,16 @@
 					<a href="/navigation/bikes" class="dropdown-toggle" data-toggle="dropdown">Bikes <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
 						@foreach(Category::all() as $category)
-							@if (Request::path() === 'bikes/kategorie/' . $category->name)
+							@if (Input::has('kategorie') && Input::get('kategorie') === $category->name)
 							<li class="active">
 							@else
 							<li>
 							@endif
-							<a href="/bikes/kategorie/{{{ $category->name }}}">{{{ $category->name }}}</a>
+							<a href="{{{ URL::action('bike.index', array('kategorie' => $category->name)) }}}">{{{ $category->name }}}</a>
 						@endforeach
 					</ul>
 				</li>
-				@if (substr(Request::path(), 0, 16) === 'bikes/hersteller')
+				@if (Input::has('hersteller'))
 				<li class="active dropdown">
 				@else
 				<li class="dropdown">
@@ -49,22 +50,31 @@
 					<a href="/navigation/hersteller" class="dropdown-toggle" data-toggle="dropdown">Hersteller <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
 						@foreach(Manufacturer::all() as $manufacturer)
-							@if (Request::path() === 'bikes/hersteller/' . $manufacturer->name)
+							@if (Input::has('hersteller') && Input::get('hersteller') === $manufacturer->name)
 							<li class="active">
 							@else
 							<li>
 							@endif
-							<a href="/bikes/hersteller/{{{ $manufacturer->name }}}">{{{ $manufacturer->name }}}</a>
+							<a href="{{{ URL::action('bike.index', array( 'hersteller' => $manufacturer->name)) }}}">{{{ $manufacturer->name }}}</a>
 						@endforeach
 					</ul>
 				</li>
-				@if (Request::path() === 'bikes/sale')
+				@if (Input::has('sale') && Input::get('sale') === 'true')
 				<li class="active">
 				@else
 				<li>
 				@endif
-					<a href="/bikes/sale"><b><span class="text-danger">Sale</span></b></a>
+					<a href="{{{ URL::action('bike.index', array('sale' => 'true')) }}}"><b><span class="text-danger">Sale</span></b></a>
 				</li>
+				@if (Auth::check())
+					@if (Input::has('trash') && Input::get('trash') === 'true')
+					<li class="active">
+					@else
+					<li>
+					@endif
+						<a href="{{{ URL::action('bike.index', array('trash' => 'true')) }}}"><span class="glyphicon glyphicon-trash"></span></a>
+					</li>
+				@endif
 			</ul>
 		</div>
 	</div>

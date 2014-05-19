@@ -56,7 +56,7 @@
 							<tr>
 								<td>Hersteller</td>
 								<td>
-									<a class="btn btn-block btn-default" href="/bikes/hersteller/{{{ $bike->manufacturer->name }}}">{{{ $bike->manufacturer->name }}}</a>
+									<a class="btn btn-block btn-default" href="{{{ URL::action('bike.index', array('hersteller' => $bike->manufacturer->name)) }}}">{{{ $bike->manufacturer->name }}}</a>
 								</td>	
 							</tr>
 							@foreach($highlights as $highlight)
@@ -71,7 +71,7 @@
 								<td>Kategorie</td>
 								<td>
 									@foreach($bike->categories as $category)
-									<a class="btn btn-block btn-default" href="/bikes/kategorie/{{{ $category->name }}}">{{{ $category->name }}}</a>
+									<a class="btn btn-block btn-default" href="{{{ URL::action('bike.index', array('kategorie' => $category->name)) }}}">{{{ $category->name }}}</a>
 									@endforeach
 								</td>
 							</tr>
@@ -85,7 +85,27 @@
 							</tr>
 						</tbody>
 					</table>
-					<!-- a href="#" role="button" class="btn btn-success btn-block">Zum Vergleich merken</a -->
+					@if (Auth::check())
+						@if (Input::has('trash') && Input::get('trash') === 'true')
+						<form action="{{{ URL::route('bike.destroy', $bike->id) }}}" role="form" class="hb-margin-top-1x" method="post">
+							<input type="hidden" name="_method" value="delete">
+							<input type="hidden" name="restore" value="true">
+							<button type="submit" class="btn btn-warning btn-block">
+								<span class="glyphicon glyphicon-refresh"></span> wiederherstellen 
+							</button>
+						</form>
+						@else
+						<a href="{{{ URL::action('bike.edit', $bike->id) }}}" role="button" class="btn btn-success btn-block">
+							<span class="glyphicon glyphicon-pencil"></span> bearbeiten
+						</a>
+						<form action="{{{ URL::route('bike.destroy', $bike->id) }}}" role="form" class="hb-margin-top-1x" method="post">
+							<input type="hidden" name="_method" value="delete">
+							<button type="submit" class="btn btn-danger btn-block">
+								<span class="glyphicon glyphicon-trash"></span> l&ouml;schen
+							</button>
+						</form>
+						@endif
+					@endif
 				</div>
 			</div>
 		</div>

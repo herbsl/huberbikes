@@ -1,5 +1,12 @@
 <div class="navbar hb-navbar-secondary" id="navbar-secondary" role="navigation">
 	<div class="container-fluid">
+		@if (Auth::check())
+		<ul class="nav navbar-nav navbar">
+			<li>
+				<a href="{{{ URL::action('AuthController@logout') }}}" data-singlepage-load="disabled">abmelden</a>
+			</li>
+		</ul>
+		@endif
 		<ul class="nav navbar-nav navbar-right">
 			@if (Request::path() === 'kontakt')
 			<li class="active">

@@ -19,7 +19,9 @@ class CreateBikesTable extends Migration {
 			$table->decimal('price', 7, 2);
 			$table->decimal('price_offer', 7, 2);
 			$table->integer('manufacturer_id')->unsigned();
+			$table->integer('year')->unsigned()->nullable();
 			$table->timestamps();
+			$table->softDeletes();
 		});
 
 		Schema::table('bikes', function($table) {

@@ -63,6 +63,14 @@ input[type="text"], input[type="number"], textarea {
 
 }
 
+.hb-margin-top-1x {
+	margin-top: 16px;
+}
+
+.hb-margin-bottom-1x {
+	margin-bottom: 16px;
+}
+
 .hb-margin-top-2x {
 	margin-top: 32px;
 }

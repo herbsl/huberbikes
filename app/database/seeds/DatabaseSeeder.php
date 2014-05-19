@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('CategoriesTableSeeder');
 		$this->call('TypeTableSeeder');
 		$this->call('CustomersTableSeeder');
+		$this->call('UsersTableSeeder');		
 	}
 }
 
@@ -171,4 +172,16 @@ class TypeTableSeeder extends Seeder {
 			'name' => 'Sonstiges',
 		));
 	}
+}
+
+
+class UsersTableSeeder extends Seeder {
+	public function run() {
+        DB::table('users')->delete();
+
+        User::create(array(
+            'email' => 'lina@a-land.de',
+            'password' => Hash::make('Pipp@0201')
+        ));
+    }
 }

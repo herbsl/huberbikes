@@ -10,7 +10,7 @@
 		return;
 	}
 
-	var loadContent = function(url, add) {
+	var loadContent = function(url, data, type, add) {
 		var slide = add;
 
 		if (url === '/') {
@@ -28,7 +28,11 @@
 		}
 
 		win.setTimeout(function() {
-			$.get(url, function(data) {
+			$.ajax({
+				url: url,
+				data: data,
+				type: type,
+				success: function(data) {
 				/* Inject new Page */
 				$content.children().each(function() {
 					var $this = $(this);
@@ -59,6 +63,7 @@
 				}
 
 				$doc.trigger('singlepage.load.after', [ url ]);
+				}	
 			});
 		}, 0);
 
@@ -68,7 +73,7 @@
 	if (! Modernizr.history) {
 		$(win).on('statechange', function(event) {
 			var state = History.getState();
-			return loadContent(state.hash, false);
+			return loadContent(state.hash, '', 'get', false);
 		});
 	} else {
 		$(win).on('popstate', function(event) {
@@ -76,12 +81,14 @@
 				return;
 			}
 
-			return loadContent(location.href, false);
+			return loadContent(location.href, '', 'get', false);
 		});
 	}
 
 	$('body, .navbar-brand').click(function(event) {
 		var url, tag,
+			data = '',
+			type = 'get',
 			$target = $(event.target),
 			$el = $target.closest('a, button[type="submit"]');
 
@@ -104,13 +111,23 @@
 		}
 		else if (tag === 'button') {
 			var $form = $el.closest('form');
-			url = $form.attr('action') + '?' + $form.serialize();
+			if ($form.attr('method') !== undefined) {
+				type = $form.attr('method');
+			}
+
+			/*var method = $form.find('input[name="_method"]').attr('value');
+			if (method) {
+				type = method;
+			}*/
+				
+			data = $form.serialize();
+			url = $form.attr('action');
 		}
 
-		if (! url || (url.charAt(0) != '/' && url.charAt(0) != '?')) {
+		if (! url || url.charAt(0) === '#' /*|| (url.charAt(0) != '/' && url.charAt(0) != '?')*/) {
 			return true;
 		}
 
-		return loadContent(url, true);
+		return loadContent(url, data, type, (type === 'get') ? true : false);
 	});
 })(jQuery, window);

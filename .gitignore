@@ -3,6 +3,7 @@ composer.phar
 composer.lock
 .env.staging.php
 .env.local.php
+/app/database/seeds/DatabaseSeeder.php
 .env.php
 .DS_Store
 Thumbs.db
