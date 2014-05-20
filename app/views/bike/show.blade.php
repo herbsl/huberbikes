@@ -83,7 +83,7 @@
 									@endforeach
 								</td>
 							</tr>
-						</tbody>
+						<tbody>
 					</table>
 					@if (Auth::check())
 						@if (Input::has('trash') && Input::get('trash') === 'true')
@@ -95,7 +95,7 @@
 							</button>
 						</form>
 						@else
-						<a href="{{{ URL::action('bike.edit', $bike->id) }}}" role="button" class="btn btn-success btn-block">
+						<a href="{{{ URL::action('bike.edit', $bike->id) }}}" role="button" class="btn btn-default btn-block">
 							<span class="glyphicon glyphicon-pencil"></span> bearbeiten
 						</a>
 						<form action="{{{ URL::route('bike.destroy', $bike->id) }}}" role="form" class="hb-margin-top-1x" method="post">
@@ -115,9 +115,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					@if ($collapse_details === 'in')
-					<a href="?collapse-details=" data-toggle="collapse" data-target="#collapse-details" class="btn-block" id="collapse-btn" data-singlepage-load="disabled" data-singlepage-prevent="true">
+					<a href="?collapse-details=#collapse-btn" data-toggle="collapse" data-target="#collapse-details" class="btn-block" id="collapse-btn" data-singlepage-load="disabled" data-singlepage-prevent="true">
 					@else
-					<a href="?collapse-details=in" data-toggle="collapse" data-target="#collapse-details" class="btn-block" id="collapse-btn" data-singlepage-load="disabled" data-singlepage-prevent="true">
+					<a href="?collapse-details=in#collapse-btn" data-toggle="collapse" data-target="#collapse-details" class="btn-block" id="collapse-btn" data-singlepage-load="disabled" data-singlepage-prevent="true">
 					@endif
 						<strong>Details</strong> <b class="caret"></b>
 					</a>

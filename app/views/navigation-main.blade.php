@@ -72,7 +72,7 @@
 					@else
 					<li>
 					@endif
-						<a href="{{{ URL::action('bike.index', array('trash' => 'true')) }}}"><span class="glyphicon glyphicon-trash"></span></a>
+						<a href="{{{ URL::action('bike.index', array('trash' => 'true')) }}}"><!-- span class="glyphicon glyphicon-trash"></span-->Papierkorb</a>
 					</li>
 				@endif
 			</ul>

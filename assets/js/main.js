@@ -6,15 +6,15 @@
 		$title = $('title'),
 		$content = $('#singlepage-content');
 
-	if (! Modernizr.history) {
-		return;
-	}
-
 	var loadContent = function(url, data, type, add) {
 		var slide = add;
 
 		if (url === '/') {
 			slide = false;
+		}
+
+		if (! Modernizr.history) {
+			return;
 		}
 
 		$doc.trigger('singlepage.load.before', [ url ]);
@@ -54,12 +54,11 @@
 				}
 
 				if (add) {
-					if (! Modernizr.history) {
-						History.pushState({}, '', url);
-					}
-					else {
+					if (Modernizr.history) {
 						history.pushState({}, '', url);
-					}
+					} /*else {
+						History.pushState({}, '', url);
+					}*/
 				}
 
 				$doc.trigger('singlepage.load.after', [ url ]);
@@ -70,12 +69,7 @@
 		return false;
 	};
 
-	if (! Modernizr.history) {
-		$(win).on('statechange', function(event) {
-			var state = History.getState();
-			return loadContent(state.hash, '', 'get', false);
-		});
-	} else {
+	if (Modernizr.history) {
 		$(win).on('popstate', function(event) {
 			if (event.originalEvent.state === null) {
 				return;
@@ -83,7 +77,12 @@
 
 			return loadContent(location.href, '', 'get', false);
 		});
-	}
+	} /*else {
+		$(win).on('statechange', function(event) {
+			var state = History.getState();
+			return loadContent(state.hash, '', 'get', false);
+		});
+	}*/
 
 	$('body, .navbar-brand').click(function(event) {
 		var url, tag,
@@ -115,11 +114,6 @@
 				type = $form.attr('method');
 			}
 
-			/*var method = $form.find('input[name="_method"]').attr('value');
-			if (method) {
-				type = method;
-			}*/
-				
 			data = $form.serialize();
 			url = $form.attr('action');
 		}

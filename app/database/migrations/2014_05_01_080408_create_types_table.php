@@ -15,6 +15,7 @@ class CreateTypesTable extends Migration {
 		Schema::create('types', function($table) {
 			$table->increments('id');
 			$table->string('name')->unique();
+			$table->string('keywords');
 			$table->timestamps();
 		});
 	}

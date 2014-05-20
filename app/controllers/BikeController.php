@@ -224,28 +224,44 @@ class BikeController extends \BaseController {
 		$customer_id = array();
 		$types = array();
 
-		foreach ($bike->categories as $category) {
-			array_push($category_id, $category->id);
+		if (Input::old('category_id')) {
+			$category_id = Input::old('category_id');
+		}
+		else {
+			foreach ($bike->categories as $category) {
+				array_push($category_id, $category->id);
+			}
 		}
 
-		foreach ($bike->customers as $customer) {
-			array_push($customer_id, $customer->id);
+
+		if (Input::old('cumstomer_id')) {
+			$customer_id = Input::old('customer_id');
+		}
+		else {
+			foreach ($bike->customers as $customer) {
+				array_push($customer_id, $customer->id);
+			}
 		}
 
 		foreach (Type::all() as $type) {
 			$id = $type->id;
 			$value = '';
 			
-			$component = $bike->components->filter(function($component) use($id) {
-				if ($component->type_id === $id) {
-					return true;
-				}
+			if (Input::old('type-' . $type->id)) {
+				$value = Input::old('type-' . $type->id);
+			}
+			else {	
+				$component = $bike->components->filter(function($component) use($id) {
+					if ($component->type_id === $id) {
+						return true;
+					}
 				
-				return false;
-			})->first();
+					return false;
+				})->first();
 
-			if ($component) {
-				$value = $component->name;
+				if ($component) {
+					$value = $component->name;
+				}
 			}
 			
 			$types[$id] = $value;

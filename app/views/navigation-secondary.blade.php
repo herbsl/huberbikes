@@ -3,7 +3,7 @@
 		@if (Auth::check())
 		<ul class="nav navbar-nav navbar">
 			<li>
-				<a href="{{{ URL::action('AuthController@logout') }}}" data-singlepage-load="disabled">abmelden</a>
+				<a href="{{{ URL::action('AuthController@logout') }}}" data-singlepage-load="disabled">Abmelden</a>
 			</li>
 		</ul>
 		@endif

@@ -22,7 +22,7 @@
 						<label for="password">Passwort</label>
 						<input type="password" class="form-control" name="password" id="password" placeholder="Ihr Passwort">
 					</div>
-					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> anmelden</button>
+					<button type="submit" class="btn btn-primary" data-singlepage-load="disabled"><span class="glyphicon glyphicon-user"></span> anmelden</button>
 				</form>
 			</div>
 		</div>

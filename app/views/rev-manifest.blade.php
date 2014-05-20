@@ -5,11 +5,12 @@
   "js/fastclick.min.js": "js/fastclick.min-2c287029.js",
   "js/jquery.history.js": "js/jquery.history-950ba208.js",
   "js/jquery.history.min.js": "js/jquery.history.min-5ea2efa2.js",
-  "js/main.js": "js/main-bd075636.js",
+  "js/main.js": "js/main-fd0343de.js",
+  "js/main.min.js": "js/main.min-80809370.js",
   "js/typeahead.bundle.js": "js/typeahead.bundle-08e416af.js",
   "js/typeahead.bundle.min.js": "js/typeahead.bundle.min-69a9bca2.js",
-  "css/main.css": "css/main-ca111e35.css",
-  "css/main.min.css": "css/main.min-715fe9a4.css",
+  "css/main.css": "css/main-d0bfbc0c.css",
+  "css/main.min.css": "css/main.min-28c34a78.css",
   "css/typeahead.css": "css/typeahead-fbef99db.css",
   "css/typeahead.min.css": "css/typeahead.min-4e3108fa.css"
 }

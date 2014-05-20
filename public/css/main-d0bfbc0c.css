@@ -5282,6 +5282,7 @@ button.close {
 
 html {
 	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 html, body, #singlepage-content {

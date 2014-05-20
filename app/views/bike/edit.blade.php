@@ -103,13 +103,16 @@
 			<!-- automatische Befuellung -->
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<textarea class="form-control" id="js-detect-text" rows="5"></textarea>
+					<textarea class="form-control" id="js-detect-text" rows="5">{{{ Input::old('js-detect-text') }}}</textarea>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-success" data-singlepage-load="disabled">
-					<span class="glyphicon glyphicon-play"></span> starten
+					<button type="submit" id="js-detect-btn" class="btn btn-default" data-singlepage-load="disabled" data-singlepage-prevent="true">
+						<span class="glyphicon glyphicon-play"></span> f&uuml;llen
+					</button>
+					<button type="submit" id="js-delete-btn" class="btn btn-default" data-singlepage-load="disabled" data-singlepage-prevent="true">
+						<span class="glyphicon glyphicon-trash"></span> leeren
 					</button>
 				</div>
 			</div>
@@ -118,10 +121,10 @@
 			<legend>Komponenten</legend>
 			<!-- manuelle Befuellung -->
 			@foreach(Type::all() as $type)
-			<div class="form-group" id="js-detect-input">
+			<div class="form-group js-detect-input">
 				<label for="type-{{{ $type->id }}}" class="col-sm-2 control-label">{{{ $type->name }}}</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="type-{{{ $type->id }}}" name="type-{{{ $type->id }}}" value="{{{ $types[$type->id] }}}">
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="type-{{{ $type->id }}}" name="type-{{{ $type->id }}}" value="{{{ $types[$type->id] }}}" data-keywords="{{{ $type->name . ', ' . $type->keywords }}}">
 				</div>
 			</div>
 			@endforeach
@@ -163,7 +166,7 @@
 		var	rawValues = $('#js-detect-text').val();
 
 		$.each(rawValues.split('\n'), function(index, line) {
-			var match = line.match(/(Icon:\s.*?\s)*[\s]*([\wÄäÖöÜüß-]*)[:\s]*(.*)/);
+			var match = line.match(/(Icon:\s.*?\s)*[\s]*([\wÄäÖöÜüß\-\(\)]*)[:\s]*(.*)/);
             if (! match) {
 				return;
 			}
@@ -171,17 +174,24 @@
 			var key = match[2],
 				value = match[3];
 
-			$('#js-detect-input label').each(function() {
-				var $this = $(this);
-				
-				if ($this.text() !== key) {
-					return;
-				}
+			if (value === '') {
+				return;
+			}
 
-				$('#' + $this.attr('for')).each(function() {
+			$('.js-detect-input input[data-keywords]').each(function() {
+				var $this = $(this),
+					keywords = $this.data('keywords').split(', ');
+
+				if (jQuery.inArray(key, keywords) != -1) {
 					$(this).val(value);
-				});
+				}
 			});
+		});
+	});
+
+	$('#js-delete-btn').click(function(event) {
+		$('.js-detect-input input').each(function() {
+			$(this).val('');
 		});
 	});
 })(jQuery);
