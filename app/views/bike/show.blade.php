@@ -3,7 +3,7 @@
 @section('content')
 <div class="container hb-container">
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-sm-7 col-md-8">
 			<div id="carousel-bike" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
@@ -34,7 +34,7 @@
 				<p>{{{ $bike->description }}}</p>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-5 col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>Highlights</strong>
@@ -42,17 +42,27 @@
 				<div class="panel-body">
 					<table class="table table-responsive" id="bikes-detail-highlight">
 						<tbody>
+							@if ( $bike->price_offer != 0 )
+							<tr>
+								<td>Unverb. Preisempfehlung</td>
+								<td class="hb-center-inline">
+									<div class="label label-default hb-line-through">{{{ $bike->price }}} <span class="glyphicon glyphicon-euro"></span></div>
+								</td>
+							</tr>	
 							<tr>
 								<td>Preis</td>
 								<td class="hb-center-inline">
-									@if ( $bike->price_offer != 0 )
-									<div class="label label-danger">{{{ $bike->price_offer }}} <span class="glyphicon glyphicon-euro"></span>
-									@else
-									<div class="label label-default">{{{ $bike->price }}} <span class="glyphicon glyphicon-euro"></span>
-									@endif
-									</div>
+									<div class="label label-danger">{{{ $bike->price_offer }}} <span class="glyphicon glyphicon-euro"></span></div>
 								</td>
 							</tr>
+							@else
+							<tr>
+								<td>Preis</td>
+								<td class="hb-center-inline">
+									<div class="label label-default">{{{ $bike->price }}} <span class="glyphicon glyphicon-euro"></span></div>
+								</td>
+							</tr>
+							@endif
 							<tr>
 								<td>Hersteller</td>
 								<td>
@@ -85,6 +95,8 @@
 							</tr>
 						<tbody>
 					</table>
+					<div class="row">
+						<div class="col-xs-offset-3 col-xs-6 col-sm-offset-2 col-sm-8">
 					@if (Auth::check())
 						@if (Input::has('trash') && Input::get('trash') === 'true')
 						<form action="{{{ URL::route('bike.destroy', $bike->id) }}}" role="form" class="hb-margin-top-1x" method="post">
@@ -106,12 +118,14 @@
 						</form>
 						@endif
 					@endif
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-8 hb-margin-top-2x">
+		<div class="col-sm-7 col-md-8 hb-margin-top-2x">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					@if ($collapse_details === 'in')

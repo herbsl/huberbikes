@@ -2,9 +2,8 @@
 
 class Bike extends Model {
 	protected static $rules = array(
-		'name' => 'required|min:3',
+		'name' => 'required',
 		'price' => 'required',
-		'description' => 'required|min:10'
 	);
 
 	protected $softDelete = true;

@@ -20,16 +20,23 @@ class BikeController extends \BaseController {
 		$customers = '';
 		$query = Bike::query();
 		$params = array();
+		$order = array();
 
 		if (Input::has('trash') && Input::get('trash') === 'true') {
-			$title .= ': Papierkorb';
+			$title = 'Papierkorb';
+
 			$query = $query->onlyTrashed();
+			$order = array(
+				'deleted_at',
+				'desc'
+			);
 		}
 
 		if (Input::has('kategorie')) {
 			$category = Input::get('kategorie');
-			$params['kategorie'] = $category;
+			$title = $category;
 
+			$params['kategorie'] = $category;
 			$query = $query->whereHas('categories', function($query) use ($category) {
 				$query->where('name', 'like', '%' . $category . '%');
 			});
@@ -37,14 +44,16 @@ class BikeController extends \BaseController {
 
 		if (Input::has('hersteller')) {
 			$manufacturer = Input::get('hersteller');
-			$params['hersteller'] = $manufacturer;
+			$title = 'Bikes von ' . $manufacturer;
 
+			$params['hersteller'] = $manufacturer;
 			$query = $query->whereHas('manufacturer', function($query) use ($manufacturer) {
 				$query->where('name', '=', $manufacturer);
 			});
 		}
 
 		if (Input::has('sale') && Input::get('sale') === 'true') {
+			$title = 'Sale';
 			$params['sale'] = 'true';
 
 			$query->where('price_offer', '>', 0);
@@ -59,6 +68,11 @@ class BikeController extends \BaseController {
 
 		if ($query->count() === 1 && Request::path() === 'bikes/suche') {
 			return Redirect::route('bike.show', $query->first()->id);
+		}
+
+		if (count($order) > 0) {
+			//$query = $query->orderBy($order);
+			$query = call_user_func_array(array($query, 'orderBy'), $order);
 		}
 
 		return View::make('bike.index', array(

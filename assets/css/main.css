@@ -80,6 +80,11 @@ input[type="text"], input[type="number"], textarea {
 	margin-bottom: 32px;
 }
 
+.hb-line-through {
+	text-decoration: line-through;
+	text-align: middle;
+}
+
 
 /* Modal from bottom */
 .modal.fade.hb-bottom .modal-dialog {
@@ -162,4 +167,16 @@ input[type="text"], input[type="number"], textarea {
 
 .hb-center-inline {
 	text-align: center;
+}
+
+#scroll-top {
+	position: fixed;
+	bottom: 62px;
+	right: 8px;
+}
+
+@media (max-width: 767px) {
+	#scroll-top {
+		bottom: 8px;
+	}
 }

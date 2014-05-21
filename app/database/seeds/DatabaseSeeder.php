@@ -36,9 +36,6 @@ class ManufacturersTableSeeder extends Seeder {
 		Manufacturer::create(array(
 			'name' => 'Victoria'
 		));
-		Manufacturer::create(array(
-			'name' => 'Kalkhoff'
-		));
 	}
 }
 

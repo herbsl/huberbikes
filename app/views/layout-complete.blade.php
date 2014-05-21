@@ -26,6 +26,11 @@
 			@yield('content')
         	@include('navigation-secondary')
 		</div>
+		<div id="scroll-top">
+			<a href="#" role="button" class="btn btn-info">
+				<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+		</div>
 		@include('kontakt-modal')
         @include('oeffnungszeiten-modal')
 		@if (App::environment('local'))

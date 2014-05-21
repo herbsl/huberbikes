@@ -60,11 +60,11 @@
 					<div class="thumbnail-footer">
 						<span class="btn btn-default">Details</span>
 						@if ( $bike->price_offer != 0 )
-						<div class="pull-right label label-danger">{{{ $bike->price_offer }}} <span class="glyphicon glyphicon-euro"></span>
+						<div class="pull-right label label-danger">{{{ $bike->price_offer }}} <span class="glyphicon glyphicon-euro"></span></div>
+						<div class="pull-right label label-default hb-line-through">{{{ $bike->price }}} <span class="glyphicon glyphicon-euro"></span></div>
 						@else
-						<div class="pull-right label label-default">{{{ $bike->price }}} <span class="glyphicon glyphicon-euro"></span>
+						<div class="pull-right label label-default">{{{ $bike->price }}} <span class="glyphicon glyphicon-euro"></span></div>
 						@endif
-						</div>
 					</div>
 				</div>
 			</div>
@@ -72,23 +72,4 @@
 	</div>@endforeach
 	</div>
 </div>
-<div id="top-link">
-	<a href="#" role="button" class="btn btn-default">
-		<span class="glyphicon glyphicon-chevron-up"></span>
-	</a>
-</div>
-@stop
-
-@section('javascript')
-	$(document).ready(function() {
-		var $root = $('html, body');
-
-		$('#top-link a').on('click', function() {
-			$root.animate({
-				scrollTop: 0
-			}, 750);
-
-			return false;
-		});
-	});
 @stop
