@@ -98,6 +98,15 @@
 				</button>
 			</div>
 		</div>
+		<!--fieldset>
+			<legend>Bilder</legend>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Neu</label>
+				<div class="col-sm-10">
+					<div id="dropzone" class="dropzone"></div>
+				</div>
+			</div>
+		</fieldset-->
 		<fieldset>
 			<legend>Komponenten automatisch einlesen</legend>
 			<!-- automatische Befuellung -->
@@ -129,14 +138,6 @@
 			</div>
 			@endforeach
 		</fieldset>
-		<!-- fieldset>
-			<legend>Bilder</legend>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<input name="bike-img" type="file" multiple />
-				</div>
-			</div>
-		</fieldseti -->
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-primary">
@@ -144,6 +145,12 @@
 				</button>
 			</div>
 		</div>
+		<fieldset>
+			<legend>Bilder</legend>
+		</fieldset>
+	</form>
+	<form action="/api/upload" method="post" class="dropzone">
+		<input type="hidden" name="id" value="{{{ $bike->id }}}">
 	</form>
 </div>
 @stop
@@ -152,15 +159,24 @@
 (function($) {
 	'use strict';
 
-	/*$.ajax({
-		url: Asset.rev('/js/dropzone.min.js'),
+	var css = Asset.rev('/css/basic.min.css'),
+		js = Asset.rev('/js/dropzone.min.js');
+
+	if (document.createStyleSheet){
+		document.createStyleSheet(css);
+	}
+	else {
+		$("head").append($("<link rel='stylesheet' type='text/css' href='" + 
+			css + "'>"));
+	}
+
+	$.ajax({
+		url: js,
 		dataType: 'script',
 		cache: true
-	}).done(function() {
-		$('form').dropzone({
-			url: '/api/bikes/upload'
-		});
-	});*/
+	}).then(function() {
+		var dropzone = new Dropzone('.dropzone');
+	});
 
 	$('#js-detect-btn').click(function(event) {
 		var	rawValues = $('#js-detect-text').val();

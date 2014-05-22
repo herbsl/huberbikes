@@ -5143,127 +5143,6 @@ button.close {
   }
 }
 
-.carousel-control, .carousel-control:hover {
-	text-shadow: none;
-	opacity: 1;
-	color: #4c4c4c;
-}
-
-.carousel-control.right, .carousel-control.left {
-	background-image: none;
-}
-
-#bikes-detail-highlight {
-	border: none;
-}
-
-#bikes-detail-highlight td {
-	vertical-align: middle;
-	border: none;
-}
-
-#bikes-detail-highlight .label {
-	font-size: 100%;
-}
-
-.modal-dialog-fs, .modal-dialog-fs img {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-}
-
-.modal-dialog-fs .modal-content {
-	border-radius: 0;
-	border: none;
-}
-
-.bikes-list-thumbnail-container {
-	display: inline-block;
-	vertical-align: top;
-	padding: 0px 8px 16px 8px;
-	width: 100%;
-
-	/* IE7 */
-	*zoom: 1;
-	*display: inline;
-}
-
-.bikes-list-thumbnail-container .thumbnail {
-	position: relative;
-	overflow: hidden;
-}
-
-.thumbnail-footer {
-	padding: 16px;
-	background-color: #efefef;
-	margin: -16px;
-	margin-top: 0;
-}
-
-@media (max-width: 639px) {
-	.hb-btn-group a {
-		padding-left: 8px;
-		padding-right: 8px;
-		max-width: 72px;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-}
-
-@media (min-width: 640px) {
- 	.bikes-list-thumbnail-container {
-   		width: 50%;
- 	}
-
-	.bikes-list-thumbnail-container .thumbnail {
-		height: 400px;
-	}
-
-	.thumbnail-footer {
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		margin: 0;
-	}
-}
-
-@media (min-width: 992px) {
- 	.bikes-list-thumbnail-container {
-    	width: 33%;
-  	}
-}
-
-@media (min-width: 1200px) {
- 	.bikes-list-thumbnail-container {
-   		width: 25%;
- 	}
-}
-
-.label-top-right {
-	position: absolute;
-	right: 16px;
-	top: 0;
-}
-
-.thumbnail-footer .label {
-	font-size: 100%;
-}
-
-.image-placeholder {
-	width: 100%;
-	min-height: 200px;
-	overflow: hidden;
-
-	text-align: center;
-}
-
-.image-placeholder img {
-	border: 0;
-	max-width: 100%;
-	max-height: 240px;
-}
-
 .hb-container {
 	padding-top: 70px;
 }
@@ -5480,8 +5359,8 @@ input[type="text"], input[type="number"], textarea {
 }
 
 .hb-jumbotron-transparent {
-	color: #efefef;
 	background-color: transparent;
+	color: #2c2c2c;
 }
 
 @media (max-width: 767px) {
@@ -5489,10 +5368,136 @@ input[type="text"], input[type="number"], textarea {
 	#start-page-1, #start-page-2 {
 		padding-top: 50px;
 	}
+
+	.hb-jumbotron-transparent p {
+		color: #ababab;
+	}
 }
 
 @media (min-width: 768px and max-width: 1023px) {
 	.#start-page-1 .hb-jumbotron-transparent {
 		max-width: 60%;
 	}
+}
+
+.bikes-list-thumbnail-container {
+	display: inline-block;
+	vertical-align: top;
+	padding: 0px 8px 16px 8px;
+	width: 100%;
+
+	/* IE7 */
+	*zoom: 1;
+	*display: inline;
+}
+
+.bikes-list-thumbnail-container .thumbnail {
+	position: relative;
+	overflow: hidden;
+}
+
+.thumbnail-footer {
+	padding: 16px;
+	background-color: #efefef;
+	margin: -16px;
+	margin-top: 0;
+}
+
+@media (max-width: 639px) {
+	.hb-btn-group a {
+		padding-left: 8px;
+		padding-right: 8px;
+		max-width: 72px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+@media (min-width: 640px) {
+ 	.bikes-list-thumbnail-container {
+   		width: 50%;
+ 	}
+
+	.bikes-list-thumbnail-container .thumbnail {
+		height: 400px;
+	}
+
+	.thumbnail-footer {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: 0;
+	}
+}
+
+@media (min-width: 992px) {
+ 	.bikes-list-thumbnail-container {
+    	width: 33%;
+  	}
+}
+
+@media (min-width: 1200px) {
+ 	.bikes-list-thumbnail-container {
+   		width: 25%;
+ 	}
+}
+
+.label-top-right {
+	position: absolute;
+	right: 16px;
+	top: 0;
+}
+
+.thumbnail-footer .label {
+	font-size: 90%;
+	margin-right: 4px;
+}
+
+.image-placeholder {
+	width: 100%;
+	min-height: 200px;
+	overflow: hidden;
+
+	text-align: center;
+}
+
+.image-placeholder img {
+	border: 0;
+	max-width: 100%;
+	max-height: 240px;
+}
+
+.carousel-control, .carousel-control:hover {
+	text-shadow: none;
+	opacity: 1;
+	color: #4c4c4c;
+}
+
+.carousel-control.right, .carousel-control.left {
+	background-image: none;
+}
+
+#bikes-detail-highlight {
+	border: none;
+}
+
+#bikes-detail-highlight td {
+	vertical-align: middle;
+	border: none;
+}
+
+#bikes-detail-highlight .label {
+	font-size: 100%;
+}
+
+.modal-dialog-fs, .modal-dialog-fs img {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.modal-dialog-fs .modal-content {
+	border-radius: 0;
+	border: none;
 }

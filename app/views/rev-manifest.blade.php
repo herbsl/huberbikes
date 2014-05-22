@@ -9,8 +9,10 @@
   "js/main.min.js": "js/main.min-62adaefc.js",
   "js/typeahead.bundle.js": "js/typeahead.bundle-08e416af.js",
   "js/typeahead.bundle.min.js": "js/typeahead.bundle.min-69a9bca2.js",
-  "css/main.css": "css/main-a6a5da34.css",
-  "css/main.min.css": "css/main.min-3e324edd.css",
+  "css/basic.css": "css/basic-f2f9e734.css",
+  "css/basic.min.css": "css/basic.min-712c020a.css",
+  "css/main.css": "css/main-9591ca1b.css",
+  "css/main.min.css": "css/main.min-041fb9de.css",
   "css/typeahead.css": "css/typeahead-fbef99db.css",
   "css/typeahead.min.css": "css/typeahead.min-4e3108fa.css"
 }

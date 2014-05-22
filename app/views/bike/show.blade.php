@@ -125,7 +125,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-7 col-md-8 hb-margin-top-2x">
+		<div class="col-md-8 hb-margin-top-2x">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					@if ($collapse_details === 'in')

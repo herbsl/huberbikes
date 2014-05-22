@@ -72,7 +72,7 @@ var cssMain = function(fast) {
 		var ret = gulp.src([
 			//'assets/bower/bootstrap/dist/css/bootstrap.css',
 			'assets/css/bootstrap.css',
-			'assets/css/*.css'
+			'assets/css/**/*.css'
 		])
 		.pipe(concat('main.css'))
 		.pipe(gulp.dest(dest));
@@ -99,6 +99,7 @@ gulp.task('css:addons', function() {
 
 	return gulp.src([
 		'assets/bower/typeahead.js-bootstrap3.less/typeahead.css',
+		'assets/bower/dropzone/downloads/css/basic.css',
 	])
 	.pipe(gulp.dest(dest))
 	.pipe(rename({
@@ -152,7 +153,7 @@ var jsMain = function(fast) {
 		var ret = gulp.src([
 			'assets/js/modernizr.js',
 			'assets/tmp/cache.js',
-			'assets/js/*.js'
+			'assets/js/**/*.js'
 		])
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest(dest));
@@ -266,8 +267,8 @@ gulp.task('watch', function() {
 	var srv = livereload();
 
 	gulp.watch('assets/less/*.less', [ 'twb' ]);
-	gulp.watch('assets/js/*.js', [ 'rev:fast' ]);
-	gulp.watch('assets/css/*.css', [ 'rev:fast' ]);
+	gulp.watch('assets/js/**/*.js', [ 'rev:fast' ]);
+	gulp.watch('assets/css/**/*.css', [ 'rev:fast' ]);
 	gulp.watch('app/views/**/*.blade.php', function() {
 		srv.changed('');
 	});

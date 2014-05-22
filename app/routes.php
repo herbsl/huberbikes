@@ -194,6 +194,17 @@ Route::get('/api/suggestions', function() {
 	return Response::json($suggestions);
 });
 
+Route::post('/api/upload', function() {
+	$id = Input::get('id');
+	$file = Input::file('file');
+ 
+	$destinationPath = '/tmp';
+	$filename = $id . '.' . strtolower($file->getClientOriginalExtension());
+	$file->move($destinationPath, $filename);
+
+	return Response::json('success', 200);
+});
+
 
 Route::get('/login', 'AuthController@show');
 Route::post('/login', 'AuthController@login');
