@@ -214,8 +214,8 @@
 				event.stopPropagation();
 
 				$.post('/image/' + file.id, {
-					_method: 'put',
-					bike_id: {{{ $bike->id }}}
+					method: 'put',
+					bike_id: {{{ $bike->id ? $bike->id : -1 }}}
 				}).then(function() {
 					setDefaultImage(file);
 				});
@@ -231,7 +231,7 @@
 
 				$.post('/image/' + file.id, {
 					_method: 'delete',
-					bike_id: {{{ $bike->id }}}
+					bike_id: {{{ $bike->id ? $bike->id : -1 }}}
 				}).then(function() {
 					_this.removeFile(file);
 				});
