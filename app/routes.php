@@ -267,8 +267,7 @@ Route::put('/image/{id}', function($image_id) {
 	$bike = Bike::with('images')->find($bike_id)->first();
 
 	foreach ($bike->images as $image) {
-		echo $image->id;
-		if ($image->id ==$image_id) {
+		if ($image->id === $image_id) {
 			$image->default = true;
 		}
 		else {
@@ -277,6 +276,9 @@ Route::put('/image/{id}', function($image_id) {
 	}
 
 	$bike->push();
+	return Response::json(array(
+		'success' => ''
+	));
 });
 
 Route::delete('/image/{id}', function($image_id) {
