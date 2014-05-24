@@ -214,7 +214,7 @@
 				event.stopPropagation();
 
 				$.post('/image/' + file.id, {
-					method: 'put',
+					_method: 'put',
 					bike_id: {{{ $bike->id ? $bike->id : -1 }}}
 				}).then(function() {
 					setDefaultImage(file);
