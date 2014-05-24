@@ -43,14 +43,18 @@
 				<h3 class="label-top-right">
 					<span class="label label-danger">%</span></h3>
 				@else
-					@if ( $bike->created_at->diffInDays() < $new_threshold_days )
+					@if ($bike->created_at->diffInDays() < $new_threshold_days )
 					<h3 class="label-top-right">
 						<span class="label label-default">Neu</span>
 					</h3>
 					@endif
 				@endif
 				<div class="image-placeholder">
-					<img src="/img/bikes/{{{ $bike->id}}}.jpg" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+					@foreach ($bike->images as $image)
+						@if ($image->default)
+						<img src="/img/bike/{{{ $bike->id }}}/{{{ $image->name }}}" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+						@endif
+					@endforeach
 				</div>
 				<div class="caption">
 					<h4>

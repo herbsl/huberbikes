@@ -181,7 +181,7 @@ class BikeController extends \BaseController {
     		DB::rollback();
 		}
 
-		return Redirect::route('bike.index');
+		return Redirect::route('bike.show', $bike->id);
 	}
 
 
@@ -206,7 +206,7 @@ class BikeController extends \BaseController {
 
 		$components = array( 'Farbe', 'Rahmen', 'Bremsen', 'Schaltwerk' );
 		$bike = $bike->with('categories', 'manufacturer', 'customers', 
-			'components')->find($id);
+			'components', 'images')->find($id);
 
 		$highlights = $bike->components->filter(function($component) use ($components) {
 			if (in_array($component->type->name, $components)) {
@@ -356,7 +356,7 @@ class BikeController extends \BaseController {
     		DB::rollback();
 		}
 
-		return Redirect::route('bike.index');
+		return Redirect::route('bike.show', $bike->id);
 	}
 
 

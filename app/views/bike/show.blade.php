@@ -7,25 +7,35 @@
 			<div id="carousel-bike" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
-					<li data-target="#carousel-bike" data-slide-to="0" class="active"></li>
-					<!--li data-target="#carousel-bike" data-slide-to="1"></li>
-					<li data-target="#carousel-bike" data-slide-to="2"></li-->
+					@foreach($bike->images as $image)
+						@if ($image->default)
+						<li data-target="#carousel-bike" data-slide-to="{{{ $image->id }}}" class="active"></li>
+						@else
+						<li data-target="#carousel-bike" data-slide-to="{{{ $image->id }}}" class="active"></li>
+						@endif
+					@endforeach
 				</ol>
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner">
-					<div class="item active">
-						<!-- a data-toggle="modal" data-target="#modal-bike" data-remote="" href="#" -->
-							<img src="/img/bikes/{{{ $bike->id}}}.jpg" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
-						<!-- /a-->
-					</div>
+					@foreach($bike->images as $image)
+						@if ($image->default)
+						<div class="item active" data-id="{{{ $image->id }}}">
+						@else
+						<div class="item" data-id="{{{ $image->id }}}">
+						@endif
+							<img src="/img/bike/{{{ $bike->id }}}/{{{ $image->name }}}" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+						</div>
+					@endforeach
 				</div>
 				<!-- Controls -->
-				<!-- a class="left carousel-control" href="#carousel-bike" data-slide="prev">
+				@if (count($bike->images) > 1)
+				<a class="left carousel-control" href="#carousel-bike" data-slide="prev">
 					<span class="glyphicon glyphicon-chevron-left"></span>
 				</a>
 				<a class="right carousel-control" href="#carousel-bike" data-slide="next">
 					<span class="glyphicon glyphicon-chevron-right"></span>
-				</a-->
+				</a>
+				@endif
 			</div>
 			<div class="caption">
 				<h4>

@@ -2,7 +2,6 @@
 
 @section('content')
 <style>
-
 #start-page-1 {
 	height: 100%;
 }
@@ -23,14 +22,12 @@
 	min-height: 100%;
 	overflow: hidden;
 }
-
 </style>
 <div id="start-page-1">
 	<div class="container hb-container">
 		<div class="jumbotron hb-jumbotron-transparent">
 			<h1>Lust auf Biken?</h1>
-			<p><b>Dann sind Sie bei uns richtig.</b></p>
-			<a href="#start-page-2" class="btn btn-primary btn-lg hb-margin-top-2x scroll-page-2" role="button">Lesen Sie mehr</a>
+			<a href="#start-page-2" class="btn btn-primary btn-lg hb-margin-top-2x scroll-page-2" role="button">lesen Sie mehr</a>
 		</div>
 	</div>
 </div>

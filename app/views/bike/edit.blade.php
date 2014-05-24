@@ -1,6 +1,11 @@
 @extends('layout')
 
 @section('content')
+<style>
+	.hb-default {
+		background-color: #cccccc !important;
+	}
+</style>
 <div class="container hb-container">
 	@if ($errors->has())
 		@foreach ($errors->all() as $message)
@@ -149,8 +154,8 @@
 			<legend>Bilder</legend>
 		</fieldset>
 	</form>
-	<form action="/api/upload" method="post" class="dropzone">
-		<input type="hidden" name="id" value="{{{ $bike->id }}}">
+	<form action="/image" method="post" class="dropzone">
+		<input type="hidden" name="bike_id" value="{{{ $bike->id }}}">
 	</form>
 </div>
 @stop
@@ -175,7 +180,91 @@
 		dataType: 'script',
 		cache: true
 	}).then(function() {
-		var dropzone = new Dropzone('.dropzone');
+		var defaultImage,
+			dropzone = new Dropzone('.dropzone');
+
+		var setDefaultImage = function(file) {
+			if (defaultImage) {
+			 	defaultImage.removeClass('hb-default');
+			}
+
+			if (file) {
+				defaultImage = $(file.previewElement);
+				defaultImage.addClass('hb-default');
+			}
+			else {
+				defaultImage = undefined;
+			}
+		}
+
+		dropzone.on('success', function(file, response) {
+			file.id = response.image.id;
+			if (response.image.default === true) {
+				setDefaultImage(file);
+			}
+		});
+
+		dropzone.on('addedfile', function(file) {
+			var _this = this,
+				defaultBtn = Dropzone.createElement('<button class="btn btn-default btn-block"><span class="glyphicon glyphicon-star"></span> default</button>'),
+				deleteBtn = Dropzone.createElement('<button class="btn btn-warning btn-block"><span class="glyphicon glyphicon-trash"></span> löschen</button>');
+
+			$(defaultBtn).click(function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+
+				$.post('/image/' + file.id, {
+					_method: 'put',
+					bike_id: {{{ $bike->id }}}
+				}).then(function() {
+					setDefaultImage(file);
+				});
+			});
+
+			$(deleteBtn).click(function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+
+				if (defaultImage === $(file.previewElement)) {
+					setDefaultImage(undefined);
+				}
+
+				$.post('/image/' + file.id, {
+					_method: 'delete',
+					bike_id: {{{ $bike->id }}}
+				}).then(function() {
+					_this.removeFile(file);
+				});
+			});
+
+			file.previewElement.appendChild(defaultBtn);
+			file.previewElement.appendChild(deleteBtn);
+
+			if (file.default === "1") {
+				setDefaultImage(file);
+			}
+		});
+
+		$.get('/image', {
+			bike_id: {{{ $bike->id ? $bike->id : -1 }}}
+		}).then(function(data) {
+			if (! data['images']) {
+				return;
+			}
+
+			$.each(data['images'], function(key, image) {
+				var dropFile = {
+					name: image.name,
+					size: image.size,
+					default: image.default,
+					id: image.id
+				};
+
+				dropzone.emit('addedfile', dropFile);
+				dropzone.emit('thumbnail', dropFile, '/img/bike/' +
+					{{{ $bike->id }}} + '/' + dropFile.name);
+			});
+		});
 	});
 
 	$('#js-detect-btn').click(function(event) {

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AuthController' => $baseDir . '/app/controllers/AuthController.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Bike' => $baseDir . '/app/models/Bike.php',
     'BikeCategory' => $baseDir . '/app/models/BikeCategory.php',
@@ -39,10 +40,12 @@ return array(
     'CreateBikeCategoryTable' => $baseDir . '/app/database/migrations/2014_04_10_123549_create_bike_category_table.php',
     'CreateBikeComponentTable' => $baseDir . '/app/database/migrations/2014_05_01_103626_create_bike_component_table.php',
     'CreateBikeCustomerTable' => $baseDir . '/app/database/migrations/2014_05_10_075412_create_bike_customer_table.php',
+    'CreateBikeImageTable' => $baseDir . '/app/database/migrations/2014_05_23_194339_create_bike_image_table.php',
     'CreateBikesTable' => $baseDir . '/app/database/migrations/2014_04_09_161742_create_bikes_table.php',
     'CreateCategoriesTable' => $baseDir . '/app/database/migrations/2014_04_09_161810_create_categories_table.php',
     'CreateComponentsTable' => $baseDir . '/app/database/migrations/2014_05_01_091751_create_components_table.php',
     'CreateCustomersTable' => $baseDir . '/app/database/migrations/2014_05_10_075309_create_customers_table.php',
+    'CreateImagesTable' => $baseDir . '/app/database/migrations/2014_05_23_184957_create_images_table.php',
     'CreateManufacturersTable' => $baseDir . '/app/database/migrations/2014_04_09_161733_create_manufacturers_table.php',
     'CreateTypesTable' => $baseDir . '/app/database/migrations/2014_05_01_080408_create_types_table.php',
     'CreateUsersTable' => $baseDir . '/app/database/migrations/2014_05_17_195703_create_users_table.php',
@@ -424,6 +427,7 @@ return array(
     'Illuminate\\Workbench\\PackageCreator' => $vendorDir . '/laravel/framework/src/Illuminate/Workbench/PackageCreator.php',
     'Illuminate\\Workbench\\Starter' => $vendorDir . '/laravel/framework/src/Illuminate/Workbench/Starter.php',
     'Illuminate\\Workbench\\WorkbenchServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/Workbench/WorkbenchServiceProvider.php',
+    'Image' => $baseDir . '/app/models/Image.php',
     'Jeremeamia\\SuperClosure\\ClosureLocation' => $vendorDir . '/jeremeamia/SuperClosure/src/Jeremeamia/SuperClosure/ClosureLocation.php',
     'Jeremeamia\\SuperClosure\\ClosureParser' => $vendorDir . '/jeremeamia/SuperClosure/src/Jeremeamia/SuperClosure/ClosureParser.php',
     'Jeremeamia\\SuperClosure\\SerializableClosure' => $vendorDir . '/jeremeamia/SuperClosure/src/Jeremeamia/SuperClosure/SerializableClosure.php',
@@ -1644,6 +1648,7 @@ return array(
     'Type' => $baseDir . '/app/models/Type.php',
     'TypeTableSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'User' => $baseDir . '/app/models/User.php',
+    'UsersTableSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'Way\\Database\\DatabaseServiceProvider' => $vendorDir . '/way/database/src/Way/Database/DatabaseServiceProvider.php',
     'Way\\Database\\Model' => $vendorDir . '/way/database/src/Way/Database/Model.php',
     'Whoops\\Exception\\ErrorException' => $vendorDir . '/filp/whoops/src/Whoops/Exception/ErrorException.php',

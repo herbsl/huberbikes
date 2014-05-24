@@ -23,6 +23,10 @@ class Bike extends Model {
 	public function components() {
 		return $this->belongsToMany('Component');
 	}
+
+	public function images() {
+		return $this->belongsToMany('Image');
+	}
 }
 
 ?>
