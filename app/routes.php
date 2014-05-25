@@ -264,7 +264,7 @@ Route::put('/image/{id}', function($image_id) {
 	}
 
 	$bike_id = Input::get('bike_id');
-	$bike = Bike::with('images')->find($bike_id)->first();
+	$bike = Bike::with('images')->find($bike_id);
 
 	foreach ($bike->images as $image) {
 		if ($image->id == $image_id) {
