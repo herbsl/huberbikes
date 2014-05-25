@@ -8,7 +8,9 @@
 		"fitztrev/laravel-html-minify": "dev-master",
 		"stolz/laravel-html-tidy": "dev-master",
 		"fadion/maneuver": "dev-master",
-		"way/database": "dev-master"
+		"way/database": "dev-master",
+		"intervention/image": "2.*",
+		"intervention/imagecache": "2.*"
 	},
 	"autoload": {
 		"classmap": [

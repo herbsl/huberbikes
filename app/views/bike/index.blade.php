@@ -52,7 +52,7 @@
 				<div class="image-placeholder">
 					@foreach ($bike->images as $image)
 						@if ($image->default)
-						<img src="/img/bike/{{{ $bike->id }}}/{{{ $image->name }}}" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+						<img src="/img/cache/medium/bike/{{{ $bike->id }}}/{{{ $image->name }}}" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
 						@endif
 					@endforeach
 				</div>

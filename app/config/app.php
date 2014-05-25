@@ -110,8 +110,8 @@ return array(
 		// manually added
 		'Stolz\Filters\HtmlTidy\ServiceProvider',
 		'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
-		'Fadion\Maneuver\ManeuverServiceProvider'
-
+		'Fadion\Maneuver\ManeuverServiceProvider',
+		'Intervention\Image\ImageServiceProvider'
 	),
 
 	/*
@@ -177,8 +177,10 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Model'            => 'Way\Database\Model',
 
+		// manually added
+		'Model'           => 'Way\Database\Model',
+		'Img'			  => 'Intervention\Image\Facades\Image'
 	),
 
 );

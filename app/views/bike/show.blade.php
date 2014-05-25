@@ -23,7 +23,7 @@
 						@else
 						<div class="item" data-id="{{{ $image->id }}}">
 						@endif
-							<img src="/img/bike/{{{ $bike->id }}}/{{{ $image->name }}}" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+							<img src="/img/cache/large/bike/{{{ $bike->id }}}/{{{ $image->name }}}" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
 						</div>
 					@endforeach
 				</div>
