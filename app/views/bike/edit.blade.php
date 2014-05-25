@@ -199,7 +199,7 @@
 
 		dropzone.on('success', function(file, response) {
 			file.id = response.image.id;
-			if (response.image.default === "1") {
+			if (response.image.default == 1) {
 				setDefaultImage(file);
 			}
 		});
@@ -240,7 +240,7 @@
 			file.previewElement.appendChild(defaultBtn);
 			file.previewElement.appendChild(deleteBtn);
 
-			if (file.default === "1") {
+			if (file.default == 1) {
 				setDefaultImage(file);
 			}
 		});
