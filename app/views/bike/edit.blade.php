@@ -199,7 +199,7 @@
 
 		dropzone.on('success', function(file, response) {
 			file.id = response.image.id;
-			if (response.image.default === true) {
+			if (response.image.default === "1") {
 				setDefaultImage(file);
 			}
 		});
@@ -253,6 +253,7 @@
 			}
 
 			$.each(data['images'], function(key, image) {
+				console.log(image);
 				var dropFile = {
 					name: image.name,
 					size: image.size,
@@ -261,7 +262,7 @@
 				};
 
 				dropzone.emit('addedfile', dropFile);
-				dropzone.emit('thumbnail', dropFile, '/img/bike/' +
+				dropzone.emit('thumbnail', dropFile, '/img/cache/small/bike/' +
 					{{{ $bike->id }}} + '/' + dropFile.name);
 			});
 		});
