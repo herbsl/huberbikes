@@ -50,21 +50,17 @@ return array(
     'templates' => array(
 
         'small' => function($image) { 
-            //return $image->fit(320, 192);
-            return $image->heighten(192);
+			return $image->widen(320)->resizeCanvas(320, 240, 'center', false, 'ffffff');
         },
-        'medium' => function($image) {
-            return $image->heighten(384);
+        'medium' => function($image) { 
+			return $image->widen(640)->resizeCanvas(640, 480, 'center', false, 'ffffff');
         },
-        'large' => function($image) {
-            return $image->heighten(768);
+        'large' => function($image) { 
+			return $image->widen(1280)->resizeCanvas(1280, 960, 'center', false, 'ffffff');
         },
-        'x-large' => function($image) {
-            return $image->heighten(1152);
+        'x-large' => function($image) { 
+			return $image->widen(1920)->resizeCanvas(1920, 1440, 'center', false, 'ffffff');
         },
-        'xx-large' => function($image) {
-            return $image->fit(1536);
-        }
     ),
 
     /*
