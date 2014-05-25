@@ -50,19 +50,20 @@ return array(
     'templates' => array(
 
         'small' => function($image) { 
-            return $image->fit(320, 192);
+            //return $image->fit(320, 192);
+            return $image->heighten(192);
         },
         'medium' => function($image) {
-            return $image->fit(640, 384);
+            return $image->heighten(384);
         },
         'large' => function($image) {
-            return $image->fit(1024, 614);
+            return $image->heighten(768);
         },
         'x-large' => function($image) {
-            return $image->fit(1600, 960);
+            return $image->heighten(1152);
         },
         'xx-large' => function($image) {
-            return $image->fit(1920, 1152);
+            return $image->fit(1536);
         }
     ),
 
