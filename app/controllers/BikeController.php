@@ -204,7 +204,7 @@ class BikeController extends \BaseController {
 			$collapse_details = Input::get('collapse-details');
 		}
 
-		$components = array( 'Farbe', 'Rahmen', 'Bremsen', 'Schaltwerk' );
+		$components = array( 'Farbe', 'Rahmen', 'Bremse', 'Schaltwerk' );
 		$bike = $bike->with('categories', 'manufacturer', 'customers', 
 			'components', 'images')->find($id);
 
