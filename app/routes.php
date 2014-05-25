@@ -242,19 +242,13 @@ Route::post('/image', function() {
 	$image = new Image();
 	$image->name = $name;
 	$image->size = $size;
-	$image->default = $hasDefault->count() > 0 ? false : true;
+	$image->default = $hasDefault->count() > 0 ? 0 : 1;
 	$image->save();
 
 	$bikeImage = new BikeImage();
 	$bikeImage->bike_id = $bike_id;
 	$bikeImage->image_id = $image->id;
 	$bikeImage->save();
-
-	if ($image->default === true) {
-		$image->default = 1;
-	} else {
-		$mage->default = 0;
-	}
 
 	return Response::json(array(
 		'success' => '',
