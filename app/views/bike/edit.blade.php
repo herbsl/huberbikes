@@ -253,7 +253,6 @@
 			}
 
 			$.each(data['images'], function(key, image) {
-				console.log(image);
 				var dropFile = {
 					name: image.name,
 					size: image.size,

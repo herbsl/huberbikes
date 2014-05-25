@@ -208,7 +208,7 @@ Route::get('/image', function() {
 	if ($bike) {
 		return Response::json(array(
 			'success' => '',
-			'images' => $bike->first()->images->toArray()
+			'images' => $bike->images->toArray()
 		));
 	}
 });
