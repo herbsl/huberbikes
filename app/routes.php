@@ -277,7 +277,7 @@ Route::put('/image/{id}', function($image_id) {
 
 	$bike->push();
 	$image = Image::find($image_id);
-	$image->default = true;
+	$image->default = 1;
 	$image->save();
 
 	return Response::json(array(
