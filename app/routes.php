@@ -267,18 +267,18 @@ Route::put('/image/{id}', function($image_id) {
 	$bike = Bike::with('images')->find($bike_id);
 
 	foreach ($bike->images as $image) {
-		/*if ($image->id == $image_id) {
-			$image->default = true;
+		if ($image->id == $image_id) {
+			$image->default = 1;
 		}
-		else {*/
-			$image->default = false;
-		//}
+		else {
+			$image->default = 0;
+		}
 	}
 
 	$bike->push();
-	$image = Image::find($image_id);
+	/*$image = Image::find($image_id);
 	$image->default = 1;
-	$image->save();
+	$image->save();*/
 
 	return Response::json(array(
 		'success' => ''
