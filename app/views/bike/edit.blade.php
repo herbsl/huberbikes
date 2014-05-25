@@ -205,6 +205,7 @@
 		});
 
 		dropzone.on('addedfile', function(file) {
+			console.log(file);
 			var _this = this,
 				defaultBtn = Dropzone.createElement('<button class="btn btn-default btn-block"><span class="glyphicon glyphicon-star"></span> default</button>'),
 				deleteBtn = Dropzone.createElement('<button class="btn btn-warning btn-block"><span class="glyphicon glyphicon-trash"></span> löschen</button>');
