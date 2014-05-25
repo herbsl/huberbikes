@@ -250,6 +250,12 @@ Route::post('/image', function() {
 	$bikeImage->image_id = $image->id;
 	$bikeImage->save();
 
+	if ($image->default === true) {
+		$image->default = 1;
+	} else {
+		$mage->default = 0;
+	}
+
 	return Response::json(array(
 		'success' => '',
 		'image' => $image->toArray()
@@ -276,9 +282,6 @@ Route::put('/image/{id}', function($image_id) {
 	}
 
 	$bike->push();
-	/*$image = Image::find($image_id);
-	$image->default = 1;
-	$image->save();*/
 
 	return Response::json(array(
 		'success' => ''
