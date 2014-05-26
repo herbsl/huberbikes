@@ -11779,10 +11779,12 @@ return jQuery;
                 height   = descriptors[5] || false,
                 density  = descriptors[7] || 1;
 
-            if (width && width > maxWidth || height && height > maxHeight ||
+            /*if (width && width > maxWidth || height && height > maxHeight ||
 				density && density > maxDensity) {
                 continue;
-            }
+            }*/
+
+			console.log(filename);
 
             image.src = filename;
         }

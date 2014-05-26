@@ -11784,6 +11784,8 @@ return jQuery;
                 continue;
             }
 
+			alert(filename);
+
             image.src = filename;
         }
     }

@@ -11565,7 +11565,7 @@ return jQuery;
 					$title.text($(data).filter('title').text());
 					var $newContent = $(data).filter('#singlepage-content').children();
 					$.when($doc.trigger('singlepage.load.inject', [ $newContent ])).done(function() {
-						$content.prepend($newContent);
+						$content.prepend(newContent);
 						$('#singlepage-javascript').remove();
 						$body.append($(data).filter('#singlepage-javascript'));
 		
@@ -11788,14 +11788,9 @@ return jQuery;
         }
     }
 
-	$('img').each(function() {
-		srcset(this);
-	});
 
-	$(doc).on('singlepage.load.inject', function(event, $content) {
-	    $content.find('img').each(function() {
-			srcset(this);
-		});
+    $('img').each(function() {
+		srcset(this);
 	});
 })(jQuery, window, document);
 

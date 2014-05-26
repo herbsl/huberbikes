@@ -11788,12 +11788,10 @@ return jQuery;
         }
     }
 
-	$('img').each(function() {
-		srcset(this);
-	});
+	$(doc).on('singlepage.load.inject', function($content) {
+		console.log($content);
 
-	$(doc).on('singlepage.load.inject', function(event, $content) {
-	    $content.find('img').each(function() {
+	    $('img').each(function() {
 			srcset(this);
 		});
 	});

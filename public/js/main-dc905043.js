@@ -11788,12 +11788,9 @@ return jQuery;
         }
     }
 
-	$('img').each(function() {
-		srcset(this);
-	});
-
-	$(doc).on('singlepage.load.inject', function(event, $content) {
-	    $content.find('img').each(function() {
+	$(doc).on('singlepage.load.inject', function($content) {
+		$content.empty();
+	    $('img').each(function() {
 			srcset(this);
 		});
 	});
