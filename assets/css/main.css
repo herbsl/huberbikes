@@ -59,9 +59,14 @@ input[type="text"], input[type="number"], textarea {
 
 @media (min-width: 768px) {
 	.navbar-form {
-		width: 320px;
+		width: 280px;
 	}
+}
 
+@media (min-width: 992px) {
+	.navbar-form {
+		width: 360px;
+	}
 }
 
 .hb-margin-top-1x {

@@ -103,15 +103,6 @@
 				</button>
 			</div>
 		</div>
-		<!--fieldset>
-			<legend>Bilder</legend>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Neu</label>
-				<div class="col-sm-10">
-					<div id="dropzone" class="dropzone"></div>
-				</div>
-			</div>
-		</fieldset-->
 		<fieldset>
 			<legend>Komponenten automatisch einlesen</legend>
 			<!-- automatische Befuellung -->
@@ -150,18 +141,20 @@
 				</button>
 			</div>
 		</div>
+	</form>
+	@if ($bike->id)
+	<form action="/image" method="post" class="dropzone">
 		<fieldset>
 			<legend>Bilder</legend>
 		</fieldset>
-	</form>
-	<form action="/image" method="post" class="dropzone">
 		<input type="hidden" name="bike_id" value="{{{ $bike->id }}}">
 	</form>
+	@endif
 </div>
 @stop
 
 @section('javascript')
-(function($) {
+(function($, win) {
 	'use strict';
 
 	var css = Asset.rev('/css/basic.min.css'),
@@ -174,6 +167,7 @@
 		$("head").append($("<link rel='stylesheet' type='text/css' href='" + 
 			css + "'>"));
 	}
+	
 
 	$.ajax({
 		url: js,
@@ -181,7 +175,10 @@
 		cache: true
 	}).then(function() {
 		var defaultImage,
-			dropzone = new Dropzone('.dropzone');
+			dropzone;
+
+		Dropzone.autoDiscover = false;
+		dropzone = new Dropzone('.dropzone');
 
 		var setDefaultImage = function(file) {
 			if (defaultImage) {
@@ -197,16 +194,8 @@
 			}
 		}
 
-		dropzone.on('success', function(file, response) {
-			file.id = response.image.id;
-			if (response.image.default === 1) {
-				setDefaultImage(file);
-			}
-		});
-
-		dropzone.on('addedfile', function(file) {
-			var _this = this,
-				defaultBtn = Dropzone.createElement('<button class="btn btn-default btn-block"><span class="glyphicon glyphicon-star"></span> default</button>'),
+		var addActionButtons = function(file, context) {
+			var defaultBtn = Dropzone.createElement('<button class="btn btn-default btn-block"><span class="glyphicon glyphicon-star"></span> default</button>'),
 				deleteBtn = Dropzone.createElement('<button class="btn btn-warning btn-block"><span class="glyphicon glyphicon-trash"></span> löschen</button>');
 
 			$(defaultBtn).click(function(event) {
@@ -233,15 +222,32 @@
 					_method: 'delete',
 					bike_id: {{{ $bike->id ? $bike->id : -1 }}}
 				}).then(function() {
-					_this.removeFile(file);
+					context.removeFile(file);
 				});
 			});
 
 			file.previewElement.appendChild(defaultBtn);
 			file.previewElement.appendChild(deleteBtn);
 
-			if (file.default === 1) {
+			if (file.default == 1) {
 				setDefaultImage(file);
+			}
+		}
+
+		dropzone.on('success', function(file, response) {
+			file.id = response.image.id;
+			file.default = response.image.default;
+
+			addActionButtons(file, this);
+		});
+
+		dropzone.on('addedfile', function(file) {
+			if (file.default == 1) {
+				setDefaultImage(file);
+			}
+
+			if (file.add) {
+				addActionButtons(file, this);
 			}
 		});
 
@@ -253,16 +259,17 @@
 			}
 
 			$.each(data['images'], function(key, image) {
-				var dropFile = {
+				var file = {
 					name: image.name,
 					size: image.size,
 					default: image.default,
-					id: image.id
+					id: image.id,
+					add: true
 				};
 
-				dropzone.emit('addedfile', dropFile);
-				dropzone.emit('thumbnail', dropFile, '/img/cache/small/bike/' +
-					{{{ $bike->id }}} + '/' + dropFile.name);
+				dropzone.emit('addedfile', file);
+				dropzone.emit('thumbnail', file, '/img/cache/small/bike/' +
+					{{{ $bike->id }}} + '/' + file.name);
 			});
 		});
 	});
@@ -299,5 +306,5 @@
 			$(this).val('');
 		});
 	});
-})(jQuery);
+})(jQuery, window);
 @stop

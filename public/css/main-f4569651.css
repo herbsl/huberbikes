@@ -5216,12 +5216,7 @@ input[type="text"], input[type="number"], textarea {
 	.navbar-form {
 		width: 280px;
 	}
-}
 
-@media (min-width: 992px) {
-	.navbar-form {
-		width: 360px;
-	}
 }
 
 .hb-margin-top-1x {

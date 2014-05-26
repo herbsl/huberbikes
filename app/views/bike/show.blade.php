@@ -103,7 +103,7 @@
 									@endforeach
 								</td>
 							</tr>
-						<tbody>
+						</tbody>
 					</table>
 					<div class="row">
 						<div class="col-xs-offset-3 col-xs-6 col-sm-offset-2 col-sm-8">
@@ -150,7 +150,7 @@
 				<div id="collapse-details" class="panel-collpase collapse in">
 				@else
 				<div id="collapse-details" class="panel-collpase collapse">
-				@endif	
+				@endif
 					<table class="table table-striped table-responsive">
 						<tbody>
 			 				@foreach ($bike->components as $component)

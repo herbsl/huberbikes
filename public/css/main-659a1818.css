@@ -5218,9 +5218,9 @@ input[type="text"], input[type="number"], textarea {
 	}
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
 	.navbar-form {
-		width: 360px;
+		width: 280px;
 	}
 }
 
