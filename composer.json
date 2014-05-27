@@ -6,7 +6,6 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"fitztrev/laravel-html-minify": "dev-master",
-		"stolz/laravel-html-tidy": "dev-master",
 		"fadion/maneuver": "dev-master",
 		"way/database": "dev-master",
 		"intervention/image": "2.*",

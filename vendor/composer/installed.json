@@ -586,61 +586,6 @@
         ]
     },
     {
-        "name": "stolz/laravel-html-tidy",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Stolz/laravel-html-tidy.git",
-            "reference": "d6c7504adc651e21d5de244a34df8e5ed1e8b3aa"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Stolz/laravel-html-tidy/zipball/d6c7504adc651e21d5de244a34df8e5ed1e8b3aa",
-            "reference": "d6c7504adc651e21d5de244a34df8e5ed1e8b3aa",
-            "shasum": ""
-        },
-        "require": {
-            "ext-tidy": "*",
-            "illuminate/http": "4.1.*",
-            "illuminate/support": "4.1.*",
-            "php": ">=5.3.0"
-        },
-        "time": "2014-03-06 17:28:43",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Stolz\\Filters\\HtmlTidy\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Stolz",
-                "homepage": "https://github.com/Stolz",
-                "role": "developer"
-            }
-        ],
-        "description": "HTML Tidy filter for Laravel",
-        "homepage": "https://github.com/Stolz/laravel-html-tidy",
-        "keywords": [
-            "HTML5",
-            "HTMLtidy",
-            "beautifier",
-            "filter",
-            "html",
-            "indent",
-            "laravel",
-            "markup",
-            "tidy",
-            "xhtml"
-        ]
-    },
-    {
         "name": "fadion/maneuver",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -1891,66 +1836,6 @@
         ]
     },
     {
-        "name": "intervention/image",
-        "version": "2.0.0",
-        "version_normalized": "2.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Intervention/image.git",
-            "reference": "e3f13700a9512799ed5cb2c587bf9f17ebbc9c72"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Intervention/image/zipball/e3f13700a9512799ed5cb2c587bf9f17ebbc9c72",
-            "reference": "e3f13700a9512799ed5cb2c587bf9f17ebbc9c72",
-            "shasum": ""
-        },
-        "require": {
-            "ext-fileinfo": "*",
-            "illuminate/config": "4.*",
-            "illuminate/support": "4.*",
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "mockery/mockery": "0.9.*",
-            "phpunit/phpunit": "3.*"
-        },
-        "suggest": {
-            "ext-gd": "to use GD library based image processing.",
-            "ext-imagick": "to use Imagick based image processing.",
-            "intervention/imagecache": "Caching extension for the Intervention Image library"
-        },
-        "time": "2014-05-18 17:58:48",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Intervention\\Image\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Oliver Vogel",
-                "email": "oliver@olivervogel.net",
-                "homepage": "http://olivervogel.net/"
-            }
-        ],
-        "description": "Image handling and manipulation library with support for Laravel 4 integration",
-        "homepage": "http://image.intervention.io/",
-        "keywords": [
-            "gd",
-            "image",
-            "imagick",
-            "laravel",
-            "thumbnail",
-            "watermark"
-        ]
-    },
-    {
         "name": "intervention/imagecache",
         "version": "2.0.1",
         "version_normalized": "2.0.1.0",
@@ -2004,6 +1889,66 @@
             "image",
             "imagick",
             "laravel"
+        ]
+    },
+    {
+        "name": "intervention/image",
+        "version": "2.0.1",
+        "version_normalized": "2.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Intervention/image.git",
+            "reference": "e6fb391319683a832e537798036fc15bb69d3785"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Intervention/image/zipball/e6fb391319683a832e537798036fc15bb69d3785",
+            "reference": "e6fb391319683a832e537798036fc15bb69d3785",
+            "shasum": ""
+        },
+        "require": {
+            "ext-fileinfo": "*",
+            "illuminate/config": "4.*",
+            "illuminate/support": "4.*",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "0.9.*",
+            "phpunit/phpunit": "3.*"
+        },
+        "suggest": {
+            "ext-gd": "to use GD library based image processing.",
+            "ext-imagick": "to use Imagick based image processing.",
+            "intervention/imagecache": "Caching extension for the Intervention Image library"
+        },
+        "time": "2014-05-25 19:00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Intervention\\Image\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Oliver Vogel",
+                "email": "oliver@olivervogel.net",
+                "homepage": "http://olivervogel.net/"
+            }
+        ],
+        "description": "Image handling and manipulation library with support for Laravel 4 integration",
+        "homepage": "http://image.intervention.io/",
+        "keywords": [
+            "gd",
+            "image",
+            "imagick",
+            "laravel",
+            "thumbnail",
+            "watermark"
         ]
     }
 ]

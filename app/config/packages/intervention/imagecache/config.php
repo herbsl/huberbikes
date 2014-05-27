@@ -48,18 +48,29 @@ return array(
     */
    
     'templates' => array(
-
-        'small' => function($image) { 
+        'x-small' => function($image) { 
 			return $image->widen(320)->resizeCanvas(320, 240, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
         },
-        'medium' => function($image) { 
+        'x-small-2x' => function($image) { 
 			return $image->widen(640)->resizeCanvas(640, 480, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
         },
-        'large' => function($image) { 
-			return $image->widen(1280)->resizeCanvas(1280, 960, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+        'small' => function($image) { 
+			return $image->widen(640)->resizeCanvas(640, 480, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
         },
-        'x-large' => function($image) { 
-			return $image->widen(1920)->resizeCanvas(1920, 1440, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+        'small-2x' => function($image) { 
+			return $image->widen()->resizeCanvas(1280, 960, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+        },
+        'medium' => function($image) { 
+			return $image->widen(768)->resizeCanvas(768, 576, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+        },
+        'medium-2x' => function($image) { 
+			return $image->widen(1536)->resizeCanvas(1536, 1152, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+        },
+        'large' => function($image) { 
+			return $image->widen(1200)->resizeCanvas(1200, 900, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+        },
+        'large-2x' => function($image) { 
+			return $image->widen(2400)->resizeCanvas(2400, 1800, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
         },
     ),
 

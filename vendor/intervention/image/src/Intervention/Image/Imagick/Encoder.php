@@ -15,6 +15,9 @@ class Encoder extends \Intervention\Image\AbstractEncoder
         $compression = \Imagick::COMPRESSION_JPEG;
 
         $imagick = $this->image->getCore();
+        $imagick->setImageBackgroundColor('white');
+        $imagick->setBackgroundColor('white');
+        $imagick = $imagick->mergeImageLayers(\Imagick::LAYERMETHOD_FLATTEN);
         $imagick->setFormat($format);
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
@@ -22,7 +25,7 @@ class Encoder extends \Intervention\Image\AbstractEncoder
         $imagick->setCompressionQuality($this->quality);
         $imagick->setImageCompressionQuality($this->quality);
 
-        return (string) $imagick;
+        return $imagick->getImagesBlob();
     }
 
     /**
@@ -41,7 +44,7 @@ class Encoder extends \Intervention\Image\AbstractEncoder
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
 
-        return (string) $imagick;
+        return $imagick->getImagesBlob();
     }
 
     /**
@@ -60,6 +63,28 @@ class Encoder extends \Intervention\Image\AbstractEncoder
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
 
-        return (string) $imagick;
+        return $imagick->getImagesBlob();
     }
+
+    /**
+     * Processes and returns encoded image as TIFF string
+     *
+     * @return string
+     */
+    protected function processTiff()
+    {
+        $format = 'tiff';
+        $compression = \Imagick::COMPRESSION_UNDEFINED;
+
+        $imagick = $this->image->getCore();
+        $imagick->setFormat($format);
+        $imagick->setImageFormat($format);
+        $imagick->setCompression($compression);
+        $imagick->setImageCompression($compression);
+        $imagick->setCompressionQuality($this->quality);
+        $imagick->setImageCompressionQuality($this->quality);
+
+        return $imagick->getImagesBlob();
+    }
+
 }

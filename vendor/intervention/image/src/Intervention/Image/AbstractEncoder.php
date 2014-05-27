@@ -26,6 +26,13 @@ abstract class AbstractEncoder
     abstract protected function processGif();
 
     /**
+     * Processes and returns encoded image as TIFF string
+     *
+     * @return string
+     */
+    abstract protected function processTiff();
+
+    /**
      * Buffer of encode result data
      *
      * @var string
@@ -69,9 +76,15 @@ abstract class AbstractEncoder
                 $this->result = $this->processJpeg();
                 break;
 
+            case 'tif':
+            case 'tiff':
+            case 'image/tiff':
+                $this->result = $this->processTiff();
+                break;
+                
             default:
                 throw new \Intervention\Image\Exception\NotSupportedException(
-                    "Writing format ({$format}) is not supported."
+                    "Encoding format ({$format}) is not supported."
                 );
                 break;
         }
@@ -109,11 +122,11 @@ abstract class AbstractEncoder
      */
     protected function setFormat($format = null)
     {
-        if (is_null($format) && $this->image instanceof Image) {
+        if ($format == '' && $this->image instanceof Image) {
             $format = $this->image->mime;
         }
 
-        $this->format = $format;
+        $this->format = $format ? $format : 'jpg';
 
         return $this;
     }

@@ -108,7 +108,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		// manually added
-		'Stolz\Filters\HtmlTidy\ServiceProvider',
 		'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
 		'Fadion\Maneuver\ManeuverServiceProvider',
 		'Intervention\Image\ImageServiceProvider'

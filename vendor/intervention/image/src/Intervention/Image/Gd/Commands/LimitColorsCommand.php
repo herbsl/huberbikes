@@ -25,7 +25,7 @@ class LimitColorsCommand extends \Intervention\Image\Commands\AbstractCommand
 
         // define matte
         if (is_null($matte)) {
-            $matte = imagecolorallocatealpha($resource, 0, 0, 0, 127);
+            $matte = imagecolorallocatealpha($resource, 255, 255, 255, 127);
         } else {
             $matte = $image->getDriver()->parseColor($matte)->getInt();
         }
@@ -39,7 +39,7 @@ class LimitColorsCommand extends \Intervention\Image\Commands\AbstractCommand
         // copy original image
         imagecopy($resource, $image->getCore(), 0, 0, 0, 0, $size->width, $size->height);
 
-        if ($count <= 256) {
+        if (is_numeric($count) && $count <= 256) {
             // decrease colors
             imagetruecolortopalette($resource, true, $count);
         }

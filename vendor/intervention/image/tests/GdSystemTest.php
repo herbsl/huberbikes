@@ -827,6 +827,7 @@ class GdSystemTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($checkColor[1], 81);
         $this->assertEquals($checkColor[2], 96);
         $this->assertEquals($checkColor[3], 0.5);
+        $this->assertTransparentPosition($img, 0, 11);
     }
 
     public function testMaskImage()
@@ -1075,6 +1076,16 @@ class GdSystemTest extends PHPUnit_Framework_TestCase
         $this->assertColorAtPosition('#e40214', $img, 16, 21);
     }
 
+    public function testLimitColorsNullWithMatte()
+    {
+        $img = $this->manager()->make('tests/images/tile.png');
+        $img->limitColors(null, '#ff00ff');
+        $this->assertColorAtPosition('#b4e000', $img, 0, 0);
+        $this->assertColorAtPosition('#445160', $img, 8, 8);
+        $this->assertColorAtPosition('#ff00ff', $img, 0, 8);
+        $this->assertColorAtPosition('#ff00ff', $img, 15, 0);
+    }
+
     public function testPickColorFromTrueColor()
     {
         $img = $this->manager()->make('tests/images/star.png');
@@ -1113,9 +1124,9 @@ class GdSystemTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $c[3]);
 
         $c = $img->pickColor(0, 15);
-        $this->assertEquals(0, $c[0]);
-        $this->assertEquals(0, $c[1]);
-        $this->assertEquals(0, $c[2]);
+        $this->assertEquals(255, $c[0]);
+        $this->assertEquals(255, $c[1]);
+        $this->assertEquals(255, $c[2]);
         $this->assertEquals(0, $c[3]);
     }
 
@@ -1137,9 +1148,9 @@ class GdSystemTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $c[3]);
 
         $c = $img->pickColor(0, 15);
-        $this->assertEquals(0, $c[0]);
-        $this->assertEquals(0, $c[1]);
-        $this->assertEquals(0, $c[2]);
+        $this->assertEquals(255, $c[0]);
+        $this->assertEquals(255, $c[1]);
+        $this->assertEquals(255, $c[2]);
         $this->assertEquals(0, $c[3]);
     }
 
@@ -1479,6 +1490,20 @@ class GdSystemTest extends PHPUnit_Framework_TestCase
         $this->assertColorAtPosition('#939393', $img, 18, 18);
         $this->assertColorAtPosition('#adadad', $img, 25, 25);
         $this->assertColorAtPosition('#939393', $img, 35, 35);
+    }
+
+    public function testCloneImageObject()
+    {
+        $img = $this->manager()->make('tests/images/trim.png');
+        $cln = clone $img;
+
+        // destroy original
+        $img->destroy();
+        unset($img);
+
+        // clone should be still intact
+        $this->assertInstanceOf('Intervention\Image\Image', $cln);
+        $this->assertInternalType('resource', $cln->getCore());
     }
 
     private function assertColorAtPosition($color, $img, $x, $y)
