@@ -26,6 +26,7 @@
 			@yield('content')
         	@include('navigation-secondary')
 		</div>
+		<div id="spinner"></div>
 		<div id="scroll-top">
 			<a href="#" role="button" class="btn btn-primary">
 				<span class="glyphicon glyphicon-chevron-up"></span>
