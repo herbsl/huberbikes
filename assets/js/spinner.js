@@ -13,6 +13,8 @@
 	});
 
 	$(doc).on('singlepage.load.after', function() {
-		spinner.stop();
+		$(spinner.el).fadeOut(function() {
+			spinner.stop();
+		});
 	});
 })(jQuery, document);
