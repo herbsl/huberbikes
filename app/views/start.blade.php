@@ -27,7 +27,7 @@
 	<div class="container hb-container">
 		<div class="jumbotron hb-jumbotron-transparent">
 			<h1>Lust auf Biken?</h1>
-			<a href="#start-page-2" class="btn btn-primary btn-lg hb-margin-top-2x scroll-page-2" role="button">lesen Sie mehr</a>
+			<a href="#start-page-2" class="btn btn-primary btn-lg hb-margin-top-2x scroll-page-2" role="button">Lesen Sie mehr</a>
 		</div>
 	</div>
 </div>

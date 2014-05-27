@@ -12,9 +12,9 @@
 				<span class="icon-bar"></span>	
 			</a>
 			@if (Request::path() === '/')
-			<a class="navbar-brand hb-navbar-brand-center hb-text-overflow" href="#">Bike-Service Huber</a>
+			<a class="navbar-brand hb-navbar-brand-center hb-text-overflow" href="#" tabindex="1">Bike-Service Huber</a>
 			@else
-			<a class="navbar-brand hb-navbar-brand-center hb-text-overflow" href="/">Bike-Service Huber</a>
+			<a class="navbar-brand hb-navbar-brand-center hb-text-overflow" href="/" tabindex="1">Bike-Service Huber</a>
 			@endif
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-main">
@@ -30,7 +30,7 @@
 				@else
 				<li class="dropdown">
 				@endif
-					<a href="/navigation/bikes" class="dropdown-toggle" data-toggle="dropdown">Bikes <b class="caret"></b></a>
+					<a href="/navigation/bikes" class="dropdown-toggle" data-toggle="dropdown" tabindex="2">Bikes <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
 						@foreach(Category::all() as $category)
 							@if (Input::has('kategorie') && Input::get('kategorie') === $category->name)
@@ -47,7 +47,7 @@
 				@else
 				<li class="dropdown">
 				@endif
-					<a href="/navigation/hersteller" class="dropdown-toggle" data-toggle="dropdown">Hersteller <b class="caret"></b></a>
+					<a href="/navigation/hersteller" class="dropdown-toggle" data-toggle="dropdown" tabindex="3">Hersteller <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
 						@foreach(Manufacturer::all() as $manufacturer)
 							@if (Input::has('hersteller') && Input::get('hersteller') === $manufacturer->name)
@@ -64,7 +64,7 @@
 				@else
 				<li>
 				@endif
-					<a href="{{{ URL::action('bike.index', array('sale' => 'true')) }}}"><b><span class="text-danger">Sale</span></b></a>
+					<a href="{{{ URL::action('bike.index', array('sale' => 'true')) }}}"><b><span class="text-danger" tabindex="4">Sale</span></b></a>
 				</li>
 				@if (Auth::check())
 					@if (Input::has('trash') && Input::get('trash') === 'true')
@@ -72,7 +72,7 @@
 					@else
 					<li>
 					@endif
-						<a href="{{{ URL::action('bike.index', array('trash' => 'true')) }}}"><!-- span class="glyphicon glyphicon-trash"></span-->Papierkorb</a>
+						<a href="{{{ URL::action('bike.index', array('trash' => 'true')) }}}" tabindex="5">Papierkorb</a>
 					</li>
 				@endif
 			</ul>
