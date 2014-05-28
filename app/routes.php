@@ -123,13 +123,17 @@ Route::get('/api/suggestions', function() {
 		array_push($suggestions, $category->name);
 	}
 
-	$components = Component::where('name', '!=', '');
-	foreach ($components->get() as $component) {
-		if (in_array($component->name, $suggestions)) {
-			continue;
-		}
+	$bikes = Bike::whereHas('components', function($query) {
+		$query->where('name', '!=', '');
+	});
+	foreach ($bikes->get() as $bike) {
+		foreach ($bike->components as $component) {
+			if (in_array($component->name, $suggestions)) {
+				continue;
+			}
 
-		array_push($suggestions, $component->name);
+			array_push($suggestions, $component->name);
+		}
 	}
 
 	$bikes = Bike::with('manufacturer')->get();
