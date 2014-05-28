@@ -7,7 +7,7 @@
 }
 
 #start-page-1 {
-	background: url(/img/start-bg.jpg) no-repeat center center;
+	background: url(/img/cache/large/start-bg.jpg) no-repeat center center;
 	-moz-background-size: cover;
 	-webkit-background-size: cover;
 	-o-background-size: cover;
