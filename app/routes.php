@@ -123,7 +123,12 @@ Route::get('/api/suggestions', function() {
 		array_push($suggestions, $category->name);
 	}
 
-	foreach (Component::get() as $component) {
+	$components = Component::where('name', '!=', '');
+	foreach ($components->get() as $component) {
+		if (in_array($suggestions, $component)) {
+			return;
+		}
+
 		array_push($suggestions, $component->name);
 	}
 
