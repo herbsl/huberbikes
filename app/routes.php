@@ -123,6 +123,10 @@ Route::get('/api/suggestions', function() {
 		array_push($suggestions, $category->name);
 	}
 
+	foreach (Component::get() as $component) {
+		array_push($suggestions, $component->name);
+	}
+
 	$bikes = Bike::with('manufacturer')->get();
 	foreach ($bikes as $bike) {
 		array_push($suggestions, $bike->manufacturer->name . ' ' . $bike->name);
