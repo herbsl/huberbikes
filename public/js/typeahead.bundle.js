@@ -1219,7 +1219,7 @@
                 suggestion: templates.suggestion || suggestionTemplate
             };
             function suggestionTemplate(context) {
-                return "<p class='needsclick'>" + displayFn(context) + "</p>";
+                return "<p>" + displayFn(context) + "</p>";
             }
         }
         function isValidName(str) {

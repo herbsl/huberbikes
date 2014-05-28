@@ -20,7 +20,7 @@
 		<div class="navbar-collapse collapse" id="navbar-main">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					@include('search-form')
+					@include('navigation.search')
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-left">

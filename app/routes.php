@@ -2,30 +2,6 @@
 
 Route::resource('bike', 'BikeController');
 
-function getBikesListView($bikes, $title) {
-	$customer = '';
-
-	if (Input::has('zielgruppe')) {
-		$customer = Input::get('zielgruppe');
-		$bikes = $bikes->whereHas('customers', function($query) use ($customer) {
-			$query->where('name', '=', $customer);
-		});
-	}
-
-	$bikes = $bikes->get();
-
-	if ($bikes->count() === 1 && Request::path() === 'bikes/suche') {
-		return getBikesDetailView($bikes->first()->id);
-	}
-
-	return View::make('bike.index', array(
- 		'title' => $title,
-		'new_threshold_days' => 30,
-		'bikes' => $bikes,
-		'customer_name' => $customer,
-	));
-}
-
 function getBikesDetailView($id) {
 	$maxLastViewed = 5;
 	$collapse_details = '';
@@ -103,45 +79,6 @@ Route::get('/navigation/bikes', function() {
 
 Route::get('/navigation/hersteller', function() {
 	return View::make('navigation.hersteller');
-});
-
-Route::get('/bikes/suche', function() {
-	$q = '';
-	$bikes = null;
-	$title = '';
-
-	if (Input::has('q')) {
-		$q = Input::get('q');
-		$title = ucwords(strtolower($q));
-	}
-
-	foreach(explode(' ', $q) as $queryPart) {
-		if (is_null($bikes)) {
-			$bikes = Bike::where(function($query) use ($queryPart) {
-				$query->where('name', 'like', '%'. $queryPart . '%')
-					->orWhereHas('categories', function($query) use ($queryPart) {
-						$query->where('name', 'like', '%' . $queryPart . '%');
-					})->orWhereHas('manufacturer',  function($query) use ($queryPart) {
-						$query->where('name', 'like', '%' . $queryPart . '%');
-					})->orWhereHas('customers',  function($query) use ($queryPart) {
-						$query->where('name', 'like', '%' . $queryPart . '%');
-				});
-			});
-		} else {
-			$bikes = $bikes->where(function($query) use ($queryPart) {
-				$query->where('name', 'like', '%'. $queryPart . '%')
-					->orWhereHas('categories', function($query) use ($queryPart) {
-						$query->where('name', 'like', '%' . $queryPart . '%');
-					})->orWhereHas('manufacturer',  function($query) use ($queryPart) {
-						$query->where('name', 'like', '%' . $queryPart . '%');
-					})->orWhereHas('customers',  function($query) use ($queryPart) {
-						$query->where('name', 'like', '%' . $queryPart . '%');
-					});
-			});
-		}
-	}
-
-	return getBikesListView($bikes, $title);
 });
 
 Route::get('/kontakt', function() {

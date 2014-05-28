@@ -14,14 +14,14 @@
 
 	$('.dropdown-toggle').attr('href', '#');
 
-	$(document).on('singlepage.load.before', function(event, url) {
+	$(document).on('singlepage.load.before', function(event, url, data) {
 		/* Close main-navbar */
 		if ($navbarMain.hasClass('in')) {
 			$navbarMain.removeClass('in');
 		}
 
 		/* Manipulate search-field */
-		if (url.substr(0, 12) !== '/bikes/suche') {
+		if (! data.match(/q=/) && ! url.match(/q=/)) {
 			$search.typeahead('val', '');
 			$search.val('');
 		}

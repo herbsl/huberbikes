@@ -11848,24 +11848,6 @@ return jQuery;
 
 }));
 
-(function($) {
-	'use strict';
-
-	if (Modernizr.history) {
-		return;
-	}
-
-	/*$(document).ready(function() {
-		var js = Asset.rev('/js/jquery.history.min.js');
-
-		$.ajax({
-			url: js,
-			dataType: 'script',
-			cache: true
-		}).done(function() {});
-	});*/
-})(jQuery);
-
 (function($, win) {
 	'use strict';
 
@@ -11885,7 +11867,7 @@ return jQuery;
 			return;
 		}
 
-		$doc.trigger('singlepage.load.before', [ url ]);
+		$doc.trigger('singlepage.load.before', [ url, data ]);
 			
 		$content.removeClass('slidein-right');
 		$content.removeClass('slidein-right-go');
@@ -11924,15 +11906,11 @@ return jQuery;
 							$content.addClass('slidein-right-go');
 						}
 
-						if (add) {
-							if (Modernizr.history) {
-								history.pushState({}, '', url);
-							} /*else {
-								History.pushState({}, '', url);
-							}*/
+						if (add && Modernizr.history) {
+							history.pushState({}, '', url);
 						}
 
-						$doc.trigger('singlepage.load.after', [ url ]);
+						$doc.trigger('singlepage.load.after', [ url, data ]);
 					});
 				}	
 			});
@@ -11943,18 +11921,13 @@ return jQuery;
 
 	if (Modernizr.history) {
 		$(win).on('popstate', function(event) {
-			if (event.originalEvent.state === null) {
+			/*if (event.originalEvent.state === null) {
 				return;
-			}
+			}*/
 
 			return loadContent(location.href, '', 'get', false);
 		});
-	} /*else {
-		$(win).on('statechange', function(event) {
-			var state = History.getState();
-			return loadContent(state.hash, '', 'get', false);
-		});
-	}*/
+	}
 
 	$('body, .navbar-brand').click(function(event) {
 		var url, tag,
@@ -11990,7 +11963,7 @@ return jQuery;
 			url = $form.attr('action');
 		}
 
-		if (! url || url.charAt(0) === '#' /*|| (url.charAt(0) != '/' && url.charAt(0) != '?')*/) {
+		if (! url || url.charAt(0) === '#') {
 			return true;
 		}
 
@@ -12014,14 +11987,14 @@ return jQuery;
 
 	$('.dropdown-toggle').attr('href', '#');
 
-	$(document).on('singlepage.load.before', function(event, url) {
+	$(document).on('singlepage.load.before', function(event, url, data) {
 		/* Close main-navbar */
 		if ($navbarMain.hasClass('in')) {
 			$navbarMain.removeClass('in');
 		}
 
 		/* Manipulate search-field */
-		if (url.substr(0, 12) !== '/bikes/suche') {
+		if (! data.match(/q=/) && ! url.match(/q=/)) {
 			$search.typeahead('val', '');
 			$search.val('');
 		}

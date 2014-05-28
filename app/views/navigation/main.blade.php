@@ -13,6 +13,6 @@
 	</b>
 </a>
 <span class="list-group-item">
-	@include('search-form')
+	@include('navigation.search')
 </span>
 @stop

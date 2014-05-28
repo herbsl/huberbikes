@@ -32,42 +32,84 @@ class BikeController extends \BaseController {
 			);
 		}
 
-		if (Input::has('kategorie')) {
-			$category = Input::get('kategorie');
-			$title = $category;
+		if (Input::has('q')) {
+			$q = Input::get('q');
+			$title = 'Suche';
+			$notfound = 'Ihrer Suche';
+			$search = true;
 
-			$params['kategorie'] = $category;
-			$query = $query->whereHas('categories', function($query) use ($category) {
-				$query->where('name', 'like', '%' . $category . '%');
-			});
+			foreach(explode(' ', $q) as $queryPart) {
+				$query = $query->where(function($query) use ($queryPart) {
+					$query->where('name', 'like', '%'. $queryPart . '%')
+						->orWhereHas('categories', function($query) use ($queryPart) {
+							$query->where('name', 'like', '%' . $queryPart . '%');
+						})->orWhereHas('manufacturer',  function($query) use ($queryPart) {
+							$query->where('name', 'like', '%' . $queryPart . '%');
+						})->orWhereHas('customers',  function($query) use ($queryPart) {
+							$query->where('name', 'like', '%' . $queryPart . '%');
+						})->orWhereHas('components', function($query) use ($queryPart) {
+							$query->where('name', 'like', '%' . $queryPart . '%');
+						});
+				});
+			}
+		}
+		else {
+			$notfound = 'dieser Kategorie';
+			$search = false;
+
+			if (Input::has('kategorie')) {
+				$category = Input::get('kategorie');
+				$title = $category;
+
+				$params['kategorie'] = $category;
+				$query = $query->whereHas('categories', function($query) use ($category) {
+					$query->where('name', 'like', '%' . $category . '%');
+				});
+			}
+
+			if (Input::has('hersteller')) {
+				$manufacturer = Input::get('hersteller');
+				$title = 'Bikes von ' . $manufacturer;
+
+				$params['hersteller'] = $manufacturer;
+				$query = $query->whereHas('manufacturer', function($query) use ($manufacturer) {
+					$query->where('name', '=', $manufacturer);
+				});
+			}
+
+			if (Input::has('sale') && Input::get('sale') === 'true') {
+				$title = 'Sale';
+				$params['sale'] = 'true';
+
+				$query->where('price_offer', '>', 0);
+			}
+
+			if (Input::has('zielgruppe')) {
+				$customers = Input::get('zielgruppe');
+
+				$query = $query->whereHas('customers', function($query) use ($customers) {
+					$query->where('name', '=', $customers);
+				});
+			}
 		}
 
-		if (Input::has('hersteller')) {
-			$manufacturer = Input::get('hersteller');
-			$title = 'Bikes von ' . $manufacturer;
+		$hits = $query->count();
 
-			$params['hersteller'] = $manufacturer;
-			$query = $query->whereHas('manufacturer', function($query) use ($manufacturer) {
-				$query->where('name', '=', $manufacturer);
-			});
+		if ($hits === 0) {
+			return View::make('bike.notfound', array(
+	 			'title' => $title,
+				'text' => $notfound,
+				'params' => $params,
+				'search' => $search,
+				'customer_name' => $customers
+			));
 		}
 
-		if (Input::has('sale') && Input::get('sale') === 'true') {
-			$title = 'Sale';
-			$params['sale'] = 'true';
-
-			$query->where('price_offer', '>', 0);
-		}
-
-		if (Input::has('zielgruppe')) {
-			$customers = Input::get('zielgruppe');
-			$query = $query->whereHas('customers', function($query) use ($customers) {
-				$query->where('name', '=', $customers);
-			});
-		}
-
-		if ($query->count() === 1 && Request::path() === 'bikes/suche') {
-			return Redirect::route('bike.show', $query->first()->id);
+		if ($search && $hits === 1) {
+			return Redirect::route('bike.show', array(
+				$query->first()->id,
+				'q' => Input::get('q')
+			));
 		}
 
 		if (count($order) > 0) {
@@ -77,10 +119,11 @@ class BikeController extends \BaseController {
 
 		return View::make('bike.index', array(
 	 		'title' => $title,
+			'params' => $params,
 			'new_threshold_days' => 30,
 			'bikes' => $query->get(),
-			'customer_name' => $customers,
-			'params' => $params
+			'search' => $search,
+			'customer_name' => $customers
 		));
 	}
 

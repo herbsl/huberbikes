@@ -170,6 +170,10 @@ input[type="text"], input[type="number"], textarea {
 	white-space: nowrap;
 }
 
+.hb-font-size-md {
+	font-size: 140%;
+}
+
 .hb-center-inline {
 	text-align: center;
 }
