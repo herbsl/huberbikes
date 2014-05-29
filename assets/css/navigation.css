@@ -1,3 +1,41 @@
+.hb-navbar-transparent {
+	opacity: 0.95;
+}
+
+/* IPhone zoom on search 
+input[type="text"], input[type="number"], textarea {
+	font-size: 16px;
+}*/
+
+#navbar-search, .form-control {
+	width: 100% !important;
+}
+
+@media (max-width: 767px) {
+	.hb-navbar-brand-center {
+		position: absolute;
+		left: 64px;
+		right: 64px;
+
+		text-align: center;
+	}
+}
+
+.hb-navbar-btn, .hb-navbar-btn:hover {
+	margin-right: 0;
+	color: #ccc;
+	border: none;
+	background-color: transparent !important;
+}
+
+.hb-navbar-btn .icon-bar {
+	background-color: #efefef !important;
+}
+
+.hb-navbar-btn.pull-left {
+	margin-right: 16px;
+}
+
 .hb-navbar-secondary {
 	background-color: #fff;
 	opacity: 1;

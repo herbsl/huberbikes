@@ -12,9 +12,11 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta name="description" content="TODO">
-		<link href="{{{ App::make('asset')->rev('/css/main.min.css') }}}" rel="stylesheet" type="text/css">
+		@if (isset($description))
+		<meta name="description" content="{{{ $description }}}">
+		@endif
 		<script>@include('assets')</script>
+		<link href="{{{ App::make('asset')->rev('/css/main.min.css') }}}" rel="stylesheet" type="text/css">
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -26,20 +28,13 @@
 			@yield('content')
         	@include('navigation-secondary')
 		</div>
-		<div id="spinner"></div>
-		<div id="scroll-top">
-			<a href="#" role="button" class="btn btn-primary">
-				<span class="glyphicon glyphicon-chevron-up"></span>
-			</a>
-		</div>
+		@include('scroll-top')
 		@include('kontakt-modal')
         @include('oeffnungszeiten-modal')
 		@if (App::environment('local'))
 		<script src="http://{{{ gethostname() }}}:35729/livereload.js?snipver=1"></script>
 		@endif
 		<script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
-		<script id="singlepage-javascript">
-			@yield('javascript')
-		</script>
+		<script id="singlepage-javascript">@yield('javascript')</script>
 	</body>
 </html>

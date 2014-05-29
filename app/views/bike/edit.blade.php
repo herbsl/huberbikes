@@ -2,7 +2,7 @@
 
 @section('content')
 <style>
-	.hb-default {
+	.hb-img-default {
 		background-color: #cccccc !important;
 	}
 </style>
@@ -72,6 +72,13 @@
 						@endif
 					</label>
 					@endforeach
+				</div>
+			</div>
+			<!-- Modelljahr -->
+			<div class="form-group">
+				<label for="year" class="col-sm-2 control-label">Modelljahr</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="year" name="year"  value="{{{ Input::old('year', $bike->year) }}}">
 				</div>
 			</div>
 			<!-- Preis -->
@@ -182,12 +189,12 @@
 
 		var setDefaultImage = function(file) {
 			if (defaultImage) {
-			 	defaultImage.removeClass('hb-default');
+			 	defaultImage.removeClass('hb-img-default');
 			}
 
 			if (file) {
 				defaultImage = $(file.previewElement);
-				defaultImage.addClass('hb-default');
+				defaultImage.addClass('hb-img-default');
 			}
 			else {
 				defaultImage = undefined;

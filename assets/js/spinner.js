@@ -1,6 +1,6 @@
 (function($, doc) {
 	var spinner,
-		target = doc.getElementById('spinner'),
+		target = doc.body,
 		opts = {
 			lines: 13,
 			length: 10,

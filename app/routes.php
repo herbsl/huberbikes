@@ -254,3 +254,7 @@ Route::delete('/image/{id}', function($image_id) {
 Route::get('/login', 'AuthController@show');
 Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
+
+App::missing(function($exception) {
+	return Response::view('404', array(), 404);
+});

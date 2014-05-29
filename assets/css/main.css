@@ -7,10 +7,6 @@ html, body, #singlepage-content {
 	height: 100%;
 }
 
-nav {
-	opacity: 0.95;
-}
-
 .fix-fixed {
 	position: absolute;
 	top: 0;
@@ -19,15 +15,6 @@ nav {
 /* Prevent body from scrolling to top on modal toggle */
 body.modal-open {
 	overflow: visible;
-}
-
-/* IPhone zoom on search 
-input[type="text"], input[type="number"], textarea {
-	font-size: 16px;
-}*/
-
-#navbar-search, .form-control {
-	width: 100% !important;
 }
 
 @media (max-width: 639px) {
@@ -90,7 +77,6 @@ input[type="text"], input[type="number"], textarea {
 	text-align: middle;
 }
 
-
 /* Modal from bottom */
 .modal.fade.hb-bottom .modal-dialog {
   -webkit-transition: -webkit-transform .3s ease-out;
@@ -139,31 +125,6 @@ input[type="text"], input[type="number"], textarea {
 	transition: left 0.25s ease;
 }
 
-@media (max-width: 767px) {
-	.hb-navbar-brand-center {
-		position: absolute;
-		left: 64px;
-		right: 64px;
-
-		text-align: center;
-	}
-}
-
-.hb-navbar-btn, .hb-navbar-btn:hover {
-	margin-right: 0;
-	color: #ccc;
-	border: none;
-	background-color: transparent !important;
-}
-
-.hb-navbar-btn .icon-bar {
-	background-color: #efefef !important;
-}
-
-.hb-navbar-btn.pull-left {
-	margin-right: 16px;
-}
-
 .hb-text-overflow {
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -176,16 +137,4 @@ input[type="text"], input[type="number"], textarea {
 
 .hb-center-inline {
 	text-align: center;
-}
-
-#scroll-top {
-	position: fixed;
-	bottom: 62px;
-	right: 8px;
-}
-
-@media (max-width: 767px) {
-	#scroll-top {
-		bottom: 8px;
-	}
 }

@@ -5162,10 +5162,6 @@ html, body, #singlepage-content {
 	height: 100%;
 }
 
-nav {
-	opacity: 0.95;
-}
-
 .fix-fixed {
 	position: absolute;
 	top: 0;
@@ -5174,15 +5170,6 @@ nav {
 /* Prevent body from scrolling to top on modal toggle */
 body.modal-open {
 	overflow: visible;
-}
-
-/* IPhone zoom on search 
-input[type="text"], input[type="number"], textarea {
-	font-size: 16px;
-}*/
-
-#navbar-search, .form-control {
-	width: 100% !important;
 }
 
 @media (max-width: 639px) {
@@ -5245,7 +5232,6 @@ input[type="text"], input[type="number"], textarea {
 	text-align: middle;
 }
 
-
 /* Modal from bottom */
 .modal.fade.hb-bottom .modal-dialog {
   -webkit-transition: -webkit-transform .3s ease-out;
@@ -5294,6 +5280,33 @@ input[type="text"], input[type="number"], textarea {
 	transition: left 0.25s ease;
 }
 
+.hb-text-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.hb-font-size-md {
+	font-size: 125%;
+}
+
+.hb-center-inline {
+	text-align: center;
+}
+
+.hb-navbar-transparent {
+	opacity: 0.95;
+}
+
+/* IPhone zoom on search 
+input[type="text"], input[type="number"], textarea {
+	font-size: 16px;
+}*/
+
+#navbar-search, .form-control {
+	width: 100% !important;
+}
+
 @media (max-width: 767px) {
 	.hb-navbar-brand-center {
 		position: absolute;
@@ -5319,32 +5332,6 @@ input[type="text"], input[type="number"], textarea {
 	margin-right: 16px;
 }
 
-.hb-text-overflow {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.hb-font-size-md {
-	font-size: 125%;
-}
-
-.hb-center-inline {
-	text-align: center;
-}
-
-#scroll-top {
-	position: fixed;
-	bottom: 62px;
-	right: 8px;
-}
-
-@media (max-width: 767px) {
-	#scroll-top {
-		bottom: 8px;
-	}
-}
-
 .hb-navbar-secondary {
 	background-color: #fff;
 	opacity: 1;
@@ -5362,15 +5349,21 @@ input[type="text"], input[type="number"], textarea {
 	}
 }
 
+.scroll-top {
+	position: fixed;
+	bottom: 62px;
+	right: 8px;
+}
+
+@media (max-width: 767px) {
+	.scroll-top {
+		bottom: 8px;
+	}
+}
+
 #map {
     width: 100%;
     min-height: 240px;
-}
-
-#spinner {
-	position: fixed;
-	top: 50%;
-	left: 50%;
 }
 
 .hb-jumbotron-transparent {

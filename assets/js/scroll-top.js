@@ -4,7 +4,7 @@
 	var height,
 		$win = $(window),
 		$root = $('html, body'),
-		$scrollTop = $('#scroll-top'),
+		$scrollTop = $('.scroll-top'),
 		visible = true;
 
 	$win.resize(function() {
@@ -15,15 +15,13 @@
 		if ($win.scrollTop() > height / 2) {
 			if (! visible) {
 				visible = true;
-				$scrollTop.removeClass('hidden');
-				$scrollTop.addClass('show');
+				$scrollTop.fadeIn(250);
 			}
 		}
 		else {
 			if (visible) {
 				visible = false;
-				$scrollTop.removeClass('show');
-				$scrollTop.addClass('hidden');
+				$scrollTop.fadeOut(250);
 			}
 		}
 	}).trigger('scroll');

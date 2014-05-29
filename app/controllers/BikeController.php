@@ -14,13 +14,12 @@ class BikeController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
+	public function index()	{
 		$title = 'Bikes';
 		$customers = '';
 		$query = Bike::query();
 		$params = array();
-		$order = array();
+		$order = array('created_at','desc');
 
 		if (Input::has('trash') && Input::get('trash') === 'true') {
 			$title = 'Papierkorb';
@@ -35,7 +34,7 @@ class BikeController extends \BaseController {
 		if (Input::has('q')) {
 			$q = Input::get('q');
 			$title = 'Suche';
-			$notfound = 'Ihrer Suche';
+			$notfound = 'zu Ihrer Suche';
 			$search = true;
 
 			foreach(explode(' ', $q) as $queryPart) {
@@ -54,7 +53,7 @@ class BikeController extends \BaseController {
 			}
 		}
 		else {
-			$notfound = 'dieser Kategorie';
+			$notfound = 'in dieser Kategorie';
 			$search = false;
 
 			if (Input::has('kategorie')) {
@@ -96,7 +95,7 @@ class BikeController extends \BaseController {
 		$hits = $query->count();
 
 		if ($hits === 0) {
-			return View::make('bike.notfound', array(
+			return View::make('bike.empty', array(
 	 			'title' => $title,
 				'text' => $notfound,
 				'params' => $params,
@@ -112,15 +111,12 @@ class BikeController extends \BaseController {
 			));
 		}
 
-		if (count($order) > 0) {
-			//$query = $query->orderBy($order);
-			$query = call_user_func_array(array($query, 'orderBy'), $order);
-		}
+		$query = call_user_func_array(array($query, 'orderBy'), $order);
 
 		return View::make('bike.index', array(
 	 		'title' => $title,
 			'params' => $params,
-			'new_threshold_days' => 30,
+			'new_threshold_days' => 90,
 			'bikes' => $query->get(),
 			'search' => $search,
 			'customer_name' => $customers
@@ -179,6 +175,7 @@ class BikeController extends \BaseController {
 			$bike = new Bike();
 			$bike->name = Input::get('name');
 			$bike->description = Input::get('description');
+			$bike->year = Input::get('year');
 			$bike->price = Input::get('price');
 			$bike->price_offer = Input::get('price_offer');
 			$bike->manufacturer_id = Input::get('manufacturer_id');
@@ -348,6 +345,7 @@ class BikeController extends \BaseController {
 
 			$bike = Bike::find($id);
 			$bike->name = Input::get('name');
+			$bike->year = Input::get('year');
 			$bike->description = Input::get('description');
 			$bike->price = Input::get('price');
 			$bike->price_offer = Input::get('price_offer');
@@ -366,7 +364,6 @@ class BikeController extends \BaseController {
 				$bikeCategory->save();
 			}
 
-
 			BikeCustomer::where('bike_id', '=', $bike->id)->delete();
 			foreach (Input::get('customer_id') as $customer_id) {
 				$bikeCustomer = new BikeCustomer();
@@ -374,7 +371,6 @@ class BikeController extends \BaseController {
 				$bikeCustomer->customer_id = $customer_id;
 				$bikeCustomer->save();
 			}
-
 
 			BikeComponent::where('bike_id', '=', $bike->id)->delete();
 			foreach (Input::all() as $key => $value) {
