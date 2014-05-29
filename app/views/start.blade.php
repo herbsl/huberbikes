@@ -1,31 +1,9 @@
 @extends('layout')
 
 @section('content')
-<style>
-#start-page-1 {
-	height: 100%;
-}
-
-#start-page-1 {
-	background: url(/img/cache/large/start-bg.jpg) no-repeat center center;
-	-moz-background-size: cover;
-	-webkit-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-
-	/* IE8 */
-	-ms-behavior: url(/htc/backgroundsize.min.htc);
-	z-index: -1;
-}
-
-#start-page-2 {
-	min-height: 100%;
-	overflow: hidden;
-}
-</style>
 <div id="start-page-1">
 	<div class="container hb-container">
-		<div class="jumbotron hb-jumbotron-transparent">
+		<div class="hb-start hb-center-inline">
 			<h1>Lust auf Biken?</h1>
 			<a href="#start-page-2" class="btn btn-primary btn-lg hb-margin-top-2x scroll-page-2" role="button">Lesen Sie mehr</a>
 		</div>
@@ -55,7 +33,7 @@
 			return false;
 		});
 
-		$('#start-page-1 .scroll-page-2').click(function() {
+		$('.scroll-page-2').click(function() {
 			$root.animate({
 				scrollTop: $($.attr(this, 'href')).offset().top
 			}, 750);
