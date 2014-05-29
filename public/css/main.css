@@ -5287,7 +5287,7 @@ body.modal-open {
 }
 
 .hb-font-size-md {
-	font-size: 125%;
+	font-size: 18px;
 }
 
 .hb-center-inline {
@@ -5364,6 +5364,12 @@ input[type="text"], input[type="number"], textarea {
 #map {
     width: 100%;
     min-height: 240px;
+}
+
+#spinner {
+	position: fixed;
+	left: 50%;
+	top: 50%;
 }
 
 #start-page-1 {

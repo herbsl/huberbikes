@@ -12078,7 +12078,7 @@ return jQuery;
 
 (function($, doc) {
 	var spinner,
-		target = doc.body,
+		target = document.getElementById('spinner'),
 		opts = {
 			lines: 13,
 			length: 10,

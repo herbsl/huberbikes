@@ -28,6 +28,7 @@
 			@yield('content')
         	@include('navigation-secondary')
 		</div>
+		@include('spinner')
 		@include('scroll-top')
 		@include('kontakt-modal')
         @include('oeffnungszeiten-modal')
