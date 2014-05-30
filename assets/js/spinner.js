@@ -3,9 +3,9 @@
 		target = document.getElementById('spinner'),
 		opts = {
 			lines: 13,
-			length: 10,
+			length: 8,
 			width: 3,
-			radius: 10
+			radius:  8 
 		};
 
 	var stop = function() {
