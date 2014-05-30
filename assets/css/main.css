@@ -12,10 +12,6 @@ html, body, #singlepage-content {
 	top: 0;
 }
 
-/* Prevent body from scrolling to top on modal toggle */
-body.modal-open {
-	overflow: visible;
-}
 
 @media (max-width: 639px) {
 	/* Optimize for small screens: */
@@ -77,23 +73,6 @@ body.modal-open {
 	text-align: middle;
 }
 
-/* Modal from bottom */
-.modal.fade.hb-bottom .modal-dialog {
-  -webkit-transition: -webkit-transform .3s ease-out;
-     -moz-transition:    -moz-transform .3s ease-out;
-       -o-transition:      -o-transform .3s ease-out;
-          transition:         transform .3s ease-out;
-  -webkit-transform: translate(0, 75%);
-      -ms-transform: translate(0, 75%);
-          transform: translate(0, 75%);
-}
-
-.modal.in.hb-bottom .modal-dialog {
-  -webkit-transform: translate(0, 0);
-      -ms-transform: translate(0, 0);
-          transform: translate(0, 0);
-}
-
 .slidein-right {
 	position: relative;
 
@@ -137,4 +116,9 @@ body.modal-open {
 
 .hb-center-inline {
 	text-align: center;
+}
+
+.hb-center-block {
+	margin-left: auto;
+	margin-right: auto;
 }

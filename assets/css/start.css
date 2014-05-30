@@ -21,6 +21,14 @@
 	font-size: 64px;	
 }
 
+.hb-more-btn {
+	position: absolute;
+	left: 50%;
+	width: 250px;
+	margin-left: -125px;
+	bottom: 96px;
+}
+
 @media (max-width: 639px) {
 	#start-page-1 .hb-container {
 		padding-top: 48px;
@@ -32,5 +40,9 @@
 
 	#start-page-1 .hb-margin-top-2x {
 		margin-top: 16px;
+	}
+
+	.hb-more-btn {
+		bottom: 32px;
 	}
 }

@@ -1,0 +1,26 @@
+/* Disable scrollbar */
+.modal {
+	overflow-y: hidden;
+}
+
+/* Prevent body from scrolling to top on modal toggle */
+body.modal-open {
+	overflow: visible;
+}
+
+/* Modal from bottom */
+.modal.fade.hb-fade-bottom .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+     -moz-transition:    -moz-transform .3s ease-out;
+       -o-transition:      -o-transform .3s ease-out;
+          transition:         transform .3s ease-out;
+  -webkit-transform: translate(0, 75%);
+      -ms-transform: translate(0, 75%);
+          transform: translate(0, 75%);
+}
+
+.modal.in.hb-fade-bottom .modal-dialog {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+}

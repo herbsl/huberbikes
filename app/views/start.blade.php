@@ -3,10 +3,8 @@
 @section('content')
 <div id="start-page-1">
 	<div class="container hb-container">
-		<div class="hb-start hb-center-inline">
-			<h1>Lust auf Biken?</h1>
-			<a href="#start-page-2" class="btn btn-primary btn-lg hb-margin-top-2x scroll-page-2" role="button">Lesen Sie mehr</a>
-		</div>
+		<h1 class="hb-center-inline">Lust auf Biken?</h1>
+		<a href="#start-page-2" class="btn btn-primary btn-lg hb-more-btn" role="button">Lesen Sie mehr</a>
 	</div>
 </div>
 <div id="start-page-2">
@@ -33,7 +31,7 @@
 			return false;
 		});
 
-		$('.scroll-page-2').click(function() {
+		$('.hb-more-btn').click(function() {
 			$root.animate({
 				scrollTop: $($.attr(this, 'href')).offset().top
 			}, 750);
