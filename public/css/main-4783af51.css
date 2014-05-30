@@ -5115,6 +5115,7 @@ body.modal-open {
 
 .hb-container {
 	padding-top: 70px;
+	min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -5235,10 +5236,6 @@ html, body, #singlepage-content {
 	white-space: nowrap;
 }
 
-.hb-font-size-md {
-	font-size: 18px;
-}
-
 .hb-center-inline {
 	text-align: center;
 }
@@ -5251,11 +5248,6 @@ html, body, #singlepage-content {
 .hb-navbar-transparent {
 	opacity: 0.95;
 }
-
-/* IPhone zoom on search 
-input[type="text"], input[type="number"], textarea {
-	font-size: 16px;
-}*/
 
 #navbar-search, .form-control {
 	width: 100% !important;
@@ -5304,6 +5296,7 @@ input[type="text"], input[type="number"], textarea {
 }
 
 .scroll-top {
+	display: none;
 	position: fixed;
 	bottom: 62px;
 	right: 8px;

@@ -8,10 +8,11 @@
 		@else
 		<title>Bike Service Huber</title>
 		@endif
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimal-ui">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes,minimal-ui">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Huber-Bikes">
 		@if (isset($description))
 		<meta name="description" content="{{{ $description }}}">
 		@endif

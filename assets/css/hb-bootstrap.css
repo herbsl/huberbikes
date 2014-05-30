@@ -24,3 +24,14 @@ body.modal-open {
       -ms-transform: translate(0, 0);
           transform: translate(0, 0);
 }
+
+.hb-container {
+	padding-top: 70px;
+	min-height: 100%;
+}
+
+@media (min-width: 768px) {
+	.hb-container {
+		padding-bottom: 70px;
+	}
+}

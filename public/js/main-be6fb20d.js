@@ -11978,7 +11978,20 @@ return jQuery;
 		$navbarBrand = $('a.navbar-brand'),
 		$navbarSecondary = $('#navbar-secondary'),
 		$search = $('#navbar-search'),
-		$dropdown = $('#navbar-main .dropdown');
+		$dropdown = $('#navbar-main .dropdown'),
+		$meta = $('meta[name="viewport"]');
+
+	$search.on('touchstart', function(event) {
+		var content = $meta.attr('content');
+		content = content.replace(/user-scalable=yes/, 'user-scalable=no');
+		$meta.attr('content', content);
+	});
+
+	$search.blur(function(event) {
+		var content = $meta.attr('content');
+		content = content.replace(/user-scalable=no/, 'user-scalable=yes');
+		$meta.attr('content', content);
+	});
 
 	$('#responsive-menu').click(function(event) {
 		// The click should only be triggered without javascript
