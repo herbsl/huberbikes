@@ -59,13 +59,15 @@
 						@endforeach
 					</ul>
 				</li>
-				@if (Input::has('sale') && Input::get('sale') === 'true')
-				<li class="active">
-				@else
-				<li>
+				@if (Bike::where('price_offer', '>', 0)->count() > 0)
+					@if (Input::has('sale') && Input::get('sale') === 'true')
+					<li class="active">
+					@else
+					<li>
+					@endif
+						<a href="{{{ URL::action('bike.index', array('sale' => 'true')) }}}"><b><span class="text-danger" tabindex="4">Sale</span></b></a>
+					</li>
 				@endif
-					<a href="{{{ URL::action('bike.index', array('sale' => 'true')) }}}"><b><span class="text-danger" tabindex="4">Sale</span></b></a>
-				</li>
 				@if (Auth::check())
 					@if (Input::has('trashed') && Input::get('trashed') === 'true')
 					<li class="active">

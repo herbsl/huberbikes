@@ -1,13 +1,17 @@
 <div class="page-header">
-	<h1>{{ $title }}</h1>
+	<div class="row">
+		<div class="col-sm-10">
+		<h1>{{ $title }}</h1>
+		</div>
+		<div class="col-sm-2">	
+		@if (Auth::check())
+   		<a href="{{{ URL::action('bike.create') }}}" class="btn btn-success">
+			<span class="glyphicon glyphicon-plus"></span> hinzuf&uuml;gen
+		</a>
+		@endif
+		</div>
+	</div>
 </div>
-@if (Auth::check())
-<div class="row hb-margin-bottom-2x">
-   	<a href="{{{ URL::action('bike.create') }}}" class="btn btn-success">
-		<span class="glyphicon glyphicon-plus"></span> hinzuf&uuml;gen
-	</a>
-</div>
-@endif
 @if ($search === false)
 <div class="row hb-margin-bottom-2x hb-center-inline">
 	<div class="btn-group hb-btn-group">

@@ -5,7 +5,7 @@
 			lines: 13,
 			length: 7,
 			width: 2,
-			radius:  7 
+			radius:  9 
 		};
 
 	var stop = function() {

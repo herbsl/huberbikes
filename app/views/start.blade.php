@@ -13,8 +13,9 @@
 			<h1>Lust auf Biken?</h1>
 		</div>
 		<p>Dann sind Sie bei uns richtig, denn Fahrr&auml;der sind unsere Leidenschaft.</p>
-		<p>Egal ob Sie ein Mountainbike oder ein bequemes City-Bike suchen, wir haben ...</p>
-		<p>Wir freuen uns auf Ihren Besuch.</p>
+		<p>Egal ob Sie ein sportliches Mountainbike oder ein ausdauerndes E-Bike suchen, auf unserer Seite finden Sie ein ausgew&auml;hltes Sortiment.</p><p>Sie haben noch Fragen, W&uuml;nsche oder wurde nicht f&uuml;ndig? Sprechen Sie uns direkt an, wir nehmen uns Zeit und finden die perfekte L&ouml;sung f&uuml;r Sie, denn individuelle und kompetente Beratung ist unser Anspruch.</p>
+		<p class="hb-margin-top-2x">Viel Spa&szlig; auf www.huberbikes.de</p>
+		<p><strong>Peter Huber</strong></p>
 	</div>
 </div>
 @stop
