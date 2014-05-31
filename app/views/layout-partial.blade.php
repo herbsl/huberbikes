@@ -1,8 +1,4 @@
-@if (isset($title))
-<title>Bike Service Huber - {{{ $title }}}</title>
-@else
-<title>Bike Service Huber</title>
-@endif
+@include('title')
 @if (isset($description))
 <meta name="description" content="{{{ $description }}}">
 @endif
