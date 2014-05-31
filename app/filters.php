@@ -19,9 +19,12 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-	if (isset($_ENV['htmltidy.enabled']) && $_ENV['htmltidy.enabled']) {
-		return App::make('stolz.filter.tidy')->filter(null, $request,
-			$response);
+	$headers = Session::get('X-Header');
+
+	if (count($headers) > 0) {
+		foreach ($headers as $key => $value) {
+			$response->headers->set($key, $value);
+		}
 	}
 });
 
@@ -81,5 +84,3 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
-
-Route::filter('html-tidy', 'Stolz\Filters\HtmlTidy\Filter');

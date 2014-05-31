@@ -67,12 +67,12 @@
 					<a href="{{{ URL::action('bike.index', array('sale' => 'true')) }}}"><b><span class="text-danger" tabindex="4">Sale</span></b></a>
 				</li>
 				@if (Auth::check())
-					@if (Input::has('trash') && Input::get('trash') === 'true')
+					@if (Input::has('trashed') && Input::get('trashed') === 'true')
 					<li class="active">
 					@else
 					<li>
 					@endif
-						<a href="{{{ URL::action('bike.index', array('trash' => 'true')) }}}" tabindex="5">Papierkorb</a>
+						<a href="{{{ URL::action('bike.index', array('trashed' => 'true')) }}}" tabindex="5">Papierkorb</a>
 					</li>
 				@endif
 			</ul>

@@ -5,8 +5,8 @@
 	@include('bike.index-header')
 	<div class="row">
 	@foreach($bikes as $bike)<div class="bikes-list-thumbnail-container">
-		@if (Input::has('trash') && Input::get('trash') === 'true')
-		<a href="{{{ URL::action('bike.show', array($bike->id, 'trash' => 'true')) }}}" role="button">
+		@if (Input::has('trashed') && Input::get('trashed') === 'true')
+		<a href="{{{ URL::action('bike.show', array($bike->id, 'trashed' => 'true')) }}}" role="button">
 		@else
 		<a href="{{{ URL::action('bike.show', $bike->id) }}}" role="button">
 		@endif

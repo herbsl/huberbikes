@@ -32,7 +32,13 @@
 				url: url,
 				data: data,
 				type: type,
-				success: function(data) {
+				success: function(data, textStatus, xhrReq) {
+					var location = xhrReq.getResponseHeader('X-Location');
+					if (location) {
+						add = true;
+						url = location; 
+					}
+
 					/* Inject new Page */
 					$content.children().each(function() {
 						var $this = $(this);

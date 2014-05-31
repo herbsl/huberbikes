@@ -108,7 +108,7 @@
 					<div class="row">
 						<div class="col-xs-offset-3 col-xs-6 col-sm-offset-2 col-sm-8">
 					@if (Auth::check())
-						@if (Input::has('trash') && Input::get('trash') === 'true')
+						@if (Input::has('trashed') && Input::get('trashed') === 'true')
 						<form action="{{{ URL::route('bike.destroy', $bike->id) }}}" role="form" class="hb-margin-top-1x" method="post">
 							<input type="hidden" name="_method" value="delete">
 							<input type="hidden" name="restore" value="true">

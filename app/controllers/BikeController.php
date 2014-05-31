@@ -20,9 +20,12 @@ class BikeController extends \BaseController {
 		$query = Bike::query();
 		$params = array();
 		$order = array('created_at','desc');
+		$trashed = $search = false;
 
-		if (Input::has('trash') && Input::get('trash') === 'true') {
+		if (Auth::check() && Input::has('trashed') && Input::get('trashed') === 'true') {
 			$title = 'Papierkorb';
+			$trashed = true;
+			$params['trashed'] = 'true';
 
 			$query = $query->onlyTrashed();
 			$order = array(
@@ -54,7 +57,6 @@ class BikeController extends \BaseController {
 		}
 		else {
 			$notfound = 'in dieser Kategorie';
-			$search = false;
 
 			if (Input::has('kategorie')) {
 				$category = Input::get('kategorie');
@@ -94,7 +96,7 @@ class BikeController extends \BaseController {
 
 		$hits = $query->count();
 
-		if ($hits === 0) {
+		if ($hits === 0 && $trashed === false) {
 			return View::make('bike.empty', array(
 	 			'title' => $title,
 				'text' => $notfound,
@@ -104,7 +106,7 @@ class BikeController extends \BaseController {
 			));
 		}
 
-		if ($search && $hits === 1) {
+		if ($hits === 1 && $search) {
 			return Redirect::route('bike.show', array(
 				$query->first()->id,
 				'q' => Input::get('q')
@@ -221,7 +223,10 @@ class BikeController extends \BaseController {
     		DB::rollback();
 		}
 
-		return Redirect::route('bike.show', $bike->id);
+		$url = URL::Action('bike.show', $bike->id);
+
+		return Redirect::to($url)->with('X-Header',
+			array('X-Location' => $url));
 	}
 
 
@@ -236,8 +241,8 @@ class BikeController extends \BaseController {
 		$bike = Bike::query();
 		$collapse_details = '';
 
-		if (Auth::check() && Input::has('trash') && Input::get('trash') === 'true') {
-			$bike = $bike->withTrashed();
+		if (Auth::check() && Input::has('trashed') && Input::get('trashed') === 'true') {
+			$bike = $bike->onlyTrashed();
 		}
 
 		if (Input::has('collapse-details')) {
@@ -247,6 +252,9 @@ class BikeController extends \BaseController {
 		$components = array( 'Farbe', 'Rahmen', 'Bremse', 'Schaltwerk' );
 		$bike = $bike->with('categories', 'manufacturer', 'customers', 
 			'components', 'images')->find($id);
+		if (! $bike) {
+			return View::make('404');
+		}
 
 		$highlights = $bike->components->filter(function($component) use ($components) {
 			if (in_array($component->type->name, $components)) {
@@ -395,7 +403,10 @@ class BikeController extends \BaseController {
     		DB::rollback();
 		}
 
-		return Redirect::route('bike.show', $bike->id);
+		$url = URL::Action('bike.show', $bike->id);
+
+		return Redirect::to($url)->with('X-Header',
+			array('X-Location' => $url));
 	}
 
 
@@ -414,7 +425,10 @@ class BikeController extends \BaseController {
 			Bike::find($id)->delete();
 		}
 
-		return Redirect::route('bike.index');
+		$url = URL::Action('bike.index');
+
+		return Redirect::to($url)->with('X-Header',
+			array('X-Location' => $url));
 	}
 
 
