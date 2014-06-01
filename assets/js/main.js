@@ -68,7 +68,7 @@
 
 						$doc.trigger('singlepage.load.after', [ url, data ]);
 					});
-				}	
+				}
 			});
 		}, 0);
 

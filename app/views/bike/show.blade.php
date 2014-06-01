@@ -4,7 +4,7 @@
 <div class="container hb-container">
 	<div class="row">
 		<div class="col-sm-7 col-md-8">
-			<div id="carousel-bike" class="carousel slide" data-ride="carousel">
+			<div id="carousel-bike" class="carousel slide" data-interval="false" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
 					@foreach($bike->images as $image)
@@ -178,4 +178,34 @@
 		</div>
 	</div>
 </div -->
+@stop
+
+@section('javascript')
+(function($, doc) {
+	if (! Modernizr.touch) {
+		return;
+	}
+
+	var $carousel = $('#carousel-bike');
+
+	var initSwipe = function() {
+		$carousel.swipe({
+			swipeRight: function() {
+				$carousel.carousel('next');
+			},
+			swipeLeft: function() {
+				$carousel.carousel('prev');
+			}
+		});
+	};
+
+	if ($.fn.swipe) {
+		initSwipe();
+	}
+	else {
+		$(doc).on('swipe.load.after', function() {
+			initSwipe();
+		});
+	}
+})(jQuery, document);
 @stop

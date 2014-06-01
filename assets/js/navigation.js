@@ -6,6 +6,7 @@
 		$navbarSecondary = $('#navbar-secondary'),
 		$search = $('#navbar-search'),
 		$dropdown = $('#navbar-main .dropdown'),
+		$close = $('#js-navbar-close'),
 		$meta = $('meta[name="viewport"]');
 
 	$search.on('touchstart', function(event) {
@@ -50,6 +51,15 @@
 				$this.find('.dropdown-toggle').dropdown('toggle');
 			}
 		});
+
+		if (url.match(/bike\/[0-9]*$/)) {
+			$close.attr('href', window.location);
+			$close.removeClass('invisible');
+		}
+		else {
+			$close.attr('href', '#');
+			$close.addClass('invisible');
+		}
 	});
 
 	$(document).on('singlepage.load.after', function(event, url) {

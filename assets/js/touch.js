@@ -1,4 +1,4 @@
-(function($) {
+(function($, doc) {
 	'use strict';
 
 	if (! Modernizr.touch) {
@@ -17,30 +17,39 @@
 	
 	/* Fix fixed scrollbar in Webkit */
 	$navbarSearch.focus(function(event) {
-		if ($(document).scrollTop() !== 0) {
+		if ($(doc).scrollTop() !== 0) {
 			$('.navbar-fixed-top').addClass('fix-fixed');
-			$('.navbar-fixed-top').css('top', $(document).scrollTop());
+			$('.navbar-fixed-top').css('top', $(doc).scrollTop());
 
 			window.setTimeout(function() {
 				$('html, body').scrollTop($('.navbar-fixed-top').offset().top);
 			}, 150);
 		}
 
-		$(document).on('touchmove', touchmoveEvent);
+		$(doc).on('touchmove', touchmoveEvent);
 	});
 
 	$navbarSearch.blur(function(event) {
 		$('.navbar-fixed-top').removeClass('fix-fixed');
 		$('.navbar-fixed-top').css('top', 'none');
-		$(document).off('touchmove', touchmoveEvent);
+		$(doc).off('touchmove', touchmoveEvent);
 	});
 
 	/* Load Fastclick */
 	$.ajax({
-		url: '/js/fastclick.min.js',
+		url: Asset.rev('/js/fastclick.min.js'),
 		dataType: 'script',
 		cache: true
 	}).done(function() {
-		FastClick.attach(document.body);
+		FastClick.attach(doc.body);
+
+		/* Load jquery.touchSwipe */
+		$.ajax({
+			url: Asset.rev('/js/jquery.touchSwipe.min.js'),
+			dataType: 'script',
+			cache: true
+		}).done(function() {
+			$(doc).trigger('swipe.load.after');
+		});
 	});
-})(jQuery);
+})(jQuery, document);

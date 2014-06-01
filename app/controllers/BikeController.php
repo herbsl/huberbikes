@@ -268,7 +268,7 @@ class BikeController extends \BaseController {
 			'title' => $bike->manufacturer->name . ' ' . $bike->name,
 			'highlights' => $highlights,
 			'bike' => $bike,
-			'collapse_details' => $collapse_details
+			'collapse_details' => $collapse_details,
 		));
 	}
 

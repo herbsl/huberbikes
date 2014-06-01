@@ -187,6 +187,7 @@ gulp.task('js:addons', function() {
 	return gulp.src([
 		'assets/bower/typeahead.js/dist/typeahead.bundle.js',
 		'assets/bower/fastclick/lib/fastclick.js',
+		'assets/bower/jquery-touchswipe/jquery.touchSwipe.js',
 		'assets/bower/dropzone/downloads/dropzone.js',
 	])
 	.pipe(jshint('.jshintrc'))

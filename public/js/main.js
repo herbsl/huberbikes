@@ -11918,7 +11918,7 @@ return jQuery;
 
 						$doc.trigger('singlepage.load.after', [ url, data ]);
 					});
-				}	
+				}
 			});
 		}, 0);
 
@@ -11985,6 +11985,7 @@ return jQuery;
 		$navbarSecondary = $('#navbar-secondary'),
 		$search = $('#navbar-search'),
 		$dropdown = $('#navbar-main .dropdown'),
+		$close = $('#js-navbar-close'),
 		$meta = $('meta[name="viewport"]');
 
 	$search.on('touchstart', function(event) {
@@ -12029,6 +12030,15 @@ return jQuery;
 				$this.find('.dropdown-toggle').dropdown('toggle');
 			}
 		});
+
+		if (url.match(/bike\/[0-9]*$/)) {
+			$close.attr('href', window.location);
+			$close.removeClass('invisible');
+		}
+		else {
+			$close.attr('href', '#');
+			$close.addClass('invisible');
+		}
 	});
 
 	$(document).on('singlepage.load.after', function(event, url) {
@@ -12168,7 +12178,7 @@ return jQuery;
 	});
 })(jQuery, window, document);
 
-(function($) {
+(function($, doc) {
 	'use strict';
 
 	if (! Modernizr.touch) {
@@ -12187,33 +12197,42 @@ return jQuery;
 	
 	/* Fix fixed scrollbar in Webkit */
 	$navbarSearch.focus(function(event) {
-		if ($(document).scrollTop() !== 0) {
+		if ($(doc).scrollTop() !== 0) {
 			$('.navbar-fixed-top').addClass('fix-fixed');
-			$('.navbar-fixed-top').css('top', $(document).scrollTop());
+			$('.navbar-fixed-top').css('top', $(doc).scrollTop());
 
 			window.setTimeout(function() {
 				$('html, body').scrollTop($('.navbar-fixed-top').offset().top);
 			}, 150);
 		}
 
-		$(document).on('touchmove', touchmoveEvent);
+		$(doc).on('touchmove', touchmoveEvent);
 	});
 
 	$navbarSearch.blur(function(event) {
 		$('.navbar-fixed-top').removeClass('fix-fixed');
 		$('.navbar-fixed-top').css('top', 'none');
-		$(document).off('touchmove', touchmoveEvent);
+		$(doc).off('touchmove', touchmoveEvent);
 	});
 
 	/* Load Fastclick */
 	$.ajax({
-		url: '/js/fastclick.min.js',
+		url: Asset.rev('/js/fastclick.min.js'),
 		dataType: 'script',
 		cache: true
 	}).done(function() {
-		FastClick.attach(document.body);
+		FastClick.attach(doc.body);
+
+		/* Load jquery.touchSwipe */
+		$.ajax({
+			url: Asset.rev('/js/jquery.touchSwipe.min.js'),
+			dataType: 'script',
+			cache: true
+		}).done(function() {
+			$(doc).trigger('swipe.load.after');
+		});
 	});
-})(jQuery);
+})(jQuery, document);
 
 (function($, win) {
 	'use strict';
