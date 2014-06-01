@@ -191,10 +191,10 @@
 	var initSwipe = function() {
 		$carousel.swipe({
 			swipeRight: function() {
-				$carousel.carousel('next');
+				$carousel.carousel('prev');
 			},
 			swipeLeft: function() {
-				$carousel.carousel('prev');
+				$carousel.carousel('next');
 			}
 		});
 	};
