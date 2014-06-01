@@ -12185,7 +12185,8 @@ return jQuery;
 		return;
 	}
 
-	var $navbarSearch = $('#navbar-search');
+	var $doc = $(doc),
+		$navbarSearch = $('#navbar-search');
 	
 	var touchmoveEvent = function(event) {
 		$target = $(event.target);
@@ -12197,22 +12198,22 @@ return jQuery;
 	
 	/* Fix fixed scrollbar in Webkit */
 	$navbarSearch.focus(function(event) {
-		if ($(doc).scrollTop() !== 0) {
+		if ($doc.scrollTop() !== 0) {
 			$('.navbar-fixed-top').addClass('fix-fixed');
-			$('.navbar-fixed-top').css('top', $(doc).scrollTop());
+			$('.navbar-fixed-top').css('top', $doc.scrollTop());
 
 			window.setTimeout(function() {
 				$('html, body').scrollTop($('.navbar-fixed-top').offset().top);
 			}, 150);
 		}
 
-		$(doc).on('touchmove', touchmoveEvent);
+		$doc.on('touchmove', touchmoveEvent);
 	});
 
 	$navbarSearch.blur(function(event) {
 		$('.navbar-fixed-top').removeClass('fix-fixed');
 		$('.navbar-fixed-top').css('top', 'none');
-		$(doc).off('touchmove', touchmoveEvent);
+		$doc.off('touchmove', touchmoveEvent);
 	});
 
 	/* Load Fastclick */
@@ -12229,9 +12230,31 @@ return jQuery;
 			dataType: 'script',
 			cache: true
 		}).done(function() {
-			$(doc).trigger('swipe.load.after');
+			$doc.trigger('swipe.load.after');
 		});
 	});
+
+	var initSwipe = function() {
+		$(document.body).swipe({
+			swipeRight: function() {
+				history.go(-1);
+			},
+			swipeLeft: function() {
+				history.forward();
+			}
+		});
+	};
+
+	if (Modernizr.history) {
+		if ($.fn.swipe) {
+			initSwipe();			
+		}
+		else {
+			$doc.on('swipe.load.after', function() {
+				initSwipe();
+			});
+		}
+	}
 })(jQuery, document);
 
 (function($, win) {

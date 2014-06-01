@@ -182,19 +182,24 @@
 
 @section('javascript')
 (function($, doc) {
+	'use strict';
+
 	if (! Modernizr.touch) {
 		return;
 	}
 
-	var $carousel = $('#carousel-bike');
+	var $doc = $(doc),
+		$carousel = $('#carousel-bike');
 
 	var initSwipe = function() {
 		$carousel.swipe({
-			swipeRight: function() {
+			swipeRight: function(event) {
 				$carousel.carousel('prev');
+				event.stopPropagation();
 			},
-			swipeLeft: function() {
+			swipeLeft: function(event) {
 				$carousel.carousel('next');
+				event.stopPropagation();
 			}
 		});
 	};
@@ -203,7 +208,7 @@
 		initSwipe();
 	}
 	else {
-		$(doc).on('swipe.load.after', function() {
+		$doc.on('swipe.load.after', function() {
 			initSwipe();
 		});
 	}
