@@ -5452,7 +5452,7 @@ html, body, #singlepage-content {
 	max-height: 240px;
 }
 
-.carousel-control, .carousel-control:hover {
+/*.carousel-control, .carousel-control:hover {
 	text-shadow: none;
 	opacity: 1;
 	color: #4c4c4c;
@@ -5460,6 +5460,14 @@ html, body, #singlepage-content {
 
 .carousel-control.right, .carousel-control.left {
 	background-image: none;
+}*/
+
+.hb-carousel-indicators li {
+	border: 1px solid #cccccc;
+}
+
+.hb-carousel-indicators li.active {
+	background-color: #cccccc;
 }
 
 #bikes-detail-highlight {

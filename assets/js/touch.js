@@ -54,7 +54,7 @@
 		});
 	});
 
-	var initSwipe = function() {
+	/*var initSwipe = function() {
 		$(document.body).swipe({
 			swipeRight: function() {
 				history.go(-1);
@@ -74,5 +74,5 @@
 				initSwipe();
 			});
 		}
-	}
+	}*/
 })(jQuery, document);

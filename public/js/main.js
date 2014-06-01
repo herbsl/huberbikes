@@ -12234,7 +12234,7 @@ return jQuery;
 		});
 	});
 
-	var initSwipe = function() {
+	/*var initSwipe = function() {
 		$(document.body).swipe({
 			swipeRight: function() {
 				history.go(-1);
@@ -12254,7 +12254,7 @@ return jQuery;
 				initSwipe();
 			});
 		}
-	}
+	}*/
 })(jQuery, document);
 
 (function($, win) {

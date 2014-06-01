@@ -1,17 +1,16 @@
 @extends('layout')
-
 @section('content')
 <div class="container hb-container">
 	<div class="row">
 		<div class="col-sm-7 col-md-8">
 			<div id="carousel-bike" class="carousel slide" data-interval="false" data-ride="carousel">
 				<!-- Indicators -->
-				<ol class="carousel-indicators">
+				<ol class="carousel-indicators hb-carousel-indicators">
 					@foreach($bike->images as $image)
 						@if ($image->default)
 						<li data-target="#carousel-bike" data-slide-to="{{{ $image->id }}}" class="active"></li>
 						@else
-						<li data-target="#carousel-bike" data-slide-to="{{{ $image->id }}}" class="active"></li>
+						<li data-target="#carousel-bike" data-slide-to="{{{ $image->id }}}"></li>
 						@endif
 					@endforeach
 				</ol>
