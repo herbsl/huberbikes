@@ -5,6 +5,7 @@
 		<div class="col-sm-7 col-md-8">
 			<div id="carousel-bike" class="carousel slide" data-interval="false" data-ride="carousel">
 				<!-- Indicators -->
+				@if (count($bike->images) > 1)
 				<ol class="carousel-indicators hb-carousel-indicators">
 					@foreach($bike->images as $image)
 						@if ($image->default)
@@ -14,6 +15,7 @@
 						@endif
 					@endforeach
 				</ol>
+				@endif
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner">
 					@foreach($bike->images as $image)
