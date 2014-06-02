@@ -1,7 +1,7 @@
 <div class="navbar hb-navbar-secondary" id="navbar-secondary" role="navigation">
 	<div class="container-fluid">
 		@if (Auth::check())
-		<ul class="nav navbar-nav navbar">
+		<ul class="nav navbar-nav">
 			<li>
 				<a href="{{{ URL::action('AuthController@logout') }}}" data-singlepage-load="disabled">Abmelden</a>
 			</li>

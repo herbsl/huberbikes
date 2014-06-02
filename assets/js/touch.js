@@ -1,6 +1,6 @@
 (function($, doc) {
 	'use strict';
-
+	
 	if (! Modernizr.touch) {
 		return;
 	}

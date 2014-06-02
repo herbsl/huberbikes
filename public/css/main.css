@@ -5275,11 +5275,19 @@ html, body, #singlepage-content {
 }
 
 .hb-navbar-secondary {
+	/* needed for modal on iphone */
+	position: absolute;
+	width: 100%;
+
 	background-color: #fff;
 	opacity: 1;
 	border-radius: 0;
 	border-top: 1px solid #cccccc;
 	margin: 0;
+}
+
+.hb-navbar-secondary .active {
+	background-color: #efefef;
 }
 
 @media (min-width: 768px) {

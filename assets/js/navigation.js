@@ -73,8 +73,9 @@
 				
 		/* Manipulate active-state of secondary-navbar */
 		$navbarSecondary.find('li.active')
-			.removeClass('active')
-			.find('li a[href="' + url + '"]')
+			.removeClass('active');
+
+		$navbarSecondary.find('li a[href="' + url + '"]')
 			.parent().addClass('active');
 
 		/* Maniuplate link to start-page */

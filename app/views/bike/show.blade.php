@@ -169,16 +169,6 @@
 		</div>
 	</div>
 </div>
-<!-- div class="modal fade bottom" id="modal-bike" tabindex="-1" role="dialog" aria-labelledby="modal-bike-label" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-fs">
-		<div class="modal-content">
-			<div class="modal-body">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<img class="img-responsive" src="/img/bikes/{{{ $bike->id}}}.jpg" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
-			</div>
-		</div>
-	</div>
-</div -->
 @stop
 
 @section('javascript')
