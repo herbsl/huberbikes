@@ -1,4 +1,4 @@
-/bootstrap/compiled.php
+bootstrap/compiled.php
 composer.phar
 composer.lock
 .env.staging.php
@@ -6,6 +6,7 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
-/assets/bower
-/node_modules
-/public/img/bike
+assets/bower
+node_modules
+public/img/bike
+app/database

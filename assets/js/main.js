@@ -6,7 +6,7 @@
 		$title = $('title'),
 		$content = $('#singlepage-content');
 
-	var loadContent = function(url, data, type, add) {
+	var loadContent = function(url, data, type, add, target) {
 		var slide = add;
 
 		if (url === '/') {
@@ -63,7 +63,8 @@
 						}
 
 						if (add && Modernizr.history) {
-							history.pushState({}, '', url);
+							history.pushState(
+							{ a: 5 }, '', url);
 						}
 
 						$doc.trigger('singlepage.load.after', [ url, data ]);
@@ -80,6 +81,7 @@
 			/*if (event.originalEvent.state === null) {
 				return;
 			}*/
+			//console.log(event.originalEvent);
 
 			return loadContent(location.href, '', 'get', false);
 		});
@@ -123,6 +125,6 @@
 			return true;
 		}
 
-		return loadContent(url, data, type, (type === 'get') ? true : false);
+		return loadContent(url, data, type, (type === 'get') ? true : false, event.target);
 	});
 })(jQuery, window);

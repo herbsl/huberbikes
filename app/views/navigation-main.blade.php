@@ -20,7 +20,6 @@
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-left">
-
 				@if (Input::has('kategorie'))
 				<li class="active dropdown">
 				@else

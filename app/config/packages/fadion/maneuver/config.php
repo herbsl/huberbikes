@@ -12,7 +12,8 @@ return array(
     |
     */
     'ignored' => array(
-		'/assets'
+		'assets',
+		'app/database'
 	),
 
     /*
@@ -43,6 +44,15 @@ return array(
             'username'  => $_ENV['ftp.staging.username'],
             'password'  => $_ENV['ftp.staging.password'],
             'path'      => $_ENV['ftp.staging.path'],
+            'port'      => 21,
+            'passive'   => true
+        ),
+
+        'production' => array(
+            'host'      => $_ENV['ftp.production.host'],
+            'username'  => $_ENV['ftp.production.username'],
+            'password'  => $_ENV['ftp.production.password'],
+            'path'      => $_ENV['ftp.production.path'],
             'port'      => 21,
             'passive'   => true
         ),

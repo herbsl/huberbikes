@@ -7,7 +7,40 @@
 		$search = $('#navbar-search'),
 		$dropdown = $('#navbar-main .dropdown'),
 		$close = $('#js-navbar-close'),
-		$meta = $('meta[name="viewport"]');
+		$meta = $('meta[name="viewport"]'),
+		navStore = {};
+
+	var removeActive = function($nav) {
+		$nav.find('li.active')
+			.removeClass('active');
+	};
+
+	$navbarMain.click(function(event) {
+		var $target = $(event.target);
+
+		if ($target.data('singlepage-load')) {
+			return;
+		}
+		
+		removeActive($navbarMain);
+		removeActive($navbarSecondary);
+
+		$target.parent().addClass('active')
+			.closest('li.dropdown').addClass('active');
+	});
+
+	$navbarSecondary.click(function(event) {
+		var $target = $(event.target);
+
+		if ($target.data('singlepage-load')) {
+			return;
+		}
+
+		removeActive($navbarMain);
+		removeActive($navbarSecondary);
+
+		$(event.target).parent().addClass('active');
+	});
 
 	$search.on('touchstart', function(event) {
 		var content = $meta.attr('content');
@@ -63,21 +96,6 @@
 	});
 
 	$(document).on('singlepage.load.after', function(event, url) {
-		/* Manipulate active-state of main-navbar */
-		$navbarMain.find('li.active')
-			.removeClass('active');
-
-		$navbarMain.find('li a[href="' + url + '"]')
-			.parent().addClass('active')
-			.closest('li.dropdown').addClass('active');
-				
-		/* Manipulate active-state of secondary-navbar */
-		$navbarSecondary.find('li.active')
-			.removeClass('active');
-
-		$navbarSecondary.find('li a[href="' + url + '"]')
-			.parent().addClass('active');
-
 		/* Maniuplate link to start-page */
 		if (url === '/') {
 			$navbarBrand.attr('href', '#');
