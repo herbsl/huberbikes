@@ -12,8 +12,8 @@ return array(
     |
     */
     'ignored' => array(
-		'assets/**/*',
-		'app/database/**/*'
+		'assets/*',
+		'app/database/*'
 	),
 
     /*

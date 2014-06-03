@@ -172,14 +172,14 @@
 @stop
 
 @section('javascript')
-(function($, doc) {
+$(document).ready(function() {
 	'use strict';
 
 	if (! Modernizr.touch) {
 		return;
 	}
 
-	var $doc = $(doc),
+	var $doc = $(document),
 		$carousel = $('#carousel-bike');
 
 	var initSwipe = function() {
@@ -203,5 +203,5 @@
 			initSwipe();
 		});
 	}
-})(jQuery, document);
+});
 @stop
