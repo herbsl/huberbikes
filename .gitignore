@@ -6,7 +6,7 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
-assets/bower
-node_modules
-public/img/bike
-app/database
+assets/bower/*
+node_modules/*
+public/img/bike/*
+app/database/seeds/*
