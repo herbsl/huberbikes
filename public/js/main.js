@@ -12188,11 +12188,11 @@ return jQuery;
         }
     }
 
-	$(doc).ready(function() {
+	/*$(win).load(function() {
 		$('img').each(function() {
 			srcset(this);
 		});
-	});
+	});*/
 
 	$(doc).on('singlepage.load.inject', function(event, $content) {
 	    $content.find('img').each(function() {
@@ -12248,13 +12248,13 @@ return jQuery;
 		FastClick.attach(doc.body);
 
 		/* Load jquery.touchSwipe */
-		$.ajax({
+		/*$.ajax({
 			url: Asset.rev('/js/jquery.touchSwipe.min.js'),
 			dataType: 'script',
 			cache: true
 		}).done(function() {
 			$doc.trigger('swipe.load.after');
-		});
+		});*/
 	});
 
 	/*var initSwipe = function() {
