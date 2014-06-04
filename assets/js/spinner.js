@@ -15,12 +15,12 @@
 		}
 	};
 
-	$(doc).on('singlepage.load.before', function() {
+	$(doc).on('singlepage.load.before', function(event, params) {
 		stop();
 		spinner = new Spinner(opts).spin(target);
 	});
 
-	$(doc).on('singlepage.load.after', function() {
+	$(doc).on('singlepage.load.after', function(event, params) {
 		$(spinner.el).fadeOut(250, function() {
 			stop();
 		});
