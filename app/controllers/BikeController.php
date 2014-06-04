@@ -251,7 +251,12 @@ class BikeController extends \BaseController {
 
 		$components = array( 'Farbe', 'Rahmen', 'Bremse', 'Schaltwerk' );
 		$bike = $bike->with('categories', 'manufacturer', 'customers', 
-			'components', 'images')->find($id);
+			'components')
+			->with(array('images' => function($query) {
+				$query->orderBy('default', 'desc');
+			}))
+			->find($id);
+
 		if (! $bike) {
 			return View::make('404');
 		}

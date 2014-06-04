@@ -1,4 +1,4 @@
-(function($, win) {
+(function($, win, undefined) {
 	'use strict';
 
 	if (! Modernizr.history) {
@@ -8,7 +8,9 @@
 	var $doc = $(document),
 		$body = $('body'),
 		$title = $('title'),
-		$content = $('#singlepage-content');
+		$content = $('#singlepage-content'),
+		elStore = {},
+		count = 0;
 
 	var loadContent = function(params) {
 		$doc.trigger('singlepage.load.before', params);
@@ -55,8 +57,10 @@
 				$content.addClass('slidein-right-go');
 
 				if (params.addHistory) {
+					params.$el = undefined;
 					history.pushState(
 						params, '', params.url);
+					params.$el = elStore[params.id];
 				}
 
 				$doc.trigger('singlepage.load.after', params);
@@ -73,6 +77,7 @@
 
 		var params = event.originalEvent.state;
 		params.addHistory = false;
+		params.$el = elStore[params.id];
 
 		return loadContent(params);
 	});
@@ -116,11 +121,20 @@
 			return true;
 		}
 
+		var id = $el.data('singlepage-id');
+		if (id === undefined) {
+			id = count++;
+			$el.data('singlepage-id', id);
+			elStore[id] = $el;
+		}
+
 		return loadContent({
 			url: url,
 			query: query,
 			reqType: reqType,
-			addHistory: (reqType === 'get') ? true : false
+			addHistory: (reqType === 'get') ? true : false,
+			id: id,
+			$el: $el
 		});
 	});	
 })(jQuery, window);

@@ -1,4 +1,4 @@
-(function($) {
+(function($, doc) {
 	'use strict';
 
 	var $navbarMain = $('#navbar-main'),
@@ -7,41 +7,29 @@
 		$search = $('#navbar-search'),
 		$dropdown = $('#navbar-main .dropdown'),
 		$close = $('#js-navbar-close'),
-		$meta = $('meta[name="viewport"]'),
-		navStore = {};
+		$meta = $('meta[name="viewport"]');
 
 	var removeActive = function($nav) {
 		$nav.find('li.active')
 			.removeClass('active');
 	};
 
-	$navbarMain.click(function(event) {
-		var $target = $(event.target);
-
-		if ($target.data('singlepage-load')) {
+	var setActive = function($el) {
+		if (! $el || $el.closest('.navbar').length === 0) {
 			return;
 		}
-		
+
 		removeActive($navbarMain);
 		removeActive($navbarSecondary);
 
-		$target.parent().addClass('active')
+		$el.parent().addClass('active')
 			.closest('li.dropdown').addClass('active');
-	});
+	};
 
-	$navbarSecondary.click(function(event) {
-		var $target = $(event.target);
+	/* Disable links because we have javascript */
+	$('.dropdown-toggle, #responsive-menu').attr('href', '#');
 
-		if ($target.data('singlepage-load')) {
-			return;
-		}
-
-		removeActive($navbarMain);
-		removeActive($navbarSecondary);
-
-		$(event.target).parent().addClass('active');
-	});
-
+	/* Fix input field on iphone */
 	$search.on('touchstart', function(event) {
 		var content = $meta.attr('content');
 		content = content.replace(/user-scalable=yes/, 'user-scalable=no');
@@ -54,14 +42,9 @@
 		$meta.attr('content', content);
 	});
 
-	$('#responsive-menu').click(function(event) {
-		// The click should only be triggered without javascript
-		event.preventDefault();
-	});
+	$(doc).on('singlepage.load.before', function(event, params) {
+		setActive(params.$el);
 
-	$('.dropdown-toggle').attr('href', '#');
-
-	$(document).on('singlepage.load.before', function(event, params) {
 		/* Close main-navbar */
 		if ($navbarMain.hasClass('in')) {
 			$navbarMain.removeClass('in');
@@ -95,7 +78,7 @@
 		}
 	});
 
-	$(document).on('singlepage.load.after', function(event, params) {
+	$(doc).on('singlepage.load.after', function(event, params) {
 		/* Maniuplate link to start-page */
 		if (params.url === '/') {
 			$navbarBrand.attr('href', '#');
@@ -104,4 +87,4 @@
 			$navbarBrand.attr('href', '/');
 		}
 	});
-})(jQuery);
+})(jQuery, document);
