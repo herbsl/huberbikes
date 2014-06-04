@@ -12188,7 +12188,7 @@ return jQuery;
         }
     }
 
-	$(doc).ready(function() {
+	$(win).on('load', function() {
 		$('img').each(function() {
 			srcset(this);
 		});
@@ -12282,7 +12282,7 @@ return jQuery;
 
 (function($, win) {
 	'use strict';
-	return;
+
 	$(win).on('load', function() {
 		var css = Asset.rev('/css/typeahead.min.css'),
 			js = Asset.rev('/js/typeahead.bundle.min.js');

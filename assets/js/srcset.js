@@ -31,7 +31,7 @@
         }
     }
 
-	$(doc).ready(function() {
+	$(win).on('load', function() {
 		$('img').each(function() {
 			srcset(this);
 		});
