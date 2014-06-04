@@ -32,7 +32,7 @@
 		@if (App::environment('local'))
 		<script src="http://{{{ gethostname() }}}:35729/livereload.js?snipver=1"></script>
 		@endif
-		<script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
 		<script id="singlepage-javascript">@yield('javascript')</script>
+		<script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
 	</body>
 </html>
