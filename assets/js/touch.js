@@ -45,13 +45,13 @@
 		FastClick.attach(doc.body);
 
 		/* Load jquery.touchSwipe */
-		/*$.ajax({
+		$.ajax({
 			url: Asset.rev('/js/jquery.touchSwipe.min.js'),
 			dataType: 'script',
 			cache: true
 		}).done(function() {
 			$doc.trigger('swipe.load.after');
-		});*/
+		});
 	});
 
 	/*var initSwipe = function() {

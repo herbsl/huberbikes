@@ -1,6 +1,6 @@
 (function($, win) {
 	'use strict';
-
+	return;
 	$(win).on('load', function() {
 		var css = Asset.rev('/css/typeahead.min.css'),
 			js = Asset.rev('/js/typeahead.bundle.min.js');

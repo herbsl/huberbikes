@@ -12188,11 +12188,11 @@ return jQuery;
         }
     }
 
-	/*$(win).load(function() {
+	$(doc).ready(function() {
 		$('img').each(function() {
 			srcset(this);
 		});
-	});*/
+	});
 
 	$(doc).on('singlepage.load.inject', function(event, $content) {
 	    $content.find('img').each(function() {
@@ -12248,13 +12248,13 @@ return jQuery;
 		FastClick.attach(doc.body);
 
 		/* Load jquery.touchSwipe */
-		/*$.ajax({
+		$.ajax({
 			url: Asset.rev('/js/jquery.touchSwipe.min.js'),
 			dataType: 'script',
 			cache: true
 		}).done(function() {
 			$doc.trigger('swipe.load.after');
-		});*/
+		});
 	});
 
 	/*var initSwipe = function() {
@@ -12282,7 +12282,7 @@ return jQuery;
 
 (function($, win) {
 	'use strict';
-
+	return;
 	$(win).on('load', function() {
 		var css = Asset.rev('/css/typeahead.min.css'),
 			js = Asset.rev('/js/typeahead.bundle.min.js');
