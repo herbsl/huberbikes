@@ -11858,9 +11858,7 @@ return jQuery;
 	var $doc = $(document),
 		$body = $('body'),
 		$title = $('title'),
-		$content = $('#singlepage-content'),
-		elStore = {},
-		count = 0;
+		$content = $('#singlepage-content');
 
 	var loadContent = function(params) {
 		$doc.trigger('singlepage.load.before', params);
@@ -11907,10 +11905,8 @@ return jQuery;
 				$content.addClass('slidein-right-go');
 
 				if (params.addHistory) {
-					params.$el = undefined;
 					history.pushState(
 						params, '', params.url);
-					params.$el = elStore[params.id];
 				}
 
 				$doc.trigger('singlepage.load.after', params);
@@ -11927,7 +11923,6 @@ return jQuery;
 
 		var params = event.originalEvent.state;
 		params.addHistory = false;
-		params.$el = elStore[params.id];
 
 		return loadContent(params);
 	});
@@ -11971,20 +11966,11 @@ return jQuery;
 			return true;
 		}
 
-		var id = $el.data('singlepage-id');
-		if (id === undefined) {
-			id = count++;
-			$el.data('singlepage-id', id);
-			elStore[id] = $el;
-		}
-
 		return loadContent({
 			url: url,
 			query: query,
 			reqType: reqType,
-			addHistory: (reqType === 'get') ? true : false,
-			id: id,
-			$el: $el
+			addHistory: (reqType === 'get') ? true : false
 		});
 	});	
 })(jQuery, window);
@@ -11998,23 +11984,12 @@ return jQuery;
 		$search = $('#navbar-search'),
 		$dropdown = $('#navbar-main .dropdown'),
 		$close = $('#js-navbar-close'),
-		$meta = $('meta[name="viewport"]');
+		$meta = $('meta[name="viewport"]'),
+		$navEl;
 
 	var removeActive = function($nav) {
 		$nav.find('li.active')
 			.removeClass('active');
-	};
-
-	var setActive = function($el) {
-		if (! $el || $el.closest('.navbar').length === 0) {
-			return;
-		}
-
-		removeActive($navbarMain);
-		removeActive($navbarSecondary);
-
-		$el.parent().addClass('active')
-			.closest('li.dropdown').addClass('active');
 	};
 
 	/* Disable links because we have javascript */
@@ -12034,7 +12009,8 @@ return jQuery;
 	});
 
 	$(doc).on('singlepage.load.before', function(event, params) {
-		setActive(params.$el);
+		removeActive($navbarMain);
+		removeActive($navbarSecondary);
 
 		/* Close main-navbar */
 		if ($navbarMain.hasClass('in')) {

@@ -7,23 +7,12 @@
 		$search = $('#navbar-search'),
 		$dropdown = $('#navbar-main .dropdown'),
 		$close = $('#js-navbar-close'),
-		$meta = $('meta[name="viewport"]');
+		$meta = $('meta[name="viewport"]'),
+		$navEl;
 
 	var removeActive = function($nav) {
 		$nav.find('li.active')
 			.removeClass('active');
-	};
-
-	var setActive = function($el) {
-		if (! $el || $el.closest('.navbar').length === 0) {
-			return;
-		}
-
-		removeActive($navbarMain);
-		removeActive($navbarSecondary);
-
-		$el.parent().addClass('active')
-			.closest('li.dropdown').addClass('active');
 	};
 
 	/* Disable links because we have javascript */
@@ -43,7 +32,8 @@
 	});
 
 	$(doc).on('singlepage.load.before', function(event, params) {
-		setActive(params.$el);
+		removeActive($navbarMain);
+		removeActive($navbarSecondary);
 
 		/* Close main-navbar */
 		if ($navbarMain.hasClass('in')) {
