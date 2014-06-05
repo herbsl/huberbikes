@@ -11858,11 +11858,12 @@ return jQuery;
 	var $doc = $(document),
 		$body = $('body'),
 		$title = $('title'),
-		$content = $('#singlepage-content');
+		$content = $('#singlepage-content'),
+		$activeEl;
 
 	var loadContent = function(params) {
 		$doc.trigger('singlepage.load.before', params);
-			
+
 		$content.removeClass('slidein-right');
 		$content.removeClass('slidein-right-go');
 		$content.addClass('slideout-left-go');
@@ -11907,6 +11908,10 @@ return jQuery;
 				if (params.addHistory) {
 					history.pushState(
 						params, '', params.url);
+				}
+
+				if (document.activeElement) {
+					document.activeElement.blur();
 				}
 
 				$doc.trigger('singlepage.load.after', params);
@@ -11990,8 +11995,6 @@ return jQuery;
 	var removeActive = function($nav) {
 		$nav.find('li.active')
 			.removeClass('active');
-
-		$nav.find('a').blur();
 	};
 
 	/* Disable links because we have javascript */
@@ -12181,7 +12184,25 @@ return jQuery;
 
 	var $doc = $(doc),
 		$navbarSearch = $('#navbar-search');
+
+	/* disable :hover on touch devices */
+	try {
+        var ignore = /:hover/;
+        for (var i = 0; i < document.styleSheets.length; i++) {
+            var sheet = document.styleSheets[i];
+
+            for (var j = sheet.cssRules.length-1; j >= 0; j--) {
+                var rule = sheet.cssRules[j];
+                if (rule.type === CSSRule.STYLE_RULE &&
+					ignore.test(rule.selectorText)) {
+                    sheet.deleteRule(j);
+                }
+            }
+        }
+    }
+    catch(e){}
 	
+	/* Fix fixed scrollbar in Webkit */
 	var touchmoveEvent = function(event) {
 		$target = $(event.target);
 
@@ -12189,8 +12210,7 @@ return jQuery;
 			$navbarSearch.blur();
 		}
 	};
-	
-	/* Fix fixed scrollbar in Webkit */
+
 	$navbarSearch.focus(function(event) {
 		if ($doc.scrollTop() !== 0) {
 			$('.navbar-fixed-top').addClass('fix-fixed');

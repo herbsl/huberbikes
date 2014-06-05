@@ -8,11 +8,12 @@
 	var $doc = $(document),
 		$body = $('body'),
 		$title = $('title'),
-		$content = $('#singlepage-content');
+		$content = $('#singlepage-content'),
+		$activeEl;
 
 	var loadContent = function(params) {
 		$doc.trigger('singlepage.load.before', params);
-			
+
 		$content.removeClass('slidein-right');
 		$content.removeClass('slidein-right-go');
 		$content.addClass('slideout-left-go');
@@ -57,6 +58,10 @@
 				if (params.addHistory) {
 					history.pushState(
 						params, '', params.url);
+				}
+
+				if (document.activeElement) {
+					document.activeElement.blur();
 				}
 
 				$doc.trigger('singlepage.load.after', params);

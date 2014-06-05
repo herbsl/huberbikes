@@ -7,7 +7,25 @@
 
 	var $doc = $(doc),
 		$navbarSearch = $('#navbar-search');
+
+	/* disable :hover on touch devices */
+	try {
+        var ignore = /:hover/;
+        for (var i = 0; i < document.styleSheets.length; i++) {
+            var sheet = document.styleSheets[i];
+
+            for (var j = sheet.cssRules.length-1; j >= 0; j--) {
+                var rule = sheet.cssRules[j];
+                if (rule.type === CSSRule.STYLE_RULE &&
+					ignore.test(rule.selectorText)) {
+                    sheet.deleteRule(j);
+                }
+            }
+        }
+    }
+    catch(e){}
 	
+	/* Fix fixed scrollbar in Webkit */
 	var touchmoveEvent = function(event) {
 		$target = $(event.target);
 
@@ -15,8 +33,7 @@
 			$navbarSearch.blur();
 		}
 	};
-	
-	/* Fix fixed scrollbar in Webkit */
+
 	$navbarSearch.focus(function(event) {
 		if ($doc.scrollTop() !== 0) {
 			$('.navbar-fixed-top').addClass('fix-fixed');

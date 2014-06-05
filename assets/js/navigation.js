@@ -13,8 +13,6 @@
 	var removeActive = function($nav) {
 		$nav.find('li.active')
 			.removeClass('active');
-
-		$nav.find('a').blur();
 	};
 
 	/* Disable links because we have javascript */
