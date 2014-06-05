@@ -203,7 +203,7 @@ $(document).ready(function() {
 	}
 });
 
-$(window).on('load', function(event)  {
+$(document).ready(function(event) {
 	'use strict';
 
 	var $carouselInner = $('.carousel-inner');
@@ -220,9 +220,7 @@ $(window).on('load', function(event)  {
 			image.name + ' 2x');
 
 		$div.append($img);
-		$carouselInner.append($div);	
-
-		console.log($carousel);
+		$carouselInner.append($div);
 	};
 
 	$.getJSON('/image', {
