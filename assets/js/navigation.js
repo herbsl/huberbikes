@@ -32,9 +32,6 @@
 	});
 
 	$(doc).on('singlepage.load.before', function(event, params) {
-		removeActive($navbarMain);
-		removeActive($navbarSecondary);
-
 		/* Close main-navbar */
 		if ($navbarMain.hasClass('in')) {
 			$navbarMain.removeClass('in');
@@ -69,6 +66,9 @@
 	});
 
 	$(doc).on('singlepage.load.after', function(event, params) {
+		removeActive($navbarMain);
+		removeActive($navbarSecondary);
+
 		/* Maniuplate link to start-page */
 		if (params.url === '/') {
 			$navbarBrand.attr('href', '#');
