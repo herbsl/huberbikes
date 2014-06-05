@@ -20,12 +20,10 @@
 				<div class="carousel-inner">
 					@foreach($bike->images as $image)
 						@if ($image->default)
-						<div class="item active" data-id="{{{ $image->id }}}">
-						@else
-						<div class="item" data-id="{{{ $image->id }}}">
-						@endif
+						<div class="item hb-item active" data-id="{{{ $image->id }}}">
 							<img src="/img/cache/medium/bike/{{{ $bike->id }}}/{{{ $image->name }}}" srcset="/img/cache/medium-2x/bike/{{{ $bike->id }}}/{{{ $image->name }}} 2x" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
 						</div>
+						@endif
 					@endforeach
 				</div>
 				<!-- Controls -->
@@ -175,12 +173,12 @@
 $(document).ready(function() {
 	'use strict';
 
+	var $doc = $(document),
+		$carousel = $('#carousel-bike');
+
 	if (! Modernizr.touch) {
 		return;
 	}
-
-	var $doc = $(document),
-		$carousel = $('#carousel-bike');
 
 	var initSwipe = function() {
 		$carousel.swipe({
@@ -203,5 +201,38 @@ $(document).ready(function() {
 			initSwipe();
 		});
 	}
+});
+
+$(window).on('load', function(event)  {
+	'use strict';
+
+	var $carouselInner = $('.carousel-inner');
+
+	var addCarouselImage = function(image) {
+		var $div = $(document.createElement('div')),
+			$img = $(document.createElement('img')),
+			id = image.pivot.bike_id;
+
+		$div.addClass('item').data('id', id);
+		$img.attr('src', '/img/cache/medium/bike/' + id + '/' +
+			image.name);
+		$img.attr('srcset', '/img/cache/medium-2x/bike/' + id + '/' +
+			image.name + ' 2x');
+
+		$div.append($img);
+		$carouselInner.append($div);	
+
+		console.log($carousel);
+	};
+
+	$.getJSON('/image', {
+		'bike_id': {{{ $bike->id }}}
+	}, function(data) {
+		$.each(data.images, function(key, value) {
+			if (value.default === "0") { 
+				addCarouselImage(value);
+			}
+		});
+	});
 });
 @stop
