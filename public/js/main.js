@@ -12321,7 +12321,7 @@ return jQuery;
 				queryTokenizer: Bloodhound.tokenizers.whitespace,
 				limit: 10,
 				prefetch: {
-					ttl: 0,
+					/*ttl: 0,*/
 					url: '/api/suggestions',
 					filter: function(list) {
 						return $.map(list, function(suggestion) {
