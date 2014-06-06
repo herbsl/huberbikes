@@ -3,16 +3,24 @@
 
 	var $navbarMain = $('#navbar-main'),
 		$navbarBrand = $('a.navbar-brand'),
-		$navbarSecondary = $('#navbar-secondary'),
+		$navs = $('#navbar-main, #navbar-secondary, .navbar-brand'),
 		$search = $('#navbar-search'),
 		$dropdown = $('#navbar-main .dropdown'),
 		$close = $('#js-navbar-close'),
 		$meta = $('meta[name="viewport"]'),
+		elStore = {},
+		$lastEl,
 		$doc = $(document);
 
-	var removeActive = function($nav) {
-		$nav.find('li.active')
-			.removeClass('active');
+	var setActive = function($el) {
+		$navs.find('li.active').removeClass('active');
+
+		if ($el === undefined) {
+			return;
+		}
+
+		$el.closest('li').addClass('active')
+			.closest('.dropdown').addClass('active');
 	};
 
 	/* Disable links because we have javascript */
@@ -32,6 +40,30 @@
 	});
 
 	$doc.on('singlepage.load.before', function(event, params) {
+		var $el;
+
+		if (document.activeElement) {
+			document.activeElement.blur();
+		}
+
+		if (params.$el) {
+			if (params.$el.closest($navs).length > 0) {
+				// Navbar click
+				$el = params.$el;
+				$lastEl = $el;
+				setActive($el);
+			}
+			else {
+				$el = $lastEl;
+			}
+
+			elStore[params.uid] = $el;
+		}
+		else {
+			$el = elStore[params.uid];
+			setActive($el);
+		}
+
 		/* Close main-navbar */
 		if ($navbarMain.hasClass('in')) {
 			$navbarMain.removeClass('in');
@@ -66,9 +98,6 @@
 	});
 
 	$doc.on('singlepage.load.after', function(event, params) {
-		removeActive($navbarMain);
-		removeActive($navbarSecondary);
-
 		/* Maniuplate link to start-page */
 		if (params.url === '/') {
 			$navbarBrand.attr('href', '#');

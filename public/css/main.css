@@ -5290,9 +5290,9 @@ html, body, #singlepage-content {
 	background-color: #efefef;
 }
 
-/*.hb-navbar-secondary a:hover {
+.touch #navbar-secondary a:hover {
 	background-color: transparent !important;
-}*/
+}
 
 @media (min-width: 768px) {
 	.hb-navbar-secondary {

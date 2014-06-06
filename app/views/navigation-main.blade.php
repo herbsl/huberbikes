@@ -8,9 +8,9 @@
 				<span class="icon-bar"></span>	
 			</a>
 			@if (Request::path() === '/')
-			<a class="navbar-brand hb-navbar-brand-center hb-text-overflow" href="#" tabindex="1">Huber Bikes</a>
+			<a class="navbar-brand hb-navbar-brand-centered hb-text-overflow" href="#" tabindex="1">Huber Bikes</a>
 			@else
-			<a class="navbar-brand hb-navbar-brand-center hb-text-overflow" href="/" tabindex="1">Huber Bikes</a>
+			<a class="navbar-brand hb-navbar-brand-centered hb-text-overflow" href="/" tabindex="1">Huber Bikes</a>
 			@endif
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-main">

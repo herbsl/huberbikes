@@ -11859,7 +11859,7 @@ return jQuery;
 		$body = $('body'),
 		$title = $('title'),
 		$content = $('#singlepage-content'),
-		$activeEl;
+		uid = 0;
 
 	var loadContent = function(params) {
 		$doc.trigger('singlepage.load.before', params);
@@ -11906,12 +11906,11 @@ return jQuery;
 				$content.addClass('slidein-right-go');
 
 				if (params.addHistory) {
+					var $tmp = params.$el;
+					params.$el = undefined;
 					history.pushState(
 						params, '', params.url);
-				}
-
-				if (document.activeElement) {
-					document.activeElement.blur();
+					params.$el = $tmp;
 				}
 
 				$doc.trigger('singlepage.load.after', params);
@@ -11922,11 +11921,19 @@ return jQuery;
 	};
 
 	$(win).on('popstate', function(event) {
+		var params;
+
 		if (event.originalEvent.state === null) {
-			return;
+			params = {
+				url: '/',
+				query: '',
+				reqType: 'get',
+				uid: uid++
+			};
+		} else {
+			params = event.originalEvent.state;
 		}
 
-		var params = event.originalEvent.state;
 		params.addHistory = false;
 
 		return loadContent(params);
@@ -11966,8 +11973,8 @@ return jQuery;
 			query = $form.serialize();
 			url = $form.attr('action');
 		}
-
-		if (! url || url.charAt(0) === '#') {
+		
+		if (url  === undefined || url.charAt(0) === '#') {
 			return true;
 		}
 
@@ -11975,7 +11982,9 @@ return jQuery;
 			url: url,
 			query: query,
 			reqType: reqType,
-			addHistory: (reqType === 'get') ? true : false
+			addHistory: (reqType === 'get') ? true : false,
+			uid: uid++,
+			$el: $el
 		});
 	});	
 })(jQuery, window);
@@ -11985,16 +11994,24 @@ return jQuery;
 
 	var $navbarMain = $('#navbar-main'),
 		$navbarBrand = $('a.navbar-brand'),
-		$navbarSecondary = $('#navbar-secondary'),
+		$navs = $('#navbar-main, #navbar-secondary, .navbar-brand'),
 		$search = $('#navbar-search'),
 		$dropdown = $('#navbar-main .dropdown'),
 		$close = $('#js-navbar-close'),
 		$meta = $('meta[name="viewport"]'),
+		elStore = {},
+		$lastEl,
 		$doc = $(document);
 
-	var removeActive = function($nav) {
-		$nav.find('li.active')
-			.removeClass('active');
+	var setActive = function($el) {
+		$navs.find('li.active').removeClass('active');
+
+		if ($el === undefined) {
+			return;
+		}
+
+		$el.closest('li').addClass('active')
+			.closest('.dropdown').addClass('active');
 	};
 
 	/* Disable links because we have javascript */
@@ -12014,6 +12031,30 @@ return jQuery;
 	});
 
 	$doc.on('singlepage.load.before', function(event, params) {
+		var $el;
+
+		if (document.activeElement) {
+			document.activeElement.blur();
+		}
+
+		if (params.$el) {
+			if (params.$el.closest($navs).length > 0) {
+				// Navbar click
+				$el = params.$el;
+				$lastEl = $el;
+				setActive($el);
+			}
+			else {
+				$el = $lastEl;
+			}
+
+			elStore[params.uid] = $el;
+		}
+		else {
+			$el = elStore[params.uid];
+			setActive($el);
+		}
+
 		/* Close main-navbar */
 		if ($navbarMain.hasClass('in')) {
 			$navbarMain.removeClass('in');
@@ -12048,9 +12089,6 @@ return jQuery;
 	});
 
 	$doc.on('singlepage.load.after', function(event, params) {
-		removeActive($navbarMain);
-		removeActive($navbarSecondary);
-
 		/* Maniuplate link to start-page */
 		if (params.url === '/') {
 			$navbarBrand.attr('href', '#');
@@ -12185,22 +12223,7 @@ return jQuery;
 	var $doc = $(doc),
 		$navbarSearch = $('#navbar-search');
 
-	/* disable :hover on touch devices */
-	try {
-        var ignore = /:hover/;
-        for (var i = 0; i < document.styleSheets.length; i++) {
-            var sheet = document.styleSheets[i];
-
-            for (var j = sheet.cssRules.length-1; j >= 0; j--) {
-                var rule = sheet.cssRules[j];
-                if (rule.type === CSSRule.STYLE_RULE &&
-					ignore.test(rule.selectorText)) {
-                    sheet.deleteRule(j);
-                }
-            }
-        }
-    }
-    catch(e){}
+	$('html').addClass('touch');
 	
 	/* Fix fixed scrollbar in Webkit */
 	var touchmoveEvent = function(event) {

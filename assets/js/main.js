@@ -9,7 +9,7 @@
 		$body = $('body'),
 		$title = $('title'),
 		$content = $('#singlepage-content'),
-		$activeEl;
+		uid = 0;
 
 	var loadContent = function(params) {
 		$doc.trigger('singlepage.load.before', params);
@@ -56,12 +56,11 @@
 				$content.addClass('slidein-right-go');
 
 				if (params.addHistory) {
+					var $tmp = params.$el;
+					params.$el = undefined;
 					history.pushState(
 						params, '', params.url);
-				}
-
-				if (document.activeElement) {
-					document.activeElement.blur();
+					params.$el = $tmp;
 				}
 
 				$doc.trigger('singlepage.load.after', params);
@@ -72,11 +71,19 @@
 	};
 
 	$(win).on('popstate', function(event) {
+		var params;
+
 		if (event.originalEvent.state === null) {
-			return;
+			params = {
+				url: '/',
+				query: '',
+				reqType: 'get',
+				uid: uid++
+			};
+		} else {
+			params = event.originalEvent.state;
 		}
 
-		var params = event.originalEvent.state;
 		params.addHistory = false;
 
 		return loadContent(params);
@@ -116,8 +123,8 @@
 			query = $form.serialize();
 			url = $form.attr('action');
 		}
-
-		if (! url || url.charAt(0) === '#') {
+		
+		if (url  === undefined || url.charAt(0) === '#') {
 			return true;
 		}
 
@@ -125,7 +132,9 @@
 			url: url,
 			query: query,
 			reqType: reqType,
-			addHistory: (reqType === 'get') ? true : false
+			addHistory: (reqType === 'get') ? true : false,
+			uid: uid++,
+			$el: $el
 		});
 	});	
 })(jQuery, window);
