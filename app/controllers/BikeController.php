@@ -21,7 +21,7 @@ class BikeController extends \BaseController {
 		$params = array();
 		$order = array('created_at','desc');
 		$trashed = $search = false;
-		$customers = Customer::all();
+		$customers = true;
 
 		if (Auth::check() && Input::has('trashed') && Input::get('trashed') === 'true') {
 			$title = 'Papierkorb';
@@ -40,6 +40,7 @@ class BikeController extends \BaseController {
 			$title = 'Suche';
 			$notfound = 'zu Ihrer Suche';
 			$search = true;
+			$customers = false;
 
 			foreach(explode(' ', $q) as $queryPart) {
 				$query = $query->where(function($query) use ($queryPart) {
@@ -69,7 +70,7 @@ class BikeController extends \BaseController {
 				});
 
 				if ($category === 'Kinderbikes') {
-					$customers = array();		
+					$customers = false;		
 				}
 			}
 
