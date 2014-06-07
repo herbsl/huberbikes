@@ -21,7 +21,7 @@ class BikeController extends \BaseController {
 		$params = array();
 		$order = array('created_at','desc');
 		$trashed = $search = false;
-		$customers = Customer::where('name', '!=', 'Kinder')->get();
+		$customers = Customer::all();
 
 		if (Auth::check() && Input::has('trashed') && Input::get('trashed') === 'true') {
 			$title = 'Papierkorb';
