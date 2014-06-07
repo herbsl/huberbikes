@@ -16,11 +16,12 @@ class BikeController extends \BaseController {
 	 */
 	public function index()	{
 		$title = 'Bikes';
-		$customers = '';
+		$customer_name = '';
 		$query = Bike::query();
 		$params = array();
 		$order = array('created_at','desc');
 		$trashed = $search = false;
+		$customers = Customer::where('name', '!=', 'Kinder')->get();
 
 		if (Auth::check() && Input::has('trashed') && Input::get('trashed') === 'true') {
 			$title = 'Papierkorb';
@@ -86,10 +87,10 @@ class BikeController extends \BaseController {
 			}
 
 			if (Input::has('zielgruppe')) {
-				$customers = Input::get('zielgruppe');
+				$customer_name = Input::get('zielgruppe');
 
-				$query = $query->whereHas('customers', function($query) use ($customers) {
-					$query->where('name', '=', $customers);
+				$query = $query->whereHas('customers', function($query) use ($customer_name) {
+					$query->where('name', '=', $customer_name);
 				});
 			}
 		}
@@ -101,8 +102,8 @@ class BikeController extends \BaseController {
 	 			'title' => $title,
 				'text' => $notfound,
 				'params' => $params,
-				'search' => $search,
-				'customer_name' => $customers
+				'customer_name' => $customer_name,
+				'customers' => $customers
 			));
 		}
 
@@ -120,8 +121,8 @@ class BikeController extends \BaseController {
 			'params' => $params,
 			'new_threshold_days' => 90,
 			'bikes' => $query->get(),
-			'search' => $search,
-			'customer_name' => $customers
+			'customer_name' => $customer_name,
+			'customers' => $customers
 		));
 	}
 

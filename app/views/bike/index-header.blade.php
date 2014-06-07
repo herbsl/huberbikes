@@ -12,7 +12,7 @@
 		</div>
 	</div>
 </div>
-@if ($search === false)
+@if (count($customers) > 0)
 <div class="row hb-margin-bottom-2x hb-center-inline">
 	<div class="btn-group hb-btn-group">
 		@if ($customer_name === '')
@@ -20,7 +20,7 @@
 		@else
 		<a href="{{{ URL::action('bike.index', $params) }}}" class="btn btn-default">Alle</a>
 		@endif
-		@foreach(Customer::all() as $customer)
+		@foreach($customers as $customer)
 			@if ($customer_name === $customer->name)
 			<a href="{{{ URL::action('bike.index', array_merge($params, array('zielgruppe' => $customer->name))) }}}" class="btn btn-default active">{{{ $customer->name }}}</a>
 			@else
