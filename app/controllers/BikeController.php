@@ -67,6 +67,10 @@ class BikeController extends \BaseController {
 				$query = $query->whereHas('categories', function($query) use ($category) {
 					$query->where('name', 'like', '%' . $category . '%');
 				});
+
+				if ($category === 'Kinderbikes') {
+					$customers = array();		
+				}
 			}
 
 			if (Input::has('hersteller')) {
