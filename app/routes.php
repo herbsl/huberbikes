@@ -123,7 +123,7 @@ Route::get('/api/suggestions', function() {
 		array_push($suggestions, $category->name);
 	}
 
-	$bikes = Bike::whereHas('components', function($query) {
+	/*$bikes = Bike::whereHas('components', function($query) {
 		$query->where('name', '!=', '');
 	});
 	foreach ($bikes->get() as $bike) {
@@ -134,7 +134,7 @@ Route::get('/api/suggestions', function() {
 
 			array_push($suggestions, $component->name);
 		}
-	}
+	}*/
 
 	$bikes = Bike::with('manufacturer')->get();
 	foreach ($bikes as $bike) {
