@@ -185,7 +185,7 @@ $(document).ready(function() {
 	}
 });
 
-$(document).ready(function(event) {
+$('.carousel-inner img').load(function(event) {
 	'use strict';
 
 	var $carouselInner = $('.carousel-inner'),
