@@ -245,7 +245,7 @@ class BikeController extends \BaseController {
 	public function show($id)
 	{
 		$bike = Bike::query();
-		$collapse_details = '';
+		$collapse_details = 'in';
 
 		if (Auth::check() && Input::has('trashed') && Input::get('trashed') === 'true') {
 			$bike = $bike->onlyTrashed();
