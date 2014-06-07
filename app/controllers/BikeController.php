@@ -275,11 +275,20 @@ class BikeController extends \BaseController {
 			return false;
 		});
 
+		$defaultImage = $bike->images->filter(function($image) {
+			if ($image->default) {
+				return true;
+			}
+
+			return false;
+		})->first();
+
 		return View::make('bike.show', array(
 			'title' => $bike->manufacturer->name . ' ' . $bike->name,
 			'highlights' => $highlights,
 			'bike' => $bike,
 			'collapse_details' => $collapse_details,
+			'defaultImage' => $defaultImage
 		));
 	}
 

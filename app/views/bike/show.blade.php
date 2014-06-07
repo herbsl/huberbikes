@@ -3,39 +3,21 @@
 <div class="container hb-container">
 	<div class="row">
 		<div class="col-sm-7 col-md-8">
+			@if ($defaultImage)
 			<div id="carousel-bike" class="carousel slide" data-interval="false" data-ride="carousel">
-				<!-- Indicators -->
-				@if (count($bike->images) > 1)
 				<ol class="carousel-indicators hb-carousel-indicators">
-					@foreach($bike->images as $image)
-						@if ($image->default)
-						<li data-target="#carousel-bike" data-slide-to="{{{ $image->id }}}" class="active"></li>
-						@else
-						<li data-target="#carousel-bike" data-slide-to="{{{ $image->id }}}"></li>
-						@endif
-					@endforeach
-				</ol>
-				@endif
-				<!-- Wrapper for slides -->
+					<li data-target="#carousel-bike" data-slide-to="{{{ $defaultImage->id }}}" class="active"></li></ol>
 				<div class="carousel-inner">
-					@foreach($bike->images as $image)
-						@if ($image->default)
-						<div class="item hb-item active" data-id="{{{ $image->id }}}">
-							<img src="/img/cache/medium/bike/{{{ $bike->id }}}/{{{ $image->name }}}" srcset="/img/cache/medium-2x/bike/{{{ $bike->id }}}/{{{ $image->name }}} 2x" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
-						</div>
-						@endif
-					@endforeach
+					<div class="item hb-item active" data-id="{{{ $defaultImage->id }}}">
+						<img src="/img/cache/medium/bike/{{{ $bike->id }}}/{{{ $defaultImage->name }}}" srcset="/img/cache/medium-2x/bike/{{{ $bike->id }}}/{{{ $defaultImage->name }}} 2x" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+					</div>
 				</div>
-				<!-- Controls -->
-				@if (count($bike->images) > 1)
 				<a class="left carousel-control" href="#carousel-bike" data-slide="prev">
-					<span class="glyphicon glyphicon-chevron-left"></span>
 				</a>
 				<a class="right carousel-control" href="#carousel-bike" data-slide="next">
-					<span class="glyphicon glyphicon-chevron-right"></span>
 				</a>
-				@endif
 			</div>
+			@endif
 			<div class="caption">
 				<h4>
 					<strong>{{{ $title }}}</strong>
@@ -206,11 +188,13 @@ $(document).ready(function() {
 $(document).ready(function(event) {
 	'use strict';
 
-	var $carouselInner = $('.carousel-inner');
+	var $carouselInner = $('.carousel-inner'),
+		$carouselIndicators = $('.carousel-indicators');
 
 	var addCarouselImage = function(image) {
 		var $div = $(document.createElement('div')),
 			$img = $(document.createElement('img')),
+			$liIndicator = $(document.createElement('li')),
 			id = image.pivot.bike_id;
 
 		$div.addClass('item').data('id', id);
@@ -218,9 +202,16 @@ $(document).ready(function(event) {
 			image.name);
 		$img.attr('srcset', '/img/cache/medium-2x/bike/' + id + '/' +
 			image.name + ' 2x');
-
+		console.log($div);
 		$div.append($img);
 		$carouselInner.append($div);
+
+		$liIndicator.attr({
+			'data-target': '#carousel-bike',
+			'data-slide-to': image.id
+		});
+		console.log($liIndicator);
+		$carouselIndicators.append($liIndicator);
 	};
 
 	$.getJSON('/image', {
@@ -231,6 +222,17 @@ $(document).ready(function(event) {
 				addCarouselImage(value);
 			}
 		});
+
+		if (data.images.length > 1) {
+			$('.carousel-control.left').append(	
+				$(document.createElement('span'))
+					.addClass('glyphicon glyphicon-chevron-left')
+			);
+			$('.carousel-control.right').append(	
+				$(document.createElement('span'))
+					.addClass('glyphicon glyphicon-chevron-right')
+			);
+		}
 	});
 });
 @stop
