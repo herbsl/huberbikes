@@ -11913,6 +11913,9 @@ return jQuery;
 					params.$el = $tmp;
 				}
 
+				if (ga !== undefined) {
+					ga('send', 'pageview');
+				}
 				$doc.trigger('singlepage.load.after', params);
 			});
 		});

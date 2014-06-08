@@ -28,9 +28,9 @@ $env = $app->detectEnvironment(array(
 	'local' => array(
 		'vm-ubuntu'
 	),
-	'staging' => array(
+	/*'staging' => array(
 		'dgws05s26db.ispgateway.de'
-	),
+	),*/
 ));
 
 /*
