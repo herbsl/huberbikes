@@ -70,6 +70,11 @@ Route::get('/navigation', function() {
 });
 
 Route::get('/', function() {
+	// Bei alten Joomla-Seiten 404 zurueckgeben:
+	if (Input::has('option')) {
+		return Response::view('404', array(), 404);
+	}
+
 	return View::make('start');
 });
 
