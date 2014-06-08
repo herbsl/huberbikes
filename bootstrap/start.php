@@ -29,7 +29,7 @@ $env = $app->detectEnvironment(array(
 		'vm-ubuntu'
 	),
 	'staging' => array(
-		'icpu138'
+		'dgws05s26db.ispgateway.de'
 	),
 ));
 

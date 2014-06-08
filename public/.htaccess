@@ -10,6 +10,10 @@ AddType application/x-httpd-php53 .php
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
+	# Redirect /index.php to /
+	RewriteCond %{THE_REQUEST} ^.*/index\.php 
+	RewriteRule ^(.*)index.php$ /$1 [L,R=301]
+
 	# Compression
 	RewriteCond %{HTTP:Accept-Encoding}	gzip
 	RewriteCond %{REQUEST_FILENAME}.gz -f
