@@ -202,7 +202,6 @@ $('.carousel-inner img').load(function(event) {
 			image.name);
 		$img.attr('srcset', '/img/cache/medium-2x/bike/' + id + '/' +
 			image.name + ' 2x');
-		console.log($div);
 		$div.append($img);
 		$carouselInner.append($div);
 
@@ -210,7 +209,6 @@ $('.carousel-inner img').load(function(event) {
 			'data-target': '#carousel-bike',
 			'data-slide-to': image.id
 		});
-		console.log($liIndicator);
 		$carouselIndicators.append($liIndicator);
 	};
 
