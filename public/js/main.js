@@ -11867,9 +11867,14 @@ return jQuery;
 	ga('send','pageview');       
 
 	$doc.on('singlepage.load.after', function(event, params) {
-		var parser = document.createElement('a');
-		parser.href = params.url;
+		var parser = document.createElement('a'),
+		url = params.url;
 
+		if (params.query !== undefined) {
+			url = url + '?' + params.query;
+		}
+
+		parser.href = url;
 		ga('send', 'pageview', parser.pathname + parser.search);
 	});	
 })(jQuery, document);
