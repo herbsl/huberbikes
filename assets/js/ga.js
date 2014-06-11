@@ -13,14 +13,16 @@
 		return;
 	}
 
-    ga('create','UA-51739955-1');
+    ga('create','UA-51739955-1', {
+		'cookieDomain': 'huberbikes.de'
+	});
 	ga('send','pageview');       
 
 	$doc.on('singlepage.load.after', function(event, params) {
 		var parser = document.createElement('a'),
 		url = params.url;
 
-		if (params.query !== undefined) {
+		if (params.query !== undefined && params.query !== '') {
 			url = url + '?' + params.query;
 		}
 
