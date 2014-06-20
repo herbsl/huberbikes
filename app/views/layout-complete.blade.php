@@ -35,8 +35,8 @@
 		<script>
 			function jsOnLoad() {
 				var el = document.createElement("script");
-element.src = "defer.js";
-				el.src = "{{{ App::make('asset')->rev('/js/main.min.js') }}}"
+				el.src = "{{{ App::make('asset')->rev('/js/main.min.js') }}}";
+
 				document.body.appendChild(el);
 			}
 			if (window.addEventListener)
