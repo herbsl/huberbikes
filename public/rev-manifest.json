@@ -5,6 +5,8 @@
   "js/fastclick.min.js": "js/fastclick.min-23e25eef.js",
   "js/jquery.touchSwipe.js": "js/jquery.touchSwipe-9777089b.js",
   "js/jquery.touchSwipe.min.js": "js/jquery.touchSwipe.min-9bace5fa.js",
+  "js/main.js": "js/main-07dc8d78.js",
+  "js/main.min.js": "js/main.min-e1cbc00f.js",
   "js/typeahead.bundle.js": "js/typeahead.bundle-08e416af.js",
   "js/typeahead.bundle.min.js": "js/typeahead.bundle.min-69a9bca2.js",
   "css/basic.css": "css/basic-f2f9e734.css",

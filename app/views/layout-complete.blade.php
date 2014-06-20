@@ -32,7 +32,20 @@
 		@if (App::environment('local'))
 		<script src="http://{{{ gethostname() }}}:35729/livereload.js?snipver=1"></script>
 		@endif
-		<script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
-		<!--script id="singlepage-javascript">@yield('javascript')</script-->
+		<script>
+			function jsOnLoad() {
+				var el = document.createElement("script");
+element.src = "defer.js";
+				el.src = "{{{ App::make('asset')->rev('/js/main.min.js') }}}"
+				document.body.appendChild(el);
+			}
+			if (window.addEventListener)
+				window.addEventListener("load", jsOnLoad, false);
+			else if (window.attachEvent)
+				window.attachEvent("onload", jsOnLoad);
+			else window.onload = jsOnLoad;
+		</script>
+		<!--script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
+		<script id="singlepage-javascript">@yield('javascript')</script-->
 	</body>
 </html>
