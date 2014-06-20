@@ -11851,13 +11851,13 @@ return jQuery;
 (function($, doc, undefined) {
 	'use strict';
 
-	var $doc = $(document);
+	var $doc = $(doc);
 
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
     	function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
             e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            r.parentNode.insertBefore(e,r)}(window,doc,'script','ga'));
 
 	if (ga === undefined) {
 		return;
@@ -11869,7 +11869,7 @@ return jQuery;
 	ga('send','pageview');       
 
 	$doc.on('singlepage.load.after', function(event, params) {
-		var parser = document.createElement('a'),
+		var parser = doc.createElement('a'),
 		url = params.url;
 
 		if (params.query !== undefined && params.query !== '') {
@@ -12326,51 +12326,3 @@ return jQuery;
 		}
 	}*/
 })(jQuery, document);
-
-(function($, win) {
-	'use strict';
-
-	$(win).on('load', function() {
-		var css = Asset.rev('/css/typeahead.min.css'),
-			js = Asset.rev('/js/typeahead.bundle.min.js');
-
-		if (document.createStyleSheet){
-			document.createStyleSheet(css);
-		}
-		else {
-			$("head").append($("<link rel='stylesheet' type='text/css' href='" + 
-				css + "'>"));
-		}
-
-		$.ajax({
-			url: js,
-			dataType: 'script',
-			cache: true
-		}).done(function() {
-			var engine = new Bloodhound({	
-				datumTokenizer: function(d) {
-					return Bloodhound.tokenizers.whitespace(d.value);
-				},
-				queryTokenizer: Bloodhound.tokenizers.whitespace,
-				limit: 10,
-				prefetch: {
-					/*ttl: 0,*/
-					url: '/api/suggestions',
-					filter: function(list) {
-						return $.map(list, function(suggestion) {
-							return { value: suggestion };
-						});
-					}
-				}
-			});
-
-			engine.initialize();
-
-			$('#navbar-search').typeahead({
-				hint: true
-			}, {
-				source: engine.ttAdapter()
-			});
-		});
-	});
-})(jQuery, window);
