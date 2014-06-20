@@ -178,7 +178,7 @@ var jsMain = function(fast) {
 	}
 };
 
-gulp.task('js:main', [ /*'js:main:cache'*/ ], jsMain(false));
+gulp.task('js:main', [ 'js:main:cache' ], jsMain(false));
 gulp.task('js:main:fast', jsMain(true));
 
 gulp.task('js:addons', function() {
