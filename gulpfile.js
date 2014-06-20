@@ -139,7 +139,7 @@ gulp.task('js:main:cache', /* [ 'js:main:cache:modernizr' ] , */ function() {
 		'assets/bower/bootstrap/js/dropdown.js',
 		'assets/bower/bootstrap/js/modal.js',
 		'assets/bower/bootstrap/js/transition.js',
-		//'assets/bower/spinjs/spin.js'
+		'assets/bower/spinjs/spin.js'
 	])
 	.pipe(concat('cache.js'))
 	.pipe(gulp.dest('assets/tmp/'))
@@ -178,7 +178,7 @@ var jsMain = function(fast) {
 	}
 };
 
-gulp.task('js:main', [ 'js:main:cache' ], jsMain(false));
+gulp.task('js:main', [ /*'js:main:cache'*/ ], jsMain(false));
 gulp.task('js:main:fast', jsMain(true));
 
 gulp.task('js:addons', function() {
