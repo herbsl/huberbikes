@@ -12233,11 +12233,11 @@ return jQuery;
         }
     }
 
-	$(win).on('load', function() {
+	//$(win).on('load', function() {
 		$('img').each(function() {
 			srcset(this);
 		});
-	});
+	//});
 
 	$(doc).on('singlepage.load.inject', function(event, $content) {
 	    $content.find('img').each(function() {
@@ -12330,7 +12330,7 @@ return jQuery;
 (function($, win) {
 	'use strict';
 
-	$(win).on('load', function() {
+	//$(win).on('load', function() {
 		var css = Asset.rev('/css/typeahead.min.css'),
 			js = Asset.rev('/js/typeahead.bundle.min.js');
 
@@ -12372,5 +12372,5 @@ return jQuery;
 				source: engine.ttAdapter()
 			});
 		});
-	});
+	//});
 })(jQuery, window);
