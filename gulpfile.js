@@ -83,7 +83,9 @@ var cssMain = function(fast) {
 				suffix: '.min'
 			}))
 			.pipe(mincss())
-			.pipe(gulp.dest(dest));
+			.pipe(gulp.dest(dest))
+			.pipe(rename('main.css.blade.php'))
+			.pipe(gulp.dest('app/views'));
 		}
 	
 		ret.on('error', util.log);
