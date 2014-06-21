@@ -99,7 +99,7 @@ gulp.task('css:addons', function() {
 	var dest = 'public/css';
 
 	return gulp.src([
-		'assets/bower/typeahead.js-bootstrap3.less/typeahead.css',
+		/*'assets/bower/typeahead.js-bootstrap3.less/typeahead.css',*/
 		'assets/bower/dropzone/downloads/css/basic.css',
 	])
 	.pipe(gulp.dest(dest))
@@ -186,7 +186,7 @@ gulp.task('js:addons', function() {
 	var dest = 'public/js';
 
 	return gulp.src([
-		/*'assets/bower/typeahead.js/dist/typeahead.bundle.js',*/
+		'assets/bower/typeahead.js/dist/typeahead.bundle.js',
 		'assets/bower/fastclick/lib/fastclick.js',
 		'assets/bower/jquery-touchswipe/jquery.touchSwipe.js',
 		'assets/bower/dropzone/downloads/dropzone.js',
