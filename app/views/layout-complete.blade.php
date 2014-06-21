@@ -45,7 +45,7 @@
 				window.attachEvent("onload", jsOnLoad);
 			else window.onload = jsOnLoad;
 		</script>
-		<!--script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script -->
-		<script id="singlepage-javascript">@yield('javascript')</script>
+		<!--script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
+		<script id="singlepage-javascript">@yield('javascript')</script-->
 	</body>
 </html>
