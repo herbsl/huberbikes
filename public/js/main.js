@@ -12334,13 +12334,13 @@ return jQuery;
 		var css = Asset.rev('/css/typeahead.min.css'),
 			js = Asset.rev('/js/typeahead.bundle.min.js');
 
-		if (document.createStyleSheet){
+		/*if (document.createStyleSheet){
 			document.createStyleSheet(css);
 		}
 		else {
 			$("head").append($("<link rel='stylesheet' type='text/css' href='" + 
 				css + "'>"));
-		}
+		}*/
 
 		$.ajax({
 			url: js,
