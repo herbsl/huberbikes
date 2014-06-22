@@ -9,7 +9,9 @@
 		"fadion/maneuver": "dev-master",
 		"way/database": "dev-master",
 		"intervention/image": "2.*",
-		"intervention/imagecache": "2.*"
+		"intervention/imagecache": "2.*",
+		"anahkiasen/flatten": "dev-master",
+		"philf/setting": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

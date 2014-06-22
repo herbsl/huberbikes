@@ -110,7 +110,8 @@ return array(
 		// manually added
 		'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
 		'Fadion\Maneuver\ManeuverServiceProvider',
-		'Intervention\Image\ImageServiceProvider'
+		'Intervention\Image\ImageServiceProvider',
+		'Flatten\FlattenServiceProvider'
 	),
 
 	/*
@@ -179,7 +180,8 @@ return array(
 
 		// manually added
 		'Model'           => 'Way\Database\Model',
-		'Img'			  => 'Intervention\Image\Facades\Image'
+		'Img'			  => 'Intervention\Image\Facades\Image',
+		'Flatten'		  => 'Flatten\Facades\Flatten'
 	),
 
 );

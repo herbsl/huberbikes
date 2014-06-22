@@ -2,6 +2,9 @@
 
 define('LARAVEL_START', microtime(true));
 
+require __DIR__.'/../vendor/anahkiasen/flatten/src/Flatten/Flatten.php';
+Flatten\Flatten::kickstart();
+
 /*
 |--------------------------------------------------------------------------
 | Register The Composer Auto Loader
