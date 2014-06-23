@@ -7,6 +7,7 @@
 
 	// The environments in which Flatten should not run
 	'environments' => array(
+		'local',
 	),
 
 	// The different pages to be ignored when caching
