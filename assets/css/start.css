@@ -1,11 +1,11 @@
 #start-page-1 {
 	height: 100%;
 
-	background: url(/img/start-bg.jpg) no-repeat center center;
+	/*background: url(/img/start-bg.jpg) no-repeat center center;
 	-moz-background-size: cover;
 	-webkit-background-size: cover;
 	-o-background-size: cover;
-	background-size: cover;
+	background-size: cover;*/
 
 	/* IE8 */
 	-ms-behavior: url(/htc/backgroundsize.min.htc);
