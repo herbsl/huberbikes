@@ -251,12 +251,12 @@ gulp.task('gzip', [ 'rev', 'font', 'htc' ], function() {
 		'public/**/*.css',
 		'public/**/*.{eot,svg,ttf,woff}'
 	])
-	.pipe(gzip({
+	/*.pipe(gzip({
  		gzipOptions: {
 			level: 9
 		}
 	}))
-	.pipe(gulp.dest('public'));
+	.pipe(gulp.dest('public'));*/
 });
 
 gulp.task('twb', function() {
