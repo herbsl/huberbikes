@@ -84,7 +84,7 @@ var cssMain = function(fast) {
 			}))
 			.pipe(mincss())
 			.pipe(gulp.dest(dest))
-			.pipe(rename('main.css.blade.php'))
+			.pipe(rename('style-main.blade.php'))
 			.pipe(gulp.dest('app/views'));
 		}
 	

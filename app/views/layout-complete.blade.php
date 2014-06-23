@@ -12,9 +12,8 @@
 		@if (isset($description))
 		<meta name="description" content="{{{ $description }}}">
 		@endif
-		<script>@include('assets')</script>
-		<style>@include('style')</style>
-		<!-- link href="{{{ App::make('asset')->rev('/css/main.min.css') }}}" rel="stylesheet" type="text/css"-->
+		<!--style>include('style-main')</style -->
+		<link href="{{{ App::make('asset')->rev('/css/main.min.css') }}}" rel="stylesheet" type="text/css">
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -30,23 +29,27 @@
 		@include('scroll-top')
 		@include('kontakt-modal')
         @include('oeffnungszeiten-modal')
-		@if (App::environment('local'))
-		<script src="http://{{{ gethostname() }}}:35729/livereload.js?snipver=1"></script>
-		@endif
+		<script>@include('assets')</script>
 		<script>
-			function jsOnLoad() {
-				var el = document.createElement("script");
+			(function(w, d) {
+			var f = function() {
+				var el = d.createElement("script");
 				el.src = "{{{ App::make('asset')->rev('/js/main.min.js') }}}";
 
-				document.body.appendChild(el);
-			}
-			if (window.addEventListener)
-				window.addEventListener("load", jsOnLoad, false);
-			else if (window.attachEvent)
-				window.attachEvent("onload", jsOnLoad);
-			else window.onload = jsOnLoad;
+				d.body.appendChild(el);
+			};
+
+			if (w.addEventListener)
+				w.addEventListener('load', f, false);
+			else if (w.attachEvent)
+				w.attachEvent('onload', f);
+			else w.onload = f;
+			})(window, document);
 		</script>
 		<!--script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
 		<script id="singlepage-javascript">@yield('javascript')</script-->
+		@if (App::environment('local'))
+		<script src="http://{{{ gethostname() }}}:35729/livereload.js?snipver=1"></script>
+		@endif
 	</body>
 </html>

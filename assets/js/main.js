@@ -18,11 +18,19 @@
 		$content.removeClass('slidein-right-go');
 		$content.addClass('slideout-left-go');
 		$content.addClass('slidein-right');
-
+		
 		$.ajax({
 			url: params.url,
 			data: params.query,
-			type: params.type
+			type: params.type,
+			beforeSend: function(xhr, opts) {
+				if (this.url.indexOf('?') === -1) {
+					this.url += '?ajax=true';
+				}
+				else {
+					this.url += '&ajax=true';
+				}
+			}
 		}).then(function(data, textStatus, xhrReq) {
 			var location = xhrReq.getResponseHeader('X-Location');
 

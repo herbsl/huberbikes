@@ -6,7 +6,8 @@
 	////////////////////////////////////////////////////////////////////
 
 	// The environments in which Flatten should not run
-	'environments' => array(),
+	'environments' => array(
+	),
 
 	// The different pages to be ignored when caching
 	// They're all regexes so go crazy
@@ -34,5 +35,7 @@
 
 	// An array of string or variables to add to the salt being used
 	// to differentiate pages
-	'saltshaker'   => array(),
+	'saltshaker'   => array(
+		'version' => 3
+	),
 );
