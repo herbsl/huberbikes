@@ -11,6 +11,6 @@
   "js/typeahead.bundle.min.js": "js/typeahead.bundle.min-69a9bca2.js",
   "css/basic.css": "css/basic-f2f9e734.css",
   "css/basic.min.css": "css/basic.min-712c020a.css",
-  "css/main.css": "css/main-264fca7d.css",
-  "css/main.min.css": "css/main.min-4f55dd1a.css"
+  "css/main.css": "css/main-c11e1890.css",
+  "css/main.min.css": "css/main.min-cae59eb3.css"
 }
