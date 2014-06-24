@@ -23,7 +23,7 @@
 	// checking if Flatten should run. If the sum of the array is not
 	// "true", then Flatten won't start
 	'blockers'     => array(
-		class_exists('Auth') ? ! Auth::check() : false
+		(class_exists('Auth') && Auth::check()) ?  false : true
 	),
 
 	// Cache variables
