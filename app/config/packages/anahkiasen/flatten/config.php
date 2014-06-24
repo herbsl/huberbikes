@@ -7,7 +7,7 @@
 
 	// The environments in which Flatten should not run
 	'environments' => array(
-		'local',
+		'local1',
 	),
 
 	// The different pages to be ignored when caching
@@ -32,11 +32,11 @@
 
 	// The default period during which a cached page should be kept (in minutes)
 	// 0 means the page never gets refreshed by itself
-	'lifetime'     => 0,
+	'lifetime'     => 36000,
 
 	// An array of string or variables to add to the salt being used
 	// to differentiate pages
 	'saltshaker'   => array(
-		'version' => 7
+		'timestamp' => 1403605150
 	),
 );

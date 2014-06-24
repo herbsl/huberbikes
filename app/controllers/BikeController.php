@@ -229,8 +229,10 @@ class BikeController extends \BaseController {
     		DB::rollback();
 		}
 
-		$url = URL::Action('bike.show', $bike->id);
+		// Flush the html cache
+		Flatten::flushAll();
 
+		$url = URL::Action('bike.show', $bike->id);
 		return Redirect::to($url)->with('X-Header',
 			array('X-Location' => $url));
 	}
@@ -423,8 +425,10 @@ class BikeController extends \BaseController {
     		DB::rollback();
 		}
 
-		$url = URL::Action('bike.show', $bike->id);
+		// Flush the html cache
+		Flatten::flushAll();
 
+		$url = URL::Action('bike.show', $bike->id);
 		return Redirect::to($url)->with('X-Header',
 			array('X-Location' => $url));
 	}
@@ -445,11 +449,11 @@ class BikeController extends \BaseController {
 			Bike::find($id)->delete();
 		}
 
-		$url = URL::Action('bike.index');
+		// Flush the html cache
+		Flatten::flushAll();
 
+		$url = URL::Action('bike.index');
 		return Redirect::to($url)->with('X-Header',
 			array('X-Location' => $url));
 	}
-
-
 }
