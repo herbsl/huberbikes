@@ -23,7 +23,7 @@
 	// checking if Flatten should run. If the sum of the array is not
 	// "true", then Flatten won't start
 	'blockers'     => array(
-		(class_exists('Auth') && Auth::check()) ?  false : true
+		(class_exists('Auth') && ! Auth::check()) ? true : false
 	),
 
 	// Cache variables
@@ -36,6 +36,6 @@
 	// An array of string or variables to add to the salt being used
 	// to differentiate pages
 	'saltshaker'   => array(
-		'timestamp' => 1403618982
+		'timestamp' => 1403619278
 	),
 );
