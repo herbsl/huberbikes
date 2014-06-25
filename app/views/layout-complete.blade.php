@@ -30,24 +30,8 @@
 		@include('kontakt-modal')
         @include('oeffnungszeiten-modal')
 		<script>@include('assets')</script>
-		<script>
-			(function(w, d) {
-			var f = function() {
-				var el = d.createElement("script");
-				el.src = "{{{ App::make('asset')->rev('/js/main.min.js') }}}";
-
-				d.body.appendChild(el);
-			};
-
-			if (w.addEventListener)
-				w.addEventListener('load', f, false);
-			else if (w.attachEvent)
-				w.attachEvent('onload', f);
-			else w.onload = f;
-			})(window, document);
-		</script>
-		<!--script src="{{{ App::make('asset')->rev('/js/main.min.js') }}}"></script>
-		<script id="singlepage-javascript">@yield('javascript')</script-->
+		<script>@include('js-main')</script>
+		<script id="singlepage-javascript"></script>
 		@if (App::environment('local'))
 		<script src="http://{{{ gethostname() }}}:35729/livereload.js?snipver=1"></script>
 		@endif

@@ -21,23 +21,23 @@
 @stop
 
 @section('javascript')
-	$(document).ready(function() {
-		var $root = $('html, body');
+(function($) {
+	var $root = $('html, body');
 
-		$('.navbar-brand').click(function() {
-			$root.animate({
-				scrollTop: 0
-			}, 750);
+	$('.navbar-brand').click(function() {
+		$root.animate({
+			scrollTop: 0
+		}, 750);
 
-			return false;
-		});
-
-		$('.hb-more-btn').click(function() {
-			$root.animate({
-				scrollTop: $($.attr(this, 'href')).offset().top
-			}, 750);
-
-			return false;
-		});
+		return false;
 	});
+
+	$('.hb-more-btn').click(function() {
+		$root.animate({
+			scrollTop: $($.attr(this, 'href')).offset().top
+		}, 750);
+
+		return false;
+	});
+})(jQuery);
 @stop
