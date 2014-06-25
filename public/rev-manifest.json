@@ -9,6 +9,6 @@
   "js/main.min.js": "js/main.min-c938896c.js",
   "css/basic.css": "css/basic-f2f9e734.css",
   "css/basic.min.css": "css/basic.min-712c020a.css",
-  "css/main.css": "css/main-849fb491.css",
-  "css/main.min.css": "css/main.min-1a261dee.css"
+  "css/main.css": "css/main-264fca7d.css",
+  "css/main.min.css": "css/main.min-4f55dd1a.css"
 }
