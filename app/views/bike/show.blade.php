@@ -9,8 +9,8 @@
 					<li data-target="#carousel-bike" data-slide-to="{{{ $defaultImage->id }}}" class="active"></li></ol>
 				<div class="carousel-inner">
 					<div class="item hb-item active" data-id="{{{ $defaultImage->id }}}">
-						<!--img src="/img/cache/medium/bike/{{{ $bike->id }}}/{{{ $defaultImage->name }}}" srcset="/img/cache/medium-2x/bike/{{{ $bike->id }}}/{{{ $defaultImage->name }}} 2x" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}"-->
-						<img src="{{{ Img::cache(function($image) use ($bike, $defaultImage) { $image->make(public_path() . '/img/bike/' . $bike->id . '/' . $defaultImage->name)->widen(768)->resizeCanvas(768, 576, 'center', false, 'rgba(255, 255, 255, 0)')->interlace(); }, 10, true)->encode('data-url', 10) }}}" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+						<img src="/img/cache/medium/bike/{{{ $bike->id }}}/{{{ $defaultImage->name }}}" srcset="/img/cache/medium-2x/bike/{{{ $bike->id }}}/{{{ $defaultImage->name }}} 2x" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+						<!-- img src="{{{ Img::cache(function($image) use ($bike, $defaultImage) { $image->make(public_path() . '/img/bike/' . $bike->id . '/' . $defaultImage->name)->widen(768)->resizeCanvas(768, 576, 'center', false, 'rgba(255, 255, 255, 0)')->interlace(); }, 10, true)->encode('data-url', 10) }}}" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}"-->
 					</div>
 				</div>
 				<a class="left carousel-control" href="#carousel-bike" data-slide="prev">
