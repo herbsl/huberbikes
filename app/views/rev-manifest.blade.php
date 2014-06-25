@@ -6,8 +6,9 @@
   "js/jquery.touchSwipe.js": "js/jquery.touchSwipe-9777089b.js",
   "js/jquery.touchSwipe.min.js": "js/jquery.touchSwipe.min-9bace5fa.js",
   "js/main.js": "js/main-b4a4f5a0.js",
+  "js/main.min.js": "js/main.min-c938896c.js",
   "css/basic.css": "css/basic-f2f9e734.css",
   "css/basic.min.css": "css/basic.min-712c020a.css",
-  "css/main.css": "css/main-264fca7d.css",
-  "css/main.min.css": "css/main.min-4f55dd1a.css"
+  "css/main.css": "css/main-849fb491.css",
+  "css/main.min.css": "css/main.min-1a261dee.css"
 }
