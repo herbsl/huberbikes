@@ -135,13 +135,13 @@ gulp.task('js:main:cache', /* [ 'js:main:cache:modernizr' ] , */ function() {
 		//'assets/tmp/modernizr.js',
 		//'assets/bower/modernizr/modernizr.js',
 		'assets/bower/jquery/dist/jquery.js',
-		//'assets/bower/bootstrap/dist/js/bootstrap.js'
 		'assets/bower/bootstrap/js/button.js',
 		'assets/bower/bootstrap/js/carousel.js',
 		'assets/bower/bootstrap/js/collapse.js',
 		'assets/bower/bootstrap/js/dropdown.js',
 		'assets/bower/bootstrap/js/modal.js',
 		'assets/bower/bootstrap/js/transition.js',
+		'assets/bower/typeahead.js/dist/typeahead.bundle.js',
 		'assets/bower/spinjs/spin.js'
 	])
 	.pipe(concat('cache.js'))
@@ -188,7 +188,6 @@ gulp.task('js:addons', function() {
 	var dest = 'public/js';
 
 	return gulp.src([
-		'assets/bower/typeahead.js/dist/typeahead.bundle.js',
 		'assets/bower/fastclick/lib/fastclick.js',
 		'assets/bower/jquery-touchswipe/jquery.touchSwipe.js',
 		'assets/bower/dropzone/downloads/dropzone.js',
