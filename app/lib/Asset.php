@@ -12,6 +12,7 @@ class Asset {
 		if (! file_exists($rev)) {
 			return $src;
 		}
+
 	
 		$map = json_decode(file_get_contents($rev), true);
 		if (isset($map[$src])) {

@@ -7,7 +7,7 @@
 
 	var f = function() {
 		var el = d.createElement("script");
-		el.src = "{{{ App::make('asset')->rev('/js/main.min.js') }}}";
+		el.src = Asset.rev('/js/main.min.js');
 
 		if (el.readyState) {
 			/* IE */
