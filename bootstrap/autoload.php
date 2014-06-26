@@ -3,6 +3,10 @@
 define('LARAVEL_START', microtime(true));
 
 call_user_func(function() {
+	if (isset($_COOKIE['laravel_cache'])) {
+		return;
+	}
+
 	require __DIR__.'/../vendor/anahkiasen/flatten/src/Flatten/Flatten.php';
 	$cfg = require __DIR__.'/../app/config/packages/anahkiasen/flatten/config.php';
 

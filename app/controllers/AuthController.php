@@ -12,12 +12,14 @@ class AuthController extends BaseController {
     		return Redirect::to('/login')->withInput(Input::except('password'))
         		->with('message', 'Die Anmeldung ist fehlgeschlagen');
 		}
+		setcookie('laravel_cache', '0');
 
         return Redirect::intended('/');
 	}
 
 	public function logout() {
 		Auth::logout();
+		setcookie('laravel_cache', '', time() - 3600);
 
 		return Redirect::to('/');
 	}

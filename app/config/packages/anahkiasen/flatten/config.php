@@ -12,7 +12,10 @@
 
 	// The different pages to be ignored when caching
 	// They're all regexes so go crazy
-	'ignore'       => array(),
+	'ignore'       => array(
+		'/login',
+		'/img/cache/.*'
+	),
 
 	// List only specific pages to cache, useful if you have a lot of
 	// pages you don't want to see cached
@@ -36,6 +39,6 @@
 	// An array of string or variables to add to the salt being used
 	// to differentiate pages
 	'saltshaker'   => array(
-		'1403735553'
+		'1403778817'
 	),
 );
