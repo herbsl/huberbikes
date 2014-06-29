@@ -1,5 +1,25 @@
 <?php
 
+function encode_image($image, $width, $height) {
+	$quality = '90';
+	$format = 'jpg';
+
+	$background = 'rgba(255, 255, 255, 0)';
+
+	if (Input::has('quality')) {
+		$quality = Input::get('quality');
+	}
+	if (Input::has('format')) {
+		$format = Input::get('format');
+	}
+
+	return $image
+		->widen($width)
+		->resizeCanvas($width, $height, 'center', false, $background)
+		->interlace()
+		->encode($format, $quality);
+}
+
 return array(
 
     /*
@@ -48,29 +68,29 @@ return array(
     */
    
     'templates' => array(
-        'x-small' => function($image) { 
-			return $image->widen(320)->resizeCanvas(320, 240, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+        'x-small' => function($image) {
+			return encode_image($image, 320, 240);
         },
         'x-small-2x' => function($image) { 
-			return $image->widen(640)->resizeCanvas(640, 480, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+			return encode_image($image, 640, 480);
         },
         'small' => function($image) { 
-			return $image->widen(640)->resizeCanvas(640, 480, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+			return encode_image($image, 640, 480);
         },
         'small-2x' => function($image) { 
-			return $image->widen()->resizeCanvas(1280, 960, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+			return encode_image($image, 1280, 960);
         },
-        'medium' => function($image) { 
-			return $image->widen(768)->resizeCanvas(768, 576, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+        'medium' => function($image) {
+			return encode_image($image, 768, 576);
         },
         'medium-2x' => function($image) { 
-			return $image->widen(1536)->resizeCanvas(1536, 1152, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+			return encode_image($image, 1536, 1152);
         },
         'large' => function($image) { 
-			return $image->widen(1200)->resizeCanvas(1200, 900, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+			return encode_image($image, 1200, 900);
         },
         'large-2x' => function($image) { 
-			return $image->widen(2400)->resizeCanvas(2400, 1800, 'center', false, 'rgba(255, 255, 255, 0)')->interlace();
+			return encode_image($image, 2400, 1800);
         },
     ),
 

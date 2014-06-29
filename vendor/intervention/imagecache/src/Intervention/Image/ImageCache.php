@@ -224,7 +224,11 @@ class ImageCache
         } else {
 
             // process image data
-            $image = $this->process()->encode();
+            //$image = $this->process()->encode();
+            $image = $this->process();
+			if (! $image->encoded) {
+				$image = $image->encode();
+			}
 
             // save to cache...
             $this->cache->put($key, (string) $image, $lifetime);
