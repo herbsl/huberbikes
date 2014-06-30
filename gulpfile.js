@@ -254,8 +254,8 @@ gulp.task('gzip', [ 'rev', 'font', 'htc' ], function() {
  		gzipOptions: {
 			level: 9
 		}
-	}))
-	.pipe(gulp.dest('public'));*/
+	}))*/
+	.pipe(gulp.dest('public'));
 });
 
 gulp.task('twb', function() {
