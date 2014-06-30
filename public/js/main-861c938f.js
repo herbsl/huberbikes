@@ -13666,8 +13666,19 @@ return jQuery;
 				if (params.addHistory) {
 					var $tmp = params.$el;
 					params.$el = undefined;
+
+					var url = params.url;
+					if (params.query !== undefined && params.query !== '') {
+						if (url.indexOf('?') === -1) {
+							url += '?' + params.query;
+						}
+						else {
+							url += '&' + params.query;
+						}
+					}
+
 					history.pushState(
-						params, '', params.url);
+						params, '', url);
 					params.$el = $tmp;
 				}
 

@@ -3,6 +3,10 @@
 	var m = @include('rev-manifest');
 
 	g.Asset.rev = function(f) {
+		if('{{{ App::environment('local') }}}') {
+			f = f.replace('.min', '');
+		}
+
 		if (m[f] !== u) {
 			return m[f];
 		}

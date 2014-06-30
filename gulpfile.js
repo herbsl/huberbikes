@@ -203,7 +203,8 @@ gulp.task('js:addons', function() {
 	.on('error', util.log)
 });
 
-gulp.task('default', [ 'gzip', 'img' ]);
+//gulp.task('default', [ 'img', 'htc', 'gzip' ] );
+gulp.task('default', [ 'img', 'htc', 'font', 'rev' ] );
 gulp.task('clean', [ 'font:clean', 'css:clean', 'js:clean', 'rev:clean' ]);
 gulp.task('css', [ 'css:main', 'css:addons' ]);
 gulp.task('js', [ 'js:main', 'js:addons' ]);
@@ -264,7 +265,6 @@ gulp.task('twb', function() {
 		.pipe(gulp.dest('assets/css'));
 });
 
-gulp.task('default', [ 'img', 'htc', 'gzip' ] );
 
 gulp.task('watch', function() {
 	var srv = livereload();
