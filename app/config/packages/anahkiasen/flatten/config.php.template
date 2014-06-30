@@ -13,6 +13,7 @@
 	// The different pages to be ignored when caching
 	// They're all regexes so go crazy
 	'ignore'       => array(
+		'/api/*',
 		'/login',
 		'/img/cache/.*'
 	),
