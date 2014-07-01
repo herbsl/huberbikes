@@ -20,7 +20,7 @@
 			@endif
 			<div class="caption">
 				<h4>
-					<strong>{{{ $title }}}</strong>
+					<strong>{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}</strong>
 				</h4>
 				<p>{{{ $bike->description }}}</p>
 			</div>

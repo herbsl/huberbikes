@@ -285,8 +285,14 @@ class BikeController extends \BaseController {
 			return false;
 		})->first();
 
+		$customers = array();
+		foreach ($bike->customers as $customer) {
+			array_push($customers, $customer->name);
+		}
+
 		return View::make('bike.show', array(
-			'title' => $bike->manufacturer->name . ' ' . $bike->name,
+			'title' => $bike->manufacturer->name . ' ' . $bike->name . ' (' .
+				implode(', ', $customers) . ')',
 			'highlights' => $highlights,
 			'bike' => $bike,
 			'collapse_details' => $collapse_details,
