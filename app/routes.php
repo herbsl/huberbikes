@@ -79,11 +79,15 @@ Route::get('/', function() {
 });
 
 Route::get('/navigation/bikes', function() {
-	return View::make('navigation.bikes');
+	return View::make('navigation.bikes', array(
+		'title' => 'Bikes'
+	));
 });
 
 Route::get('/navigation/hersteller', function() {
-	return View::make('navigation.hersteller');
+	return View::make('navigation.hersteller', array(
+		'title' => 'Hersteller'
+	));
 });
 
 Route::get('/kontakt', function() {
