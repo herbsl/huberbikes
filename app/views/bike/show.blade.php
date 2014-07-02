@@ -20,7 +20,7 @@
 			@endif
 			<div class="caption">
 				<h4>
-					<strong>{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}</strong>
+					<strong>{{{ $title }}}</strong>
 				</h4>
 				<p>{{{ $bike->description }}}</p>
 			</div>
@@ -76,14 +76,14 @@
 									@endforeach
 								</td>
 							</tr>
-							<tr>
+							<!--tr>
 								<td>Zielgruppe</td>
 								<td class="hb-center-inline">
 									@foreach($bike->customers as $customer)
 									{{{ $customer->name }}}
 									@endforeach
 								</td>
-							</tr>
+							</tr-->
 						</tbody>
 					</table>
 					<div class="row">

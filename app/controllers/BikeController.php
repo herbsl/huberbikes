@@ -16,12 +16,12 @@ class BikeController extends \BaseController {
 	 */
 	public function index()	{
 		$title = 'Bikes';
-		$customer_name = '';
 		$query = Bike::query();
 		$params = array();
 		$order = array('created_at','desc');
 		$trashed = $search = false;
-		$customers = true;
+		$show_customers = true;
+		$active_customer = '';
 
 		if (Auth::check() && Input::has('trashed') && Input::get('trashed') === 'true') {
 			$title = 'Papierkorb';
@@ -40,7 +40,7 @@ class BikeController extends \BaseController {
 			$title = 'Suche';
 			$notfound = 'zu Ihrer Suche';
 			$search = true;
-			$customers = false;
+			$show_customers = false;
 
 			foreach(explode(' ', $q) as $queryPart) {
 				$query = $query->where(function($query) use ($queryPart) {
@@ -70,13 +70,13 @@ class BikeController extends \BaseController {
 				});
 
 				if ($category === 'Kinderbikes') {
-					$customers = false;		
+					$show_customers = false;		
 				}
 			}
 
 			if (Input::has('hersteller')) {
 				$manufacturer = Input::get('hersteller');
-				$title = 'Bikes von ' . $manufacturer;
+				$title = $manufacturer . ' Bikes';
 
 				$params['hersteller'] = $manufacturer;
 				$query = $query->whereHas('manufacturer', function($query) use ($manufacturer) {
@@ -92,10 +92,10 @@ class BikeController extends \BaseController {
 			}
 
 			if (Input::has('zielgruppe')) {
-				$customer_name = Input::get('zielgruppe');
-
-				$query = $query->whereHas('customers', function($query) use ($customer_name) {
-					$query->where('name', '=', $customer_name);
+				$active_customer = Input::get('zielgruppe');
+				$title .= ' f&uuml;r ' . $active_customer;
+				$query = $query->whereHas('customers', function($query) use ($active_customer) {
+					$query->where('name', '=', $active_customer);
 				});
 			}
 		}
@@ -107,8 +107,8 @@ class BikeController extends \BaseController {
 	 			'title' => $title,
 				'text' => $notfound,
 				'params' => $params,
-				'customer_name' => $customer_name,
-				'customers' => $customers
+				'active_customer' => $active_customer,
+				'show_customers' => $show_customers
 			));
 		}
 
@@ -126,8 +126,8 @@ class BikeController extends \BaseController {
 			'params' => $params,
 			'new_threshold_days' => 90,
 			'bikes' => $query->get(),
-			'customer_name' => $customer_name,
-			'customers' => $customers
+			'active_customer' => $active_customer,
+			'show_customers' => $show_customers
 		));
 	}
 
@@ -285,14 +285,9 @@ class BikeController extends \BaseController {
 			return false;
 		})->first();
 
-		$customers = array();
-		foreach ($bike->customers as $customer) {
-			array_push($customers, $customer->name);
-		}
-
 		return View::make('bike.show', array(
-			'title' => $bike->manufacturer->name . ' ' . $bike->name . ' (' .
-				implode(', ', $customers) . ')',
+			'title' => $bike->manufacturer->name . ' ' . $bike->name . ' ' .
+				implode(', ', $bike->customerNames),
 			'highlights' => $highlights,
 			'bike' => $bike,
 			'collapse_details' => $collapse_details,

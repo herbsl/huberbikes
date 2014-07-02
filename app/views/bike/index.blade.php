@@ -30,7 +30,7 @@
 				</div>
 				<div class="caption">
 					<h4>
-						<strong>{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}</strong>
+						<strong>{{{ $bike->manufacturer->name }}} {{{ $bike->name }}} {{{ implode(', ', $bike->customerNames) }}}</strong>
 					</h4>
 					<p>{{{ $bike->description }}}</p>
 					<div class="thumbnail-footer">

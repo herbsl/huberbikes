@@ -27,6 +27,16 @@ class Bike extends Model {
 	public function images() {
 		return $this->belongsToMany('Image');
 	}
+
+	public function getCustomerNamesAttribute() {
+		$customers = array();
+
+		foreach ($this->customers as $customer) {
+			array_push($customers, $customer->name);
+		}
+
+		return $customers;
+	}
 }
 
 ?>

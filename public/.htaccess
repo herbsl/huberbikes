@@ -18,7 +18,7 @@ Allow from all
 
 	# Redirect /index.php to /
 	RewriteCond %{THE_REQUEST} ^.*/index\.php 
-	RewriteRule ^(.*)index.php$ /$1 [L,R=301]
+	RewriteRule ^(.*)index.php(.*)$ $2 [L,R=301]
 
     # Laravel: Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

@@ -1,5 +1,5 @@
 @if (isset($title))
-<title>Huber Bikes - {{{ $title }}}</title>
+<title>{{{ $title }}} - Huber Bikes</title>
 @else
 <title>Huber Bikes</title>
 @endif
