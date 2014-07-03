@@ -19,7 +19,8 @@
 		'/fonts/.*',
 		'/htc/.*',
 		'/img/.*',
-		'/login'
+		'/login',
+		'/sitemap.xml'
 	),
 
 	// List only specific pages to cache, useful if you have a lot of
@@ -44,6 +45,6 @@
 	// An array of string or variables to add to the salt being used
 	// to differentiate pages
 	'saltshaker'   => array(
-		'1404408937'
+		'1404409413'
 	),
 );

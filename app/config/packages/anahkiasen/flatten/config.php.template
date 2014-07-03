@@ -19,7 +19,8 @@
 		'/fonts/.*',
 		'/htc/.*',
 		'/img/.*',
-		'/login'
+		'/login',
+		'/sitemap.xml'
 	),
 
 	// List only specific pages to cache, useful if you have a lot of

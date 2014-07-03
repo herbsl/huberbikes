@@ -277,14 +277,13 @@ Route::get('/sitemap.xml', function() {
 		}
 	}
 
-	Sitemap::addTag('/', '', 'weekly', 1);
+	Sitemap::addTag(url('/'), '', 'weekly', 1);
 
 	# Secondary Navigation
-	Sitemap::addTag('/kontakt', '', 'weekly', .9);
-	Sitemap::addTag('/oeffnungszeiten', '', 'weekly', .9);
-	Sitemap::addTag('/so-finden-sie-uns', '', 'weekly', .9);
-	Sitemap::addTag('/impressum', '', 'weekly', .9);
-
+	Sitemap::addTag(url('/kontakt'), '', 'weekly', .9);
+	Sitemap::addTag(url('/oeffnungszeiten'), '', 'weekly', .9);
+	Sitemap::addTag(url('/so-finden-sie-uns'), '', 'weekly', .9);
+	Sitemap::addTag(url('/impressum'), '', 'weekly', .9);
 
 	# Main Navigation
 	foreach (Category::all() as $category) {
