@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Watson\\' => array($vendorDir . '/watson/sitemap/src/Watson'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
 );

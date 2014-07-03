@@ -2,7 +2,7 @@
 
 namespace Intervention\Image;
 
-abstract class AbstractSource
+abstract class AbstractDecoder
 {
     /**
      * Initiates new image from path in filesystem
@@ -44,7 +44,7 @@ abstract class AbstractSource
     private $data;
 
     /**
-     * Creates new Source with data
+     * Creates new Decoder with data
      *
      * @param mixed $data
      */
@@ -85,6 +85,16 @@ abstract class AbstractSource
     public function isInterventionImage()
     {
         return is_a($this->data, '\Intervention\Image\Image');
+    }
+
+    /**
+     * Determines if current data is Symfony UploadedFile component
+     *
+     * @return boolean
+     */
+    public function isSymfonyUpload()
+    {
+        return is_a($this->data, 'Symfony\Component\HttpFoundation\File\UploadedFile');
     }
 
     /**
@@ -151,36 +161,32 @@ abstract class AbstractSource
 
             case $this->isGdResource():
                 return $this->initFromGdResource($this->data);
-                break;
 
             case $this->isImagick():
                 return $this->initFromImagick($this->data);
-                break;
 
             case $this->isInterventionImage():
                 return $this->initFromInterventionImage($this->data);
-                break;
+
+            case $this->isSymfonyUpload():
+                return $this->initFromPath($this->data->getRealPath());
 
             case $this->isBinary():
                 return $this->initFromBinary($this->data);
-                break;
 
             case $this->isUrl():
                 return $this->initFromBinary(file_get_contents($this->data));
-                break;
 
             case $this->isFilePath():
                 return $this->initFromPath($this->data);
-                break;
 
             default:
                 throw new Exception\NotReadableException("Image source not readable");
-                break;
         }
     }
 
     /**
-     * Source object transforms to string source data
+     * Decoder object transforms to string source data
      *
      * @return string
      */

@@ -5,7 +5,7 @@ namespace Intervention\Image\Imagick;
 use \Intervention\Image\Image;
 use \Intervention\Image\Size;
 
-class Source extends \Intervention\Image\AbstractSource
+class Decoder extends \Intervention\Image\AbstractDecoder
 {
     /**
      * Initiates new image from path in filesystem
@@ -59,6 +59,9 @@ class Source extends \Intervention\Image\AbstractSource
         // currently animations are not supported
         // so all images are turned into static
         $object = $this->removeAnimation($object);
+
+        // reset image orientation
+        $object->setImageOrientation(\Imagick::ORIENTATION_UNDEFINED);
 
         return new Image(new Driver, $object);
     }

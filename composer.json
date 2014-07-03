@@ -3,15 +3,26 @@
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url":	"https://github.com/herbsl/maneuver"
+		},
+		{
+			"type": "vcs",
+			"url":	"https://github.com/herbsl/Laravel-Model-Validation"
+		}
+	],
 	"require": {
 		"laravel/framework": "4.1.*",
 		"fitztrev/laravel-html-minify": "dev-master",
-		"fadion/maneuver": "dev-master",
-		"way/database": "dev-master",
 		"intervention/image": "2.*",
 		"intervention/imagecache": "2.*",
 		"anahkiasen/flatten": "dev-master",
-		"philf/setting": "dev-master"
+		"philf/setting": "dev-master",
+		"watson/sitemap": "1.1.*",
+		"fadion/maneuver": "0.1.0",
+		"way/database": "0.1.0"
 	},
 	"autoload": {
 		"classmap": [

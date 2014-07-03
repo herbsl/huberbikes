@@ -13581,7 +13581,7 @@ return jQuery;
 	}
 
     ga('create','UA-51739955-1', {
-		'cookieDomain': 'huberbikes.de'
+		'cookieDomain': 'www.huberbikes.de'
 	});
 	ga('send','pageview');       
 

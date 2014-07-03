@@ -111,7 +111,8 @@ return array(
 		'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
 		'Fadion\Maneuver\ManeuverServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
-		'Flatten\FlattenServiceProvider'
+		'Flatten\FlattenServiceProvider',
+		'Watson\Sitemap\SitemapServiceProvider'
 	),
 
 	/*
@@ -181,7 +182,8 @@ return array(
 		// manually added
 		'Model'           => 'Way\Database\Model',
 		'Img'			  => 'Intervention\Image\Facades\Image',
-		'Flatten'		  => 'Flatten\Facades\Flatten'
+		'Flatten'		  => 'Flatten\Facades\Flatten',
+		'Sitemap'		  => 'Watson\Sitemap\Facades\Sitemap'
 	),
 
 );

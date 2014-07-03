@@ -20,7 +20,7 @@ class Connection
     /**
      * @var array List of servers
      */
-    protected $servers = array();
+    protected $servers = [];
 
     /**
      * Constructor

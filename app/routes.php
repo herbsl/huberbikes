@@ -264,6 +264,74 @@ Route::get('/login', 'AuthController@show');
 Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
 
+Route::get('/sitemap.xml', function() {
+	$customers = Customer::all();
+
+	function addCustomerLinks($params, $customers) {
+		foreach($customers as $customer) {
+			$url = URL::action('bike.index', array_merge($params, array(
+				'zielgruppe' => $customer->name	
+			)));
+
+			Sitemap::addTag(htmlspecialchars($url), '', 'daily', .9);
+		}
+	}
+
+	Sitemap::addTag('/', '', 'weekly', 1);
+
+	# Secondary Navigation
+	Sitemap::addTag('/kontakt', '', 'weekly', .9);
+	Sitemap::addTag('/oeffnungszeiten', '', 'weekly', .9);
+	Sitemap::addTag('/so-finden-sie-uns', '', 'weekly', .9);
+	Sitemap::addTag('/impressum', '', 'weekly', .9);
+
+
+	# Main Navigation
+	foreach (Category::all() as $category) {
+		$params = array(
+			'kategorie' => $category->name
+		);
+		Sitemap::addTag(
+			URL::action('bike.index', $params), '', 'daily', .9
+		);
+
+		if ($category->name !== 'Kinderbikes') {
+			addCustomerLinks($params, $customers);
+		}
+	}
+
+	foreach (Manufacturer::all() as $manu) {
+		$params = array(
+			'hersteller' => $manu->name
+		);
+		Sitemap::addTag(
+			URL::action('bike.index', $params), '', 'daily', .9
+		);
+
+		addCustomerLinks($params, $customers);
+	}
+
+	# Sale
+	$saleParams = array(
+		'sale' => 'true'
+	);
+	Sitemap::addTag(
+		URL::action('bike.index', $saleParams), '', 'daily', .9
+	);
+
+	addCustomerLinks($saleParams, $customers);	
+
+	# Bikes
+	foreach (Bike::all() as $bike) {
+		Sitemap::addTag(
+			URL::action('bike.show', $bike->id),
+			'', 'daily', .8
+		);
+	}
+
+	return Sitemap::renderSitemap();
+});
+
 App::missing(function($exception) {
 	return Response::view('404', array(), 404);
 });

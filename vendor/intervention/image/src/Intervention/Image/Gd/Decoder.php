@@ -5,7 +5,7 @@ namespace Intervention\Image\Gd;
 use \Intervention\Image\Image;
 use \Intervention\Image\Size;
 
-class Source extends \Intervention\Image\AbstractSource
+class Decoder extends \Intervention\Image\AbstractDecoder
 {
     /**
      * Initiates new image from path in filesystem
@@ -43,9 +43,8 @@ class Source extends \Intervention\Image\AbstractSource
 
             default:
                 throw new \Intervention\Image\Exception\NotReadableException(
-                    "Unable to read image type ({$this->type}) only use JPG, PNG or GIF images with GD driver."
+                    "Unable to read image type. Only use JPG, PNG or GIF images with GD driver."
                 );
-                break;
         }
 
         // build image
@@ -120,6 +119,7 @@ class Source extends \Intervention\Image\AbstractSource
         imagealphablending($canvas, false);
         $transparent = imagecolorallocatealpha($canvas, 255, 255, 255, 127);
         imagefilledrectangle($canvas, 0, 0, $width, $height, $transparent);
+        imagecolortransparent($canvas, $transparent);
         imagealphablending($canvas, true);
 
         // copy original
