@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /bike/*?collapse-details=*
+Disallow: /bike/*?*collapse-details=*
 
-Sitemap: /sitemap.xml
+Sitemap: http://www.huberbikes.de/sitemap.xml
