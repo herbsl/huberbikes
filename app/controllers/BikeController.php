@@ -281,15 +281,16 @@ class BikeController extends \BaseController {
 			// Link auf ein geloeschtes Bike wird auf die passende Kategorie umgeleitet
 			$category = $bike->first()->categories->first()->name;
 			$url = URL::Action('bike.index', array(
-				'kategorie' => $category
+				'kategorie' => $category,
+				'nocache' => 'true'
 			));
 			return Redirect::to($url, 301)->with(
-				/*array(
+				array(
 					'message' => array(
 						'Der von Ihnen aufgerufen Artikel befindet sich ' . 
 						'leider nicht mehr in unserem Bestand.'
 					)
-				)*/
+				)
 			);
 		}
 
