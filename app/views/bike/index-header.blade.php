@@ -1,5 +1,10 @@
 <div class="page-header">
 	<div class="row">
+		@if (Session::has('message'))
+			@foreach (Session::get('message') as $message)
+			<div class="alert alert-info">{{ $message }}</div>
+			@endforeach
+		@endif
 		<div class="col-sm-10">
 		<h1>{{{ $title }}}</h1>
 		</div>

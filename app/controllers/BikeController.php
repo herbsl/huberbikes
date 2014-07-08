@@ -248,9 +248,11 @@ class BikeController extends \BaseController {
 	{
 		$bike = Bike::query();
 		$collapse_details = 'in';
+		$trashed = false;
 
 		if (Auth::check() && Input::has('trashed') && Input::get('trashed') === 'true') {
 			$bike = $bike->onlyTrashed();
+			$trashed = true;
 		}
 
 		if (Input::has('collapse-details')) {
@@ -266,7 +268,29 @@ class BikeController extends \BaseController {
 			->find($id);
 
 		if (! $bike) {
-			return View::make('404');
+			if ($trashed) {
+				return View::make('404');
+			}
+
+			$bike = Bike::onlyTrashed()->with('categories')->find($id);
+
+			if (! $bike) {
+				return View::make('404');
+			}
+
+			// Link auf ein geloeschtes Bike wird auf die passende Kategorie umgeleitet
+			$category = $bike->first()->categories->first()->name;
+			$url = URL::Action('bike.index', array(
+				'kategorie' => $category
+			));
+			return Redirect::to($url, 301)->with(
+				array(
+					'message' => array(
+						'Der von Ihnen aufgerufen Artikel befindet sich ' . 
+						'leider nicht mehr in unserem Bestand.'
+					)
+				)
+			);
 		}
 
 		$highlights = $bike->components->filter(function($component) use ($components) {
