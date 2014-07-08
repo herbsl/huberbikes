@@ -284,12 +284,12 @@ class BikeController extends \BaseController {
 				'kategorie' => $category
 			));
 			return Redirect::to($url, 301)->with(
-				array(
+				/*array(
 					'message' => array(
 						'Der von Ihnen aufgerufen Artikel befindet sich ' . 
 						'leider nicht mehr in unserem Bestand.'
 					)
-				)
+				)*/
 			);
 		}
 
