@@ -1,5 +1,7 @@
 <?php
 
-class Manufacturer extends Eloquent {}
+class Manufacturer extends Eloquent {
+	protected $softDelete = true;
+}
 
 ?>

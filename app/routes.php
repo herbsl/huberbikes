@@ -1,5 +1,6 @@
 <?php
 
+Route::get('bike/{id}/{name}', 'BikeController@show');
 Route::resource('bike', 'BikeController');
 
 function getBikesDetailView($id) {
@@ -63,13 +64,13 @@ function getBikesDetailView($id) {
 	return $view;
 }
 
-Route::get('/navigation', function() {
+Route::get('navigation', function() {
 	return View::make('navigation.main', array(
 		'title' => 'Navigation'
 	));
 });
 
-Route::get('/', function() {
+Route::get('', function() {
 	// Bei alten Joomla-Seiten 404 zurueckgeben:
 	if (Input::has('option')) {
 		return Response::view('404', array(), 404);
@@ -78,47 +79,47 @@ Route::get('/', function() {
 	return View::make('start');
 });
 
-Route::get('/navigation/bikes', function() {
+Route::get('navigation/bikes', function() {
 	return View::make('navigation.bikes', array(
 		'title' => 'Bikes'
 	));
 });
 
-Route::get('/navigation/hersteller', function() {
+Route::get('navigation/hersteller', function() {
 	return View::make('navigation.hersteller', array(
 		'title' => 'Hersteller'
 	));
 });
 
-Route::get('/kontakt', function() {
+Route::get('kontakt', function() {
 	return View::make('kontakt', array(
 		'title' => 'Unsere Kontaktdaten'
 	));
 });
 
-Route::get('/oeffnungszeiten', function() {
+Route::get('oeffnungszeiten', function() {
 	return View::make('oeffnungszeiten', array(
 		'title' => 'Unsere &Ouml;ffnungszeiten'
 	));
 });
 
-Route::get('/so-finden-sie-uns', function() {
+Route::get('so-finden-sie-uns', function() {
 	return View::make('so-finden-sie-uns', array(
 		'title' => 'So finden Sie uns'
 	));
 });
 
-Route::get('/impressum', function() {
+Route::get('impressum', function() {
 	return View::make('impressum', array(
 		'title' => 'Impressum'
 	));
 });
 
-Route::get('/admin/bikes/neu', function() {
+Route::get('admin/bikes/neu', function() {
 	return View::make('admin.bikes-new');
 });
 
-Route::get('/api/suggestions', function() {
+Route::get('api/suggestions', function() {
 	$suggestions = array();
 	foreach (Manufacturer::get() as $manufacturer) {
 		array_push($suggestions, $manufacturer->name);
@@ -154,7 +155,7 @@ Route::get('/api/suggestions', function() {
 });
 
 
-Route::get('/image', function() {
+Route::get('image', function() {
 	if (! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
@@ -172,7 +173,7 @@ Route::get('/image', function() {
 	}
 });
 
-Route::post('/image', function() {
+Route::post('image', function() {
 	if (! Input::hasFile('file') || ! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
@@ -215,7 +216,7 @@ Route::post('/image', function() {
 	));
 });
 
-Route::put('/image/{id}', function($image_id) {
+Route::put('image/{id}', function($image_id) {
 	if (! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
@@ -241,7 +242,7 @@ Route::put('/image/{id}', function($image_id) {
 	));
 });
 
-Route::delete('/image/{id}', function($image_id) {
+Route::delete('image/{id}', function($image_id) {
 	if (! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
@@ -260,11 +261,11 @@ Route::delete('/image/{id}', function($image_id) {
 });
 
 
-Route::get('/login', 'AuthController@show');
-Route::post('/login', 'AuthController@login');
-Route::get('/logout', 'AuthController@logout');
+Route::get('login', 'AuthController@show');
+Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');
 
-Route::get('/sitemap.xml', function() {
+Route::get('sitemap.xml', function() {
 	$customers = Customer::all();
 
 	function addCustomerLinks($params, $customers) {
