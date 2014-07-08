@@ -15,8 +15,8 @@ class CreateManufacturersTable extends Migration {
 		Schema::create('manufacturers', function($table) {
 			$table->increments('id');
 			$table->string('name')->unique();
+			$table->boolean('disabled');
 			$table->timestamps();
-			$table->softDeletes();
 		});
 	}
 

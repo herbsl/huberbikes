@@ -44,7 +44,7 @@
 				@endif
 					<a href="/navigation/hersteller" class="dropdown-toggle" data-toggle="dropdown" tabindex="3">Hersteller <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						@foreach(Manufacturer::all() as $manufacturer)
+						@foreach(Manufacturer::where('disabled', '=', '0')->get() as $manufacturer)
 							@if (Input::has('hersteller') && Input::get('hersteller') === $manufacturer->name)
 							<li class="active">
 							@else

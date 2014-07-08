@@ -121,7 +121,7 @@ Route::get('admin/bikes/neu', function() {
 
 Route::get('api/suggestions', function() {
 	$suggestions = array();
-	foreach (Manufacturer::get() as $manufacturer) {
+	foreach (Manufacturer::where('disabled', '=', '0')->get() as $manufacturer) {
 		array_push($suggestions, $manufacturer->name);
 	}
 
