@@ -227,7 +227,7 @@
 
 				$.post('/image/' + file.id, {
 					_method: 'delete',
-					bike_id: {{{ $bike->id ? $bike->id : -1 }}}
+					bike_id: '{{{ $bike->id ? Hashids::encrypt($bike->id) : -1 }}}'
 				}).then(function() {
 					context.removeFile(file);
 				});
@@ -259,7 +259,7 @@
 		});
 
 		$.get('/image', {
-			bike_id: {{{ $bike->id ? $bike->id : -1 }}}
+			bike_id: '{{{ $bike->id ? Hashids::encrypt($bike->id) : -1 }}}'
 		}).then(function(data) {
 			if (! data['images']) {
 				return;
@@ -276,7 +276,7 @@
 
 				dropzone.emit('addedfile', file);
 				dropzone.emit('thumbnail', file, '/img/cache/small/bike/' +
-					{{{ $bike->id }}} + '/' + file.name);
+					{{{ Hashids::encrypt($bike->id) }}} + '/' + file.name);
 			});
 		});
 	});

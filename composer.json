@@ -21,6 +21,7 @@
 		"anahkiasen/flatten": "dev-master",
 		"philf/setting": "dev-master",
 		"watson/sitemap": "1.1.*",
+		"mitch/hashids": "1.x",
 		"fadion/maneuver": "0.1.0",
 		"way/database": "0.1.0"
 	},
@@ -50,5 +51,6 @@
 	"config": {
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "stable"
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }

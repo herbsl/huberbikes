@@ -2100,5 +2100,108 @@
         "support": {
             "source": "https://github.com/herbsl/Laravel-Model-Validation/tree/0.1.0"
         }
+    },
+    {
+        "name": "hashids/hashids",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ivanakimov/hashids.php.git",
+            "reference": "8587e301d86217666d341e8c68ee3051ef23aaaa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ivanakimov/hashids.php/zipball/8587e301d86217666d341e8c68ee3051ef23aaaa",
+            "reference": "8587e301d86217666d341e8c68ee3051ef23aaaa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2014-06-04 01:56:32",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Hashids": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ivan Akimov",
+                "email": "ivan@barreleye.com",
+                "homepage": "https://twitter.com/ivanakimov",
+                "role": "Developer"
+            }
+        ],
+        "description": "Generate hashes like YouTube or Bitly from numbers to obfuscate your database IDs, or navigate to the right shard.",
+        "homepage": "http://www.hashids.org/php/",
+        "keywords": [
+            "bitly",
+            "decrypt",
+            "encrypt",
+            "hash",
+            "hashids",
+            "ids",
+            "obfuscate",
+            "youtube"
+        ]
+    },
+    {
+        "name": "mitch/hashids",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mitchellvanw/hashids.git",
+            "reference": "992e04b73f0b642273c054bf73764e92464c90fa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mitchellvanw/hashids/zipball/992e04b73f0b642273c054bf73764e92464c90fa",
+            "reference": "992e04b73f0b642273c054bf73764e92464c90fa",
+            "shasum": ""
+        },
+        "require": {
+            "hashids/hashids": "0.3.x",
+            "illuminate/support": "4.x",
+            "php": ">=5.3.0"
+        },
+        "time": "2014-02-05 13:22:10",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Mitch\\Hashids": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Mitchell van Wijngaarden",
+                "email": "hey@mitchellvanwijngaarden.nl",
+                "homepage": "http://mitchellvanwijngaarden.nl",
+                "role": "Developer"
+            }
+        ],
+        "description": "Laravel package for Hashids"
     }
 ]

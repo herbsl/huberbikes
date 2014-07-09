@@ -222,7 +222,6 @@ class ImageCache
             return $cachedImageData;
 
         } else {
-
             // process image data
             //$image = $this->process()->encode();
             $image = $this->process();
