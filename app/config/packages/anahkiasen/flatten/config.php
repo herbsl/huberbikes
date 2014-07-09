@@ -33,7 +33,8 @@
 	// "true", then Flatten won't start
 	'blockers'     => array(
 		(class_exists('Auth') && ! Auth::check()) ? true : false,
-		(class_exists('Input') && Input::has('nocache') && Input::get('nocache') === 'true') ? false : true
+		(class_exists('Input') && Input::has('nocache') && Input::get('nocache') === 'true') ? false : true,
+		(class_exists('Input') && Input::has('options')) ? false : true
 	),
 
 	// Cache variables
@@ -46,6 +47,6 @@
 	// An array of string or variables to add to the salt being used
 	// to differentiate pages
 	'saltshaker'   => array(
-		'1404840384'
+		'1404891274'
 	),
 );
