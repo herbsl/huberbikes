@@ -1,5 +1,9 @@
 <?php
 
+namespace Herbsl\Asset;
+
+use Illuminate\Support\Facades\App;
+
 class Asset {
 	function __construct() {}
 
@@ -29,9 +33,5 @@ class Asset {
 		return $src;
 	}
 }
-
-App::singleton('asset', function() {
-	return new Asset;
-});
 
 ?>

@@ -114,6 +114,7 @@ return array(
 		'Flatten\FlattenServiceProvider',
 		'Watson\Sitemap\SitemapServiceProvider',
 		'Mitch\Hashids\HashidsServiceProvider',
+		'Herbsl\Asset\AssetServiceProvider',
 	),
 
 	/*
@@ -185,7 +186,11 @@ return array(
 		'Img'			  => 'Intervention\Image\Facades\Image',
 		'Flatten'		  => 'Flatten\Facades\Flatten',
 		'Sitemap'		  => 'Watson\Sitemap\Facades\Sitemap',
+<<<<<<< HEAD
 		'Hashids'	      => 'Mitch\Hashids\Hashids'
+=======
+		'Asset'			  => 'Herbsl\Asset\Facades\Asset',
+>>>>>>> ioc
 	),
 
 );
