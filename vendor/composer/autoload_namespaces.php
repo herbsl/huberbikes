@@ -36,6 +36,7 @@ return array(
     'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src'),
     'Intervention\\Image' => array($vendorDir . '/intervention/imagecache/src'),
     'Illuminate' => array($vendorDir . '/laravel/framework/src'),
+    'Herbsl\\Asset' => array($vendorDir . '/herbsl/asset/src'),
     'Flatten' => array($vendorDir . '/anahkiasen/flatten/src'),
     'Fitztrev\\LaravelHtmlMinify' => array($vendorDir . '/fitztrev/laravel-html-minify/src'),
     'File' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),

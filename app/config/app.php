@@ -112,7 +112,8 @@ return array(
 		'Fadion\Maneuver\ManeuverServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Flatten\FlattenServiceProvider',
-		'Watson\Sitemap\SitemapServiceProvider'
+		'Watson\Sitemap\SitemapServiceProvider',
+		'Herbsl\Asset\AssetServiceProvider',
 	),
 
 	/*
@@ -183,7 +184,8 @@ return array(
 		'Model'           => 'Way\Database\Model',
 		'Img'			  => 'Intervention\Image\Facades\Image',
 		'Flatten'		  => 'Flatten\Facades\Flatten',
-		'Sitemap'		  => 'Watson\Sitemap\Facades\Sitemap'
+		'Sitemap'		  => 'Watson\Sitemap\Facades\Sitemap',
+		'Asset'			  => 'Herbsl\Asset\Facades\Asset',
 	),
 
 );
