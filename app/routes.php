@@ -1,6 +1,7 @@
 <?php
 
 //Route::get('bike/{id}/{name}', 'BikeController@show');
+
 Route::resource('bike', 'BikeController');
 
 function getBikesDetailView($id) {
@@ -115,10 +116,6 @@ Route::get('impressum', function() {
 	));
 });
 
-Route::get('admin/bikes/neu', function() {
-	return View::make('admin.bikes-new');
-});
-
 Route::get('api/suggestions', function() {
 	$suggestions = array();
 	foreach (Manufacturer::where('disabled', '=', '0')->get() as $manufacturer) {
@@ -162,7 +159,7 @@ Route::get('image', function() {
 		), 400);
 	}
 
-	$bike_id = Input::get('bike_id');
+	$bike_id = Hasher::decrypt(Input::get('bike_id'));
 	$bike = Bike::with('images')->find($bike_id);
 
 	if ($bike) {
@@ -173,17 +170,17 @@ Route::get('image', function() {
 	}
 });
 
-Route::post('image', function() {
+Route::post('image', array('before' => 'auth', function() {
 	if (! Input::hasFile('file') || ! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
 		), 400);
 	}
 
-	$bike_id = Input::get('bike_id');
+	$bike_id = Hasher::decrypt(Input::get('bike_id'));
 	$file = Input::file('file');
 
-	$path = public_path() . '/img/bike/' . $bike_id;
+	$path = public_path() . '/img/bike/' . Hasher::encrypt($bike_id);
 	if (! is_dir($path) && ! mkdir($path, 0777, true)) {
 		return Response::json(array(
 			'error' => 'Could not create the target directory'
@@ -214,16 +211,16 @@ Route::post('image', function() {
 		'success' => '',
 		'image' => $image->toArray()
 	));
-});
+}));
 
-Route::put('image/{id}', function($image_id) {
+Route::put('image/{id}', array('before' => 'auth', function($image_id) {
 	if (! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
 		), 400);
 	}
 
-	$bike_id = Input::get('bike_id');
+	$bike_id = Hasher::decrypt(Input::get('bike_id'));
 	$bike = Bike::with('images')->find($bike_id);
 
 	foreach ($bike->images as $image) {
@@ -240,16 +237,16 @@ Route::put('image/{id}', function($image_id) {
 	return Response::json(array(
 		'success' => ''
 	));
-});
+}));
 
-Route::delete('image/{id}', function($image_id) {
+Route::delete('image/{id}', array('before' => 'auth', function($image_id) {
 	if (! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
 		), 400);
 	}
 
-	$bike_id = Input::get('bike_id');
+	$bike_id = Hasher::decrypt(Input::get('bike_id'));
 	$image = Image::find($image_id);
 	$path = public_path() . '/img/bike/' . $bike_id . '/' . $image->name;
 	if (is_file($path)) {
@@ -258,8 +255,7 @@ Route::delete('image/{id}', function($image_id) {
 	$image->delete();
 
 	return Response::json('success');
-});
-
+}));
 
 Route::get('login', 'AuthController@show');
 Route::post('login', 'AuthController@login');
@@ -324,7 +320,7 @@ Route::get('sitemap.xml', function() {
 	# Bikes
 	foreach (Bike::all() as $bike) {
 		Sitemap::addTag(
-			URL::action('bike.show', $bike->id),
+			URL::action('bike.show', Hasher::encrypt($bike->id)),
 			'', 'daily', .8
 		);
 	}

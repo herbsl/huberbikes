@@ -6,9 +6,9 @@
 	<div class="row">
 	@foreach($bikes as $bike)<div class="bikes-list-thumbnail-container">
 		@if (Input::has('trashed') && Input::get('trashed') === 'true')
-		<a href="{{{ URL::action('bike.show', array($bike->id, 'trashed' => 'true')) }}}" role="button">
+		<a href="{{{ URL::action('bike.show', array(Hasher::encrypt($bike->id), 'trashed' => 'true')) }}}" role="button">
 		@else
-		<a href="{{{ URL::action('bike.show', $bike->id) }}}" role="button">
+		<a href="{{{ URL::action('bike.show', Hasher::encrypt($bike->id)) }}}" role="button">
 		@endif
 			<div class="thumbnail">
 				@if ( $bike->price_offer != 0 )
@@ -24,7 +24,7 @@
 				<div class="image-placeholder">
 					@foreach ($bike->images as $image)
 						@if ($image->default)
-						<img src="/img/cache/x-small/bike/{{{ $bike->id }}}/{{{ $image->name }}}?quality=75" srcset="/img/cache/x-small-2x/bike/{{{ $bike->id }}}/{{{ $image->name }}}?quality=75 2x" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+						<img src="/img/cache/x-small/bike/{{{ Hasher::encrypt($bike->id) }}}/{{{ $image->name }}}?quality=75" srcset="/img/cache/x-small-2x/bike/{{{ Hasher::encrypt($bike->id) }}}/{{{ $image->name }}}?quality=75 2x" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
 						@endif
 					@endforeach
 				</div>

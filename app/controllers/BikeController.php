@@ -113,10 +113,10 @@ class BikeController extends \BaseController {
 		}
 
 		if ($hits === 1 && $search) {
-			return Redirect::route('bike.show', array(
-				$query->first()->id,
-				'q' => Input::get('q')
-			));
+			$url = URL::Action('bike.show', Hasher::encrypt(
+				$query->first()->id));
+			return Redirect::to($url)->with('X-Header',
+				array('X-Location' => $url));
 		}
 
 		$query = call_user_func_array(array($query, 'orderBy'), $order);
@@ -232,7 +232,7 @@ class BikeController extends \BaseController {
 		// Flush the html cache
 		Flatten::flushAll();
 
-		$url = URL::Action('bike.show', $bike->id);
+		$url = URL::Action('bike.show', Hasher::encrypt($bike->id));
 		return Redirect::to($url)->with('X-Header',
 			array('X-Location' => $url));
 	}
@@ -246,6 +246,8 @@ class BikeController extends \BaseController {
 	 */
 	public function show($id)
 	{
+		$id = Hasher::decrypt($id);
+
 		$bike = Bike::query();
 		$collapse_details = 'in';
 		$trashed = false;
@@ -279,7 +281,7 @@ class BikeController extends \BaseController {
 			}
 
 			// Link auf ein geloeschtes Bike wird auf die passende Kategorie umgeleitet
-			$category = $bike->first()->categories->first()->name;
+			$category = $bike->categories->first()->name;
 			$url = URL::Action('bike.index', array(
 				'kategorie' => $category,
 				'nocache' => 'true'
@@ -329,6 +331,8 @@ class BikeController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+		$id = Hasher::decrypt($id);
+
 		$bike = Bike::find($id);
 		$category_id = array();
 		$customer_id = array();
@@ -378,7 +382,7 @@ class BikeController extends \BaseController {
 		}
 
 		return View::make('bike.edit', array(
-			'action' => URL::action('bike.update', $bike->id),
+			'action' => URL::action('bike.update', Hasher::encrypt($bike->id)),
 			'method' => 'put',
 			'bike' => $bike,
 			'category_id' => $category_id,
@@ -396,6 +400,8 @@ class BikeController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$id = Hasher::decrypt($id);
+
 		try {
 			DB::beginTransaction();
 
@@ -408,7 +414,7 @@ class BikeController extends \BaseController {
 			$bike->manufacturer_id = Input::get('manufacturer_id');
 	
 			if (! $bike->save()) {
-			   return Redirect::route('bike.edit', $id)->withInput()
+			   return Redirect::route('bike.edit', Hashid::encrypt($id))->withInput()
 					->withErrors($bike->getErrors());
 			}
 
@@ -454,7 +460,7 @@ class BikeController extends \BaseController {
 		// Flush the html cache
 		Flatten::flushAll();
 
-		$url = URL::Action('bike.show', $bike->id);
+		$url = URL::Action('bike.show', Hasher::encrypt($bike->id));
 		return Redirect::to($url)->with('X-Header',
 			array('X-Location' => $url));
 	}
@@ -468,6 +474,8 @@ class BikeController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+		$id = Hasher::decrypt($id);
+
 		if (Input::has('restore') && Input::get('restore') === 'true') {
 			Bike::onlyTrashed()->find($id)->restore();
 		}

@@ -154,7 +154,7 @@
 		<fieldset>
 			<legend>Bilder</legend>
 		</fieldset>
-		<input type="hidden" name="bike_id" value="{{{ $bike->id }}}">
+		<input type="hidden" name="bike_id" value="{{{ Hasher::encrypt($bike->id) }}}">
 	</form>
 	@endif
 </div>
@@ -211,7 +211,7 @@
 
 				$.post('/image/' + file.id, {
 					_method: 'put',
-					bike_id: {{{ $bike->id ? $bike->id : -1 }}}
+					bike_id: '{{{ $bike->id ? Hasher::encrypt($bike->id) : -1 }}}'
 				}).then(function() {
 					setDefaultImage(file);
 				});
@@ -227,7 +227,7 @@
 
 				$.post('/image/' + file.id, {
 					_method: 'delete',
-					bike_id: {{{ $bike->id ? $bike->id : -1 }}}
+					bike_id: '{{{ $bike->id ? Hasher::encrypt($bike->id) : -1 }}}'
 				}).then(function() {
 					context.removeFile(file);
 				});
@@ -259,7 +259,7 @@
 		});
 
 		$.get('/image', {
-			bike_id: {{{ $bike->id ? $bike->id : -1 }}}
+			bike_id: '{{{ $bike->id ? Hasher::encrypt($bike->id) : -1 }}}'
 		}).then(function(data) {
 			if (! data['images']) {
 				return;
@@ -276,7 +276,7 @@
 
 				dropzone.emit('addedfile', file);
 				dropzone.emit('thumbnail', file, '/img/cache/small/bike/' +
-					{{{ $bike->id }}} + '/' + file.name);
+					{{{ Hasher::encrypt($bike->id) }}} + '/' + file.name);
 			});
 		});
 	});

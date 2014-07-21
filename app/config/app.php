@@ -113,6 +113,8 @@ return array(
 		'Intervention\Image\ImageServiceProvider',
 		'Flatten\FlattenServiceProvider',
 		'Watson\Sitemap\SitemapServiceProvider',
+		'Mitch\Hashids\HashidsServiceProvider',
+		'Herbsl\Hasher\HasherServiceProvider',
 		'Herbsl\Asset\AssetServiceProvider',
 	),
 
@@ -185,6 +187,8 @@ return array(
 		'Img'			  => 'Intervention\Image\Facades\Image',
 		'Flatten'		  => 'Flatten\Facades\Flatten',
 		'Sitemap'		  => 'Watson\Sitemap\Facades\Sitemap',
+		//'Hashids'	      => 'Mitch\Hashids\Hashids',
+		'Hasher'		  => 'Herbsl\Hasher\Facades\Hasher',
 		'Asset'			  => 'Herbsl\Asset\Facades\Asset',
 	),
 
