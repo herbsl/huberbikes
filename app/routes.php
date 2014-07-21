@@ -1,6 +1,7 @@
 <?php
 
 //Route::get('bike/{id}/{name}', 'BikeController@show');
+
 Route::resource('bike', 'BikeController');
 
 function getBikesDetailView($id) {
@@ -158,8 +159,7 @@ Route::get('image', function() {
 		), 400);
 	}
 
-	$bike_ids = Hashids::decrypt(Input::get('bike_id'));
-	$bike_id = $bike_ids[0];
+	$bike_id = Hasher::decrypt(Input::get('bike_id'));
 	$bike = Bike::with('images')->find($bike_id);
 
 	if ($bike) {
@@ -177,10 +177,10 @@ Route::post('image', array('before' => 'auth', function() {
 		), 400);
 	}
 
-	$bike_id = Input::get('bike_id');
+	$bike_id = Hasher::decrypt(Input::get('bike_id'));
 	$file = Input::file('file');
 
-	$path = public_path() . '/img/bike/' . Hashids::encrypt($bike_id);
+	$path = public_path() . '/img/bike/' . Hasher::encrypt($bike_id);
 	if (! is_dir($path) && ! mkdir($path, 0777, true)) {
 		return Response::json(array(
 			'error' => 'Could not create the target directory'
@@ -220,7 +220,7 @@ Route::put('image/{id}', array('before' => 'auth', function($image_id) {
 		), 400);
 	}
 
-	$bike_id = Input::get('bike_id');
+	$bike_id = Hasher::decrypt(Input::get('bike_id'));
 	$bike = Bike::with('images')->find($bike_id);
 
 	foreach ($bike->images as $image) {
@@ -246,7 +246,7 @@ Route::delete('image/{id}', array('before' => 'auth', function($image_id) {
 		), 400);
 	}
 
-	$bike_id = Input::get('bike_id');
+	$bike_id = Hasher::decrypt(Input::get('bike_id'));
 	$image = Image::find($image_id);
 	$path = public_path() . '/img/bike/' . $bike_id . '/' . $image->name;
 	if (is_file($path)) {
@@ -256,24 +256,6 @@ Route::delete('image/{id}', array('before' => 'auth', function($image_id) {
 
 	return Response::json('success');
 }));
-
-Route::get('/image/rename', array('before' => 'auth', function() {
-	$path = public_path() . '/img/bike/';
-
-	foreach (scandir($path) as $file) {
-		if ($file === '.' || $file === '..' || ! is_numeric($file)) {
-			continue;
-		}
-
-		$fpath = $path . $file;
-		if (! is_dir($fpath)) {
-			continue;
-		}
-
-		rename($fpath, $path . Hashids::encrypt($file));
-	}
-}));
-
 
 Route::get('login', 'AuthController@show');
 Route::post('login', 'AuthController@login');
@@ -338,7 +320,7 @@ Route::get('sitemap.xml', function() {
 	# Bikes
 	foreach (Bike::all() as $bike) {
 		Sitemap::addTag(
-			URL::action('bike.show', Hashids::encrypt($bike->id)),
+			URL::action('bike.show', Hasher::encrypt($bike->id)),
 			'', 'daily', .8
 		);
 	}

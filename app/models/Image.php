@@ -1,5 +1,7 @@
 <?php
 
-class Image extends Eloquent {}
+class Image extends Eloquent {
+	protected $hidden = array('pivot');
+}
 
 ?>

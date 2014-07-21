@@ -9,7 +9,7 @@
 					<li data-target="#carousel-bike" data-slide-to="{{{ $defaultImage->id }}}" class="active"></li></ol>
 				<div class="carousel-inner">
 					<div class="item hb-item active" data-id="{{{ $defaultImage->id }}}">
-						<img src="/img/cache/medium/bike/{{{ Hashids::encrypt($bike->id) }}}/{{{ $defaultImage->name }}}?quality=75" srcset="/img/cache/medium-2x/bike/{{{ Hashids::encrypt($bike->id) }}}/{{{ $defaultImage->name }}}?quality=75 2x" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
+						<img src="/img/cache/medium/bike/{{{ Hasher::encrypt($bike->id) }}}/{{{ $defaultImage->name }}}?quality=75" srcset="/img/cache/medium-2x/bike/{{{ Hasher::encrypt($bike->id) }}}/{{{ $defaultImage->name }}}?quality=75 2x" alt="{{{ $bike->manufacturer->name }}} {{{ $bike->name }}}">
 					</div>
 				</div>
 				<a class="left carousel-control" href="#carousel-bike" data-slide="prev">
@@ -90,7 +90,7 @@
 						<div class="col-xs-offset-3 col-xs-6 col-sm-offset-2 col-sm-8">
 					@if (Auth::check())
 						@if (Input::has('trashed') && Input::get('trashed') === 'true')
-						<form action="{{{ URL::route('bike.destroy', Hashids::encrypt($bike->id)) }}}" role="form" class="hb-margin-top-1x" method="post">
+						<form action="{{{ URL::route('bike.destroy', Hasher::encrypt($bike->id)) }}}" role="form" class="hb-margin-top-1x" method="post">
 							<input type="hidden" name="_method" value="delete">
 							<input type="hidden" name="restore" value="true">
 							<button type="submit" class="btn btn-warning btn-block">
@@ -98,10 +98,10 @@
 							</button>
 						</form>
 						@else
-						<a href="{{{ URL::action('bike.edit', Hashids::encrypt($bike->id)) }}}" role="button" class="btn btn-default btn-block">
+						<a href="{{{ URL::action('bike.edit', Hasher::encrypt($bike->id)) }}}" role="button" class="btn btn-default btn-block">
 							<span class="glyphicon glyphicon-pencil"></span> bearbeiten
 						</a>
-						<form action="{{{ URL::route('bike.destroy', Hashids::encrypt($bike->id)) }}}" role="form" class="hb-margin-top-1x" method="post">
+						<form action="{{{ URL::route('bike.destroy', Hasher::encrypt($bike->id)) }}}" role="form" class="hb-margin-top-1x" method="post">
 							<input type="hidden" name="_method" value="delete">
 							<button type="submit" class="btn btn-danger btn-block">
 								<span class="glyphicon glyphicon-trash"></span> l&ouml;schen
@@ -190,7 +190,7 @@
 
 	var $carouselInner = $('.carousel-inner'),
 		$carouselIndicators = $('.carousel-indicators'),
-		bike_id = '{{{ Hashids::encrypt($bike->id) }}}';
+		bike_id = '{{{ Hasher::encrypt($bike->id) }}}';
 
 	var addCarouselImage = function(image) {
 		var $div = $(document.createElement('div')),
