@@ -186,7 +186,7 @@ return array(
 		'Img'			  => 'Intervention\Image\Facades\Image',
 		'Flatten'		  => 'Flatten\Facades\Flatten',
 		'Sitemap'		  => 'Watson\Sitemap\Facades\Sitemap',
-		'Hashids'	      => 'Mitch\Hashids\Hashids'
+		'Hashids'	      => 'Mitch\Hashids\Hashids',
 		'Asset'			  => 'Herbsl\Asset\Facades\Asset',
 	),
 
