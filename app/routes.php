@@ -259,7 +259,7 @@ Route::delete('image/{id}', array('before' => 'auth', function($image_id) {
 	return Response::json('success');
 }));
 
-Route::get('login', 'AuthController@show');
+Route::get('login', array('before' => 'session.cookie', 'uses' => 'AuthController@show'));
 Route::post('login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout');
 
