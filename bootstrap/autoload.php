@@ -3,7 +3,7 @@
 define('LARAVEL_START', microtime(true));
 
 call_user_func(function() {
-	if (isset($_COOKIE['laravel_cache'])) {
+	if (isset($_COOKIE['laravel_session'])) {
 		return;
 	}
 

@@ -13,17 +13,13 @@ class AuthController extends BaseController {
         		->with('message', 'Die Anmeldung ist fehlgeschlagen');
 		}
 
-        // disable caching
-		setcookie('laravel_cache', '0');
-
         return Redirect::intended('/');
 	}
 
 	public function logout() {
 		Auth::logout();
 
-        // enable caching
-		setcookie('laravel_cache', '', time() - 3600);
+		setcookie('laravel_session', '', time() - 3600);
 
 		return Redirect::to('/');
 	}
