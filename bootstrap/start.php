@@ -26,11 +26,11 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 	'local' => array(
-		'vm-ubuntu'
+		'pluto'
 	),
-	/*'staging' => array(
+	'staging' => array(
 		'dgws05s26db.ispgateway.de'
-	),*/
+	),
 ));
 
 /*

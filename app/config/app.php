@@ -108,14 +108,14 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		// manually added
-		'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
+		//'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
 		'Fadion\Maneuver\ManeuverServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Flatten\FlattenServiceProvider',
 		'Watson\Sitemap\SitemapServiceProvider',
 		'Mitch\Hashids\HashidsServiceProvider',
 		'Herbsl\Hasher\HasherServiceProvider',
-		'Herbsl\Asset\AssetServiceProvider',
+		'Herbsl\Asset\AssetServiceProvider'
 	),
 
 	/*

@@ -1,4 +1,4 @@
-(function($, doc, undefined) {
+/*(function($, doc, undefined) {
 	'use strict';
 
 	var $doc = $(doc);
@@ -29,4 +29,4 @@
 		parser.href = url;
 		ga('send', 'pageview', parser.pathname + parser.search);
 	});	
-})(jQuery, document);
+})(jQuery, document);*/

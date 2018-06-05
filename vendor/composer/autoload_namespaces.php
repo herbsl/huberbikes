@@ -38,6 +38,7 @@ return array(
     'Intervention\\Image' => array($vendorDir . '/intervention/imagecache/src'),
     'Illuminate' => array($vendorDir . '/laravel/framework/src'),
     'Herbsl\\Hasher' => array($vendorDir . '/herbsl/hasher/src'),
+    'Herbsl\\Elements' => array($vendorDir . '/herbsl/elements/src'),
     'Herbsl\\Asset' => array($vendorDir . '/herbsl/asset/src'),
     'Hashids' => array($vendorDir . '/hashids/hashids/lib'),
     'Flatten' => array($vendorDir . '/anahkiasen/flatten/src'),

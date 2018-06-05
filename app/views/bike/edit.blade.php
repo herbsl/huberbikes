@@ -275,8 +275,7 @@
 				};
 
 				dropzone.emit('addedfile', file);
-				dropzone.emit('thumbnail', file, '/img/cache/small/bike/' +
-					{{{ Hasher::encrypt($bike->id) }}} + '/' + file.name);
+				dropzone.emit('thumbnail', file, '/img/cache/small/bike/{{{ Hasher::encrypt($bike->id) }}}/' + file.name);
 			});
 		});
 	});

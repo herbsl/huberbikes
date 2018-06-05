@@ -23,7 +23,8 @@ gulp.task('htc', function() {
 
 gulp.task('img:clean', function() {
 	return gulp.src('public/img', {
-		read: false
+		read: false,
+		allowEmpty: true
 	})
 	.pipe(clean())
 });
@@ -44,7 +45,8 @@ gulp.task('img', function() {
 
 gulp.task('font:clean', function() {
 	return gulp.src('public/fonts', {
-		read: false
+		read: false,
+		allowEmpty: true
 	})
 	.pipe(clean())
 });
@@ -60,7 +62,8 @@ gulp.task('font', function() {
 
 gulp.task('css:clean', function() {
 	return gulp.src('public/css', {
-		read: false
+		read: false,
+        allowEmpty: true
 	})
 	.pipe(clean())
 });
@@ -113,9 +116,12 @@ gulp.task('css:addons', function() {
 	.on('error', util.log)
 });
 
+gulp.task('css', gulp.series('css:main', 'css:addons'));
+
 gulp.task('js:clean', function() {
 	return gulp.src('public/js', {
-		read: false
+		read: false,
+		allowEmpty: true
 	})
 	.pipe(clean())
 });
@@ -181,7 +187,7 @@ var jsMain = function(fast) {
 	}
 };
 
-gulp.task('js:main', [ 'js:main:cache' ], jsMain(false));
+gulp.task('js:main', gulp.series('js:main:cache', jsMain(false)));
 gulp.task('js:main:fast', jsMain(true));
 
 gulp.task('js:addons', function() {
@@ -203,11 +209,7 @@ gulp.task('js:addons', function() {
 	.on('error', util.log)
 });
 
-//gulp.task('default', [ 'img', 'htc', 'gzip' ] );
-gulp.task('default', [ 'img', 'htc', 'font', 'rev' ] );
-gulp.task('clean', [ 'font:clean', 'css:clean', 'js:clean', 'rev:clean' ]);
-gulp.task('css', [ 'css:main', 'css:addons' ]);
-gulp.task('js', [ 'js:main', 'js:addons' ]);
+gulp.task('js', gulp.series('js:main', 'js:addons'));
 
 var _rev = function(src, reload) {
 	return function() {
@@ -227,24 +229,25 @@ var _rev = function(src, reload) {
 	};
 };
 
-gulp.task('rev:fast', [ 'js:main:fast', 'css:main:fast' ], _rev([
+gulp.task('rev:fast', gulp.series('js:main:fast', 'css:main:fast', _rev([
 	'public/**/main.js',
 	'public/**/main.css'
-], true));
+], true)));
  
-gulp.task('rev', [ 'js', 'css' ], _rev([
+gulp.task('rev', gulp.series('js', 'css', _rev([
 	'public/**/*.js',
 	'public/**/*.css'
-], false)); 
+], false))); 
 
 gulp.task('rev:clean', function() {
 	return gulp.src('public/rev-manifest.json', {
-		read: false
+		read: false,
+		allowEmpty: true
 	})
 	.pipe(clean())
 });
 
-gulp.task('gzip', [ 'rev', 'font', 'htc' ], function() {
+gulp.task('gzip', gulp.series('rev', 'font', 'htc', function() {
 	return gulp.src([
 		'public/**/*.htc',
 		'public/**/*.js',
@@ -257,13 +260,16 @@ gulp.task('gzip', [ 'rev', 'font', 'htc' ], function() {
 		}
 	}))*/
 	.pipe(gulp.dest('public'));
-});
+}));
 
 gulp.task('twb', function() {
 	return gulp.src('assets/less/bootstrap.less')
 		.pipe(less())
 		.pipe(gulp.dest('assets/css'));
 });
+
+gulp.task('default', gulp.series('img', 'htc', 'font', 'rev'));
+gulp.task('clean', gulp.series('font:clean', 'css:clean', 'js:clean', 'rev:clean'));
 
 
 gulp.task('watch', function() {

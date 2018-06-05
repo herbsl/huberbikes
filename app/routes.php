@@ -1,7 +1,9 @@
 <?php
 
 //Route::get('bike/{id}/{name}', 'BikeController@show');
-
+Route::get('test/{id}', function() {
+#    return json_encode(array('x' => 'y'));
+});
 Route::resource('bike', 'BikeController');
 
 function getBikesDetailView($id) {

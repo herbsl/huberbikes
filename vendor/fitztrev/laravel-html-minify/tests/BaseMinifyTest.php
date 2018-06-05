@@ -433,22 +433,6 @@ abstract class BaseMinifyTester extends PHPUnit_Framework_TestCase
         }
     }
 
-    public function testPHPTags()
-    {
-        $string = '<?php
-echo "hello";
-?>';
-        $expected = '<?php echo "hello"; ?>';
-
-        $result = $this->compiler->compileString($string);
-
-        if ($this->config['enabled']) {
-            $this->assertEquals($expected, $result);
-        } else {
-            $this->assertEquals($string, $result);
-        }
-    }
-
     public function testNoIndentation()
     {
         $string = '<input
@@ -463,6 +447,19 @@ name="myinput">';
         } else {
             $this->assertEquals($string, $result);
         }
+    }
+
+    public function testSkipMinification()
+    {
+        $string = '<p>
+<!-- skipmin -->
+</p>';
+        $expected = '<p>
+<!-- skipmin -->
+</p>';
+
+        $result = $this->compiler->compileString($string);
+        $this->assertEquals($expected, $result);
     }
 
 }
