@@ -260,7 +260,7 @@ Route::delete('image/{id}', array('before' => array('session.cookie', 'auth'), f
 }));
 
 Route::get('login', 'AuthController@show');
-Route::post('login', array('before' => 'session.cookie', 'uses' => 'AuthController@login');
+Route::post('login', array('before' => 'session.cookie', 'uses' => 'AuthController@login'));
 Route::get('logout', 'AuthController@logout');
 
 Route::get('sitemap.xml', function() {
