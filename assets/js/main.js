@@ -119,7 +119,7 @@
 			return true;
 		}
 
-		if ($el.data('singlepage-load') === 'disabled' ) {
+		if ($el.data('singlepage-load') === 'disabled' || $el.attr("target") === "_blank") {
 			if ($el.data('singlepage-prevent')) {
 				event.preventDefault();
 			}

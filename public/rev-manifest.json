@@ -9,6 +9,6 @@
   "js/fastclick.min.js": "js/fastclick-23e25eeff7.min.js",
   "js/jquery.touchSwipe.js": "js/jquery-9777089bbc.touchSwipe.js",
   "js/jquery.touchSwipe.min.js": "js/jquery-742ba6d9c4.touchSwipe.min.js",
-  "js/main.js": "js/main-a7eb4ab20c.js",
-  "js/main.min.js": "js/main-f98163b1cf.min.js"
+  "js/main.js": "js/main-df13598f84.js",
+  "js/main.min.js": "js/main-7200fea3be.min.js"
 }

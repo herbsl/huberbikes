@@ -47,6 +47,6 @@
 	// An array of string or variables to add to the salt being used
 	// to differentiate pages
 	'saltshaker'   => array(
-		'1528211769'
+		'1528212951'
 	),
 );

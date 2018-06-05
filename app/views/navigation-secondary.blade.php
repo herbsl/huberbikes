@@ -29,19 +29,19 @@
 			@endif
 				<a href="/so-finden-sie-uns">So finden Sie uns</a>
 			</li>
-			@if (Request::path() === 'impressum')
-			<li class="active">
-			@else
-			<li>
-			@endif
-				<a href="/impressum">Impressum</a>
-			</li>
 			@if (Request::path() === 'datenschutzerklaerung')
 			<li class="active">
 			@else
 			<li>
 			@endif
 				<a href="/datenschutzerklaerung">Datenschutzerkl&auml;ung</a>
+			</li>
+			@if (Request::path() === 'impressum')
+			<li class="active">
+			@else
+			<li>
+			@endif
+				<a href="/impressum">Impressum</a>
 			</li>
 		</ul>
 	</div>

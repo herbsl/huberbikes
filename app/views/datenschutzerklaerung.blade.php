@@ -53,8 +53,6 @@
 <p><a target="_blank" rel="noopener" href="https://adssettings.google.com/authenticated">https://adssettings.google.com/authenticated</a></p>
 <p><a target="_blank" rel="noopener" href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
 <p>weitergehende Informationen an.</p>
-
 <p>
 <a target="_blank" href="https://www.ratgeberrecht.eu/leistungen/muster-datenschutzerklaerung.html">Muster-Datenschutzerklärung</a> der <a target="_blank" href="https://www.ratgeberrecht.eu/">Anwaltskanzlei Weiß &amp; Partner</a></p>
-
 @stop
