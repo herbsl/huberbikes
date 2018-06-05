@@ -34,7 +34,7 @@
 			@else
 			<li>
 			@endif
-				<a href="/datenschutzerklaerung">Datenschutzerkl&auml;ung</a>
+				<a href="/datenschutzerklaerung">Datenschutzerkl&auml;rung</a>
 			</li>
 			@if (Request::path() === 'impressum')
 			<li class="active">

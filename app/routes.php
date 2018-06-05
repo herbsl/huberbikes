@@ -114,7 +114,7 @@ Route::get('so-finden-sie-uns', function() {
 
 Route::get('datenschutzerklaerung', function() {
 	return View::make('datenschutzerklaerung', array(
-		'title' => 'Datenschutzerkl&auml;ung'
+		'title' => 'Datenschutzerkl&auml;rung'
 	));
 });
 
