@@ -85,8 +85,4 @@ Route::filter('csrf', function()
 	}
 });
 
-
-/* Manually added */
-Route::filter('session.cookie', function(){
-    Config::set('session.driver', 'cookie');
-});
+?>
