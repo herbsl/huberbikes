@@ -1,5 +1,13 @@
 <?php
 
+function getSessionDriver() {
+    if (Cookie::get('laravel_session') === null) {
+        return 'array';
+    }
+
+    return 'cookie';
+}
+
 return array(
 
 	/*
@@ -16,7 +24,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'array',
+	'driver' => getSessionDriver(),
 
 	/*
 	|--------------------------------------------------------------------------
