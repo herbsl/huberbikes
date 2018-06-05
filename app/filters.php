@@ -84,3 +84,9 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+/* Manually added */
+Route::filter('session.cookie', function(){
+    Config::set('session.driver', 'cookie');
+});

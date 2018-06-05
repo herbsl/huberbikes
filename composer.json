@@ -36,8 +36,7 @@
 		],
 		"psr-0": {
 			"Herbsl\\Asset": "vendor/herbsl/asset/src",
-			"Herbsl\\Hasher": "vendor/herbsl/hasher/src",
-			"Herbsl\\Elements": "vendor/herbsl/elements/src"
+			"Herbsl\\Hasher": "vendor/herbsl/hasher/src"
 		}
 	},
 	"scripts": {

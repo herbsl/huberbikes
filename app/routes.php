@@ -172,7 +172,7 @@ Route::get('image', function() {
 	}
 });
 
-Route::post('image', array('before' => 'auth', function() {
+Route::post('image', array('before' => array('session.cookie', 'auth'), function() {
 	if (! Input::hasFile('file') || ! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
@@ -215,7 +215,7 @@ Route::post('image', array('before' => 'auth', function() {
 	));
 }));
 
-Route::put('image/{id}', array('before' => 'auth', function($image_id) {
+Route::put('image/{id}', array('before' => array('session.cookie', 'auth'), function($image_id) {
 	if (! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
@@ -241,7 +241,7 @@ Route::put('image/{id}', array('before' => 'auth', function($image_id) {
 	));
 }));
 
-Route::delete('image/{id}', array('before' => 'auth', function($image_id) {
+Route::delete('image/{id}', array('before' => array('session.cookie', 'auth'), function($image_id) {
 	if (! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
@@ -260,7 +260,7 @@ Route::delete('image/{id}', array('before' => 'auth', function($image_id) {
 }));
 
 Route::get('login', 'AuthController@show');
-Route::post('login', 'AuthController@login');
+Route::post('login', array('before' => 'session.cookie', 'uses' => 'AuthController@login');
 Route::get('logout', 'AuthController@logout');
 
 Route::get('sitemap.xml', function() {
