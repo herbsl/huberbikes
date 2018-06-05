@@ -55,4 +55,5 @@
 <p>weitergehende Informationen an.</p>
 <p>
 <a target="_blank" href="https://www.ratgeberrecht.eu/leistungen/muster-datenschutzerklaerung.html">Muster-Datenschutzerklärung</a> der <a target="_blank" href="https://www.ratgeberrecht.eu/">Anwaltskanzlei Weiß &amp; Partner</a></p>
+</div>
 @stop
