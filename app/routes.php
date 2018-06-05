@@ -261,7 +261,7 @@ Route::delete('image/{id}', array('before' => 'auth', function($image_id) {
 
 Route::get('login', array('before' => 'session.driver.file', 'uses' => 'AuthController@show'));
 Route::post('login', 'AuthController@login');
-Route::get('logout', 'AuthController@logout');
+Route::get('logout', array('before' => 'session.driver.array', 'uses' => 'AuthController@logout'));
 
 Route::get('sitemap.xml', function() {
 	$customers = Customer::all();

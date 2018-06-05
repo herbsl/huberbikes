@@ -90,3 +90,8 @@ Route::filter('csrf', function()
 Route::filter('session.driver.file', function(){
     Config::set('session.driver', 'file');
 });
+
+Route::filter('session.driver.array', function(){
+    setcookie("laravel_session", "", time()-3600);
+    Config::set('session.driver', 'array');
+});

@@ -18,9 +18,6 @@ class AuthController extends BaseController {
 
 	public function logout() {
 		Auth::logout();
-
-		setcookie('laravel_session', '', time() - 3600);
-
 		return Redirect::to('/');
 	}
 }
