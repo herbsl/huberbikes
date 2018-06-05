@@ -87,6 +87,6 @@ Route::filter('csrf', function()
 
 
 /* Manually added */
-Route::filter('session.cookie', function(){
-    Config::set('session.driver', 'cookie');
+Route::filter('session.driver.file', function(){
+    Config::set('session.driver', 'file');
 });

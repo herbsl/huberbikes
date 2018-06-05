@@ -5,7 +5,7 @@ function getSessionDriver() {
         return 'array';
     }
 
-    return 'cookie';
+    return 'file';
 }
 
 return array(

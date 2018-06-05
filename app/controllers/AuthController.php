@@ -12,6 +12,8 @@ class AuthController extends BaseController {
     		return Redirect::to('/login')->withInput(Input::except('password'))
         		->with('message', 'Die Anmeldung ist fehlgeschlagen');
 		}
+
+        // disable caching
 		setcookie('laravel_cache', '0');
 
         return Redirect::intended('/');
@@ -19,6 +21,8 @@ class AuthController extends BaseController {
 
 	public function logout() {
 		Auth::logout();
+
+        // enable caching
 		setcookie('laravel_cache', '', time() - 3600);
 
 		return Redirect::to('/');
