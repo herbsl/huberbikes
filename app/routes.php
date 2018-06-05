@@ -172,7 +172,7 @@ Route::get('image', function() {
 	}
 });
 
-Route::post('image', array('before' => 'auth'), function() {
+Route::post('image', array('before' => 'auth', function() {
 	if (! Input::hasFile('file') || ! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
@@ -215,7 +215,7 @@ Route::post('image', array('before' => 'auth'), function() {
 	));
 }));
 
-Route::put('image/{id}', array('before' => 'auth'), function($image_id) {
+Route::put('image/{id}', array('before' => 'auth', function($image_id) {
 	if (! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
@@ -241,7 +241,7 @@ Route::put('image/{id}', array('before' => 'auth'), function($image_id) {
 	));
 }));
 
-Route::delete('image/{id}', array('before' => 'auth'), function($image_id) {
+Route::delete('image/{id}', array('before' => 'auth', function($image_id) {
 	if (! Input::has('bike_id')) {
 		return Response::json(array(
 			'error' => 'Missing parameter'
