@@ -112,6 +112,12 @@ Route::get('so-finden-sie-uns', function() {
 	));
 });
 
+Route::get('datenschutzerklaerung', function() {
+	return View::make('datenschutzerklaerung', array(
+		'title' => 'Datenschutzerkl&auml;ung'
+	));
+});
+
 Route::get('impressum', function() {
 	return View::make('impressum', array(
 		'title' => 'Impressum'
@@ -283,6 +289,7 @@ Route::get('sitemap.xml', function() {
 	Sitemap::addTag(url('/oeffnungszeiten'), '', 'weekly', .9);
 	Sitemap::addTag(url('/so-finden-sie-uns'), '', 'weekly', .9);
 	Sitemap::addTag(url('/impressum'), '', 'weekly', .9);
+	Sitemap::addTag(url('/datenschutzerklaerung'), '', 'weekly', .9);
 
 	# Main Navigation
 	foreach (Category::all() as $category) {
