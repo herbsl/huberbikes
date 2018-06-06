@@ -216,7 +216,7 @@
 		'bike_id': bike_id
 	}, function(data) {
 		$.each(data.images, function(key, value) {
-			if (value.default === "0") { 
+			if (value.default === 0) { 
 				addCarouselImage(value);
 			}
 		});
