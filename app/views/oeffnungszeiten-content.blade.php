@@ -1,4 +1,4 @@
-<p class="bg-info" style="padding: 15px">Wir befinden uns vom 10.09. bis einschlie&szlig;lich 22.09. im Urlaub.<p>
+<!--p class="bg-info" style="padding: 15px">Wir befinden uns vom 10.09. bis einschlie&szlig;lich 22.09. im Urlaub.<p-->
 <div class="table-responsive">
 	<table class="table table-striped">
 		<tbody>
