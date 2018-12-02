@@ -1,5 +1,5 @@
-<!--p class="bg-info" style="padding: 15px">Wir befinden uns vom 10.09. bis einschlie&szlig;lich 22.09. im Urlaub.<p-->
-<p class="bg-info" style="padding: 15px">Ab Dezember ge&auml;nderte &Ouml;ffnungszeiten:<p>
+<!--p class="bg-info" style="padding: 15px">Wir befinden uns vom DD.MM. bis einschlie&szlig;lich DD.MM. im Urlaub.<p-->
+<p class="bg-info" style="padding: 15px">Ab Dezember gelten unsere Winter&ouml;ffnungszeiten:<p>
 <div class="table-responsive">
 	<table class="table table-striped">
 		<tbody>
