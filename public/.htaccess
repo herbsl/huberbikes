@@ -7,6 +7,9 @@ Allow from all
 
 	RewriteBase /
 
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 	# Redirect http://huberbikes.de to http://www.huberbikes.de
 	RewriteCond %{HTTP_HOST} !^www\. [NC]
 	RewriteCond %{SERVER_ADDR} !=127.0.0.1
