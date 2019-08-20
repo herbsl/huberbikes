@@ -14,7 +14,7 @@
             "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
             "shasum": ""
         },
-        "time": "2012-12-21 11:40:51",
+        "time": "2012-12-21T11:40:51+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -61,7 +61,7 @@
         "require-dev": {
             "phpunit/phpunit": "~3.7"
         },
-        "time": "2013-10-09 04:20:00",
+        "time": "2013-10-09T04:20:00+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -104,7 +104,7 @@
             "reference": "1fc1521b5e9794ea77e4eca30717be9635f1d4f4",
             "shasum": ""
         },
-        "time": "2013-04-30 19:58:08",
+        "time": "2013-04-30T19:58:08+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -136,12 +136,12 @@
         "version_normalized": "1.0.8.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/d11wtq/boris.git",
+            "url": "https://github.com/borisrepl/boris.git",
             "reference": "125dd4e5752639af7678a22ea597115646d89c6e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/d11wtq/boris/zipball/125dd4e5752639af7678a22ea597115646d89c6e",
+            "url": "https://api.github.com/repos/borisrepl/boris/zipball/125dd4e5752639af7678a22ea597115646d89c6e",
             "reference": "125dd4e5752639af7678a22ea597115646d89c6e",
             "shasum": ""
         },
@@ -153,7 +153,7 @@
             "ext-posix": "*",
             "ext-readline": "*"
         },
-        "time": "2014-01-17 12:21:18",
+        "time": "2014-01-17T12:21:18+00:00",
         "bin": [
             "bin/boris"
         ],
@@ -172,12 +172,12 @@
         "version_normalized": "1.0.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/mtdowling/ClassPreloader.git",
+            "url": "https://github.com/ClassPreloader/ClassPreloader.git",
             "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/mtdowling/ClassPreloader/zipball/2c9f3bcbab329570c57339895bd11b5dd3b00877",
+            "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/2c9f3bcbab329570c57339895bd11b5dd3b00877",
             "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877",
             "shasum": ""
         },
@@ -188,7 +188,7 @@
             "symfony/filesystem": "~2.1",
             "symfony/finder": "~2.1"
         },
-        "time": "2014-03-12 00:05:31",
+        "time": "2014-03-12T00:05:31+00:00",
         "bin": [
             "classpreloader.php"
         ],
@@ -237,7 +237,7 @@
             "mockery/mockery": "dev-master",
             "silex/silex": "1.0.*@dev"
         },
-        "time": "2013-12-04 14:19:30",
+        "time": "2013-12-04T14:19:30+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -291,7 +291,7 @@
         "require-dev": {
             "silex/silex": "~1.0"
         },
-        "time": "2014-01-28 19:42:24",
+        "time": "2014-01-28T19:42:24+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -347,7 +347,7 @@
             "mockery/mockery": "0.9.*",
             "phpunit/phpunit": "3.*"
         },
-        "time": "2014-05-20 14:23:37",
+        "time": "2014-05-20T14:23:37+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -403,7 +403,7 @@
             "illuminate/view": "~4",
             "mockery/mockery": "dev-master"
         },
-        "time": "2013-10-19 07:49:27",
+        "time": "2013-10-19T07:49:27+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -449,7 +449,7 @@
         "require-dev": {
             "mockery/mockery": "~0.9.1"
         },
-        "time": "2014-06-13 11:44:54",
+        "time": "2014-06-13T11:44:54+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -508,7 +508,7 @@
             "ext-intl": "Use Intl for best performance",
             "ext-mbstring": "Use Mbstring for best performance"
         },
-        "time": "2014-06-17 08:23:06",
+        "time": "2014-06-17T08:23:06+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -574,7 +574,7 @@
             "rollbar/rollbar": "Allow sending log messages to Rollbar",
             "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
         },
-        "time": "2014-06-04 16:30:04",
+        "time": "2014-06-04T16:30:04+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -608,125 +608,6 @@
         ]
     },
     {
-        "name": "laravel/framework",
-        "version": "v4.1.30",
-        "version_normalized": "4.1.30.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/laravel/framework.git",
-            "reference": "1bbb6f16aa03c1de6d89ccbf4ca81bf98e1330ab"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/1bbb6f16aa03c1de6d89ccbf4ca81bf98e1330ab",
-            "reference": "1bbb6f16aa03c1de6d89ccbf4ca81bf98e1330ab",
-            "shasum": ""
-        },
-        "require": {
-            "classpreloader/classpreloader": "1.0.*",
-            "d11wtq/boris": "1.0.*",
-            "filp/whoops": "1.0.10",
-            "ircmaxell/password-compat": "1.0.*",
-            "jeremeamia/superclosure": "1.0.*",
-            "monolog/monolog": "1.*",
-            "nesbot/carbon": "1.*",
-            "patchwork/utf8": "1.1.*",
-            "php": ">=5.3.0",
-            "phpseclib/phpseclib": "0.3.*",
-            "predis/predis": "0.8.*",
-            "stack/builder": "1.0.*",
-            "swiftmailer/swiftmailer": "~5.0",
-            "symfony/browser-kit": "2.4.*",
-            "symfony/console": "2.4.*",
-            "symfony/css-selector": "2.4.*",
-            "symfony/debug": "2.4.*",
-            "symfony/dom-crawler": "2.4.*",
-            "symfony/finder": "2.4.*",
-            "symfony/http-foundation": "2.4.*",
-            "symfony/http-kernel": "2.4.*",
-            "symfony/process": "2.4.*",
-            "symfony/routing": "2.4.*",
-            "symfony/security-core": "2.4.*",
-            "symfony/translation": "2.4.*"
-        },
-        "replace": {
-            "illuminate/auth": "self.version",
-            "illuminate/cache": "self.version",
-            "illuminate/config": "self.version",
-            "illuminate/console": "self.version",
-            "illuminate/container": "self.version",
-            "illuminate/cookie": "self.version",
-            "illuminate/database": "self.version",
-            "illuminate/encryption": "self.version",
-            "illuminate/events": "self.version",
-            "illuminate/exception": "self.version",
-            "illuminate/filesystem": "self.version",
-            "illuminate/foundation": "self.version",
-            "illuminate/hashing": "self.version",
-            "illuminate/html": "self.version",
-            "illuminate/http": "self.version",
-            "illuminate/log": "self.version",
-            "illuminate/mail": "self.version",
-            "illuminate/pagination": "self.version",
-            "illuminate/queue": "self.version",
-            "illuminate/redis": "self.version",
-            "illuminate/remote": "self.version",
-            "illuminate/routing": "self.version",
-            "illuminate/session": "self.version",
-            "illuminate/support": "self.version",
-            "illuminate/translation": "self.version",
-            "illuminate/validation": "self.version",
-            "illuminate/view": "self.version",
-            "illuminate/workbench": "self.version"
-        },
-        "require-dev": {
-            "aws/aws-sdk-php": "2.6.*",
-            "iron-io/iron_mq": "1.5.*",
-            "mockery/mockery": "0.9.*",
-            "pda/pheanstalk": "2.1.*",
-            "phpunit/phpunit": "4.0.*"
-        },
-        "suggest": {
-            "doctrine/dbal": "Allow renaming columns and dropping SQLite columns."
-        },
-        "time": "2014-06-01 18:30:26",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "4.1-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "src/Illuminate/Queue/IlluminateQueueClosure.php"
-            ],
-            "files": [
-                "src/Illuminate/Support/helpers.php"
-            ],
-            "psr-0": {
-                "Illuminate": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com",
-                "homepage": "https://github.com/taylorotwell",
-                "role": "Creator of Laravel"
-            }
-        ],
-        "description": "The Laravel Framework.",
-        "keywords": [
-            "framework",
-            "laravel"
-        ]
-    },
-    {
         "name": "watson/sitemap",
         "version": "1.1.1",
         "version_normalized": "1.1.1.0",
@@ -751,7 +632,7 @@
             "mockery/mockery": "0.9.*",
             "phpunit/phpunit": "3.7.*"
         },
-        "time": "2014-05-22 04:01:20",
+        "time": "2014-05-22T04:01:20+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -781,12 +662,12 @@
         "version_normalized": "0.1.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/herbsl/maneuver.git",
+            "url": "https://github.com/herbsl/Maneuver.git",
             "reference": "44c64d1a4e2a17b264c902397cce01a5c044f7fa"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/herbsl/maneuver/zipball/44c64d1a4e2a17b264c902397cce01a5c044f7fa",
+            "url": "https://api.github.com/repos/herbsl/Maneuver/zipball/44c64d1a4e2a17b264c902397cce01a5c044f7fa",
             "reference": "44c64d1a4e2a17b264c902397cce01a5c044f7fa",
             "shasum": ""
         },
@@ -796,7 +677,7 @@
             "illuminate/support": "4.1.*",
             "php": ">=5.3.0"
         },
-        "time": "2014-03-05 12:59:26",
+        "time": "2014-03-05T12:59:26+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -854,7 +735,7 @@
         "require-dev": {
             "mockery/mockery": "dev-master"
         },
-        "time": "2014-02-13 18:55:30",
+        "time": "2014-02-13T18:55:30+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -893,7 +774,7 @@
         "require-dev": {
             "phpunit/phpunit": "3.7.*"
         },
-        "time": "2014-07-22 05:42:05",
+        "time": "2014-07-22T05:42:05+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -951,7 +832,7 @@
             "illuminate/support": "4.x",
             "php": ">=5.3.0"
         },
-        "time": "2014-02-05 13:22:10",
+        "time": "2014-02-05T13:22:10+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1002,7 +883,7 @@
             "symfony/config": "",
             "symfony/yaml": ""
         },
-        "time": "2014-07-15 14:22:28",
+        "time": "2014-07-15T14:22:28+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1068,7 +949,7 @@
             "symfony/http-foundation": "",
             "symfony/validator": "For using the user password constraint"
         },
-        "time": "2014-06-20 22:02:36",
+        "time": "2014-06-20T22:02:36+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1107,12 +988,12 @@
         "target-dir": "Symfony/Component/HttpFoundation",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/HttpFoundation.git",
+            "url": "https://github.com/symfony/http-foundation.git",
             "reference": "68abe34601c519359b60363b99c29ecfb6679bc4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/68abe34601c519359b60363b99c29ecfb6679bc4",
+            "url": "https://api.github.com/repos/symfony/http-foundation/zipball/68abe34601c519359b60363b99c29ecfb6679bc4",
             "reference": "68abe34601c519359b60363b99c29ecfb6679bc4",
             "shasum": ""
         },
@@ -1122,7 +1003,7 @@
         "require-dev": {
             "symfony/expression-language": "~2.4"
         },
-        "time": "2014-07-15 14:07:10",
+        "time": "2014-07-15T14:07:10+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1164,12 +1045,12 @@
         "target-dir": "Symfony/Component/EventDispatcher",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/EventDispatcher.git",
+            "url": "https://github.com/symfony/event-dispatcher.git",
             "reference": "2215d2ef6fd7ab24d55576a3d924df575c741762"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/2215d2ef6fd7ab24d55576a3d924df575c741762",
+            "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/2215d2ef6fd7ab24d55576a3d924df575c741762",
             "reference": "2215d2ef6fd7ab24d55576a3d924df575c741762",
             "shasum": ""
         },
@@ -1186,7 +1067,7 @@
             "symfony/dependency-injection": "",
             "symfony/http-kernel": ""
         },
-        "time": "2014-07-09 09:05:48",
+        "time": "2014-07-09T09:05:48+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1225,12 +1106,12 @@
         "target-dir": "Symfony/Component/Debug",
         "source": {
             "type": "git",
-            "url": "git@github.com:symfony/Debug.git",
+            "url": "https://github.com/symfony/debug.git",
             "reference": "395690aa209b7f7b654416559952893f86eef9c7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Debug/zipball/395690aa209b7f7b654416559952893f86eef9c7",
+            "url": "https://api.github.com/repos/symfony/debug/zipball/395690aa209b7f7b654416559952893f86eef9c7",
             "reference": "395690aa209b7f7b654416559952893f86eef9c7",
             "shasum": ""
         },
@@ -1245,7 +1126,7 @@
             "symfony/http-foundation": "",
             "symfony/http-kernel": ""
         },
-        "time": "2014-07-09 09:04:55",
+        "time": "2014-07-09T09:04:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1282,12 +1163,12 @@
         "target-dir": "Symfony/Component/HttpKernel",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/HttpKernel.git",
+            "url": "https://github.com/symfony/http-kernel.git",
             "reference": "b2c3fc145e7b50c8e09daab303674126ca3a8c5b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/b2c3fc145e7b50c8e09daab303674126ca3a8c5b",
+            "url": "https://api.github.com/repos/symfony/http-kernel/zipball/b2c3fc145e7b50c8e09daab303674126ca3a8c5b",
             "reference": "b2c3fc145e7b50c8e09daab303674126ca3a8c5b",
             "shasum": ""
         },
@@ -1318,7 +1199,7 @@
             "symfony/dependency-injection": "",
             "symfony/finder": ""
         },
-        "time": "2014-07-15 14:52:02",
+        "time": "2014-07-15T14:52:02+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1357,12 +1238,12 @@
         "target-dir": "Symfony/Component/Routing",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/Routing.git",
+            "url": "https://github.com/symfony/routing.git",
             "reference": "d290f15b7083cee926e17299ab6889210058b30e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Routing/zipball/d290f15b7083cee926e17299ab6889210058b30e",
+            "url": "https://api.github.com/repos/symfony/routing/zipball/d290f15b7083cee926e17299ab6889210058b30e",
             "reference": "d290f15b7083cee926e17299ab6889210058b30e",
             "shasum": ""
         },
@@ -1382,7 +1263,7 @@
             "symfony/expression-language": "For using expression matching",
             "symfony/yaml": "For using the YAML loader"
         },
-        "time": "2014-07-09 09:04:55",
+        "time": "2014-07-09T09:04:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1439,7 +1320,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2014-07-09 09:04:55",
+        "time": "2014-07-09T09:04:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1490,7 +1371,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2014-07-15 14:07:10",
+        "time": "2014-07-15T14:07:10+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1529,12 +1410,12 @@
         "target-dir": "Symfony/Component/DomCrawler",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/DomCrawler.git",
+            "url": "https://github.com/symfony/dom-crawler.git",
             "reference": "503b3de47f93ac9549218570acfe3f5859cafdff"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/503b3de47f93ac9549218570acfe3f5859cafdff",
+            "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/503b3de47f93ac9549218570acfe3f5859cafdff",
             "reference": "503b3de47f93ac9549218570acfe3f5859cafdff",
             "shasum": ""
         },
@@ -1547,7 +1428,7 @@
         "suggest": {
             "symfony/css-selector": ""
         },
-        "time": "2014-07-09 09:04:55",
+        "time": "2014-07-09T09:04:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1586,19 +1467,19 @@
         "target-dir": "Symfony/Component/CssSelector",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/CssSelector.git",
+            "url": "https://github.com/symfony/css-selector.git",
             "reference": "52c35be379ec341c15d2edc7f798f7fd69708645"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/CssSelector/zipball/52c35be379ec341c15d2edc7f798f7fd69708645",
+            "url": "https://api.github.com/repos/symfony/css-selector/zipball/52c35be379ec341c15d2edc7f798f7fd69708645",
             "reference": "52c35be379ec341c15d2edc7f798f7fd69708645",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2014-07-09 09:04:55",
+        "time": "2014-07-09T09:04:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1641,12 +1522,12 @@
         "target-dir": "Symfony/Component/Console",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/Console.git",
+            "url": "https://github.com/symfony/console.git",
             "reference": "29ef7af8aa6e3c015445f34291ccab9b8019085b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Console/zipball/29ef7af8aa6e3c015445f34291ccab9b8019085b",
+            "url": "https://api.github.com/repos/symfony/console/zipball/29ef7af8aa6e3c015445f34291ccab9b8019085b",
             "reference": "29ef7af8aa6e3c015445f34291ccab9b8019085b",
             "shasum": ""
         },
@@ -1659,7 +1540,7 @@
         "suggest": {
             "symfony/event-dispatcher": ""
         },
-        "time": "2014-07-09 12:44:38",
+        "time": "2014-07-09T12:44:38+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1698,12 +1579,12 @@
         "target-dir": "Symfony/Component/BrowserKit",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/BrowserKit.git",
+            "url": "https://github.com/symfony/browser-kit.git",
             "reference": "6ff8827c973325e0f1d53ae631adf991a2fdc198"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/6ff8827c973325e0f1d53ae631adf991a2fdc198",
+            "url": "https://api.github.com/repos/symfony/browser-kit/zipball/6ff8827c973325e0f1d53ae631adf991a2fdc198",
             "reference": "6ff8827c973325e0f1d53ae631adf991a2fdc198",
             "shasum": ""
         },
@@ -1718,7 +1599,7 @@
         "suggest": {
             "symfony/process": ""
         },
-        "time": "2014-07-09 09:04:55",
+        "time": "2014-07-09T09:04:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1775,7 +1656,7 @@
             "ext-curl": "Allows access to Webdis when paired with phpiredis",
             "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
         },
-        "time": "2014-07-15 09:54:33",
+        "time": "2014-07-15T09:54:33+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1830,7 +1711,7 @@
             "ext-mcrypt": "Install the Mcrypt extension in order to speed up a wide variety of cryptographic operations.",
             "pear-pear/PHP_Compat": "Install PHP_Compat to get phpseclib working on PHP < 4.3.3."
         },
-        "time": "2014-07-05 16:36:21",
+        "time": "2014-07-05T16:36:21+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1902,54 +1783,6 @@
         ]
     },
     {
-        "name": "nesbot/carbon",
-        "version": "1.10.0",
-        "version_normalized": "1.10.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/briannesbitt/Carbon.git",
-            "reference": "9b42a1aec56011c2ac4d75c0ddad0794762344fc"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/9b42a1aec56011c2ac4d75c0ddad0794762344fc",
-            "reference": "9b42a1aec56011c2ac4d75c0ddad0794762344fc",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2014-07-18 03:44:47",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Carbon": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Brian Nesbitt",
-                "email": "brian@nesbot.com",
-                "homepage": "http://nesbot.com"
-            }
-        ],
-        "description": "A simple API extension for DateTime.",
-        "homepage": "https://github.com/briannesbitt/Carbon",
-        "keywords": [
-            "date",
-            "datetime",
-            "time"
-        ]
-    },
-    {
         "name": "nikic/php-parser",
         "version": "v0.9.5",
         "version_normalized": "0.9.5.0",
@@ -1968,7 +1801,7 @@
             "ext-tokenizer": "*",
             "php": ">=5.2"
         },
-        "time": "2014-07-23 18:24:17",
+        "time": "2014-07-23T18:24:17+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2003,19 +1836,19 @@
         "target-dir": "Symfony/Component/Filesystem",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/Filesystem.git",
+            "url": "https://github.com/symfony/filesystem.git",
             "reference": "c1309b0ee195ad264a4314435bdaecdfacb8ae9c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Filesystem/zipball/c1309b0ee195ad264a4314435bdaecdfacb8ae9c",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/c1309b0ee195ad264a4314435bdaecdfacb8ae9c",
             "reference": "c1309b0ee195ad264a4314435bdaecdfacb8ae9c",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2014-07-09 09:05:48",
+        "time": "2014-07-09T09:05:48+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2070,7 +1903,7 @@
             "phpunit/php-code-coverage": ">=1.2.10,<1.3.0",
             "phpunit/phpunit": "3.7.*"
         },
-        "time": "2014-07-14 18:21:35",
+        "time": "2014-07-14T18:21:35+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -2132,7 +1965,7 @@
             "ext-imagick": "to use Imagick based image processing.",
             "intervention/imagecache": "Caching extension for the Intervention Image library"
         },
-        "time": "2014-07-27 20:53:47",
+        "time": "2014-07-27T20:53:47+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -2184,7 +2017,7 @@
         "require-dev": {
             "phpunit/phpunit": "3.7.*"
         },
-        "time": "2014-07-20 10:36:44",
+        "time": "2014-07-20T10:36:44+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -2206,6 +2039,172 @@
         "keywords": [
             "config",
             "laravel"
+        ],
+        "abandoned": true
+    },
+    {
+        "name": "laravel/framework",
+        "version": "v4.1.31",
+        "version_normalized": "4.1.31.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/laravel/framework.git",
+            "reference": "2b092f8d12eb26929687c3ecfb13b626fba6fe6d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/2b092f8d12eb26929687c3ecfb13b626fba6fe6d",
+            "reference": "2b092f8d12eb26929687c3ecfb13b626fba6fe6d",
+            "shasum": ""
+        },
+        "require": {
+            "classpreloader/classpreloader": "1.0.*",
+            "d11wtq/boris": "1.0.*",
+            "filp/whoops": "1.0.10",
+            "ircmaxell/password-compat": "1.0.*",
+            "jeremeamia/superclosure": "1.0.*",
+            "monolog/monolog": "1.*",
+            "nesbot/carbon": "1.*",
+            "patchwork/utf8": "1.1.*",
+            "php": ">=5.3.0",
+            "phpseclib/phpseclib": "0.3.*",
+            "predis/predis": "0.8.*",
+            "stack/builder": "1.0.*",
+            "swiftmailer/swiftmailer": "~5.0",
+            "symfony/browser-kit": "2.4.*",
+            "symfony/console": "2.4.*",
+            "symfony/css-selector": "2.4.*",
+            "symfony/debug": "2.4.*",
+            "symfony/dom-crawler": "2.4.*",
+            "symfony/finder": "2.4.*",
+            "symfony/http-foundation": "2.4.*",
+            "symfony/http-kernel": "2.4.*",
+            "symfony/process": "2.4.*",
+            "symfony/routing": "2.4.*",
+            "symfony/security-core": "2.4.*",
+            "symfony/translation": "2.4.*"
+        },
+        "replace": {
+            "illuminate/auth": "self.version",
+            "illuminate/cache": "self.version",
+            "illuminate/config": "self.version",
+            "illuminate/console": "self.version",
+            "illuminate/container": "self.version",
+            "illuminate/cookie": "self.version",
+            "illuminate/database": "self.version",
+            "illuminate/encryption": "self.version",
+            "illuminate/events": "self.version",
+            "illuminate/exception": "self.version",
+            "illuminate/filesystem": "self.version",
+            "illuminate/foundation": "self.version",
+            "illuminate/hashing": "self.version",
+            "illuminate/html": "self.version",
+            "illuminate/http": "self.version",
+            "illuminate/log": "self.version",
+            "illuminate/mail": "self.version",
+            "illuminate/pagination": "self.version",
+            "illuminate/queue": "self.version",
+            "illuminate/redis": "self.version",
+            "illuminate/remote": "self.version",
+            "illuminate/routing": "self.version",
+            "illuminate/session": "self.version",
+            "illuminate/support": "self.version",
+            "illuminate/translation": "self.version",
+            "illuminate/validation": "self.version",
+            "illuminate/view": "self.version",
+            "illuminate/workbench": "self.version"
+        },
+        "require-dev": {
+            "aws/aws-sdk-php": "2.6.*",
+            "iron-io/iron_mq": "1.5.*",
+            "mockery/mockery": "0.9.*",
+            "pda/pheanstalk": "2.1.*",
+            "phpunit/phpunit": "4.0.*"
+        },
+        "suggest": {
+            "doctrine/dbal": "Allow renaming columns and dropping SQLite columns."
+        },
+        "time": "2014-09-08T18:40:03+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/Illuminate/Queue/IlluminateQueueClosure.php"
+            ],
+            "files": [
+                "src/Illuminate/Support/helpers.php"
+            ],
+            "psr-0": {
+                "Illuminate": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Laravel Framework.",
+        "keywords": [
+            "framework",
+            "laravel"
+        ]
+    },
+    {
+        "name": "nesbot/carbon",
+        "version": "1.17.0",
+        "version_normalized": "1.17.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/briannesbitt/Carbon.git",
+            "reference": "a1dd1ad9abfc8b3c4d8768068e6c71d293424e86"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/a1dd1ad9abfc8b3c4d8768068e6c71d293424e86",
+            "reference": "a1dd1ad9abfc8b3c4d8768068e6c71d293424e86",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2015-03-08T14:05:44+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Carbon": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Brian Nesbitt",
+                "email": "brian@nesbot.com",
+                "homepage": "http://nesbot.com"
+            }
+        ],
+        "description": "A simple API extension for DateTime.",
+        "homepage": "http://carbon.nesbot.com",
+        "keywords": [
+            "date",
+            "datetime",
+            "time"
         ]
     }
 ]
