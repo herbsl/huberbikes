@@ -20,8 +20,8 @@ App::before(function($request)
 App::after(function($request, $response)
 {
 	$headers = Session::get('X-Header');
-print_r($headers);
-	if (count($headers) > 0) {
+
+	if ($headers && count($headers) > 0) {
 		foreach ($headers as $key => $value) {
 			$response->headers->set($key, $value);
 		}
