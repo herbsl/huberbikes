@@ -20,7 +20,7 @@
 			@else
 			<li>
 			@endif
-				<a data-toggle="modal" data-target="#modal-opened" data-remote="" href="/oeffnungszeiten" data-singlepage-load="disabled">&Ouml;ffnungszeiten<!--span class="label label-info" style="margin-left: 4px;vertical-align: top;">Winter</spani--></a>
+				<a data-toggle="modal" data-target="#modal-opened" data-remote="" href="/oeffnungszeiten" data-singlepage-load="disabled">&Ouml;ffnungszeiten<span class="label label-info" style="margin-left: 4px;vertical-align: top;">Winter</span></a>
 			</li>
 			@if (Request::path() === 'so-finden-sie-uns')
 			<li class="active">
