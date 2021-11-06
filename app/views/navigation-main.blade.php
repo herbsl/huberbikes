@@ -1,18 +1,21 @@
 <nav class="navbar navbar-default navbar-fixed-top hb-navbar-transparent" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
+		    @if (Auth::check())
 			<a href="/navigation" id="responsive-menu" class="navbar-toggle hb-navbar-btn" data-toggle="collapse" data-target="#navbar-main" data-singlepage-load="disabled" data-singlepage-prevent="true">
 				<span class="sr-only">Men&uuml;</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>	
 			</a>
+		    @endif
 			@if (Request::path() === '/')
 			<a class="navbar-brand hb-navbar-brand-center hb-text-overflow" href="#" tabindex="1">Huber Bikes</a>
 			@else
 			<a class="navbar-brand hb-navbar-brand-center hb-text-overflow" href="/" tabindex="1">Huber Bikes</a>
 			@endif
 		</div>
+		@if (Auth::check())
 		<div class="navbar-collapse collapse" id="navbar-main">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
@@ -74,5 +77,6 @@
 				@endif
 			</ul>
 		</div>
+		@endif
 	</div>
 </nav>
